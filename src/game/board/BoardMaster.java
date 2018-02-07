@@ -1,11 +1,11 @@
-package board;
+package game.board;
 
 import java.util.Stack;
 
 public class BoardMaster implements IBoardMaster{
-    private IMutableBoard actualBoard;
+    private Board actualBoard;
     private static BoardMaster boardMaster;
-    private Stack<IMutableBoard> history;
+    private Stack<Board> history;
 
     private BoardMaster(){
         history = new Stack<>();
@@ -18,20 +18,16 @@ public class BoardMaster implements IBoardMaster{
         return boardMaster;
     }
 
-
     /**
-     * If one of the parameters is negative, create a board with dimension (0x0)
-     * @param width Width of the board in cell
-     * @param height Height of the board in cell
+     * If one of the parameters is negative, assert.
+     * @param width Width of the game.board in cell
+     * @param height Height of the game.board in cell
      */
     public void init(int width, int height){
-        if(width < 0 || height < 0)
-            actualBoard = new Board(0, 0);
-        else
-            actualBoard = new Board(width, height);
+        actualBoard = new Board(width, height);
     }
 
-    public IBoard getBoard(){
+    public Board getBoard(){
         return actualBoard;
     }
 
@@ -40,7 +36,7 @@ public class BoardMaster implements IBoardMaster{
         if(history.empty())
             return false;
         actualBoard = history.pop();
-        return false;
+        return true;
     }
 
     @Override
@@ -50,9 +46,9 @@ public class BoardMaster implements IBoardMaster{
     }
 
     @Override
-    public boolean move(int x, int y, int x2, int y2, boolean unit) {
+    public boolean moveUnit(int x, int y, int x2, int y2) {
         history.push(actualBoard.clone());
-        if(actualBoard.move(x, y, x2, y2, unit)){
+        if(actualBoard.move(x, y, x2, y2, EInfoType.UNIT)){
             return true;
         }
         history.pop();
@@ -60,8 +56,23 @@ public class BoardMaster implements IBoardMaster{
     }
 
     @Override
-    public void addInfo(String key, Info i, int x, int y) {
-        actualBoard.addInfo(key, i, x, y);
+    public boolean moveBuilding(int x, int y, int x2, int y2) {
+        Board tmp = actualBoard.clone();
+        if(actualBoard.move(x, y, x2, y2, EInfoType.BUILDING)){
+            history.push(tmp);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Object getValueInfo(EInfoType key, int x, int y) {
+        return actualBoard.getInfo(key, x, y).getValue();
+    }
+
+    @Override
+    public void addInfo(EInfoType key, Info info, int x, int y) {
+        actualBoard.addInfo(key, info, x, y);
     }
 
     @Override
