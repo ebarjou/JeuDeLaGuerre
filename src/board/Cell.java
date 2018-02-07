@@ -25,13 +25,13 @@ public class Cell {
     }
 
     public String toString(){
-        String res = new String();
+        StringBuilder res = new StringBuilder();
         Set<Map.Entry<String, Info>> setHm = informations.entrySet();
         for (Map.Entry<String, Info> e : setHm) {
-            res += e.getKey() + " : " + e.getValue().getDescription() + " -> " + e.getValue().getValue() + "\n";
+            res.append(e.getKey()).append(" : ").append(e.getValue().getDescription()).append(" -> ").append(e.getValue().getValue()).append("\n");
             //System.out.println(e.getKey() + " : " + e.getValue());
         }
-        return res;
+        return res.toString();
     }
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public EntityID getBuilding() {

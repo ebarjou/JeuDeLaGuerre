@@ -21,8 +21,8 @@ public class BoardMaster implements IBoardMaster{
 
     /**
      * If one of the parameters is negative, create a board with dimension (0x0)
-     * @param width
-     * @param height
+     * @param width Width of the board in cell
+     * @param height Height of the board in cell
      */
     public void init(int width, int height){
         if(width < 0 || height < 0)
