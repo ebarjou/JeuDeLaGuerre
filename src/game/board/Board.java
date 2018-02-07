@@ -1,6 +1,6 @@
 package game.board;
 
-class Board implements Cloneable{
+public class Board implements Cloneable{
     private int width, height;
     private Cell[][] board;
 
@@ -46,7 +46,7 @@ class Board implements Cloneable{
      * @param key true if unit is moved, else false for building
      * @return true if the move is done, else false
      */
-    public boolean move(int x, int y, int x2, int y2, EInfoType key) {
+    boolean move(int x, int y, int x2, int y2, EInfoType key) {
         if(edge(x, y) || edge(x2, y2)) {
             return false;
         }
@@ -58,12 +58,12 @@ class Board implements Cloneable{
     }
 
 
-    public void addInfo(EInfoType key, Info i, int x, int y) {
+    void addInfo(EInfoType key, Info i, int x, int y) {
         board[x][y].addInfo(key, i);
     }
 
 
-    public void clearCommunication() {
+    void clearCommunication() {
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
                 board[x][y].addInfo(EInfoType.COMMUNICATION1, new Info(false));
