@@ -60,19 +60,15 @@ public class BoardMaster implements IBoardMaster{
     }
 
     @Override
-    public void setBuilding(EntityID e, int x, int y) {
-        actualBoard.setBuilding(e, x, y);
+    public void addInfo(String key, Info i, int x, int y) {
+        actualBoard.addInfo(key, i, x, y);
     }
 
     @Override
-    public void setCommunication(int x, int y, boolean isCommunicate) {
-        actualBoard.setCommunication(x, y, isCommunicate);
+    public void clearCommunication() {
+        actualBoard.clearCommunication();
     }
 
-    @Override
-    public void setUnit(EntityID e, int x, int y) {
-        actualBoard.setUnit(e, x, y);
-    }
 
 
 /* Tests for clone (need to be moved)

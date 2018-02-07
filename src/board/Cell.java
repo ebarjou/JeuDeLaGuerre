@@ -1,25 +1,39 @@
 package board;
 
-public class Cell{
-    private boolean isCommunicate;
-    private EntityID building;
-    private EntityID unit;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class Cell {
+    private Map<String, Info> informations;
 
     public Cell(){
-        isCommunicate = false;
-        building = null;
-        unit = null;
+        informations = new HashMap<>();
     }
 
-    public boolean isCommunicate() {
-        return isCommunicate;
+    public Info getInfo(String key){
+        return informations.get(key);
     }
 
-    public void setCommunicate(boolean communicate) {
-        isCommunicate = communicate;
+    public void addInfo(String key, Info i){
+        informations.put(key, i);
     }
 
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    public boolean isInfo(String key){
+        return informations.containsKey(key);
+    }
+
+    public String toString(){
+        String res = new String();
+        Set<Map.Entry<String, Info>> setHm = informations.entrySet();
+        for (Map.Entry<String, Info> e : setHm) {
+            res += e.getKey() + " : " + e.getValue().getDescription() + " -> " + e.getValue().getValue() + "\n";
+            //System.out.println(e.getKey() + " : " + e.getValue());
+        }
+        return res;
+    }
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public EntityID getBuilding() {
         return building;
     }
@@ -35,16 +49,6 @@ public class Cell{
     public void setUnit(EntityID unit) {
         this.unit = unit;
     }
-
-    /*public Cell clone(){
-        Object o = null;
-        try {
-            o = super.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return (Cell)o;
-    }
-    */
+*/
 
 }
