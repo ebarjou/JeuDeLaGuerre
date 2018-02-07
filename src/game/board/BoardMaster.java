@@ -23,10 +23,12 @@ public class BoardMaster implements IBoardMaster{
      * @param width Width of the game.board in cell
      * @param height Height of the game.board in cell
      */
+    @Override
     public void init(int width, int height){
         actualBoard = new Board(width, height);
     }
 
+    @Override
     public Board getBoard(){
         return actualBoard;
     }
@@ -47,11 +49,11 @@ public class BoardMaster implements IBoardMaster{
 
     @Override
     public boolean moveUnit(int x, int y, int x2, int y2) {
-        history.push(actualBoard.clone());
+        Board tmp = actualBoard.clone();
         if(actualBoard.move(x, y, x2, y2, EInfoType.UNIT)){
+            history.push(tmp);
             return true;
         }
-        history.pop();
         return false;
     }
 
@@ -68,6 +70,30 @@ public class BoardMaster implements IBoardMaster{
     @Override
     public Object getValueInfo(EInfoType key, int x, int y) {
         return actualBoard.getInfo(key, x, y).getValue();
+    }
+
+    @Override
+    public boolean addUnit(EUnit unitType, int player, int x, int y) {
+        if(actualBoard.getInfo(EInfoType.UNIT, x, y) == null){
+            System.out.println("Error: already a unit at this location");
+            return false;
+        }
+        UnitInfo unitInfo = new UnitInfo(unitType, player);
+        Info newUnit = new Info(unitInfo);
+        actualBoard.addInfo(EInfoType.UNIT, newUnit, x, y);
+        return true;
+    }
+
+    @Override
+    public boolean addBuilding(EBuilding buildingType, int player, int x, int y) {
+        if(actualBoard.getInfo(EInfoType.BUILDING, x, y) == null){
+            System.out.println("Error: already a building at this location");
+            return false;
+        }
+        BuildingInfo unitInfo = new BuildingInfo(buildingType, player);
+        Info newBuilding = new Info(unitInfo);
+        actualBoard.addInfo(EInfoType.BUILDING, newBuilding, x, y);
+        return true;
     }
 
     @Override

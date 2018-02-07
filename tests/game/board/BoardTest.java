@@ -41,7 +41,7 @@ public class BoardTest {
     }
 
     @Test
-    public void addInfo(){
+    public void move(){
 
     }
 
