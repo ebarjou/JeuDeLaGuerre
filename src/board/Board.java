@@ -1,16 +1,18 @@
 package board;
 
-public class Board implements IBoard{
+public class Board implements IMutableBoard{
     private int width, height;
     private Cell[][] board;
 
     public Board(int width, int height){
         this.width = width;
         this.height = height;
+
         board = new Cell[width][height];
+
         for(int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++){
-                board[x][y] = new Cell(x, y);
+                board[x][y] = new Cell();
             }
         }
     }
@@ -25,6 +27,7 @@ public class Board implements IBoard{
         return height;
     }
 
+    //return true if coord (x;y) is beyond board's edges
     private boolean edge(int x, int y){
         return x < 0 || y < 0 || x >= width || y >= height;
     }
@@ -48,11 +51,17 @@ public class Board implements IBoard{
             swapBuilding(x, y, x2, y2);
     }
 
+    //Move the entityID in the cell at the coord (x;y) to the cell (x2;y2)
+    //Swap the entityID between this two cells if the coords are valid.
+    //if unit is true, it's the entityID corresponding to the unit in the cells that is swaped,
+    // else it's the building.
     @Override
     public boolean move(int x, int y, int x2, int y2, boolean unit) {
         if(edge(x, y) || edge(x2, y2)){
             return false;
         }
+        //Stack need to be defined (Who will handle the stack, Need a clone method ?)
+        //history.push(this);
         swap(x, y, x2, y2, unit);
         return true;
     }
@@ -67,6 +76,15 @@ public class Board implements IBoard{
     @Override
     public boolean getCommunication(int x, int y) {
         return !edge(x, y) && board[x][y].isCommunicate();
+    }
+
+    @Override
+    public void clearCommunication(){
+        for(int y = 0; y < height; ++y){
+            for(int x = 0; x < width; ++x){
+                board[x][y].setCommunicate(false);
+            }
+        }
     }
 
     @Override
@@ -92,12 +110,25 @@ public class Board implements IBoard{
     }
 
     @Override
-    public void clearCommunication(){
-        for(int y = 0; y < height; ++y){
-            for(int x = 0; x < width; ++x){
-                board[x][y].setCommunicate(false);
-            }
+    public boolean isEmptyUnit(int x, int y) {
+        return !edge(x, y) && (board[x][y].getUnit() == null);
+    }
+
+    @Override
+    public boolean isEmptyBuilding(int x, int y) {
+        return !edge(x, y) && board[x][y].getBuilding() == null;
+    }
+
+    @Override
+    public Board clone(){
+        Object o = null;
+        try {
+            o = super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
         }
+
+        return (Board)o;
     }
 
 

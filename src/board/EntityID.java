@@ -1,6 +1,6 @@
 package board;
 
-public class EntityID {
+public class EntityID{
     private int player;
     private String id;
     private boolean isUnit;
@@ -22,4 +22,15 @@ public class EntityID {
     public int getPlayer(){
         return player;
     }
+
+    /*public EntityID clone(){
+        Object o = null;
+        try {
+            o = super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return (EntityID)o;
+    }
+    */
 }

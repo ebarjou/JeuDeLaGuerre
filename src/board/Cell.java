@@ -1,19 +1,14 @@
 package board;
 
-public class Cell {
-    private int x, y;
+public class Cell{
     private boolean isCommunicate;
     private EntityID building;
     private EntityID unit;
 
-    public Cell(int x, int y){
-        this.x = x;
-        this.y = y;
+    public Cell(){
         isCommunicate = false;
         building = null;
         unit = null;
-
-
     }
 
     public boolean isCommunicate() {
@@ -40,4 +35,16 @@ public class Cell {
     public void setUnit(EntityID unit) {
         this.unit = unit;
     }
+
+    /*public Cell clone(){
+        Object o = null;
+        try {
+            o = super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return (Cell)o;
+    }
+    */
+
 }
