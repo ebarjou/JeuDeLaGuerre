@@ -1,18 +1,20 @@
 package ui;
 
-public interface IUserCommand {
+public interface UserCommand {
 
 
     /**
      * Wait for the next user command
      * @return Command
      */
-    String ask();
+    SharedCommand getNextCommand();
 
     /**
      * @param response to the user
      * @return
      */
-    void respond(String response);
+    void sendResponse(SharedCommand response);
+
+    void setState();
 
 }
