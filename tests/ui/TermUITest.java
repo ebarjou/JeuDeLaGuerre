@@ -1,10 +1,9 @@
+package ui;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ui.SharedCommand;
-import ui.TermUI;
-import ui.UserInterface;
 import ui.commands.UserToGameCall;
 
 import java.io.ByteArrayInputStream;

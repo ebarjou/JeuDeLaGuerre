@@ -24,6 +24,16 @@ class Cell implements Cloneable{
             e.printStackTrace();
         }
 
+        assert o != null;
+
+        ((Cell)o).building = null;
+        if(building != null)
+            ((Cell)o).building = building.clone();
+
+        ((Cell)o).unit = null;
+        if(unit != null)
+            ((Cell)o).unit = unit.clone();
+
         return (Cell) o;
     }
 

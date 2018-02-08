@@ -67,12 +67,14 @@ public class BoardTest {
         BuildingInfo b1 = board1.getBuilding(x, y);
         BuildingInfo b2 = board2.getBuilding(x, y);
 
+        assertTrue(b1 != b2);
         assertTrue(b1.getId() == b2.getId());
         assertTrue(b1.getPlayer() == b2.getPlayer());
 
         UnitInfo u1 = board1.getUnit(x, y);
         UnitInfo u2 = board2.getUnit(x, y);
 
+        assertTrue(u1 != u2);
         assertTrue(u1.getId() == u2.getId());
         assertTrue(u1.getPlayer() == u2.getPlayer());
     }

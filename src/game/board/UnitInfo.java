@@ -2,7 +2,7 @@ package game.board;
 
 import game.EPlayer;
 
-class UnitInfo {
+class UnitInfo implements Cloneable{
     private EUnit id;
     private EPlayer player;
 
@@ -25,5 +25,16 @@ class UnitInfo {
 
     void setPlayer(EPlayer player) {
         this.player = player;
+    }
+
+    @Override
+    public UnitInfo clone(){
+        Object o = null;
+        try{
+            o = super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return (UnitInfo)o;
     }
 }
