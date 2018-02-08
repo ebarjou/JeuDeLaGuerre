@@ -1,10 +1,12 @@
 package game.board;
 
+import game.EPlayer;
+
 class BuildingInfo {
     private EBuilding id;
-    private int player;
+    private EPlayer player;
 
-    public BuildingInfo(EBuilding id, int player){
+    public BuildingInfo(EBuilding id, EPlayer player){
         this.id = id;
         this.player = player;
     }
@@ -17,11 +19,11 @@ class BuildingInfo {
         this.id = id;
     }
 
-    public int getPlayer() {
+    public EPlayer getPlayer() {
         return player;
     }
 
-    public void setPlayer(int player) {
+    public void setPlayer(EPlayer player) {
         this.player = player;
     }
 }

@@ -1,10 +1,12 @@
 package game.board;
 
+import game.EPlayer;
+
 class UnitInfo {
     private EUnit id;
-    private int player;
+    private EPlayer player;
 
-    public UnitInfo(EUnit id, int player){
+    public UnitInfo(EUnit id, EPlayer player){
         this.id = id;
         this.player = player;
     }
@@ -17,11 +19,11 @@ class UnitInfo {
         this.id = id;
     }
 
-    public int getPlayer() {
+    public EPlayer getPlayer() {
         return player;
     }
 
-    void setPlayer(int player) {
+    void setPlayer(EPlayer player) {
         this.player = player;
     }
 }

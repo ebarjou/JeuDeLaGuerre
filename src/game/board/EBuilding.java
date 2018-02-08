@@ -1,8 +1,18 @@
 package game.board;
 
 public enum EBuilding {
-    MOUNTAIN,
-    PASS,
-    FORTERESS,
-    ARSENAL;
+    MOUNTAIN("Mountain"),
+    PASS("Pass"),
+    FORTERESS("Forteress"),
+    ARSENAL("Arsenal");
+
+    private String name;
+
+    EBuilding(String str){
+        name = str;
+    }
+
+    public String getName(){
+        return name;
+    }
 }

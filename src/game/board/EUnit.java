@@ -1,10 +1,20 @@
 package game.board;
 
 public enum EUnit {
-    INFANTERY,
-    CAVALERY,
-    ARTILLERY,
-    ARTILLERY_HORSE,
-    RELAY,
-    RELAY_HORSE;
+    INFANTRY("Infantry"),
+    CAVALRY("Cavalry"),
+    ARTILLERY("Artillery"),
+    ARTILLERY_HORSE("Artillery_horse"),
+    RELAY("Relay"),
+    RELAY_HORSE("Relay_horse");
+
+    private String name;
+
+    EUnit(String s){
+        name = s;
+    }
+
+    public String getName(){
+        return name;
+    }
 }

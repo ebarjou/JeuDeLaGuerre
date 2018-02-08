@@ -1,5 +1,7 @@
 package game.board;
 
+import game.EPlayer;
+
 public interface IBoardMaster {
 
     void initBoard(int w, int h);
@@ -11,19 +13,12 @@ public interface IBoardMaster {
     boolean moveUnit(int x, int y, int x2, int y2);
     boolean moveBuilding(int x, int y, int x2, int y2);
 
-    boolean addUnit(EUnit unitType, int player, int x, int y);
-    boolean addBuilding(EBuilding buildingType, int player, int x, int y);
+    boolean addUnit(EUnit unitType, EPlayer player, int x, int y);
+    boolean addBuilding(EBuilding buildingType, EPlayer player, int x, int y);
 
-    void setCommunication(int player, int x, int y);
-    void deleteCommunication(int player, int x, int y);
+    boolean removeUnit(int x, int y);
+
+    void setCommunication(EPlayer player, int x, int y, boolean value);
+    void deleteCommunication(EPlayer player, int x, int y);
     void clearCommunication();
-
-    //boolean moveData(int x, int y, int x2, int y2);
-    //boolean addData(Data d, int x, int y);
-
-    //void setData(Data d, int x, int y);
-    Object getValueInfo(EInfoType key, int x, int y);
-
-    void addInfo(EInfoType key, Info info, int x, int y);
-
 }

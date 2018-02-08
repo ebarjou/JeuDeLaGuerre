@@ -1,5 +1,7 @@
 package game.board;
 
+import game.EPlayer;
+
 public class Board implements Cloneable{
     private int width, height;
     private Cell[][] board;
@@ -12,26 +14,15 @@ public class Board implements Cloneable{
 
         board = new Cell[width][height];
 
-        for(int y = 0; y < height; ++y){
-            for(int x = 0; x < width; ++x){
+        for(int x = 0; x < width; ++x){
+            for(int y = 0; y < height; ++y){
                 board[x][y] = new Cell();
             }
         }
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public Info getInfo(EInfoType key, int x, int y) {
-        return board[x][y].getInfo(key);
-    }
-
     //return true if coord (x;y) is beyond board's edges
+
     private boolean edge(int x, int y) throws ArithmeticException{
         return x < 0 || y < 0 || x >= width || y >= height;
     }
@@ -43,33 +34,93 @@ public class Board implements Cloneable{
      * @param y    coord Y source
      * @param x2   coord X destination
      * @param y2   coord Y destination
-     * @param key true if unit is moved, else false for building
      * @return true if the move is done, else false
      */
-    boolean move(int x, int y, int x2, int y2, EInfoType key) {
+    boolean moveUnit(int x, int y, int x2, int y2) {
         if(edge(x, y) || edge(x2, y2)) {
             return false;
         }
 
-        Info tmp = board[x][y].getInfo(key);
-        board[x][y].addInfo(key, board[x2][y2].getInfo(key));
-        board[x2][y2].addInfo(key, tmp);
+        if(board[x][y].getUnit() == null && board[x2][y2].getUnit() == null) {
+            return false;
+        }
+
+        UnitInfo tmp = board[x][y].getUnit();
+        board[x][y].setUnit(board[x2][y2].getUnit());
+        board[x2][y2].setUnit(tmp);
         return true;
     }
 
+    boolean moveBuilding(int x, int y, int x2, int y2) {
+        if(edge(x, y) || edge(x2, y2)) {
+            return false;
+        }
 
-    void addInfo(EInfoType key, Info i, int x, int y) {
-        board[x][y].addInfo(key, i);
+        if(board[x][y].getBuilding() == null && board[x2][y2].getBuilding() == null) {
+            return false;
+        }
+
+        BuildingInfo tmp = board[x][y].getBuilding();
+        board[x][y].setBuilding(board[x2][y2].getBuilding());
+        board[x2][y2].setBuilding(tmp);
+        return true;
+    }
+
+    void clearCommunication(){
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
+                board[x][y].setCommunication1(false);
+                board[x][y].setCommunication2(false);
+            }
+        }
+    }
+
+    void setCommunication(EPlayer player, int x, int y, boolean value){
+        if(!edge(x, y)){
+            if(player == EPlayer.PLAYER1)
+                board[x][y].setCommunication1(value);
+            else
+                board[x][y].setCommunication2(value);
+        }
+    }
+
+    Cell getCell(int x, int y){
+        if(edge(x, y))
+            return null;
+        return board[x][y];
+    }
+
+    void setUnit(UnitInfo unit, int x, int y){
+        if(edge(x, y))
+            return;
+        board[x][y].setUnit(unit);
+    }
+
+    void setBuilding(BuildingInfo building, int x, int y){
+        if(edge(x, y))
+            return;
+        board[x][y].setBuilding(building);
     }
 
 
-    void clearCommunication() {
-        for (int y = 0; y < height; ++y) {
-            for (int x = 0; x < width; ++x) {
-                board[x][y].addInfo(EInfoType.COMMUNICATION1, new Info(false));
-                board[x][y].addInfo(EInfoType.COMMUNICATION2, new Info(false));
-            }
-        }
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public UnitInfo getUnit(int x, int y){
+        if(edge(x, y))
+            return null;
+        return board[x][y].getUnit();
+    }
+
+    public BuildingInfo getBuilding(int x, int y){
+        if(edge(x, y))
+            return null;
+        return board[x][y].getBuilding();
     }
 
     @Override

@@ -1,22 +1,22 @@
 package game.board;
 
+import game.EPlayer;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 class Cell implements Cloneable{
-    private Map<EInfoType, Info> informations;
+    private UnitInfo unit;
+    private BuildingInfo building;
+    private boolean communication1;
+    private boolean communication2;
 
     Cell(){
-        informations = new HashMap<>();
-    }
-
-    public Info getInfo(EInfoType key){
-        return informations.get(key);
-    }
-
-    public void addInfo(EInfoType key, Info i){
-        informations.put(key, i);
+        unit = null;
+        building = null;
+        communication1 = false;
+        communication2 = false;
     }
 
     @Override
@@ -27,28 +27,49 @@ class Cell implements Cloneable{
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        //Clone HashMap ?
 
-        //Is this part valid ??..
-        Map<EInfoType, Info> newMap = new HashMap<>();
-
-        Set<Map.Entry<EInfoType, Info>> setHm = informations.entrySet();
-        for(Map.Entry<EInfoType, Info> e : setHm){
-            newMap.put(e.getKey(), e.getValue().clone());
-        }
-
-        assert o != null;
-        ((Cell)o).informations = new HashMap<>(newMap);
         return (Cell) o;
     }
 
     public String toString(){
-        StringBuilder res = new StringBuilder();
-        Set<Map.Entry<EInfoType, Info>> setHm = informations.entrySet();
-        for (Map.Entry<EInfoType, Info> e : setHm) {
-            res.append(e.getKey()).append(" : ")
-                    .append(e.getValue().getValue()).append("\n");
-        }
-        return res.toString();
+        String res = "";
+        if(unit != null)
+            res += unit.getId().getName() + "\n";
+        if(building != null)
+            res += building.getId().getName() + "\n";
+        if(res.isEmpty())
+            return res;
+
+        return res + "Com1 : " + communication1 + "\nCom2: " + communication2 + "\n";
+    }
+
+    public void setUnit(UnitInfo unit) {
+        this.unit = unit;
+    }
+
+    public UnitInfo getUnit(){
+        return unit;
+    }
+
+    public void setBuilding(BuildingInfo building) {
+        this.building = building;
+    }
+
+    public BuildingInfo getBuilding(){
+        return building;
+    }
+
+    public void setCommunication1(boolean communication1) {
+        this.communication1 = communication1;
+    }
+
+    public void setCommunication2(boolean communication2) {
+        this.communication2 = communication2;
+    }
+
+    public boolean getCommunication(EPlayer player){
+        if(player == EPlayer.PLAYER1)
+            return communication1;
+        return communication2;
     }
 }

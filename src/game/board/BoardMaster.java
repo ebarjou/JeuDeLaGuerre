@@ -1,5 +1,7 @@
 package game.board;
 
+import game.EPlayer;
+
 import java.util.Stack;
 
 public class BoardMaster implements IBoardMaster{
@@ -55,7 +57,7 @@ public class BoardMaster implements IBoardMaster{
     @Override
     public boolean moveUnit(int x, int y, int x2, int y2) {
         Board tmp = actualBoard.clone();
-        if(actualBoard.move(x, y, x2, y2, EInfoType.UNIT)){
+        if(actualBoard.moveUnit(x, y, x2, y2)){
             history.push(tmp);
             return true;
         }
@@ -65,7 +67,7 @@ public class BoardMaster implements IBoardMaster{
     @Override
     public boolean moveBuilding(int x, int y, int x2, int y2) {
         Board tmp = actualBoard.clone();
-        if(actualBoard.move(x, y, x2, y2, EInfoType.BUILDING)){
+        if(actualBoard.moveBuilding(x, y, x2, y2)){
             history.push(tmp);
             return true;
         }
@@ -73,59 +75,47 @@ public class BoardMaster implements IBoardMaster{
     }
 
     @Override
-    public Object getValueInfo(EInfoType key, int x, int y) {
-        return actualBoard.getInfo(key, x, y).getValue();
-    }
-
-    @Override
-    public boolean addUnit(EUnit unitType, int player, int x, int y) {
-        if(actualBoard.getInfo(EInfoType.UNIT, x, y) != null){
+    public boolean addUnit(EUnit unitType, EPlayer player, int x, int y) {
+        if(actualBoard.getUnit(x, y) != null){
             System.out.println("Error: already a unit at this location");
             return false;
         }
 
         UnitInfo unitInfo = new UnitInfo(unitType, player);
-        Info newUnit = new Info(unitInfo);
-        actualBoard.addInfo(EInfoType.UNIT, newUnit, x, y);
+        actualBoard.setUnit(unitInfo, x, y);
         return true;
     }
 
     @Override
-    public boolean addBuilding(EBuilding buildingType, int player, int x, int y) {
-        if(actualBoard.getInfo(EInfoType.BUILDING, x, y) != null){
-            System.out.println("Error: already a building at this location");
+    public boolean removeUnit(int x, int y){
+        if(actualBoard.getUnit(x, y) != null) {
+            history.push(actualBoard.clone());
+            actualBoard.setUnit(null, x, y);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean addBuilding(EBuilding buildingType, EPlayer player, int x, int y) {
+        if(actualBoard.getBuilding(x, y) != null){
+            System.out.println("Error: already a unit at this location");
             return false;
         }
-        BuildingInfo unitInfo = new BuildingInfo(buildingType, player);
-        Info newBuilding = new Info(unitInfo);
-        actualBoard.addInfo(EInfoType.BUILDING, newBuilding, x, y);
+
+        BuildingInfo buildingInfo = new BuildingInfo(buildingType, player);
+        actualBoard.setBuilding(buildingInfo, x, y);
         return true;
     }
 
     @Override
-    public void setCommunication(int player, int x, int y) {
-        EInfoType communication;
-        if(player == 1)
-            communication = EInfoType.COMMUNICATION1;
-        else
-            communication = EInfoType.COMMUNICATION2;
-
-        actualBoard.addInfo(communication, new Info(true), x, y);
+    public void setCommunication(EPlayer player, int x, int y, boolean value) {
+        actualBoard.setCommunication(player, x, y, value);
     }
 
     @Override
-    public void deleteCommunication(int player, int x, int y) {
-        EInfoType communication;
-        if(player == 1)
-            communication = EInfoType.COMMUNICATION1;
-        else
-            communication = EInfoType.COMMUNICATION2;
-        actualBoard.addInfo(communication, new Info(false), x, y);
-    }
-
-    @Override
-    public void addInfo(EInfoType key, Info info, int x, int y) {
-        actualBoard.addInfo(key, info, x, y);
+    public void deleteCommunication(EPlayer player, int x, int y) {
+        actualBoard.setCommunication(player, x, y, false);
     }
 
     @Override
