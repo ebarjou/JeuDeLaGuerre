@@ -92,7 +92,7 @@ public class BoardMaster implements IBoardMaster{
 
     @Override
     public boolean addBuilding(EBuilding buildingType, int player, int x, int y) {
-        if(actualBoard.getInfo(EInfoType.BUILDING, x, y) == null){
+        if(actualBoard.getInfo(EInfoType.BUILDING, x, y) != null){
             System.out.println("Error: already a building at this location");
             return false;
         }
@@ -100,6 +100,27 @@ public class BoardMaster implements IBoardMaster{
         Info newBuilding = new Info(unitInfo);
         actualBoard.addInfo(EInfoType.BUILDING, newBuilding, x, y);
         return true;
+    }
+
+    @Override
+    public void setCommunication(int player, int x, int y) {
+        EInfoType communication;
+        if(player == 1)
+            communication = EInfoType.COMMUNICATION1;
+        else
+            communication = EInfoType.COMMUNICATION2;
+
+        actualBoard.addInfo(communication, new Info(true), x, y);
+    }
+
+    @Override
+    public void deleteCommunication(int player, int x, int y) {
+        EInfoType communication;
+        if(player == 1)
+            communication = EInfoType.COMMUNICATION1;
+        else
+            communication = EInfoType.COMMUNICATION2;
+        actualBoard.addInfo(communication, new Info(false), x, y);
     }
 
     @Override

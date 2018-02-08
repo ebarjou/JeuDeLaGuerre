@@ -93,10 +93,9 @@ public class BoardTest {
         //Test if after a move, the revert method add a non-null Board in its attribute
         assertTrue(master.getBoard() != null);
 
-        //Get info from the initial state of the board about the unit we put
+        //(soldier1)Get info from the initial state of the board about the unit we put
+        //(soldier2)Same but with the actual state of the board
         UnitInfo soldier1 = (UnitInfo)(master.getValueInfo(EInfoType.UNIT, x, y));
-
-        //Same but with the actual state of the board
         UnitInfo soldier2 = (UnitInfo)(master.getValueInfo(EInfoType.UNIT, x, y));
 
         //Test if we still have the same information we put.
@@ -115,6 +114,18 @@ public class BoardTest {
         master.moveUnit(x, y, x2, y2);
 
         assertTrue(master.getValueInfo(EInfoType.UNIT, x2, y2) == i.getValue());
+    }
+
+    @Test
+    public void displayBoard(){
+        master.addUnit(EUnit.INFANTERY, 1, x, y);
+        master.addUnit(EUnit.CAVALERY, 2, x2, y2);
+        master.addBuilding(EBuilding.ARSENAL, 1, x, y);
+        master.addBuilding(EBuilding.FORTERESS, 2, x2, y2);
+        master.setCommunication(1, x, y);
+
+        Board board = master.getBoard();
+        System.out.println(board.toString());
     }
 
     @After

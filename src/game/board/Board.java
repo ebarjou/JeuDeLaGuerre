@@ -91,4 +91,18 @@ public class Board implements Cloneable{
 
         return (Board) o;
     }
+
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
+                String str = board[x][y].toString();
+                if(!str.isEmpty()) {
+                    result.append("(").append(x).append(";").append(y).append(") -> ");
+                    result.append(board[x][y].toString()).append("\n");
+                }
+            }
+        }
+        return result.toString();
+    }
 }

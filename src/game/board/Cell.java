@@ -41,7 +41,7 @@ class Cell implements Cloneable{
         ((Cell)o).informations = new HashMap<>(newMap);
         return (Cell) o;
     }
-    /*
+
     public String toString(){
         StringBuilder res = new StringBuilder();
         Set<Map.Entry<EInfoType, Info>> setHm = informations.entrySet();
@@ -51,5 +51,4 @@ class Cell implements Cloneable{
         }
         return res.toString();
     }
-    */
 }
