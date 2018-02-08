@@ -1,19 +1,20 @@
 package ui;
 
 import asg.cliche.CLIException;
+import asg.cliche.Command;
 import asg.cliche.Shell;
 import asg.cliche.ShellFactory;
 
 import java.io.*;
 
-import static ui.commands.UserToGameCommand.*;
+import static ui.commands.UserToGameCall.*;
 
-public class TermCommand implements UserCommand {
+public class TermUI implements UserInterface {
     private CommandParser parser;
     private BufferedReader reader;
     private Shell shell;
 
-    public TermCommand(){
+    public TermUI(){
         this.parser = new CommandParser();
         shell = ShellFactory.createConsoleShell("Enter command", "", parser);
         this.reader = new BufferedReader(new InputStreamReader(new DataInputStream(System.in)));
@@ -22,7 +23,6 @@ public class TermCommand implements UserCommand {
     private SharedCommand parse(String cmd) throws CLIException{
         if(cmd == null) return new SharedCommand(EXIT);
         shell.processLine(cmd);
-        if(parser.getResult().getCommand() == CMD_ERROR) throw new CLIException();
         return parser.getResult();
     }
 
@@ -32,21 +32,13 @@ public class TermCommand implements UserCommand {
         try {
             String cmd = reader.readLine();
             return parse(cmd);
-        } catch (IOException e) {
-            System.out.println("IO : ");
-            return new SharedCommand();
-        } catch (Throwable e) {
-            System.out.println("CLI : ");
-            return new SharedCommand();
+        } catch (IOException|CLIException e) {
+            return new SharedCommand(e);
         }
     }
 
     @Override
-    public void sendResponse(SharedCommand response) {
-
-    }
-
-    public void setState(){
+    public void sendResponse(SharedCommand response, CurrentGameState state) {
 
     }
 
