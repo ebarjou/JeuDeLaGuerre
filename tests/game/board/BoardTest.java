@@ -87,8 +87,13 @@ public class BoardTest {
         master.moveUnit(x, y, x2, y2);
 
         UnitInfo soldier2 = master.getBoard().getUnit(x2, y2);
+
         assertTrue(soldier.getId() == soldier2.getId());
         assertTrue(soldier.getPlayer() == soldier2.getPlayer());
+
+        assertTrue(master.moveUnit(x2, y2, x2, y2));
+        assertFalse(master.moveUnit(x2, y2, x2 + w, y2 + h));
+        assertFalse(master.moveUnit(x2, y2, x2 - w, y2 - h));
     }
 
     @Test

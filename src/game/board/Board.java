@@ -145,6 +145,7 @@ public class Board implements Cloneable{
 
     public String toString(){
         StringBuilder result = new StringBuilder();
+        result.append("Width = " + width + " ; Height = " + height + "\n");
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
                 String str = board[x][y].toString();
