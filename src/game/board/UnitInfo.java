@@ -13,7 +13,7 @@ class UnitInfo {
         return id;
     }
 
-    public void setId(EUnit id) {
+    void setId(EUnit id) {
         this.id = id;
     }
 
@@ -21,7 +21,7 @@ class UnitInfo {
         return player;
     }
 
-    public void setPlayer(int player) {
+    void setPlayer(int player) {
         this.player = player;
     }
 }

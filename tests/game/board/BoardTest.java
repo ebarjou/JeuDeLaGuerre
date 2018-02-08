@@ -107,11 +107,17 @@ public class BoardTest {
 
     @Test
     public void move(){
+        UnitInfo soldier = new UnitInfo(EUnit.INFANTERY, 1);
+        Info i = new Info(soldier);
 
+        master.getBoard().addInfo(EInfoType.UNIT, i, x, y);
+
+        master.moveUnit(x, y, x2, y2);
+
+        assertTrue(master.getValueInfo(EInfoType.UNIT, x2, y2) == i.getValue());
     }
 
     @After
     public void tearDown() throws Exception {
-
     }
 }
