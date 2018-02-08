@@ -5,5 +5,4 @@ public enum EBuilding {
     PASS,
     FORTERESS,
     ARSENAL;
-
 }

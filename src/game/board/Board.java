@@ -80,6 +80,15 @@ public class Board implements Cloneable{
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+
+        assert o != null;
+        ((Board)o).board = new Cell[width][height];
+        for(int x = 0; x < width; ++x){
+            for(int y = 0; y < height; ++y){
+                ((Board)o).board[x][y] = this.board[x][y].clone();
+            }
+        }
+
         return (Board) o;
     }
 }

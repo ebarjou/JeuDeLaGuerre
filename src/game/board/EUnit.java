@@ -7,5 +7,4 @@ public enum EUnit {
     ARTILLERY_HORSE,
     RELAY,
     RELAY_HORSE;
-
 }

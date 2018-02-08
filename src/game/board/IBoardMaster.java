@@ -2,10 +2,11 @@ package game.board;
 
 public interface IBoardMaster {
 
-    void init(int w, int h);
+    void initBoard(int w, int h);
     Board getBoard();
     boolean revert();
     void clearHistory();
+    boolean isEmptyHistory();
 
     boolean moveUnit(int x, int y, int x2, int y2);
     boolean moveBuilding(int x, int y, int x2, int y2);

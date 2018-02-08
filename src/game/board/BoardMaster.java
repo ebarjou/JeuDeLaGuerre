@@ -24,7 +24,7 @@ public class BoardMaster implements IBoardMaster{
      * @param height Height of the game.board in cell
      */
     @Override
-    public void init(int width, int height){
+    public void initBoard(int width, int height){
         actualBoard = new Board(width, height);
     }
 
@@ -37,7 +37,7 @@ public class BoardMaster implements IBoardMaster{
     public boolean revert(){
         if(history.empty())
             return false;
-        actualBoard = history.pop();
+        actualBoard = history.pop().clone();
         return true;
     }
 
@@ -45,6 +45,11 @@ public class BoardMaster implements IBoardMaster{
     public void clearHistory() {
         while(!history.empty())
             history.pop();
+    }
+
+    @Override
+    public boolean isEmptyHistory() {
+        return history.empty();
     }
 
     @Override
@@ -74,10 +79,11 @@ public class BoardMaster implements IBoardMaster{
 
     @Override
     public boolean addUnit(EUnit unitType, int player, int x, int y) {
-        if(actualBoard.getInfo(EInfoType.UNIT, x, y) == null){
+        if(actualBoard.getInfo(EInfoType.UNIT, x, y) != null){
             System.out.println("Error: already a unit at this location");
             return false;
         }
+
         UnitInfo unitInfo = new UnitInfo(unitType, player);
         Info newUnit = new Info(unitInfo);
         actualBoard.addInfo(EInfoType.UNIT, newUnit, x, y);
@@ -105,40 +111,4 @@ public class BoardMaster implements IBoardMaster{
     public void clearCommunication() {
         actualBoard.clearCommunication();
     }
-
-
-
-/* Tests for clone (need to be moved)
-        IBoardMaster bm = BoardMaster.getInstance();
-        bm.init(10, 10);
-        IMutableBoard imb = new Board(10, 10);
-
-
-        int i = 10;
-        {
-            int x = 0;
-            int y = 0;
-            while (i != 0) {
-                EntityID e = new EntityID(1, x % 2 == 0, "a" + x);
-                imb.setUnit(e, x, y);
-                x++;
-                y++;
-                i--;
-            }
-        }
-
-        IMutableBoard cl = imb.clone();
-        //IMutableBoard cl = imb;
-        if(cl == imb) {
-            for (int y = 0; y < imb.getHeight(); y++) {
-                for (int x = 0; x < imb.getWidth(); x++) {
-                    EntityID u = cl.getUnit(x, y);
-                    EntityID b = imb.getUnit(x, y);
-                    if (u != null && (u == b))
-                        System.out.println("Same ref");
-                }
-            }
-        }
-
- */
 }
