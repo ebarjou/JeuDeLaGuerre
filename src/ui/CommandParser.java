@@ -18,11 +18,10 @@ public class CommandParser {
     protected int[] parseCoords(String c) throws CommandException {
         int[] coords = new int[2];
         c = c.toLowerCase();
-        String c_splitted[] = c.split("(?<=\\D)(?=\\d)");
+        String c_splitted[] = c.split("([a-z]+)([0-9]+)*");
 
         if(c_splitted.length != 2) throw new CommandException("Invalide coordinate argument : Must be a letter followed by a number.");
         if(c_splitted[0].length() != 1) throw new CommandException("Invalide coordinate argument : There must be only one letter.");
-
         coords[0] = Integer.parseInt(c_splitted[1]);
         coords[1] = c_splitted[0].charAt(0) - 'a' + 1;
         return coords;

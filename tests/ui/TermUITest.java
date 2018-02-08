@@ -16,7 +16,7 @@ public class TermUITest {
 
     @Before
     public void setUp(){
-        in = new ByteArrayInputStream(("move a3 b1\nmove E7 j23\nmove hgt A3\nmfd ef\nmove a3\nmove gg5 e6").getBytes());
+        in = new ByteArrayInputStream(("move a3 b1\nmove E7 j23\nmove E34t f5\nmove hgt A3\nmfd ef\nmove a3\nmove gg5 e6").getBytes());
         System.setIn(in);
         term = new TermUI();
     }
