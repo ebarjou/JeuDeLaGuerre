@@ -20,6 +20,13 @@ public class SharedCommand {
         commandCoords2 = new int[2];
     }
 
+    public SharedCommand(UserToGameCommand cmd){
+        this.command = cmd;
+        this.response = GAME_ERROR;
+        commandCoords1 = new int[2];
+        commandCoords2 = new int[2];
+    }
+
     /*
      * ### For Game ###
      */

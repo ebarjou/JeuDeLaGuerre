@@ -5,7 +5,8 @@ public enum UserToGameCommand {
     MOVE(true, true),
     ATTACK(true, true),
     CHARGE(true, true),
-    PAT()
+    PAT(),
+    EXIT()
     ;
 
     UserToGameCommand(){
