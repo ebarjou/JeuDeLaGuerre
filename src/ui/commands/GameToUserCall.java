@@ -1,8 +1,7 @@
 package ui.commands;
 
-public enum GameToUserCommand {
+public enum GameToUserCall {
     GAME_ERROR(),
     VALID(),
-    INVALID()
-    ;
+    INVALID();
 }

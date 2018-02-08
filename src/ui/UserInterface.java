@@ -1,6 +1,6 @@
 package ui;
 
-public interface UserCommand {
+public interface UserInterface {
 
 
     /**
@@ -11,10 +11,9 @@ public interface UserCommand {
 
     /**
      * @param response to the user
+     * @param state of the game after the command
      * @return
      */
-    void sendResponse(SharedCommand response);
-
-    void setState();
+    void sendResponse(SharedCommand response, CurrentGameState state);
 
 }

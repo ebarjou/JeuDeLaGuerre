@@ -1,28 +1,27 @@
 package ui;
 
-import asg.cliche.CLIException;
 import asg.cliche.Command;
 
-import static ui.commands.UserToGameCommand.*;
+import static ui.commands.UserToGameCall.*;
 
 public class CommandParser {
     private SharedCommand result;
 
-    public CommandParser(){
+    protected CommandParser(){
         result = new SharedCommand();
     }
 
-    public SharedCommand getResult(){
+    protected SharedCommand getResult(){
         return result;
     }
 
-    public int[] parseCoords(String c) throws CLIException {
+    protected int[] parseCoords(String c) throws CommandException {
         int[] coords = new int[2];
         c = c.toLowerCase();
         String c_splitted[] = c.split("(?<=\\D)(?=\\d)");
 
-        if(c_splitted.length != 2) throw new CLIException("Invalide coordinate arg.");
-        if(c_splitted[0].length() != 1) throw new CLIException("Invalide coordinate arg.");
+        if(c_splitted.length != 2) throw new CommandException("Invalide coordinate argument : Must be a letter followed by a number.");
+        if(c_splitted[0].length() != 1) throw new CommandException("Invalide coordinate argument : There must be only one letter.");
 
         coords[0] = Integer.parseInt(c_splitted[1]);
         coords[1] = c_splitted[0].charAt(0) - 'a' + 1;
@@ -31,7 +30,6 @@ public class CommandParser {
 
     @Command
     public void move(String c1, String c2){
-
         try {
             int[] parsed_c1 = parseCoords(c1);
             int[] parsed_c2 = parseCoords(c2);
@@ -41,13 +39,11 @@ public class CommandParser {
             result.setCommand(MOVE);
             result.setCommandCoords1(parsed_c1[0], parsed_c1[1]);
             result.setCommandCoords2(parsed_c2[0], parsed_c2[1]);
-        } catch(CLIException e){
+        } catch(CommandException e){
             result.setCommand(CMD_ERROR);
+            result.setMessage(e.getMessage());
             return;
         }
-
     }
-
-
 
 }
