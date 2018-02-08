@@ -3,20 +3,22 @@ package ui;
 import java.io.*;
 
 public class TermCommand implements IUserCommand {
+    private CommandParser parser;
     private BufferedReader reader;
 
+
     public TermCommand(){
+        this.parser = new CommandParser();
         this.reader = new BufferedReader(new InputStreamReader(new DataInputStream(System.in)));
     }
 
     @Override
     public String ask() {
+        System.out.println("Enter command : ");
         try{
-            System.out.println("Enter command : ");
             String cmd = reader.readLine();
-
             if(cmd == null) return "exit";
-            return cmd;
+            return ask();
         } catch(IOException e){
             System.out.println(e.getMessage());
             return ask();
@@ -25,6 +27,11 @@ public class TermCommand implements IUserCommand {
 
     @Override
     public void respond(String response) {
-        System.out.println(" > GAME : "+response+"\n");
+
     }
+
+    private void parseResp(String response){
+
+    }
+
 }

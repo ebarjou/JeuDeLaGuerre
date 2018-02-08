@@ -17,7 +17,7 @@ public class TermCommandTest {
 
     @Before
     public void setUp(){
-        in = new ByteArrayInputStream("azeaqsdqds\nqrvdfvdvf".getBytes());
+        in = new ByteArrayInputStream(("azeaqsdqds\nqrvdfvdvf\n").getBytes());
         System.setIn(in);
         term = new TermCommand();
     }
