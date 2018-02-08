@@ -1,6 +1,10 @@
 package ui;
 
 import asg.cliche.Command;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
+import java.math.BigInteger;
+import java.util.regex.Pattern;
 
 import static ui.commands.UserToGameCall.*;
 
@@ -15,15 +19,26 @@ public class CommandParser {
         return result;
     }
 
+    int getIntFromString(String s){
+        s = s.toLowerCase();
+        int res = 0;
+        int base = 26;
+        int stage = 0;
+        for(int i = s.length() - 1; i >= 0; --i){
+            char c = s.charAt(i);
+            res += (Math.pow(base, stage) * ((c - 'a') + 1));
+            stage++;
+        }
+        return res;
+    }
+
     protected int[] parseCoords(String c) throws CommandException {
         int[] coords = new int[2];
         c = c.toLowerCase();
-        String c_splitted[] = c.split("([a-z]+)([0-9]+)*");
-
-        if(c_splitted.length != 2) throw new CommandException("Invalide coordinate argument : Must be a letter followed by a number.");
-        if(c_splitted[0].length() != 1) throw new CommandException("Invalide coordinate argument : There must be only one letter.");
+        if(!c.matches("([a-z]+)([0-9]+)")) throw new CommandException("Invalid coordinate argument : Must be letters followed by a number.");
+        String c_splitted[] = c.split("(?<=\\D)(?=\\d)");
         coords[0] = Integer.parseInt(c_splitted[1]);
-        coords[1] = c_splitted[0].charAt(0) - 'a' + 1;
+        coords[1] = getIntFromString(c_splitted[0]);
         return coords;
     }
 
