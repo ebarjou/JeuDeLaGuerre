@@ -38,7 +38,7 @@ public class CheckUnitMP implements IRule{
         if(dist > MP){
             result.addMessage(this,
                     "Not enough movement point, the unit has "
-                            + MP + "MP, and you need " + dist + " MP"
+                            + MP + " MP, and you need " + dist + " MP"
             );
             return false;
         }

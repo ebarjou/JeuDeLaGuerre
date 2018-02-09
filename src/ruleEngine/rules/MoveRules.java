@@ -4,10 +4,7 @@ import game.board.Board;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import ruleEngine.rules.atomicRules.CheckIsEmptyPath;
-import ruleEngine.rules.atomicRules.CheckIsUnit;
-import ruleEngine.rules.atomicRules.CheckPlayerTurn;
-import ruleEngine.rules.atomicRules.CheckUnitMP;
+import ruleEngine.rules.atomicRules.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +19,7 @@ public class MoveRules implements IRule {
 
         //TODO: Put here the sub-rules (atomic) you need to check.
         rules.add(CheckPlayerTurn.getInstance());   //Maybe use an enum to get rid of getInstance()'s through implicit getValue() ? Or use static classes ? dunno
+        rules.add(CheckOnBoard.getInstance());
         rules.add(CheckIsUnit.getInstance());
         rules.add(CheckUnitMP.getInstance());
         rules.add(CheckIsEmptyPath.getInstance());
