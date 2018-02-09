@@ -31,17 +31,17 @@ public class CheckIsEmptyPathTest {
         master.addBuilding(EBuilding.MOUNTAIN, EPlayer.PLAYER1,1, 2); // M  -  -  -
                                                                            // -  M  -  -
         master.addUnit(EUnit.CAVALRY, EPlayer.PLAYER1,0, 0);
+        master.setCommunication(EPlayer.PLAYER1, 0, 0, true);
 
         gameAction = new GameAction(EPlayer.PLAYER1, EGameActionType.MOVE);
 
         GameAction.Coordinates src = gameAction.createCoordinates(0, 0);
-        GameAction.Coordinates target = gameAction.createCoordinates(10, 10);
+        GameAction.Coordinates target = gameAction.createCoordinates(1, 1);
 
         gameAction.setSourceCoordinates(src);
         gameAction.setTargetCoordinates(target);
 
         moveRules = RuleChecker.getInstance();
-
     }
 
     @Test

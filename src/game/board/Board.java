@@ -147,6 +147,12 @@ public class Board implements Cloneable{
         return Math.max(diffX, diffY);
     }
 
+    public boolean getCommunication(EPlayer player, int x, int y){
+        if(edge(x, y))
+            return false;
+        return board[x][y].getCommunication(player);
+    }
+
     @Override
     public Board clone() {
         Object o = null;

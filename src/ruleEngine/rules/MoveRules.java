@@ -21,6 +21,7 @@ public class MoveRules implements IRule {
         rules.add(CheckPlayerTurn.getInstance());   //Maybe use an enum to get rid of getInstance()'s through implicit getValue() ? Or use static classes ? dunno
         rules.add(CheckOnBoard.getInstance());
         rules.add(CheckIsUnit.getInstance());
+        rules.add(CheckCommunication.getInstance());
         rules.add(CheckUnitMP.getInstance());
         rules.add(CheckIsEmptyPath.getInstance());
     }
