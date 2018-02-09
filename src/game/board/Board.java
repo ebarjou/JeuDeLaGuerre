@@ -134,6 +134,15 @@ public class Board implements Cloneable{
         return board[x][y].getBuilding();
     }
 
+    public int getDistance(int x, int y, int x2, int y2){
+        if(edge(x, y) || edge(x2, y2)){
+            return -1;
+        }
+        int diffX = Math.abs(x - x2);
+        int diffY = Math.abs(y - y2);
+        return Math.max(diffX, diffY);
+    }
+
     @Override
     public Board clone() {
         Object o = null;

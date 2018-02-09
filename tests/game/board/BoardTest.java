@@ -1,5 +1,7 @@
 package game.board;
 
+import game.board.entity.EBuilding;
+import game.board.entity.EUnit;
 import org.junit.*;
 import java.util.Random;
 
@@ -8,14 +10,14 @@ import static game.EPlayer.*;
 
 public class BoardTest {
 
-    private IBoardMaster master;
+    private IBoardManager master;
     private int w = 25;
     private int h = 20;
     private int x, y, x2, y2;
 
     @Before
     public void setUp() throws Exception {
-        master = BoardMaster.getInstance();
+        master = BoardManager.getInstance();
         master.initBoard(w, h);
 
         Random r = new Random();
@@ -29,7 +31,7 @@ public class BoardTest {
 
     @Test
     public void singleton(){
-        assertTrue(master == BoardMaster.getInstance());
+        assertTrue(master == BoardManager.getInstance());
     }
 
     @Test
@@ -137,6 +139,15 @@ public class BoardTest {
         System.out.println(board.toString());
     }
 
+    @Test
+    public void distance(){
+        System.out.println("(" + x + ";" + y + ")");
+        System.out.println("(" + x2 + ";" + y2 + ")");
+
+        int distance = master.getBoard().getDistance(x, y, x2, y2);
+        System.out.println(distance + "\n");
+        assertTrue(distance >= 0);
+    }
 
     @After
     public void tearDown() throws Exception {

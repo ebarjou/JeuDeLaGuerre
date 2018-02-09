@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.atomicRules.CheckPlayerTurn;
 
 
 public class CheckPlayerTurnTest {

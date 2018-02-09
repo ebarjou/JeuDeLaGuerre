@@ -1,6 +1,6 @@
-package game.board;
+package game.board.entity;
 
-public enum EBuilding {
+public enum EBuilding{
     MOUNTAIN("Mountain"),
     PASS("Pass"),
     FORTERESS("Forteress"),

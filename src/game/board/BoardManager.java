@@ -1,21 +1,23 @@
 package game.board;
 
 import game.EPlayer;
+import game.board.entity.EBuilding;
+import game.board.entity.EUnit;
 
 import java.util.Stack;
 
-public class BoardMaster implements IBoardMaster{
+public class BoardManager implements IBoardManager {
     private Board actualBoard;
-    private static BoardMaster boardMaster;
+    private static BoardManager boardMaster;
     private Stack<Board> history;
 
-    private BoardMaster(){
+    private BoardManager(){
         history = new Stack<>();
     }
 
-    public static IBoardMaster getInstance(){
+    public static IBoardManager getInstance(){
         if(boardMaster == null){
-            boardMaster = new BoardMaster();
+            boardMaster = new BoardManager();
         }
         return boardMaster;
     }

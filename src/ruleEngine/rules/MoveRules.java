@@ -4,6 +4,7 @@ import game.board.Board;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.atomicRules.CheckPlayerTurn;
 
 import java.util.LinkedList;
 import java.util.List;

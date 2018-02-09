@@ -1,6 +1,7 @@
 package game.board;
 
 import game.EPlayer;
+import game.board.entity.EUnit;
 
 public class UnitInfo implements Cloneable{
     private EUnit id;

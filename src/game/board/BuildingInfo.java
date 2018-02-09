@@ -1,6 +1,7 @@
 package game.board;
 
 import game.EPlayer;
+import game.board.entity.EBuilding;
 
 public class BuildingInfo implements Cloneable{
     private EBuilding id;

@@ -1,8 +1,10 @@
 package game.board;
 
 import game.EPlayer;
+import game.board.entity.EBuilding;
+import game.board.entity.EUnit;
 
-public interface IBoardMaster {
+public interface IBoardManager {
 
     void initBoard(int w, int h);
     Board getBoard();

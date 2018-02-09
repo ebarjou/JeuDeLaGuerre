@@ -1,13 +1,12 @@
-import game.board.Board;
-import game.board.BoardMaster;
-import game.board.IBoardMaster;
+import game.board.BoardManager;
+import game.board.IBoardManager;
 import ui.TermUI;
 import ui.UserInterface;
 
 public class Start {
 
     public static void main(String[] arg){
-        IBoardMaster bm = BoardMaster.getInstance();
+        IBoardManager bm = BoardManager.getInstance();
 
         UserInterface ui = new TermUI();
         while(true){
