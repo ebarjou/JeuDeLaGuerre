@@ -26,22 +26,21 @@ public class CheckIsEmptyPath implements IRule {
 
     @Override
     public boolean checkAction(Board board, GameAction action, RuleResult result) {
-        //Maybe optimize this part, creating a map at the dimension MP x MP of the unit concerned...
-        Vertex[][] map = new Vertex[board.getWidth()][board.getHeight()];
-        for(int i = 0; i < board.getWidth(); i++){
-            for(int j = 0; j < board.getHeight(); j++){
+        //EUnit u = board.getUnit(c1.getX(), c1.getY()).getId();
+        //int PM = ...getPM(u);
+        GameAction.Coordinates c1 = action.getSourceCoordinates();
+        GameAction.Coordinates c2 = action.getTargetCoordinates();
+
+        int PM = EUnitData.getDataFromEUnit(board.getUnit(c1.getX(), c1.getY()).getId()).getMovementValue();
+
+        Vertex[][] map = new Vertex[2 * PM + 1][2 * PM + 1];
+        for(int i = 0; i < map.length; i++){
+            for(int j = 0; j < map[0].length; j++){
                 map[i][j] = new Vertex(i, j);
             }
         }
 
         List<Vertex> queue = new LinkedList<>();
-
-        GameAction.Coordinates c1 = action.getSourceCoordinates();
-        GameAction.Coordinates c2 = action.getTargetCoordinates();
-
-        //EUnit u = board.getUnit(c1.getX(), c1.getY()).getId();
-        //int PM = ...getPM(u);
-        int PM = EUnitData.getDataFromEUnit(board.getUnit(c1.getX(), c1.getY()).getId()).getMovementValue();
 
         Vertex actual = new Vertex (c1.getX(), c1.getY());
         actual.isMarked = true;

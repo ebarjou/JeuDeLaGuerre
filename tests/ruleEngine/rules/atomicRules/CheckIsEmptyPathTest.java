@@ -35,7 +35,7 @@ public class CheckIsEmptyPathTest {
         gameAction = new GameAction(EPlayer.PLAYER1, EGameActionType.MOVE);
 
         GameAction.Coordinates src = gameAction.createCoordinates(0, 0);
-        GameAction.Coordinates target = gameAction.createCoordinates(3, 3);
+        GameAction.Coordinates target = gameAction.createCoordinates(10, 10);
 
         gameAction.setSourceCoordinates(src);
         gameAction.setTargetCoordinates(target);
