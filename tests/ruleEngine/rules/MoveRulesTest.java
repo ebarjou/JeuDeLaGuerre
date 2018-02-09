@@ -2,6 +2,7 @@ package ruleEngine.rules;
 
 import game.EPlayer;
 import game.board.Board;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -23,7 +24,7 @@ public class MoveRulesTest {
         board = Mockito.mock(Board.class);
     }
 
-    @Test
+/*    @Test
     public void checkActionCorrectMoveMock() {
         when(board.getCurrentPlayerTurn()).thenReturn(EPlayer.PLAYER1);
         when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER1);
@@ -36,5 +37,5 @@ public class MoveRulesTest {
         //Also maybe mocks are overkill for masterrules
 
         //...
-    }
+    }*/
 }
