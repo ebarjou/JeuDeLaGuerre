@@ -2,7 +2,7 @@ package game.board;
 
 import game.EPlayer;
 
-class BuildingInfo implements Cloneable{
+public class BuildingInfo implements Cloneable{
     private EBuilding id;
     private EPlayer player;
 
@@ -15,7 +15,7 @@ class BuildingInfo implements Cloneable{
         return id;
     }
 
-    public void setId(EBuilding id) {
+    void setId(EBuilding id) {
         this.id = id;
     }
 
@@ -23,7 +23,7 @@ class BuildingInfo implements Cloneable{
         return player;
     }
 
-    public void setPlayer(EPlayer player) {
+    void setPlayer(EPlayer player) {
         this.player = player;
     }
 

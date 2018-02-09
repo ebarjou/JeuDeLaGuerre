@@ -109,7 +109,7 @@ public class BoardTest {
         assertTrue(!master.isEmptyHistory());
 
         //Now revert the modification
-        master.revert();
+        assertTrue(master.revert());
 
         //Test if after a move, the revert method add a non-null Board in its attribute
         assertTrue(master.getBoard() != null);

@@ -17,6 +17,7 @@ public interface IBoardMaster {
     boolean addBuilding(EBuilding buildingType, EPlayer player, int x, int y);
 
     boolean removeUnit(int x, int y);
+    boolean removeBuilding(int x, int y);
 
     void setCommunication(EPlayer player, int x, int y, boolean value);
     void deleteCommunication(EPlayer player, int x, int y);

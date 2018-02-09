@@ -97,6 +97,16 @@ public class BoardMaster implements IBoardMaster{
     }
 
     @Override
+    public boolean removeBuilding(int x, int y) {
+        if(actualBoard.getBuilding(x, y) != null){
+            history.push(actualBoard.clone());
+            actualBoard.setBuilding(null, x, y);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean addBuilding(EBuilding buildingType, EPlayer player, int x, int y) {
         if(actualBoard.getBuilding(x, y) != null){
             System.out.println("Error: already a unit at this location");
@@ -115,7 +125,7 @@ public class BoardMaster implements IBoardMaster{
 
     @Override
     public void deleteCommunication(EPlayer player, int x, int y) {
-        actualBoard.setCommunication(player, x, y, false);
+        setCommunication(player, x, y, false);
     }
 
     @Override

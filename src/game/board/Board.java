@@ -6,10 +6,10 @@ public class Board implements Cloneable{
     private int width, height;
     private Cell[][] board;
 
+    //TODO: NEED TO CREATE THE GAMEMASTER MODULE TO DO THE NEXT TODO
     //TODO: TEMPORARY METHOD BECAUSE I DON'T KNOW WHERE TO PUT IT AND YOU ARE ALL ASLEEP
 
     private EPlayer currentPlayerTurn = EPlayer.PLAYER1;
-
 
     public EPlayer getCurrentPlayerTurn(){
         return currentPlayerTurn;

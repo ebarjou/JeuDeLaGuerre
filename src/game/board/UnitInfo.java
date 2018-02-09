@@ -2,7 +2,7 @@ package game.board;
 
 import game.EPlayer;
 
-class UnitInfo implements Cloneable{
+public class UnitInfo implements Cloneable{
     private EUnit id;
     private EPlayer player;
 

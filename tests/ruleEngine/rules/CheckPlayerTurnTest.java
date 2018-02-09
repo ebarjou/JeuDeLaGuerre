@@ -1,7 +1,6 @@
 package ruleEngine.rules;
 
 import game.EPlayer;
-import game.Game;
 import game.board.Board;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,7 +9,6 @@ import org.mockito.Mockito;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 
-import static org.junit.Assert.*;
 
 public class CheckPlayerTurnTest {
 
