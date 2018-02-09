@@ -1,6 +1,10 @@
 package game.board;
 
 import game.EPlayer;
+import ruleEngine.GameAction;
+
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Board implements Cloneable{
     private int width, height;
@@ -34,7 +38,7 @@ public class Board implements Cloneable{
 
     //return true if coord (x;y) is beyond board's edges
 
-    private boolean edge(int x, int y) throws ArithmeticException{
+    public boolean edge(int x, int y) throws ArithmeticException{
         return x < 0 || y < 0 || x >= width || y >= height;
     }
 
@@ -177,4 +181,5 @@ public class Board implements Cloneable{
         }
         return result.toString();
     }
+
 }

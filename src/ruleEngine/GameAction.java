@@ -45,6 +45,10 @@ public class GameAction {
         this.player = player;
     }
 
+    public Coordinates createCoordinates(int x, int y){
+        return new Coordinates(x, y);
+    }
+
     public class Coordinates {
         private int x;
         private int y;

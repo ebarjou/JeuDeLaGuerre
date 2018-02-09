@@ -9,6 +9,17 @@ import ruleEngine.items.EUnitData;
 
 public class CheckUnitMP implements IRule{
 
+    private static CheckUnitMP instance = null;
+
+    private CheckUnitMP(){
+
+    }
+
+    public static CheckUnitMP getInstance(){
+        if(instance == null)
+            instance = new CheckUnitMP();
+        return instance;
+    }
 
     @Override
     public boolean checkAction(Board board, GameAction action, RuleResult result) {
@@ -17,6 +28,7 @@ public class CheckUnitMP implements IRule{
         int x2 = action.getTargetCoordinates().getX();
         int y2 = action.getTargetCoordinates().getY();
 
+        //TODO: should get the actual Unit's MP left (not the normal value of the Type unit)
         // int MP = 3;
         int MP = EUnitData.getDataFromEUnit(
                 board.getUnit(x, y).getId()
@@ -26,7 +38,7 @@ public class CheckUnitMP implements IRule{
         if(dist > MP){
             result.addMessage(this,
                     "Not enough movement point, the unit has "
-                            + MP + "MP, and you need " + dist + "MP"
+                            + MP + "MP, and you need " + dist + " MP"
             );
             return false;
         }

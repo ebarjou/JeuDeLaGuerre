@@ -1,4 +1,4 @@
-package ruleEngine.rules;
+package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
 import game.board.Board;
