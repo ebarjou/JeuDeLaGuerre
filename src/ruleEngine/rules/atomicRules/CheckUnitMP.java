@@ -1,9 +1,11 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Board;
+import game.board.entity.EUnit;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
+import ruleEngine.items.EUnitData;
 
 public class CheckUnitMP implements IRule{
 
@@ -15,8 +17,10 @@ public class CheckUnitMP implements IRule{
         int x2 = action.getTargetCoordinates().getX();
         int y2 = action.getTargetCoordinates().getY();
 
-        //TODO: get MP from the unit concerned.
-        int MP = 3;
+        // int MP = 3;
+        int MP = EUnitData.getDataFromEUnit(
+                board.getUnit(x, y).getId()
+        ).getMovementValue();
         int dist = board.getDistance(x, y, x2, y2);
 
         if(dist > MP){
