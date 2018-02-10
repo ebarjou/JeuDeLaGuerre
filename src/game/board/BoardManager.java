@@ -34,6 +34,7 @@ public class BoardManager implements IBoardManager {
 
     @Override
     public Board getBoard(){
+        // TODO:Assert ou return null ?
         return actualBoard;
     }
 

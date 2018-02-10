@@ -1,5 +1,7 @@
 package ui;
 
+import game.board.Board;
+
 public interface UserInterface {
 
 
@@ -14,6 +16,6 @@ public interface UserInterface {
      * @param state of the game after the command
      * @return
      */
-    void sendResponse(SharedCommand response, CurrentGameState state);
+    void sendResponse(SharedCommand response, Board state);
 
 }

@@ -3,6 +3,10 @@ package ui;
 import asg.cliche.CLIException;
 import asg.cliche.Shell;
 import asg.cliche.ShellFactory;
+import game.board.Board;
+import javafx.application.Application;
+import ui.display.BoardCanvas;
+import ui.display.BoardWindow;
 
 import java.io.*;
 
@@ -14,6 +18,11 @@ public class TermUI implements UserInterface {
     private Shell shell;
 
     public TermUI(){
+        //TODO : A mettre en forme, pas très propre
+        new Thread(() -> {
+            Application.launch(BoardWindow.class, null);
+            System.exit(0);
+        }).start();
         this.parser = new CommandParser();
         shell = ShellFactory.createConsoleShell("Enter command", "", parser);
         this.reader = new BufferedReader(new InputStreamReader(new DataInputStream(System.in)));
@@ -43,7 +52,7 @@ public class TermUI implements UserInterface {
     }
 
     @Override
-    public void sendResponse(SharedCommand response, CurrentGameState state) {
+    public void sendResponse(SharedCommand response, Board board) {
         switch (response.getResponse()){
             case VALID:{
                 System.out.println("Valid !");
@@ -53,11 +62,18 @@ public class TermUI implements UserInterface {
                 System.out.println("Invalid !");
                 break;
             }
+            case APPLIED:{
+                break;
+            }
+            case REFRESH:{
+                break;
+            }
             case GAME_ERROR:{
                 //Do we need to handle game error ?
                 break;
             }
         }
+        BoardWindow.updateBoard(board);
     }
 
 }

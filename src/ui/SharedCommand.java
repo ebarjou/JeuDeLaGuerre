@@ -38,6 +38,13 @@ public class SharedCommand {
         message = e.getMessage();
     }
 
+    public SharedCommand(GameToUserCall cmd){
+        this.command = CMD_ERROR;
+        this.response = cmd;
+        commandCoords1 = new int[2];
+        commandCoords2 = new int[2];
+    }
+
     /*
      * ### For Game ###
      */
