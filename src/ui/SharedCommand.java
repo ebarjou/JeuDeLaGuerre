@@ -1,5 +1,6 @@
 package ui;
 
+import ruleEngine.GameAction;
 import ui.commands.GameToUserCall;
 import ui.commands.UserToGameCall;
 
@@ -12,6 +13,8 @@ public class SharedCommand {
     private int[] commandCoords1, commandCoords2;
     private String message;
     private int unit;
+
+
 
     protected SharedCommand(){
         this.command = CMD_ERROR;

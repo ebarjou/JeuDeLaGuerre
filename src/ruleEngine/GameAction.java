@@ -25,16 +25,16 @@ public class GameAction {
         return sourceCoordinates;
     }
 
-    public void setSourceCoordinates(Coordinates sourceCoordinates) {
-        this.sourceCoordinates = sourceCoordinates;
+    public void setSourceCoordinates(int x, int y) {
+        this.sourceCoordinates = new Coordinates(x, y);
     }
 
     public Coordinates getTargetCoordinates() {
         return targetCoordinates;
     }
 
-    public void setTargetCoordinates(Coordinates targetCoordinates) {
-        this.targetCoordinates = targetCoordinates;
+    public void setTargetCoordinates(int x, int y) {
+        this.targetCoordinates = new Coordinates(x, y);
     }
 
     public EPlayer getPlayer() {

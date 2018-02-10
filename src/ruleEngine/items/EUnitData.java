@@ -1,6 +1,6 @@
 package ruleEngine.items;
 
-import game.board.entity.EUnit;
+        import game.board.entity.EUnit;
 
 public enum EUnitData {
     INFANTRY_DATA   (EUnit.INFANTRY, 4, 6, 1, 2, true, false, true, false),
@@ -24,8 +24,8 @@ public enum EUnitData {
     //private boolean blockTransmissions;
 
     EUnitData(EUnit uID, int atk, int def, int moveVal, int range,
-               boolean bonusDef, boolean relayCom, boolean canAttack,
-               boolean canCharge) {
+              boolean bonusDef, boolean relayCom, boolean canAttack,
+              boolean canCharge) {
         this.unitID = uID;
         this.atkValue = atk;
         this.defValue = def;

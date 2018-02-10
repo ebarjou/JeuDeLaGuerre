@@ -35,11 +35,8 @@ public class CheckIsEmptyPathTest {
 
         gameAction = new GameAction(EPlayer.PLAYER1, EGameActionType.MOVE);
 
-        GameAction.Coordinates src = gameAction.createCoordinates(0, 0);
-        GameAction.Coordinates target = gameAction.createCoordinates(2, 2);
-
-        gameAction.setSourceCoordinates(src);
-        gameAction.setTargetCoordinates(target);
+        gameAction.setSourceCoordinates(0, 0);
+        gameAction.setTargetCoordinates(2, 2);
 
         moveRules = RuleChecker.getInstance();
     }
