@@ -20,7 +20,6 @@ public class BoardCanvas extends Canvas {
         g.setFill(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
         if(board != null){
-            System.out.println(">refresh");
             int merge = 1;
             int caseSize = (int) (getWidth()/(board.getWidth()));
             g.setFill(Color.IVORY);

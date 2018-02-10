@@ -17,6 +17,7 @@ public class Start {
         boardManager.addUnit(EUnit.INFANTRY, EPlayer.PLAYER1, 10, 10);
         boardManager.addBuilding(EBuilding.ARSENAL, EPlayer.PLAYER1, 14, 7);
         boardManager.addBuilding(EBuilding.FORTERESS, EPlayer.PLAYER1, 10, 10);
+
         UserInterface ui = new TermUI();
         (new Game(ui)).startNewGame();
     }

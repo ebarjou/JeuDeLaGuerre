@@ -1,5 +1,6 @@
 package game;
 
+import game.board.Board;
 import game.board.BoardManager;
 import game.board.IBoardManager;
 import game.board.entity.EBuilding;
@@ -18,10 +19,13 @@ import static ui.commands.GameToUserCall.*;
  * Peut-être à mettre en tant que Singleton ?
  */
 public class Game {
+    private IBoardManager boardManager;
     private UserInterface ui;
 
     public Game(UserInterface ui){
         this.ui = ui;
+        boardManager = BoardManager.getInstance();
+        ui.sendResponse(new SharedCommand(REFRESH), boardManager.getBoard());
     }
 
     public void startNewGame(){
@@ -77,7 +81,7 @@ public class Game {
                     break;
                 }
             }
-            ui.sendResponse(cmd, null);
+            ui.sendResponse(cmd, boardManager.getBoard());
         }
     }
 
