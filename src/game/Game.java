@@ -1,13 +1,10 @@
 package game;
 
-import game.board.Board;
 import game.board.BoardManager;
 import game.board.IBoardManager;
-import game.board.entity.EBuilding;
-import game.board.entity.EUnit;
-import game.board.BoardManager;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
+import ruleEngine.gameMaster.GameMaster;
 import ruleEngine.RuleChecker;
 import ui.CommandException;
 import ui.SharedCommand;
@@ -107,7 +104,7 @@ public class Game {
                 return null;
         }
 
-        GameAction result = new GameAction(EPlayer.PLAYER1 /*TODO: placeholder*/, actionType);
+        GameAction result = new GameAction(GameMaster.getInstance().getActualState().getActualPlayer(), actionType);
         try {
             result.setSourceCoordinates(cmd.getCoords1()[0], cmd.getCoords1()[1]);
         } catch (CommandException e) {

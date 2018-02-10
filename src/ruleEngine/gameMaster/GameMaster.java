@@ -1,4 +1,4 @@
-package ruleEngine.GameMaster;
+package ruleEngine.gameMaster;
 
 import game.EPlayer;
 import ruleEngine.GameAction;
@@ -20,7 +20,7 @@ public class GameMaster {
         actualState.setPlayer(r.nextInt(1) == 0 ? EPlayer.PLAYER1 : EPlayer.PLAYER2);
     }
 
-    public GameMaster getInstance(){
+    public static GameMaster getInstance(){
         if(instance == null)
             instance = new GameMaster();
         return instance;
