@@ -5,6 +5,7 @@ import game.board.entity.EBuilding;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
+import ruleEngine.gameMaster.GameState;
 import ruleEngine.items.EUnitData;
 
 import java.util.LinkedList;
@@ -36,7 +37,7 @@ public class CheckIsEmptyPath implements IRule {
     }
 
     @Override
-    public boolean checkAction(Board board, GameAction action, RuleResult result) {
+    public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         GameAction.Coordinates src = action.getSourceCoordinates();
         GameAction.Coordinates target = action.getTargetCoordinates();
 

@@ -4,6 +4,8 @@ import game.board.Board;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
+import ruleEngine.gameMaster.GameMaster;
+import ruleEngine.gameMaster.GameState;
 import ruleEngine.rules.atomicRules.*;
 
 import java.util.LinkedList;
@@ -34,10 +36,10 @@ public class MoveRules implements IRule {
     }
 
     @Override
-    public boolean checkAction(Board board, GameAction action, RuleResult result) {
+    public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         boolean valid = true;
         for (IRule r : rules)
-            valid = valid && r.checkAction(board, action, result);
+            valid = valid && r.checkAction(board, GameMaster.getInstance().getActualState(), action, result);
 
         return valid;
     }

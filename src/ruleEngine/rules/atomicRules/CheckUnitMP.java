@@ -1,10 +1,10 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Board;
-import game.board.entity.EUnit;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
+import ruleEngine.gameMaster.GameState;
 import ruleEngine.items.EUnitData;
 
 public class CheckUnitMP implements IRule{
@@ -22,7 +22,7 @@ public class CheckUnitMP implements IRule{
     }
 
     @Override
-    public boolean checkAction(Board board, GameAction action, RuleResult result) {
+    public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         int x = action.getSourceCoordinates().getX();
         int y = action.getSourceCoordinates().getY();
         int x2 = action.getTargetCoordinates().getX();

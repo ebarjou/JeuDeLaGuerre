@@ -5,6 +5,7 @@ import game.board.entity.EUnit;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
+import ruleEngine.gameMaster.GameState;
 import ruleEngine.items.EUnitData;
 
 public class CheckCommunication implements IRule {
@@ -21,7 +22,7 @@ public class CheckCommunication implements IRule {
     }
 
     @Override
-    public boolean checkAction(Board board, GameAction action, RuleResult result) {
+    public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         GameAction.Coordinates src = action.getSourceCoordinates();
         EUnit unit = board.getUnit(src.getX(), src.getY()).getId();
         EUnitData unitData = EUnitData.getDataFromEUnit(unit);
