@@ -24,25 +24,29 @@ public class CheckIsEmptyPath implements IRule {
         return instance;
     }
 
-    @Override
-    public boolean checkAction(Board board, GameAction action, RuleResult result) {
-        //EUnit u = board.getUnit(c1.getX(), c1.getY()).getId();
-        //int PM = ...getPM(u);
-        GameAction.Coordinates c1 = action.getSourceCoordinates();
-        GameAction.Coordinates c2 = action.getTargetCoordinates();
-
-        int PM = EUnitData.getDataFromEUnit(board.getUnit(c1.getX(), c1.getY()).getId()).getMovementValue();
-
-        Vertex[][] map = new Vertex[2 * PM + 1][2 * PM + 1];
-        for(int i = 0; i < map.length; i++){
-            for(int j = 0; j < map[0].length; j++){
-                map[i][j] = new Vertex(i, j);
+    private Vertex[][] initMap(int MP, GameAction.Coordinates coords){
+        int length = 2 * MP + 1;
+        Vertex[][] map = new Vertex[length][length];
+        for(int i = 0; i < length; i++){
+            for(int j = 0; j < length; j++){
+                map[i][j] = new Vertex(coords.getX() - MP + i, coords.getY() - MP + j);
             }
         }
+        return map;
+    }
+
+    @Override
+    public boolean checkAction(Board board, GameAction action, RuleResult result) {
+        GameAction.Coordinates src = action.getSourceCoordinates();
+        GameAction.Coordinates target = action.getTargetCoordinates();
+
+        int PM = EUnitData.getDataFromEUnit(board.getUnit(src.getX(), src.getY()).getId()).getMovementValue();
+
+        Vertex[][] map = initMap(PM, src);
 
         List<Vertex> queue = new LinkedList<>();
 
-        Vertex actual = new Vertex (c1.getX(), c1.getY());
+        Vertex actual = new Vertex (src.getX(), src.getY());
         actual.isMarked = true;
         actual.dist = 0;
         queue.add(actual);
@@ -50,24 +54,32 @@ public class CheckIsEmptyPath implements IRule {
             actual = queue.remove(0);
             for(int i = actual.x - 1; i <= actual.x + 1; i++){
                 for(int j = actual.y - 1; j <= actual.y + 1; j++){
+                    //Don't add the neighbours with invalid coords or those we have already added
                     if(board.edge(i, j) || map[i][j].isMarked) {
                         continue;
                     }
+                    //A cell containing a unit isn't valid to find the path
                     if(board.getUnit(i, j) != null) {
                         continue;
                     }
+                    //If there is building and it's a mountain, we can't add it
                     if(board.getBuilding(i, j) != null && board.getBuilding(i, j).getId() == EBuilding.MOUNTAIN) {
                         continue;
                     }
-                    System.out.println(board.getDistance(i, j,c1.getX(), c1.getY()));
-                    if(i == c2.getX() && j == c2.getY() && actual.dist <= PM){
+                    //If the cell we check has the same coords than the target cell
+                    //  and it has the right distance, we win, return true.
+                    if(i == target.getX() && j == target.getY() && actual.dist <= PM){
                         return true;
                     }
+                    //Just create the valid neighbour, with dist + 1
                     Vertex v = map[i][j];
                     v.isMarked = true;
                     v.dist = actual.dist + 1;
+
+                    //If the neighbours is at a distance > PM, we loose
                     if(v.dist > PM)
                         break;
+
                     queue.add(v);
                 }
             }
@@ -83,10 +95,6 @@ public class CheckIsEmptyPath implements IRule {
         Vertex(int x, int y){
             this.x = x;
             this.y = y;
-        }
-
-        void mark(){
-            isMarked = true;
         }
     }
 }
