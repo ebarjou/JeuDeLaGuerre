@@ -19,6 +19,10 @@ public class CommandParser {
         return result;
     }
 
+    protected void newCommand(){
+        this.result = new SharedCommand();
+    }
+
     int getIntFromString(String s){
         s = s.toLowerCase();
         int res = 0;
@@ -47,9 +51,7 @@ public class CommandParser {
         try {
             int[] parsed_c1 = parseCoords(c1);
             int[] parsed_c2 = parseCoords(c2);
-            /*
-             * TODO: Avoir et vérifier la taille du plateau et envoyer une exception si besoin
-             */
+
             result.setCommand(MOVE);
             result.setCommandCoords1(parsed_c1[0], parsed_c1[1]);
             result.setCommandCoords2(parsed_c2[0], parsed_c2[1]);
@@ -60,4 +62,8 @@ public class CommandParser {
         }
     }
 
+    @Command
+    public void exit(){
+        result.setCommand(EXIT);
+    }
 }

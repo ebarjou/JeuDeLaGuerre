@@ -1,6 +1,6 @@
 package ui;
 
-class CommandException extends Exception {
+public class CommandException extends Exception {
     private boolean unhandled;
 
     protected CommandException(){
