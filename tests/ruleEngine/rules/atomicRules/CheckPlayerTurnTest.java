@@ -5,12 +5,10 @@ import game.board.Board;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.gameMaster.GameMaster;
-import ruleEngine.gameMaster.GameState;
+import game.gameMaster.GameState;
 
 
 public class CheckPlayerTurnTest {

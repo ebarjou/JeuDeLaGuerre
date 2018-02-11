@@ -4,7 +4,7 @@ import game.board.Board;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import ruleEngine.gameMaster.GameState;
+import game.gameMaster.GameState;
 
 public class CheckOnBoard implements IRule {
     private static CheckOnBoard instance;

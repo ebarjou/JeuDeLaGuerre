@@ -4,7 +4,7 @@ import game.board.BoardManager;
 import game.board.IBoardManager;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
-import ruleEngine.gameMaster.GameMaster;
+import game.gameMaster.GameMaster;
 import ruleEngine.RuleChecker;
 import ui.CommandException;
 import ui.SharedCommand;

@@ -1,7 +1,7 @@
 package ruleEngine.items;
 
-        import game.board.entity.EUnit;
-
+import game.board.entity.EUnit;
+//TODO: Maybe use only this enum for the board instead of an enum with only names ..
 public enum EUnitData {
     INFANTRY_DATA   (EUnit.INFANTRY, 4, 6, 1, 2, true, false, true, false),
     CAVALRY_DATA    (EUnit.CAVALRY, 4, 5, 2, 2, false, false, true, true),

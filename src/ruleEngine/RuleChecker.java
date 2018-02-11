@@ -2,7 +2,7 @@ package ruleEngine;
 
 import game.board.Board;
 import ruleEngine.exceptions.IncorrectGameActionException;
-import ruleEngine.gameMaster.GameMaster;
+import game.gameMaster.GameMaster;
 import ruleEngine.rules.MoveRules;
 
 public class RuleChecker {

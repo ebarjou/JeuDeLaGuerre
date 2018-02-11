@@ -5,7 +5,8 @@ import game.board.entity.EBuilding;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import ruleEngine.gameMaster.GameState;
+import game.gameMaster.GameState;
+import ruleEngine.items.EBuildingData;
 import ruleEngine.items.EUnitData;
 
 import java.util.LinkedList;
@@ -64,7 +65,7 @@ public class CheckIsEmptyPath implements IRule {
                         continue;
                     }
                     //If there is building and it's a mountain, we can't add it
-                    if(board.getBuilding(i, j) != null && board.getBuilding(i, j).getId() == EBuilding.MOUNTAIN) {
+                    if(board.getBuilding(i, j) != null && EBuildingData.getDataFromEBuilding(board.getBuilding(i, j).getId()).isAccessible()) {
                         continue;
                     }
                     //If the cell we check has the same coords than the target cell

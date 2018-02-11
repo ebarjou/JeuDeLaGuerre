@@ -4,7 +4,7 @@ import game.board.Board;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import ruleEngine.gameMaster.GameState;
+import game.gameMaster.GameState;
 import ruleEngine.items.EUnitData;
 
 public class CheckUnitMP implements IRule{

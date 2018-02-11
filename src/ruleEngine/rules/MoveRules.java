@@ -4,8 +4,8 @@ import game.board.Board;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import ruleEngine.gameMaster.GameMaster;
-import ruleEngine.gameMaster.GameState;
+import game.gameMaster.GameMaster;
+import game.gameMaster.GameState;
 import ruleEngine.rules.atomicRules.*;
 
 import java.util.LinkedList;

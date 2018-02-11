@@ -5,7 +5,7 @@ import game.board.entity.EUnit;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import ruleEngine.gameMaster.GameState;
+import game.gameMaster.GameState;
 import ruleEngine.items.EUnitData;
 
 public class CheckCommunication implements IRule {

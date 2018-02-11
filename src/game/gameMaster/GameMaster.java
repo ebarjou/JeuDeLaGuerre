@@ -1,4 +1,4 @@
-package ruleEngine.gameMaster;
+package game.gameMaster;
 
 import game.EPlayer;
 import ruleEngine.GameAction;
