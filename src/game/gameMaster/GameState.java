@@ -18,7 +18,8 @@ public class GameState implements Cloneable{
     private List<EBuildingData> buildingPlayer1; // Maybe create a Building class
     private List<EBuildingData> buildingPlayer2; //   like the Unit class ... ?
 
-    private List<Coordinates> priorityUnits; //units needed to be move
+    private List<Coordinates> priorityUnits1; //units needed to be move
+    private List <Coordinates> priorityUnits2;
 
     private int actionLeft;
     //private List<Coordinates> priorityUnitsPlayer2; //Maybe just one List is necessary
@@ -30,12 +31,13 @@ public class GameState implements Cloneable{
         buildingPlayer1 = new ArrayList<>();
         buildingPlayer2 = new ArrayList<>();
 
-        priorityUnits = new ArrayList<>();
+        priorityUnits1 = new ArrayList<>();
+        priorityUnits2 = new ArrayList<>();
         actionLeft = 5;
     }
 
     void addPriorityUnit(Coordinates coords){
-        priorityUnits.add(coords);
+        priorityUnits1.add(coords);
     }
 
     void addBuilding(EPlayer player, EBuildingData building){
@@ -54,11 +56,21 @@ public class GameState implements Cloneable{
         }
     }
 
+    //Need to be sure of the remove of arraylist ..
     boolean removePriorityUnit(Coordinates coords){
-        for(Coordinates c : priorityUnits){
-            if(c.getX() == coords.getX() && c.getY() == coords.getY()) {
-                priorityUnits.remove(c);
-                return true;
+        if(actualPlayer == EPlayer.PLAYER1){
+            for(Coordinates c : priorityUnits1){
+                if(c.getX() == coords.getX() && c.getY() == coords.getY()) {
+                    priorityUnits1.remove(c);
+                    return true;
+                }
+            }
+        } else {
+            for(Coordinates c : priorityUnits2){
+                if(c.getX() == coords.getX() && c.getY() == coords.getY()) {
+                    priorityUnits1.remove(c);
+                    return true;
+                }
             }
         }
         return false;

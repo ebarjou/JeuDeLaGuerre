@@ -56,6 +56,7 @@ public class GameMaster {
 
     //Should be called after each move valid.
     public void removeAction(){
+        history.push(actualState.clone());
         actualState.removeOneAction();
     }
 
