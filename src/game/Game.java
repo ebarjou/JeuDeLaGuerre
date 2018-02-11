@@ -6,6 +6,7 @@ import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import game.gameMaster.GameMaster;
 import ruleEngine.RuleChecker;
+import ruleEngine.RuleResult;
 import ui.CommandException;
 import ui.SharedCommand;
 import ui.UserInterface;
@@ -70,9 +71,15 @@ public class Game {
                     try {
                         int[] a = cmd.getCoords1();
                         int[] b = cmd.getCoords2();
-                        System.out.println("GAME : From [" + a[0] + "," + a[1] + "] To [" + b[0] + "," + b[1] + "]");
-                        cmd.setResponse(VALID);
-                        RuleChecker.getInstance().checkAction(BoardManager.getInstance().getBoard(), convert(cmd));
+                        //System.out.println("GAME : From [" + a[0] + "," + a[1] + "] To [" + b[0] + "," + b[1] + "]");
+                        RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(), convert(cmd));
+                        if(res.getLogMessage().isEmpty()){
+                            cmd.setResponse(VALID);
+                            boardManager.moveUnit(cmd.getCoords1()[0], cmd.getCoords1()[1], cmd.getCoords2()[0], cmd.getCoords2()[1]);
+                        } else {
+                            cmd.setResponse(INVALID);
+                            cmd.setMessage(res.getLogMessage());
+                        }
                     } catch (Exception e) {
                         cmd.setResponse(GAME_ERROR);
                     }

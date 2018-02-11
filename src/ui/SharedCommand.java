@@ -63,8 +63,8 @@ public class SharedCommand {
         return commandCoords2;
     }
 
-    public String getString() throws CommandException{
-        if(command == null || !command.haveString()) throw new CommandException("This command does not have a String attached.");
+    public String getString(){
+        //if(command == null || !command.haveString()) throw new CommandException("This command does not have a String attached.");
         return message;
     }
 
@@ -75,6 +75,10 @@ public class SharedCommand {
 
     public void setResponse(GameToUserCall response){
         this.response = response;
+    }
+
+    public void setMessage(String message){
+        this.message = message;
     }
 
     /*
@@ -97,10 +101,6 @@ public class SharedCommand {
     protected void setCommandCoords2(int x, int y){
         commandCoords2[0] = x;
         commandCoords2[1] = y;
-    }
-
-    protected void setMessage(String message){
-        this.message = message;
     }
 
     protected void setUnit(int unit){

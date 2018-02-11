@@ -41,8 +41,8 @@ public class CommandParser {
         c = c.toLowerCase();
         if(!c.matches("([a-z]+)([0-9]+)")) throw new CommandException("Invalid coordinate argument : Must be letters followed by a number.");
         String c_splitted[] = c.split("(?<=\\D)(?=\\d)");
-        coords[0] = Integer.parseInt(c_splitted[1]);
-        coords[1] = getIntFromString(c_splitted[0]);
+        coords[0] = Integer.parseInt(c_splitted[1])-1;
+        coords[1] = getIntFromString(c_splitted[0])-1;
         return coords;
     }
 

@@ -1,6 +1,7 @@
 package ui.display;
 
 import game.board.Board;
+import game.board.BoardManager;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,6 +25,7 @@ public class BoardWindow extends Application {
     private static Board board;
 
     public static void updateBoard(Board board){
+        if(BoardWindow.board != null && board == null) return;
         BoardWindow.board = board;
         if(canvas != null) canvas.draw(board);
     }

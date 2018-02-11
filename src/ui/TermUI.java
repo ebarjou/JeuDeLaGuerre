@@ -59,7 +59,8 @@ public class TermUI implements UserInterface {
                 break;
             }
             case INVALID:{
-                System.out.println("Invalid !");
+                if(response.getString().isEmpty()) System.out.println("Valid !");
+                else System.out.println(response.getString());
                 break;
             }
             case APPLIED:{

@@ -15,9 +15,10 @@ public class Start {
         IBoardManager boardManager = BoardManager.getInstance();
         boardManager.initBoard(25, 20);
         boardManager.addUnit(EUnit.INFANTRY, EPlayer.PLAYER1, 10, 10);
-        boardManager.addBuilding(EBuilding.ARSENAL, EPlayer.PLAYER1, 14, 7);
+        boardManager.addUnit(EUnit.INFANTRY, EPlayer.PLAYER1, 0, 0);
+        boardManager.addBuilding(EBuilding.ARSENAL, EPlayer.PLAYER1, 0, 7);
         boardManager.addBuilding(EBuilding.FORTERESS, EPlayer.PLAYER1, 10, 10);
-
+        boardManager.setCommunication(EPlayer.PLAYER1, 0, 0, true);
         UserInterface ui = new TermUI();
         (new Game(ui)).startNewGame();
     }
