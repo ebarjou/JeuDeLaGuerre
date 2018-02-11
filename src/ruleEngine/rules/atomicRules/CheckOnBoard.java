@@ -23,10 +23,12 @@ public class CheckOnBoard implements IRule {
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         if(board.edge(action.getSourceCoordinates().getX(), action.getTargetCoordinates().getY())){
             result.addMessage(this, "Source coordinates are beyond the board's edges");
+            result.invalidate();
             return false;
         }
         if(board.edge(action.getTargetCoordinates().getX(), action.getTargetCoordinates().getY())){
             result.addMessage(this, "Target coordinates are beyond the board's edges");
+            result.invalidate();
             return false;
         }
         return true;

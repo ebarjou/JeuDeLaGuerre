@@ -87,6 +87,7 @@ public class CheckIsEmptyPath implements IRule {
             }
         }
         result.addMessage(this, "There is no empty path found.");
+        result.invalidate();
         return false;
     }
 

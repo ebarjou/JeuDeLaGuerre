@@ -40,6 +40,7 @@ public class CheckUnitMP implements IRule{
                     "Not enough movement point, the unit has "
                             + MP + " MP, and you need " + dist + " MP"
             );
+            result.invalidate();
             return false;
         }
         return true;

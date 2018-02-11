@@ -26,9 +26,12 @@ public class CheckCommunication implements IRule {
         GameAction.Coordinates src = action.getSourceCoordinates();
         EUnit unit = board.getUnit(src.getX(), src.getY()).getId();
         EUnitData unitData = EUnitData.getDataFromEUnit(unit);
-        if(unitData.isRelayCommunication() || board.getCommunication(action.getPlayer(), src.getX(), src.getY()))
+        if(unitData.isRelayCommunication() || board.getCommunication(action.getPlayer(), src.getX(), src.getY())) {
             return true;
+        }
+
         result.addMessage(this, "This unit is not in communication, you can't use it");
+        result.invalidate();
         return false;
     }
 }

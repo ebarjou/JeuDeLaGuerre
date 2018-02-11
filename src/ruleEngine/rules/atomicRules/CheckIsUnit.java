@@ -23,10 +23,16 @@ public class CheckIsUnit implements IRule{
         int x = action.getSourceCoordinates().getX();
         int y = action.getSourceCoordinates().getY();
 
-        if(board.getUnit(x, y) != null)
+        if(board.getUnit(x, y) != null) {
+            if (state.getActualPlayer() != board.getUnit(x, y).getPlayer()) {
+                result.addMessage(this, "This unit is not yours");
+                result.invalidate();
+                return false;
+            }
             return true;
-
+        }
         result.addMessage(this, "There is no unit at (" + x + ";" + y + ")");
+        result.invalidate();
         return false;
     }
 }

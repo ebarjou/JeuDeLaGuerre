@@ -28,7 +28,7 @@ public class CheckIsEmptyPathTest {
 
         master.addBuilding(EBuilding.MOUNTAIN, EPlayer.PLAYER1,0, 1); ///////////////
         master.addBuilding(EBuilding.MOUNTAIN, EPlayer.PLAYER1,1, 0); // C  M  -  -
-        master.addBuilding(EBuilding.MOUNTAIN, EPlayer.PLAYER1,1, 1); // M  -  -  -
+        master.addBuilding(EBuilding.MOUNTAIN, EPlayer.PLAYER1,1, 2); // M  -  -  -
                                                                            // -  M  -  -
         master.addUnit(EUnit.CAVALRY, EPlayer.PLAYER1,0, 0);
         master.setCommunication(EPlayer.PLAYER1, 0, 0, true);
