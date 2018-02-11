@@ -19,7 +19,7 @@ public class GameState implements Cloneable{
     private List<EBuildingData> buildingPlayer2; //   like the Unit class ... ?
 
     private List<Coordinates> priorityUnits1; //units needed to be move
-    private List <Coordinates> priorityUnits2;
+    private List<Coordinates> priorityUnits2;
 
     private int actionLeft;
     //private List<Coordinates> priorityUnitsPlayer2; //Maybe just one List is necessary
@@ -90,6 +90,10 @@ public class GameState implements Cloneable{
 
     public EPlayer getActualPlayer(){
         return actualPlayer;
+    }
+
+    public int getActionLeft(){
+        return actionLeft;
     }
 
     void removeOneAction(){

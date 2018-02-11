@@ -26,6 +26,7 @@ public class MoveRules implements IRule {
         rules.add(CheckCommunication.getInstance());
         rules.add(CheckUnitMP.getInstance());
         rules.add(CheckIsEmptyPath.getInstance());
+        rules.add(CheckPlayerMovesLeft.getInstance());
     }
 
     public static IRule getInstance() {
