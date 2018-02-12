@@ -1,8 +1,8 @@
 package game.gameMaster;
 
 import game.EPlayer;
-import ruleEngine.items.EBuildingData;
-import ruleEngine.items.EUnitData;
+import ruleEngine.entity.EBuildingData;
+import ruleEngine.entity.EUnitData;
 import ruleEngine.GameAction.Coordinates;
 
 import java.util.ArrayList;
@@ -22,7 +22,6 @@ public class GameState implements Cloneable{
     private List<Coordinates> priorityUnits2;
 
     private int actionLeft;
-    //private List<Coordinates> priorityUnitsPlayer2; //Maybe just one List is necessary
 
     GameState(){
         unitsPlayer1 = new ArrayList<>();

@@ -1,12 +1,11 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Board;
-import game.board.entity.EUnit;
+import game.gameMaster.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import game.gameMaster.GameState;
-import ruleEngine.items.EUnitData;
+import ruleEngine.entity.EUnitData;
 
 public class CheckCommunication implements IRule {
     private static CheckCommunication instance;
@@ -24,8 +23,7 @@ public class CheckCommunication implements IRule {
     @Override
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         GameAction.Coordinates src = action.getSourceCoordinates();
-        EUnit unit = board.getUnit(src.getX(), src.getY()).getId();
-        EUnitData unitData = EUnitData.getDataFromEUnit(unit);
+        EUnitData unitData = board.getUnit(src.getX(), src.getY()).getUnit();
         if(unitData.isRelayCommunication() || board.getCommunication(action.getPlayer(), src.getX(), src.getY())) {
             return true;
         }

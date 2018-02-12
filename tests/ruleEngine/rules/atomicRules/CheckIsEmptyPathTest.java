@@ -1,18 +1,15 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.Board;
 import game.board.BoardManager;
 import game.board.IBoardManager;
-import game.board.entity.EBuilding;
-import game.board.entity.EUnit;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import ruleEngine.*;
+import ruleEngine.entity.EBuildingData;
+import ruleEngine.entity.EUnitData;
 import ruleEngine.exceptions.IncorrectGameActionException;
 
-import static org.junit.Assert.*;
 
 public class CheckIsEmptyPathTest {
 
@@ -26,11 +23,11 @@ public class CheckIsEmptyPathTest {
         master = BoardManager.getInstance();
         master.initBoard(25, 20);
 
-        master.addBuilding(EBuilding.MOUNTAIN, EPlayer.PLAYER1,0, 1); ///////////////
-        master.addBuilding(EBuilding.MOUNTAIN, EPlayer.PLAYER1,1, 0); // C  M  -  -
-        master.addBuilding(EBuilding.MOUNTAIN, EPlayer.PLAYER1,1, 2); // M  -  -  -
+        master.addBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1,0, 1); ///////////////
+        master.addBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1,1, 0); // C  M  -  -
+        master.addBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1,1, 2); // M  -  -  -
                                                                            // -  M  -  -
-        master.addUnit(EUnit.CAVALRY, EPlayer.PLAYER1,0, 0);
+        master.addUnit(EUnitData.CAVALRY, EPlayer.PLAYER1,0, 0);
         master.setCommunication(EPlayer.PLAYER1, 0, 0, true);
 
         gameAction = new GameAction(EPlayer.PLAYER1, EGameActionType.MOVE);

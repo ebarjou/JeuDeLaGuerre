@@ -33,7 +33,7 @@ public class MoveRulesTest {
         when(gameAction.getSourceCoordinates().getY()).thenReturn(2);
         when(gameAction.getTargetCoordinates().getX()).thenReturn(3);
         when(gameAction.getTargetCoordinates().getY()).thenReturn(3);
-        //Problem when trying to get UnitInfo from a case (seems package-private)
+        //Problem when trying to get Unit from a case (seems package-private)
         //Also maybe mocks are overkill for masterrules
 
         //...

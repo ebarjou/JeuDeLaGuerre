@@ -1,8 +1,9 @@
 package game.board;
 
-import game.board.entity.EBuilding;
-import game.board.entity.EUnit;
 import org.junit.*;
+import ruleEngine.entity.EBuildingData;
+import ruleEngine.entity.EUnitData;
+
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -42,13 +43,13 @@ public class BoardTest {
     @Test
     public void addUnitTest(){
         //Test if adding an information to a cell is really added
-        UnitInfo soldier = new UnitInfo(EUnit.INFANTRY, PLAYER1);
-        master.addUnit(soldier.getId(), soldier.getPlayer(), x, y);
+        Unit soldier = new Unit(EUnitData.INFANTRY, PLAYER1);
+        master.addUnit(soldier.getUnit(), soldier.getPlayer(), x, y);
 
-        UnitInfo result = master.getBoard().getUnit(x, y);
+        Unit result = master.getBoard().getUnit(x, y);
 
-        String src = "result : " + soldier.getId() + " : joueur" + soldier.getPlayer() + "\n";
-        String res = "result : " + result.getId() + " : joueur" + result.getPlayer() + "\n";
+        String src = "result : " + soldier.getUnit() + " : joueur" + soldier.getPlayer() + "\n";
+        String res = "result : " + result.getUnit() + " : joueur" + result.getPlayer() + "\n";
 
         assertTrue(src.equalsIgnoreCase(res));
     }
@@ -58,39 +59,39 @@ public class BoardTest {
         //Here we test if we clone the board, we clone its attributes too. So we don't have twice
         //  the same reference.
 
-        master.addUnit(EUnit.INFANTRY, PLAYER1, x, y);
-        master.addBuilding(EBuilding.ARSENAL, PLAYER1, x, y);
+        master.addUnit(EUnitData.INFANTRY, PLAYER1, x, y);
+        master.addBuilding(EBuildingData.ARSENAL, PLAYER1, x, y);
 
         Board board1 = master.getBoard();
         Board board2 = board1.clone();
 
         assertTrue(board1 != board2);
 
-        BuildingInfo b1 = board1.getBuilding(x, y);
-        BuildingInfo b2 = board2.getBuilding(x, y);
+        Building b1 = board1.getBuilding(x, y);
+        Building b2 = board2.getBuilding(x, y);
 
         assertTrue(b1 != b2);
-        assertTrue(b1.getId() == b2.getId());
+        assertTrue(b1.getBuilding() == b2.getBuilding());
         assertTrue(b1.getPlayer() == b2.getPlayer());
 
-        UnitInfo u1 = board1.getUnit(x, y);
-        UnitInfo u2 = board2.getUnit(x, y);
+        Unit u1 = board1.getUnit(x, y);
+        Unit u2 = board2.getUnit(x, y);
 
         assertTrue(u1 != u2);
-        assertTrue(u1.getId() == u2.getId());
+        assertTrue(u1.getUnit() == u2.getUnit());
         assertTrue(u1.getPlayer() == u2.getPlayer());
     }
 
 
     @Test
     public void move(){
-        UnitInfo soldier = new UnitInfo(EUnit.INFANTRY, PLAYER1);
-        master.addUnit(soldier.getId(), soldier.getPlayer(), x, y);
+        Unit soldier = new Unit(EUnitData.INFANTRY, PLAYER1);
+        master.addUnit(soldier.getUnit(), soldier.getPlayer(), x, y);
         master.moveUnit(x, y, x2, y2);
 
-        UnitInfo soldier2 = master.getBoard().getUnit(x2, y2);
+        Unit soldier2 = master.getBoard().getUnit(x2, y2);
 
-        assertTrue(soldier.getId() == soldier2.getId());
+        assertTrue(soldier.getUnit() == soldier2.getUnit());
         assertTrue(soldier.getPlayer() == soldier2.getPlayer());
 
         assertTrue(master.moveUnit(x2, y2, x2, y2));
@@ -102,8 +103,8 @@ public class BoardTest {
     public void revert(){
         //Add a unit infantery at a random location on the board
         //  and move it to a random position.
-        master.addUnit(EUnit.INFANTRY, PLAYER1, x, y);
-        UnitInfo soldier1 = master.getBoard().getUnit(x, y);
+        master.addUnit(EUnitData.INFANTRY, PLAYER1, x, y);
+        Unit soldier1 = master.getBoard().getUnit(x, y);
 
         master.moveUnit(x, y, x2, y2);
 
@@ -118,22 +119,22 @@ public class BoardTest {
 
         //(soldier1)Get info from the initial state of the board about the unit we put
         //(soldier2)Same but with the actual state of the board
-        UnitInfo soldier2 = master.getBoard().getUnit(x, y);
+        Unit soldier2 = master.getBoard().getUnit(x, y);
 
         //Test if we still have the same information we put.
-        assertTrue(soldier1.getId() == soldier2.getId()
+        assertTrue(soldier1.getUnit() == soldier2.getUnit()
                 && soldier1.getPlayer() == soldier2.getPlayer()
         );
     }
 
     @Test
     public void displayBoard(){
-        master.addUnit(EUnit.INFANTRY, PLAYER1, x, y);
-        master.addBuilding(EBuilding.ARSENAL, PLAYER1, x, y);
+        master.addUnit(EUnitData.INFANTRY, PLAYER1, x, y);
+        master.addBuilding(EBuildingData.ARSENAL, PLAYER1, x, y);
         master.setCommunication(PLAYER1, x, y, true);
 
-        master.addUnit(EUnit.CAVALRY, PLAYER2, x2, y2);
-        master.addBuilding(EBuilding.FORTERESS, PLAYER2, x2, y2);
+        master.addUnit(EUnitData.CAVALRY, PLAYER2, x2, y2);
+        master.addBuilding(EBuildingData.FORTRESS, PLAYER2, x2, y2);
 
         Board board = master.getBoard();
         System.out.println(board.toString());

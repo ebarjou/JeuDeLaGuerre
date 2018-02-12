@@ -2,7 +2,7 @@ package game.gameMaster;
 
 import game.EPlayer;
 import ruleEngine.GameAction;
-import ruleEngine.items.EUnitData;
+import ruleEngine.entity.EUnitData;
 
 import java.util.Random;
 import java.util.Stack;

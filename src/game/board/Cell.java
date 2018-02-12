@@ -3,8 +3,8 @@ package game.board;
 import game.EPlayer;
 
 class Cell implements Cloneable{
-    private UnitInfo unit;
-    private BuildingInfo building;
+    private Unit unit;
+    private Building building;
     private boolean communication1;
     private boolean communication2;
 
@@ -40,28 +40,28 @@ class Cell implements Cloneable{
     public String toString(){
         String res = "";
         if(unit != null)
-            res += unit.getId().getName() + "\n";
+            res += unit.getUnit() + "\n";
         if(building != null)
-            res += building.getId().getName() + "\n";
+            res += building.getBuilding() + "\n";
         if(res.isEmpty())
             return res;
 
         return res + "Com1 : " + communication1 + "\nCom2: " + communication2 + "\n";
     }
 
-    public void setUnit(UnitInfo unit) {
+    public void setUnit(Unit unit) {
         this.unit = unit;
     }
 
-    public UnitInfo getUnit(){
+    public Unit getUnit(){
         return unit;
     }
 
-    public void setBuilding(BuildingInfo building) {
+    public void setBuilding(Building building) {
         this.building = building;
     }
 
-    public BuildingInfo getBuilding(){
+    public Building getBuilding(){
         return building;
     }
 

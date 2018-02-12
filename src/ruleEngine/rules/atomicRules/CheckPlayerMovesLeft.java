@@ -1,12 +1,10 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Board;
-import game.board.entity.EUnit;
 import game.gameMaster.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import ruleEngine.items.EUnitData;
 
 public class CheckPlayerMovesLeft implements IRule {
 

@@ -1,8 +1,8 @@
 package game.board;
 
 import game.EPlayer;
-import game.board.entity.EBuilding;
-import game.board.entity.EUnit;
+import ruleEngine.entity.EBuildingData;
+import ruleEngine.entity.EUnitData;
 
 public interface IBoardManager {
 
@@ -15,8 +15,8 @@ public interface IBoardManager {
     boolean moveUnit(int x, int y, int x2, int y2);
     boolean moveBuilding(int x, int y, int x2, int y2);
 
-    boolean addUnit(EUnit unitType, EPlayer player, int x, int y);
-    boolean addBuilding(EBuilding buildingType, EPlayer player, int x, int y);
+    boolean addUnit(EUnitData unitType, EPlayer player, int x, int y);
+    boolean addBuilding(EBuildingData buildingType, EPlayer player, int x, int y);
 
     boolean removeUnit(int x, int y);
     boolean removeBuilding(int x, int y);

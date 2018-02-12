@@ -1,8 +1,8 @@
 package game.board;
 
 import game.EPlayer;
-import game.board.entity.EBuilding;
-import game.board.entity.EUnit;
+import ruleEngine.entity.EBuildingData;
+import ruleEngine.entity.EUnitData;
 
 import java.util.Stack;
 
@@ -78,14 +78,14 @@ public class BoardManager implements IBoardManager {
     }
 
     @Override
-    public boolean addUnit(EUnit unitType, EPlayer player, int x, int y) {
+    public boolean addUnit(EUnitData unitType, EPlayer player, int x, int y) {
         if(actualBoard.getUnit(x, y) != null){
             System.out.println("Error: already a unit at this location");
             return false;
         }
 
-        UnitInfo unitInfo = new UnitInfo(unitType, player);
-        actualBoard.setUnit(unitInfo, x, y);
+        Unit unit = new Unit(unitType, player);
+        actualBoard.setUnit(unit, x, y);
         return true;
     }
 
@@ -110,13 +110,13 @@ public class BoardManager implements IBoardManager {
     }
 
     @Override
-    public boolean addBuilding(EBuilding buildingType, EPlayer player, int x, int y) {
+    public boolean addBuilding(EBuildingData buildingType, EPlayer player, int x, int y) {
         if(actualBoard.getBuilding(x, y) != null){
             System.out.println("Error: already a unit at this location");
             return false;
         }
 
-        BuildingInfo buildingInfo = new BuildingInfo(buildingType, player);
+        Building buildingInfo = new Building(buildingType, player);
         actualBoard.setBuilding(buildingInfo, x, y);
         return true;
     }

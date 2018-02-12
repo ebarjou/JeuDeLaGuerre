@@ -1,13 +1,10 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Board;
-import game.board.entity.EBuilding;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
 import game.gameMaster.GameState;
-import ruleEngine.items.EBuildingData;
-import ruleEngine.items.EUnitData;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -42,7 +39,7 @@ public class CheckIsEmptyPath implements IRule {
         GameAction.Coordinates src = action.getSourceCoordinates();
         GameAction.Coordinates target = action.getTargetCoordinates();
 
-        int PM = EUnitData.getDataFromEUnit(board.getUnit(src.getX(), src.getY()).getId()).getMovementValue();
+        int PM = board.getUnit(src.getX(), src.getY()).getUnit().getMovementValue();
 
         Vertex[][] map = initMap(PM, src);
 
@@ -65,7 +62,7 @@ public class CheckIsEmptyPath implements IRule {
                         continue;
                     }
                     //If there is building and it's a mountain, we can't add it
-                    if(board.getBuilding(i, j) != null && EBuildingData.getDataFromEBuilding(board.getBuilding(i, j).getId()).isAccessible()) {
+                    if(board.getBuilding(i, j) != null && board.getBuilding(i, j).getBuilding().isAccessible()) {
                         continue;
                     }
                     //If the cell we check has the same coords than the target cell

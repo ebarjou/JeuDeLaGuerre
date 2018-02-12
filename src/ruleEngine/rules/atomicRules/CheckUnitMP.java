@@ -5,14 +5,12 @@ import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
 import game.gameMaster.GameState;
-import ruleEngine.items.EUnitData;
 
 public class CheckUnitMP implements IRule{
 
     private static CheckUnitMP instance = null;
 
     private CheckUnitMP(){
-
     }
 
     public static CheckUnitMP getInstance(){
@@ -30,9 +28,7 @@ public class CheckUnitMP implements IRule{
 
         //TODO: should get the actual Unit's MP left (not the normal value of the Type unit)
         // int MP = 3;
-        int MP = EUnitData.getDataFromEUnit(
-                board.getUnit(x, y).getId()
-        ).getMovementValue();
+        int MP = board.getUnit(x, y).getUnit().getMovementValue();
         int dist = board.getDistance(x, y, x2, y2);
 
         if(dist > MP){

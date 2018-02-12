@@ -6,8 +6,6 @@ import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
@@ -74,10 +72,10 @@ public class BoardCanvas extends Canvas {
         g.setTextBaseline(VPos.CENTER);
         g.setLineWidth(size/2);
         if(board.getUnit(x, y) != null)
-            g.fillText(""+board.getUnit(x, y).getId().getName().charAt(0), pos_x+size/3, pos_y+size/3, size);
+            g.fillText(""+board.getUnit(x, y).getUnit().getID(), pos_x+size/3, pos_y+size/3, size);
         g.setFill(Color.PURPLE);
         if(board.getBuilding(x, y) != null)
-            g.fillText(""+board.getBuilding(x, y).getId().getName().charAt(0), pos_x+2*size/3, pos_y+2*size/3, size);
+            g.fillText(""+board.getBuilding(x, y).getBuilding().getID(), pos_x+2*size/3, pos_y+2*size/3, size);
         g.restore();
     }
 }

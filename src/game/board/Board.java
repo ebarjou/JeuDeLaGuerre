@@ -1,10 +1,6 @@
 package game.board;
 
 import game.EPlayer;
-import ruleEngine.GameAction;
-
-import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class Board implements Cloneable{
     private int width, height;
@@ -49,7 +45,7 @@ public class Board implements Cloneable{
             return false;
         }
 
-        UnitInfo tmp = board[x][y].getUnit();
+        Unit tmp = board[x][y].getUnit();
         board[x][y].setUnit(board[x2][y2].getUnit());
         board[x2][y2].setUnit(tmp);
         return true;
@@ -64,7 +60,7 @@ public class Board implements Cloneable{
             return false;
         }
 
-        BuildingInfo tmp = board[x][y].getBuilding();
+        Building tmp = board[x][y].getBuilding();
         board[x][y].setBuilding(board[x2][y2].getBuilding());
         board[x2][y2].setBuilding(tmp);
         return true;
@@ -94,13 +90,13 @@ public class Board implements Cloneable{
         return board[x][y];
     }
 
-    void setUnit(UnitInfo unit, int x, int y){
+    void setUnit(Unit unit, int x, int y){
         if(edge(x, y))
             return;
         board[x][y].setUnit(unit);
     }
 
-    void setBuilding(BuildingInfo building, int x, int y){
+    void setBuilding(Building building, int x, int y){
         if(edge(x, y))
             return;
         board[x][y].setBuilding(building);
@@ -115,13 +111,13 @@ public class Board implements Cloneable{
         return height;
     }
 
-    public UnitInfo getUnit(int x, int y){
+    public Unit getUnit(int x, int y){
         if(edge(x, y))
             return null;
         return board[x][y].getUnit();
     }
 
-    public BuildingInfo getBuilding(int x, int y){
+    public Building getBuilding(int x, int y){
         if(edge(x, y))
             return null;
         return board[x][y].getBuilding();

@@ -1,23 +1,23 @@
 package game.board;
 
 import game.EPlayer;
-import game.board.entity.EBuilding;
+import ruleEngine.entity.EBuildingData;
 
-public class BuildingInfo implements Cloneable{
-    private EBuilding id;
+public class Building implements Cloneable{
+    private EBuildingData building;
     private EPlayer player;
 
-    public BuildingInfo(EBuilding id, EPlayer player){
-        this.id = id;
+    public Building(EBuildingData building, EPlayer player){
+        this.building = building;
         this.player = player;
     }
 
-    public EBuilding getId() {
-        return id;
+    public EBuildingData getBuilding() {
+        return building;
     }
 
-    void setId(EBuilding id) {
-        this.id = id;
+    void setBuilding(EBuildingData building) {
+        this.building = building;
     }
 
     public EPlayer getPlayer() {
@@ -29,13 +29,13 @@ public class BuildingInfo implements Cloneable{
     }
 
     @Override
-    public BuildingInfo clone(){
+    public Building clone(){
         Object o = null;
         try{
             o = super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        return (BuildingInfo)o;
+        return (Building)o;
     }
 }
