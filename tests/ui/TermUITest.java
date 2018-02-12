@@ -10,39 +10,40 @@ import java.io.ByteArrayInputStream;
 
 public class TermUITest {
     TermUI term;
-    ByteArrayInputStream in;
-    String cmd;
+    enum COMMANDS{
+        C1("move a2 b4", true),
+        C2("move aa2 b66", true),
+        C3("move abcsioih3455858 b9", true),
+        C4("m j7 f2", true),
+        C5("move A2 G4", true),
+        C6("move a2", false),
+        C7("move", false),
+        C8("move a3 aag", false),
+        C9("move 123 f6", false),
+        C10("MoVe c4 g8", false);
+
+        COMMANDS(String cmd, boolean isValid){
+            this.cmd = cmd;
+            this.isValid = isValid;
+        }
+        String cmd;
+        boolean isValid;
+    }
 
     @Before
     public void setUp(){
-        in = new ByteArrayInputStream(("move a3 b1\nmove E7 j23\nmove aaf4 f8\nmove E34t f5\nmove hgt A3\nmfd ef\nmove a3\nmove gg5 e6").getBytes());
-        System.setIn(in);
+        //in = new ByteArrayInputStream(("move a3 b1\nmove E7 j23\nmove aaf4 f8\nmove E34t f5\nmove hgt A3\nmfd ef\nmove a3\nmove gg5 e6").getBytes());
+        //System.setIn(in);
         term = new TermUI();
+
     }
 
     @Test
     public void process() {
-        UserInterface term = new TermUI();
-        while(true) {
-            SharedCommand cmd = term.getNextCommand();
-            System.out.println("CMD -> " + cmd.getCommand());
-            if (cmd.getCommand() == UserToGameCall.MOVE) {
-                try {
-                    int[] a = cmd.getCoords1();
-                    int[] b = cmd.getCoords2();
-                    System.out.println("From [" + a[0] + "," + a[1] + "] To [" + b[0] + "," + b[1] + "]");
-                } catch (Exception e) {
-                    Assert.assertTrue(false);
-                }
-            } else if (cmd.getCommand() == UserToGameCall.CMD_ERROR) {
-                try {
-                    System.out.println("Error info : " + cmd.getString());
-                } catch (Exception e) {
-                    Assert.assertTrue(false);
-                }
-            }else if(cmd.getCommand() == UserToGameCall.EXIT) {
-                break;
-            }
+        SharedCommand sharedCommand;
+        for(COMMANDS cmd : COMMANDS.values()){
+            sharedCommand = term.processCommand(cmd.cmd);
+            Assert.assertTrue("Error at : "+cmd.toString(), (sharedCommand.getCommand()==UserToGameCall.CMD_ERROR)==!cmd.isValid );
         }
     }
 

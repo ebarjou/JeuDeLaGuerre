@@ -3,7 +3,9 @@ package ui;
 import asg.cliche.CLIException;
 import asg.cliche.Shell;
 import asg.cliche.ShellFactory;
+import game.Game;
 import game.board.Board;
+import game.board.BoardManager;
 import javafx.application.Application;
 import ui.display.BoardCanvas;
 import ui.display.BoardWindow;
@@ -12,17 +14,24 @@ import java.io.*;
 
 import static ui.commands.UserToGameCall.*;
 
-public class TermUI implements UserInterface {
+
+public class TermUI {
+    private static TermUI instance;
     private CommandParser parser;
     private BufferedReader reader;
     private Shell shell;
 
+    public static TermUI getInstance(){
+        if(instance == null) instance = new TermUI();
+        return instance;
+    }
+
     public TermUI(){
-        //TODO : A mettre en forme, pas très propre
         new Thread(() -> {
             Application.launch(BoardWindow.class, null);
             System.exit(0);
         }).start();
+        BoardWindow.update();
         this.parser = new CommandParser();
         shell = ShellFactory.createConsoleShell("Enter command", "", parser);
         this.reader = new BufferedReader(new InputStreamReader(new DataInputStream(System.in)));
@@ -36,23 +45,32 @@ public class TermUI implements UserInterface {
         return parser.getResult();
     }
 
-    @Override
-    public SharedCommand getNextCommand() {
-        System.out.print("Enter command : ");
-        parser.newCommand();
+    public void start() {
+        SharedCommand sharedCommand;
+        while(true){
+            System.out.print("Enter command : ");
+            parser.newCommand();
+            try {
+                String cmd = reader.readLine();
+                sharedCommand = processCommand(cmd);
+            } catch (IOException e) {
+                sharedCommand = new SharedCommand(e);
+            }
+            //Pas très propre, Game et Board à abstraire pour l'UI ?
+            processResponse( Game.getInstance().processCommand(sharedCommand));
+        }
+    }
+
+    protected SharedCommand processCommand(String cmd){
         try {
-            String cmd = reader.readLine();
-            return this.parse(cmd);
-        } catch (IOException e) {
-            return new SharedCommand(e);
+        return this.parse(cmd);
         } catch (CommandException|CLIException e){
             if(e.getMessage() != null) System.out.println(e.getMessage());
             return new SharedCommand(e);
         }
     }
 
-    @Override
-    public void sendResponse(SharedCommand response, Board board) {
+    protected void processResponse(SharedCommand response) {
         switch (response.getResponse()){
             case VALID:{
                 System.out.println("Valid !");
@@ -74,7 +92,7 @@ public class TermUI implements UserInterface {
                 break;
             }
         }
-        BoardWindow.updateBoard(board);
+        BoardWindow.update();
     }
 
 }

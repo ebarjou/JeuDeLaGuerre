@@ -21,7 +21,7 @@ public class GameTest {
     private Game game;
     @Before
     public void setUp() throws Exception {
-        game = new Game(new TermUI());
+        game = Game.getInstance();
     }
 
     private GameAction convert(SharedCommand cmd){

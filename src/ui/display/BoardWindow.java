@@ -22,12 +22,9 @@ public class BoardWindow extends Application {
     private static final int WINDOW_WIDHT = 600;
     private static final int WINDOW_HEIGHT = 480;
     private static BoardCanvas canvas;
-    private static Board board;
 
-    public static void updateBoard(Board board){
-        if(BoardWindow.board != null && board == null) return;
-        BoardWindow.board = board;
-        if(canvas != null) canvas.draw(board);
+    public static void update(){
+        if(canvas != null) canvas.draw(BoardManager.getInstance().getBoard());
     }
 
     public BoardWindow(){
@@ -40,10 +37,10 @@ public class BoardWindow extends Application {
         primaryStage.setResizable(false);
         Group root = new Group();
         Scene scene = new Scene(root, WINDOW_WIDHT, WINDOW_HEIGHT, Color.LIGHTGREY);
-        canvas.draw(board);
         root.getChildren().add(canvas);
         primaryStage.setScene(scene);
         primaryStage.show();
+        update();
     }
 
 }

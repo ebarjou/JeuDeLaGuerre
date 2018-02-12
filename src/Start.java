@@ -4,10 +4,7 @@ import game.board.BoardManager;
 import game.board.IBoardManager;
 import game.board.entity.EBuilding;
 import game.board.entity.EUnit;
-import javafx.application.Application;
 import ui.TermUI;
-import ui.UserInterface;
-import ui.display.BoardWindow;
 
 public class Start {
 
@@ -19,7 +16,9 @@ public class Start {
         boardManager.addBuilding(EBuilding.ARSENAL, EPlayer.PLAYER1, 0, 7);
         boardManager.addBuilding(EBuilding.FORTERESS, EPlayer.PLAYER1, 10, 10);
         boardManager.setCommunication(EPlayer.PLAYER1, 0, 0, true);
-        UserInterface ui = new TermUI();
-        (new Game(ui)).startNewGame();
+
+        Game game = Game.getInstance();
+        TermUI ui = new TermUI();
+        ui.start();
     }
 }

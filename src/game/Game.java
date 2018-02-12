@@ -9,85 +9,71 @@ import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
 import ui.CommandException;
 import ui.SharedCommand;
-import ui.UserInterface;
 
 import static ui.commands.GameToUserCall.*;
 
-/*
- * Peut-être à mettre en tant que Singleton ?
- */
 public class Game {
+    private static Game instance;
     private IBoardManager boardManager;
-    private UserInterface ui;
 
-    public Game(UserInterface ui) {
-        this.ui = ui;
+    public static Game getInstance(){
+        if(instance == null) instance = new Game();
+        return instance;
+    }
+
+    private Game() {
         boardManager = BoardManager.getInstance();
-        ui.sendResponse(new SharedCommand(REFRESH), boardManager.getBoard());
     }
 
-    public void startNewGame() {
-        gameLoop();
-    }
-
-    private void initGame() {
-
-    }
-
-    private void gameLoop() {
-        boolean quit = false;
-        while (!quit) {
-            SharedCommand cmd = ui.getNextCommand();
-            switch (cmd.getCommand()) {
-                case EXIT: {
-                    quit = true;
-                    cmd.setResponse(VALID);
-                    break;
-                }
-                case LOAD: {
-                    break;
-                }
-                case SAVE: {
-                    break;
-                }
-                case REVERT: {
-                    break;
-                }
-                case CMD_ERROR: {
-                    cmd.setResponse(GAME_ERROR);
-                    ui.sendResponse(cmd, null);
-                    continue;
-                }
-                case PAT: {
-                    break;
-                }
-                case SURRENDER: {
-                    break;
-                }
-                default: {
-                    //if ruleEngine.isValid(cmd)
-                    //then boardManager.apply(cmd)
-                    //     cmd.setResponse(VALID)
-                    try {
-                        int[] a = cmd.getCoords1();
-                        int[] b = cmd.getCoords2();
-                        //System.out.println("GAME : From [" + a[0] + "," + a[1] + "] To [" + b[0] + "," + b[1] + "]");
-                        RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(), convert(cmd));
-                        if(res.getLogMessage().isEmpty()){
-                            cmd.setResponse(VALID);
-                            boardManager.moveUnit(cmd.getCoords1()[0], cmd.getCoords1()[1], cmd.getCoords2()[0], cmd.getCoords2()[1]);
-                        } else {
-                            cmd.setResponse(INVALID);
-                            cmd.setMessage(res.getLogMessage());
-                        }
-                    } catch (Exception e) {
-                        cmd.setResponse(GAME_ERROR);
-                    }
-                    break;
-                }
+    public SharedCommand processCommand(SharedCommand cmd) {
+        switch (cmd.getCommand()) {
+            case EXIT: {
+                System.exit(0);
+                cmd.setResponse(VALID);
+                break;
             }
-            ui.sendResponse(cmd, boardManager.getBoard());
+            case LOAD: {
+                break;
+            }
+            case SAVE: {
+                break;
+            }
+            case REVERT: {
+                break;
+            }
+            case CMD_ERROR: {
+                cmd.setResponse(GAME_ERROR);
+                return cmd;
+            }
+            case PAT: {
+                break;
+            }
+            case SURRENDER: {
+                break;
+            }
+            default: {
+                //if ruleEngine.isValid(cmd)
+                //then boardManager.apply(cmd)
+                //     cmd.setResponse(VALID)
+                try {
+                    int[] a = cmd.getCoords1();
+                    int[] b = cmd.getCoords2();
+                    //System.out.println("GAME : From [" + a[0] + "," + a[1] + "] To [" + b[0] + "," + b[1] + "]");
+                    RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(), convert(cmd));
+                    if(res.getLogMessage().isEmpty()){
+                        cmd.setResponse(VALID);
+                        boardManager.moveUnit(cmd.getCoords1()[0], cmd.getCoords1()[1], cmd.getCoords2()[0], cmd.getCoords2()[1]);
+                    } else {
+                        cmd.setResponse(INVALID);
+                        cmd.setMessage(res.getLogMessage());
+                    }
+                } catch (Exception e) {
+                    cmd.setResponse(GAME_ERROR);
+                }
+                break;
+            }
         }
+        return cmd;
     }
 
     //Wrapper for SharedCommand -> GameAction while not sure about final design layout
