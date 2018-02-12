@@ -22,16 +22,17 @@ public class BoardCanvas extends Canvas {
     }
 
     public void draw(Board board){
-        g.setFill(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
         if(board != null){
             int merge = 1;
             int caseSize = (int) (getWidth()/(board.getWidth()));
-            g.setFill(Color.IVORY);
             for(int j = 0; j < board.getHeight(); ++j){
                 for(int i = 0; i < board.getWidth(); ++i){
+                    g.setFill(Color.BLACK);
+                    g.fillRect(i*caseSize, j*caseSize, caseSize, caseSize);
+                    g.setFill(Color.IVORY);
                     int x = merge+i*caseSize, y = merge+j*caseSize, size = caseSize-merge*2;
-                    g.fillRect(merge+i*caseSize, merge+j*caseSize, caseSize-merge*2, caseSize-merge*2);
+                    g.fillRect(x, y, size, size);
 
                     drawCellBackground(board, i, j, x, y, size);
                     drawCellItem(board, i, j, x, y, size);

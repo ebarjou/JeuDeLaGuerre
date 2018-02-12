@@ -14,6 +14,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /*
  * Singleton difficile ou impossible à cause de JavaFX, allocation à améliorer !
  */
@@ -21,11 +24,7 @@ import javafx.stage.Stage;
 public class BoardWindow extends Application {
     private static final int WINDOW_WIDHT = 650;
     private static final int WINDOW_HEIGHT = 520;
-    private static BoardCanvas canvas;
-
-    public static void update(){
-        if(canvas != null) canvas.draw(BoardManager.getInstance().getBoard());
-    }
+    private BoardCanvas canvas;
 
     public BoardWindow(){
         canvas = new BoardCanvas(WINDOW_WIDHT, WINDOW_HEIGHT);
@@ -41,6 +40,15 @@ public class BoardWindow extends Application {
         primaryStage.setResizable(false);
         primaryStage.sizeToScene();
         primaryStage.show();
-        update();
+
+        canvas.draw(BoardManager.getInstance().getBoard());
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                canvas.draw(BoardManager.getInstance().getBoard());
+            }
+        }, 0, 500);
     }
 }

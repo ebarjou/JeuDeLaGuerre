@@ -31,7 +31,6 @@ public class TermUI {
             Application.launch(BoardWindow.class, null);
             System.exit(0);
         }).start();
-        BoardWindow.update();
         this.parser = new CommandParser();
         shell = ShellFactory.createConsoleShell("Enter command", "", parser);
         this.reader = new BufferedReader(new InputStreamReader(new DataInputStream(System.in)));
@@ -92,7 +91,6 @@ public class TermUI {
                 break;
             }
         }
-        BoardWindow.update();
     }
 
 }
