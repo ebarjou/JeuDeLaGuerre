@@ -19,8 +19,8 @@ import javafx.stage.Stage;
  */
 
 public class BoardWindow extends Application {
-    private static final int WINDOW_WIDHT = 600;
-    private static final int WINDOW_HEIGHT = 480;
+    private static final int WINDOW_WIDHT = 650;
+    private static final int WINDOW_HEIGHT = 520;
     private static BoardCanvas canvas;
 
     public static void update(){
@@ -34,13 +34,13 @@ public class BoardWindow extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("JdlG");
-        primaryStage.setResizable(false);
         Group root = new Group();
         Scene scene = new Scene(root, WINDOW_WIDHT, WINDOW_HEIGHT, Color.LIGHTGREY);
         root.getChildren().add(canvas);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.sizeToScene();
         primaryStage.show();
         update();
     }
-
 }

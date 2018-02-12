@@ -1,10 +1,14 @@
 package ui.display;
 
+import game.EPlayer;
 import game.board.Board;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 public class BoardCanvas extends Canvas {
@@ -13,6 +17,7 @@ public class BoardCanvas extends Canvas {
     public BoardCanvas(int w, int h){
         super(w, h);
         g = this.getGraphicsContext2D();
+        g.setFont(new Font(18));
         draw(null);
     }
 
@@ -25,21 +30,53 @@ public class BoardCanvas extends Canvas {
             g.setFill(Color.IVORY);
             for(int j = 0; j < board.getHeight(); ++j){
                 for(int i = 0; i < board.getWidth(); ++i){
-                    g.fillRect(merge+i*caseSize, merge+j*caseSize, caseSize-merge, caseSize-merge);
-                    drawCell(board, i, j, merge+i*caseSize, merge+j*caseSize, caseSize);
+                    int x = merge+i*caseSize, y = merge+j*caseSize, size = caseSize-merge*2;
+                    g.fillRect(merge+i*caseSize, merge+j*caseSize, caseSize-merge*2, caseSize-merge*2);
+
+                    drawCellBackground(board, i, j, x, y, size);
+                    drawCellItem(board, i, j, x, y, size);
                 }
             }
         }
     }
 
-    public void drawCell(Board board, int x, int y, int  pos_x, int pos_y, int size){
+    public void drawCellBackground(Board board, int x, int y, int  pos_x, int pos_y, int size){
+        int stroke_size = 2;
+        g.save();
+        if(board.getCommunication(EPlayer.PLAYER1, x, y) && board.getCommunication(EPlayer.PLAYER2, x, y)){
+            g.setStroke(Color.ORANGERED);
+            g.setLineWidth(stroke_size+1);
+            g.strokeRect(pos_x+stroke_size, pos_y+stroke_size, size-stroke_size*2, size-stroke_size*2);
+            g.restore();
+            g.setStroke(Color.CORNFLOWERBLUE);
+            g.setLineWidth(stroke_size);
+            g.strokeRect(pos_x+stroke_size/2, pos_y+stroke_size/2, size-stroke_size, size-stroke_size);
+            g.restore();
+        } else if(board.getCommunication(EPlayer.PLAYER1, x, y)){
+            g.setStroke(Color.CORNFLOWERBLUE);
+            g.setLineWidth(stroke_size);
+            g.strokeRect(pos_x+stroke_size/2, pos_y+stroke_size/2, size-stroke_size, size-stroke_size);
+            g.restore();
+        } else if(board.getCommunication(EPlayer.PLAYER2, x, y)){
+            g.setStroke(Color.ORANGERED);
+            g.setLineWidth(stroke_size);
+            g.strokeRect(pos_x+stroke_size/2, pos_y+stroke_size/2, size-stroke_size, size-stroke_size);
+            g.restore();
+        }
+        g.restore();
+    }
+
+    public void drawCellItem(Board board, int x, int y, int  pos_x, int pos_y, int size){
         g.save();
         g.setFill(Color.DARKBLUE);
         g.setTextAlign(TextAlignment.CENTER);
         g.setTextBaseline(VPos.CENTER);
-        if(board.getUnit(x, y) != null) g.fillText(""+board.getUnit(x, y).getId().getName().charAt(0), pos_x+size/2, pos_y+size/4, size);
+        g.setLineWidth(size/2);
+        if(board.getUnit(x, y) != null)
+            g.fillText(""+board.getUnit(x, y).getId().getName().charAt(0), pos_x+size/3, pos_y+size/3, size);
         g.setFill(Color.PURPLE);
-        if(board.getBuilding(x, y) != null) g.fillText(""+board.getBuilding(x, y).getId().getName().charAt(0), pos_x+size/2, pos_y+3*size/4, size);
+        if(board.getBuilding(x, y) != null)
+            g.fillText(""+board.getBuilding(x, y).getId().getName().charAt(0), pos_x+2*size/3, pos_y+2*size/3, size);
         g.restore();
     }
 }

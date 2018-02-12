@@ -52,9 +52,6 @@ public class Game {
                 break;
             }
             default: {
-                //if ruleEngine.isValid(cmd)
-                //then boardManager.apply(cmd)
-                //     cmd.setResponse(VALID)
                 try {
                     int[] a = cmd.getCoords1();
                     int[] b = cmd.getCoords2();
