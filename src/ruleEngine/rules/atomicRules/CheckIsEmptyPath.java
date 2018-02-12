@@ -39,9 +39,9 @@ public class CheckIsEmptyPath implements IRule {
         GameAction.Coordinates src = action.getSourceCoordinates();
         GameAction.Coordinates target = action.getTargetCoordinates();
 
-        int PM = board.getUnit(src.getX(), src.getY()).getUnit().getMovementValue();
+        int MP = board.getUnit(src.getX(), src.getY()).getUnit().getMovementValue();
 
-        Vertex[][] map = initMap(PM, src);
+        Vertex[][] map = initMap(MP, src);
 
         List<Vertex> queue = new LinkedList<>();
 
@@ -51,10 +51,10 @@ public class CheckIsEmptyPath implements IRule {
         queue.add(actual);
         while(!queue.isEmpty()){
             actual = queue.remove(0);
-            for(int i = actual.x - 1; i <= actual.x + 1; i++){
-                for(int j = actual.y - 1; j <= actual.y + 1; j++){
+            for(int i = actual.x - MP; i <= actual.x + MP; i++){
+                for(int j = actual.y - MP; j <= actual.y + MP; j++){
                     //Don't add the neighbours with invalid coords or those we have already added
-                    if(board.edge(i, j) || map[i][j].isMarked) {
+                    if(board.edge(i, j) || map[i][j].isMarked || (i == actual.x && j == actual.y)) {
                         continue;
                     }
                     //A cell containing a unit isn't valid to find the path
@@ -67,7 +67,7 @@ public class CheckIsEmptyPath implements IRule {
                     }
                     //If the cell we check has the same coords than the target cell
                     //  and it has the right distance, we win, return true.
-                    if(i == target.getX() && j == target.getY() && actual.dist <= PM){
+                    if(i == target.getX() && j == target.getY() && actual.dist <= MP){
                         return true;
                     }
                     //Just create the valid neighbour, with dist + 1
@@ -75,8 +75,9 @@ public class CheckIsEmptyPath implements IRule {
                     v.isMarked = true;
                     v.dist = actual.dist + 1;
 
-                    //If the neighbours is at a distance > PM, we loose
-                    if(v.dist > PM)
+                    //If the neighbours is at a distance > MP, we loose
+
+                    if(v.dist > MP)
                         break;
 
                     queue.add(v);

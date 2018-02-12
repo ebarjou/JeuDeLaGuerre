@@ -12,9 +12,11 @@ public class Start {
         IBoardManager boardManager = BoardManager.getInstance();
         boardManager.initBoard(25, 20);
         boardManager.addUnit(EUnitData.INFANTRY, EPlayer.PLAYER1, 10, 10);
-        boardManager.addUnit(EUnitData.INFANTRY, EPlayer.PLAYER1, 0, 0);
+        boardManager.addUnit(EUnitData.CAVALRY, EPlayer.PLAYER1, 0, 0);
+
         boardManager.addBuilding(EBuildingData.ARSENAL, EPlayer.PLAYER1, 0, 7);
         boardManager.addBuilding(EBuildingData.FORTRESS, EPlayer.PLAYER1, 10, 10);
+
         boardManager.setCommunication(EPlayer.PLAYER1, 0, 0, true);
         boardManager.setCommunication(EPlayer.PLAYER1, 1, 0, true);
         boardManager.setCommunication(EPlayer.PLAYER1, 0, 1, true);

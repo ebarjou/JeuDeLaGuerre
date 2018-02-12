@@ -21,12 +21,12 @@ public class MoveRules implements IRule {
 
         //TODO: Put here the sub-rules (atomic) you need to check.
         rules.add(CheckPlayerTurn.getInstance());   //Maybe use an enum to get rid of getInstance()'s through implicit getValue() ? Or use static classes ? dunno
+        rules.add(CheckPlayerMovesLeft.getInstance());
         rules.add(CheckOnBoard.getInstance());
         rules.add(CheckIsUnit.getInstance());
-        rules.add(CheckCommunication.getInstance());
+        //rules.add(CheckCommunication.getInstance());
         rules.add(CheckUnitMP.getInstance());
         rules.add(CheckIsEmptyPath.getInstance());
-        rules.add(CheckPlayerMovesLeft.getInstance());
     }
 
     public static IRule getInstance() {
