@@ -8,16 +8,6 @@ import game.gameMaster.GameState;
 
 public class CheckIsUnit implements IRule{
 
-    private static CheckIsUnit instance;
-    private CheckIsUnit(){
-    }
-
-    public static CheckIsUnit getInstance(){
-        if(instance == null)
-            instance = new CheckIsUnit();
-        return instance;
-    }
-
     @Override
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         int x = action.getSourceCoordinates().getX();

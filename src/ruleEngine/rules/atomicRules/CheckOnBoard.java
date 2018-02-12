@@ -7,17 +7,6 @@ import ruleEngine.RuleResult;
 import game.gameMaster.GameState;
 
 public class CheckOnBoard implements IRule {
-    private static CheckOnBoard instance;
-
-    private CheckOnBoard(){
-
-    }
-
-    public static CheckOnBoard getInstance(){
-        if(instance == null)
-            instance = new CheckOnBoard();
-        return instance;
-    }
 
     @Override
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
