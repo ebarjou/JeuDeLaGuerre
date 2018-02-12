@@ -8,15 +8,18 @@ import game.gameMaster.GameState;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class CheckIsEmptyPath implements IRule {
 
-    private Vertex[][] initMap(int MP, GameAction.Coordinates coords){
-        int length = 2 * MP + 1;
+    private int length;
+
+    private Vertex[][] initMap(int MP, GameAction.Coordinates src){
+        length = 2 * MP + 1;
         Vertex[][] map = new Vertex[length][length];
         for(int i = 0; i < length; i++){
             for(int j = 0; j < length; j++){
-                map[i][j] = new Vertex(coords.getX() - MP + i, coords.getY() - MP + j);
+                map[i][j] = new Vertex(src.getX() - MP + i, src.getY() - MP + j, i, j);
             }
         }
         return map;
@@ -33,41 +36,54 @@ public class CheckIsEmptyPath implements IRule {
 
         List<Vertex> queue = new LinkedList<>();
 
-        Vertex actual = new Vertex (src.getX(), src.getY());
-        actual.isMarked = true;
-        actual.dist = 0;
+        map[length/2][length/2].isMarked = true;
+        map[length/2][length/2].dist = 0;
+        Vertex actual = map[length/2][length/2];
         queue.add(actual);
         while(!queue.isEmpty()){
             actual = queue.remove(0);
-            for(int i = actual.x - MP; i <= actual.x + MP; i++){
-                for(int j = actual.y - MP; j <= actual.y + MP; j++){
+            //If the cell we check has the same coords than the target cell
+            //  and it has the right distance, we win, return true.
+            if(actual.x == target.getX() && actual.y == target.getY() && actual.dist <= MP){
+                return true;
+            }
+            for(int i = actual.i - 1; i <= actual.i + 1; i++){
+                for(int j = actual.j - 1; j <= actual.j + 1; j++) {
+
                     //Don't add the neighbours with invalid coords or those we have already added
-                    if(board.edge(i, j) || map[i][j].isMarked || (i == actual.x && j == actual.y)) {
+                    if (i < 0 || j < 0 || i >= length || j >= length){
+                        continue;
+                    }
+
+                    int x = map[i][j].x;
+                    int y = map[i][j].y;
+
+                    if (board.edge(x, y) || map[i][j].isMarked) {
                         continue;
                     }
                     //A cell containing a unit isn't valid to find the path
-                    if(board.getUnit(i, j) != null) {
+                    if(board.getUnit(x, y) != null) {
                         continue;
                     }
                     //If there is building and it's a mountain, we can't add it
-                    if(board.getBuilding(i, j) != null && board.getBuilding(i, j).getBuilding().isAccessible()) {
+                    if(board.getBuilding(x, y) != null && board.getBuilding(x, y).getBuilding().isAccessible()) {
                         continue;
                     }
-                    //If the cell we check has the same coords than the target cell
-                    //  and it has the right distance, we win, return true.
-                    if(i == target.getX() && j == target.getY() && actual.dist <= MP){
+
+                    if(x == target.getX() && y == target.getY() && actual.dist <= MP){
                         return true;
                     }
+
                     //Just create the valid neighbour, with dist + 1
+                    map[i][j].isMarked = true;
+                    map[i][j].dist = actual.dist + 1;
                     Vertex v = map[i][j];
-                    v.isMarked = true;
-                    v.dist = actual.dist + 1;
 
                     //If the neighbours is at a distance > MP, we loose
-
+                    /*
                     if(v.dist > MP)
-                        break;
-
+                        continue;
+                        */
                     queue.add(v);
                 }
             }
@@ -78,12 +94,14 @@ public class CheckIsEmptyPath implements IRule {
     }
 
     private class Vertex{
-        private int x, y;
+        private int x, y, i , j;
         private boolean isMarked = false;
         int dist;
-        Vertex(int x, int y){
+        Vertex(int x, int y, int i, int j){
             this.x = x;
             this.y = y;
+            this.i = i;
+            this.j = j;
         }
     }
 }

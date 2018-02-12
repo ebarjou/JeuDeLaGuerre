@@ -25,12 +25,12 @@ public class MoveRules implements IRule {
 
         rules = new RuleList();
         rules.add(CheckPlayerTurn.class);
+        rules.add(CheckPlayerMovesLeft.class);
+        rules.add(CheckCommunication.class);
         rules.add(CheckOnBoard.class);
         rules.add(CheckIsUnit.class);
-        rules.add(CheckCommunication.class);
         rules.add(CheckUnitMP.class);
         rules.add(CheckIsEmptyPath.class);
-        rules.add(CheckPlayerMovesLeft.class);
     }
 
     public static IRule getInstance() {
