@@ -6,8 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import ui.commands.UserToGameCall;
 
-import java.io.ByteArrayInputStream;
-
 public class TermUITest {
     TermUI term;
     enum COMMANDS{
@@ -40,10 +38,10 @@ public class TermUITest {
 
     @Test
     public void process() {
-        SharedCommand sharedCommand;
+        UIAction UIAction;
         for(COMMANDS cmd : COMMANDS.values()){
-            sharedCommand = term.processCommand(cmd.cmd);
-            Assert.assertTrue("Error at : "+cmd.toString(), (sharedCommand.getCommand()==UserToGameCall.CMD_ERROR)==!cmd.isValid );
+            UIAction = term.processCommand(cmd.cmd);
+            Assert.assertTrue("Error at : "+cmd.toString(), (UIAction.getCommand()==UserToGameCall.CMD_ERROR)==!cmd.isValid );
         }
     }
 

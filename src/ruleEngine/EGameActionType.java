@@ -5,5 +5,9 @@ public enum EGameActionType {
     ATTACK,
     CHARGE,
     PROPOSE_DRAW,
+    SET(),
+    END_TURN(),
+    SURRENDER(),
     NONE,
+
 }

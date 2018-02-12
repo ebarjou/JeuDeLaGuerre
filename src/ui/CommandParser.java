@@ -1,26 +1,24 @@
 package ui;
 
 import asg.cliche.Command;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
-import java.math.BigInteger;
-import java.util.regex.Pattern;
+import ruleEngine.EGameActionType;
+import ruleEngine.GameAction;
 
 import static ui.commands.UserToGameCall.*;
 
 public class CommandParser {
-    private SharedCommand result;
+    private UIAction result;
 
     protected CommandParser(){
-        result = new SharedCommand();
+        result = new UIAction(CMD_ERROR, null);
     }
 
-    protected SharedCommand getResult(){
+    protected UIAction getResult(){
         return result;
     }
 
     protected void newCommand(){
-        this.result = new SharedCommand();
+        this.result = new UIAction(CMD_ERROR, null);
     }
 
     int getIntFromString(String s){
@@ -52,12 +50,13 @@ public class CommandParser {
             int[] parsed_c1 = parseCoords(c1);
             int[] parsed_c2 = parseCoords(c2);
 
-            result.setCommand(MOVE);
-            result.setCommandCoords1(parsed_c1[0], parsed_c1[1]);
-            result.setCommandCoords2(parsed_c2[0], parsed_c2[1]);
+            result.setCommand(GAME_ACTION);
+            result.setGameAction(EGameActionType.MOVE);
+            result.getGameAction().setSourceCoordinates(parsed_c1[0], parsed_c1[1]);
+            result.getGameAction().setTargetCoordinates(parsed_c2[0], parsed_c2[1]);
         } catch(CommandException e){
             result.setCommand(CMD_ERROR);
-            result.setMessage(e.getMessage());
+            result.setErrorMessage(e.getMessage());
             return;
         }
     }
