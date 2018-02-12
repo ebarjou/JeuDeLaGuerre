@@ -8,7 +8,8 @@ import game.gameMaster.GameMaster;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
 import ui.CommandException;
-import ui.SharedCommand;
+import ui.GameResponse;
+import ui.UIAction;
 
 import static ui.commands.GameToUserCall.*;
 
@@ -25,11 +26,10 @@ public class Game {
         boardManager = BoardManager.getInstance();
     }
 
-    public SharedCommand processCommand(SharedCommand cmd) {
+    public GameResponse processCommand(UIAction cmd) {
         switch (cmd.getCommand()) {
             case EXIT: {
                 System.exit(0);
-                cmd.setResponse(VALID);
                 break;
             }
             case LOAD: {
@@ -42,72 +42,31 @@ public class Game {
                 break;
             }
             case CMD_ERROR: {
-                cmd.setResponse(GAME_ERROR);
-                return cmd;
+                return new GameResponse(INVALID, cmd.getErrorMessage());
             }
-            case PAT: {
-                break;
-            }
-            case SURRENDER: {
-                break;
-            }
-            default: {
+            case GAME_ACTION: {
                 try {
-                    int[] a = cmd.getCoords1();
-                    int[] b = cmd.getCoords2();
-                    //System.out.println("GAME : From [" + a[0] + "," + a[1] + "] To [" + b[0] + "," + b[1] + "]");
-                    RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(), convert(cmd));
-                    if(res.getLogMessage().isEmpty()){
-                        cmd.setResponse(VALID);
-                        boardManager.moveUnit(cmd.getCoords1()[0], cmd.getCoords1()[1], cmd.getCoords2()[0], cmd.getCoords2()[1]);
+                    GameAction action = cmd.getGameAction(GameMaster.getInstance().getActualState().getActualPlayer());
+                    RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(),action);
+                    if(res.isValid()){
+                        boardManager.moveUnit(action.getSourceCoordinates().getX(),
+                                action.getSourceCoordinates().getY(),
+                                action.getTargetCoordinates().getX(),
+                                action.getTargetCoordinates().getY());
+
+                        return new GameResponse(VALID, null);
                     } else {
-                        cmd.setResponse(INVALID);
-                        cmd.setMessage(res.getLogMessage());
+                        return new GameResponse(INVALID, res.getLogMessage());
                     }
                 } catch (Exception e) {
-                    cmd.setResponse(GAME_ERROR);
+                    return new GameResponse(GAME_ERROR, null);
                 }
+            }
+            case LIST_UNIT:{
                 break;
             }
         }
-        return cmd;
-    }
-
-    //Wrapper for SharedCommand -> GameAction while not sure about final design layout
-    private GameAction convert(SharedCommand cmd) {
-        EGameActionType actionType = EGameActionType.NONE;
-        switch (cmd.getCommand()) {
-
-            case MOVE:
-                actionType = EGameActionType.MOVE;
-                break;
-            case ATTACK:
-                actionType = EGameActionType.ATTACK;
-                break;
-            case CHARGE:
-                actionType = EGameActionType.CHARGE;
-                break;
-            case PAT:
-                actionType = EGameActionType.PROPOSE_DRAW;
-                break;
-            default:
-                return null;
-        }
-
-        GameAction result = new GameAction(GameMaster.getInstance().getActualState().getActualPlayer(), actionType);
-        try {
-            result.setSourceCoordinates(cmd.getCoords1()[0], cmd.getCoords1()[1]);
-        } catch (CommandException e) {
-            result.setSourceCoordinates(1, 1);
-        }
-
-        try {
-            result.setTargetCoordinates(cmd.getCoords2()[0], cmd.getCoords2()[1]);
-        } catch (CommandException e) {
-            result.setTargetCoordinates(1, 1);
-        }
-
-        return result;
+        return new GameResponse(GAME_ERROR, "Error : Unimplemented call.");
     }
 
 }

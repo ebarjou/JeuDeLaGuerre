@@ -4,10 +4,7 @@ import asg.cliche.CLIException;
 import asg.cliche.Shell;
 import asg.cliche.ShellFactory;
 import game.Game;
-import game.board.Board;
-import game.board.BoardManager;
 import javafx.application.Application;
-import ui.display.BoardCanvas;
 import ui.display.BoardWindow;
 
 import java.io.*;
@@ -37,47 +34,47 @@ public class TermUI {
         System.out.println("> ?list to display all available commands.");
     }
 
-    private SharedCommand parse(String cmd) throws CLIException, CommandException{
-        if(cmd == null) return new SharedCommand(EXIT);
+    private UIAction parse(String cmd) throws CLIException, CommandException{
+        if(cmd == null) return new UIAction(EXIT, null);
         shell.processLine(cmd);
-        if(parser.getResult().getCommand() == CMD_ERROR) throw new CommandException(parser.getResult().getString());
+        if(parser.getResult().getCommand() == CMD_ERROR) throw new CommandException(parser.getResult().getErrorMessage());
         return parser.getResult();
     }
 
     public void start() {
-        SharedCommand sharedCommand;
+        UIAction UIAction;
         while(true){
             System.out.print("Enter command : ");
             parser.newCommand();
             try {
                 String cmd = reader.readLine();
-                sharedCommand = processCommand(cmd);
+                UIAction = processCommand(cmd);
             } catch (IOException e) {
-                sharedCommand = new SharedCommand(e);
+                UIAction = new UIAction(CMD_ERROR, null);
             }
             //Pas très propre, Game et Board à abstraire pour l'UI ?
-            processResponse( Game.getInstance().processCommand(sharedCommand));
+            processResponse( Game.getInstance().processCommand(UIAction));
         }
     }
 
-    protected SharedCommand processCommand(String cmd){
+    protected UIAction processCommand(String cmd){
         try {
         return this.parse(cmd);
         } catch (CommandException|CLIException e){
             if(e.getMessage() != null) System.out.println(e.getMessage());
-            return new SharedCommand(e);
+            return new UIAction(CMD_ERROR, null);
         }
     }
 
-    protected void processResponse(SharedCommand response) {
+    protected void processResponse(GameResponse response) {
         switch (response.getResponse()){
             case VALID:{
                 System.out.println("Valid !");
                 break;
             }
             case INVALID:{
-                if(response.getString().isEmpty()) System.out.println("Valid !");
-                else System.out.println(response.getString());
+                if(response.getMessage().isEmpty()) System.out.println("Valid !");
+                else System.out.println(response.getMessage());
                 break;
             }
             case APPLIED:{
@@ -87,10 +84,8 @@ public class TermUI {
                 break;
             }
             case GAME_ERROR:{
-                //Do we need to handle game error ?
                 break;
             }
         }
     }
-
 }
