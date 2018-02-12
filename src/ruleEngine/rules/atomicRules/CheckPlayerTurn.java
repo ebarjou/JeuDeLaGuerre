@@ -8,18 +8,6 @@ import game.gameMaster.GameState;
 
 public class CheckPlayerTurn implements IRule {
 
-    private static CheckPlayerTurn instance;
-
-    private CheckPlayerTurn(){
-    }
-
-    public static CheckPlayerTurn getInstance(){
-        if (instance == null)
-            instance = new CheckPlayerTurn();
-
-        return instance;
-    }
-
     @Override
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         if (action.getPlayer() != state.getActualPlayer()){

@@ -8,17 +8,6 @@ import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 
 public class CheckCommunication implements IRule {
-    private static CheckCommunication instance;
-
-    private CheckCommunication(){
-
-    }
-
-    public static CheckCommunication getInstance(){
-        if(instance == null)
-            instance = new CheckCommunication();
-        return instance;
-    }
 
     @Override
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {

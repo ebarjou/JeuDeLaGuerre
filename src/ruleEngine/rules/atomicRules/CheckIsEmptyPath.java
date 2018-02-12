@@ -11,18 +11,6 @@ import java.util.List;
 
 public class CheckIsEmptyPath implements IRule {
 
-    private static CheckIsEmptyPath instance;
-
-    private CheckIsEmptyPath(){
-    }
-
-    public static CheckIsEmptyPath getInstance(){
-        if (instance == null)
-            instance = new CheckIsEmptyPath();
-
-        return instance;
-    }
-
     private Vertex[][] initMap(int MP, GameAction.Coordinates coords){
         int length = 2 * MP + 1;
         Vertex[][] map = new Vertex[length][length];
