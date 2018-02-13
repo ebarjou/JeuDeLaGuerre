@@ -16,10 +16,12 @@ public class Start {
 
         boardManager.addBuilding(EBuildingData.ARSENAL, EPlayer.PLAYER1, 0, 7);
         boardManager.addBuilding(EBuildingData.FORTRESS, EPlayer.PLAYER1, 10, 10);
+        boardManager.addBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1, 1, 1);
 
         boardManager.setCommunication(EPlayer.PLAYER1, 0, 0, true);
         boardManager.setCommunication(EPlayer.PLAYER1, 1, 0, true);
         boardManager.setCommunication(EPlayer.PLAYER1, 0, 1, true);
+
         boardManager.setCommunication(EPlayer.PLAYER2, 0, 1, true);
         boardManager.setCommunication(EPlayer.PLAYER2, 1, 1, true);
 

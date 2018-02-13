@@ -44,9 +44,9 @@ public class CheckIsEmptyPath implements IRule {
             actual = queue.remove(0);
             //If the cell we check has the same coords than the target cell
             //  and it has the right distance, we win, return true.
-            if(actual.x == target.getX() && actual.y == target.getY() && actual.dist <= MP){
+            /*if(actual.x == target.getX() && actual.y == target.getY() && actual.dist <= MP){
                 return true;
-            }
+            }*/
             for(int i = actual.i - 1; i <= actual.i + 1; i++){
                 for(int j = actual.j - 1; j <= actual.j + 1; j++) {
 
@@ -66,25 +66,26 @@ public class CheckIsEmptyPath implements IRule {
                         continue;
                     }
                     //If there is building and it's a mountain, we can't add it
-                    if(board.getBuilding(x, y) != null && board.getBuilding(x, y).getBuilding().isAccessible()) {
+                    if(board.getBuilding(x, y) != null && !board.getBuilding(x, y).getBuilding().isAccessible()) {
                         continue;
                     }
 
-                    if(x == target.getX() && y == target.getY() && actual.dist <= MP){
+
+                    //Just create the valid neighbour, with dist + 1
+                    Vertex neigh = map[i][j];
+                    neigh.isMarked = true;
+                    neigh.dist = actual.dist + 1;
+
+                    if(x == target.getX() && y == target.getY() && neigh.dist <= MP){
                         return true;
                     }
 
-                    //Just create the valid neighbour, with dist + 1
-                    map[i][j].isMarked = true;
-                    map[i][j].dist = actual.dist + 1;
-                    Vertex v = map[i][j];
-
                     //If the neighbours is at a distance > MP, we loose
                     /*
-                    if(v.dist > MP)
+                    if(neigh.dist > MP)
                         continue;
                         */
-                    queue.add(v);
+                    queue.add(neigh);
                 }
             }
         }
