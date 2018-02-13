@@ -25,7 +25,7 @@ public class TermUI {
 
     public TermUI(){
         new Thread(() -> {
-            Application.launch(BoardWindow.class, null);
+            Application.launch(BoardWindow.class);
             System.exit(0);
         }).start();
         this.parser = new CommandParser();
@@ -73,7 +73,7 @@ public class TermUI {
                 break;
             }
             case INVALID:{
-                if(response.getMessage().isEmpty()) System.out.println("Valid !");
+                if(response.getMessage() == null) System.out.println("Valid !");
                 else System.out.println(response.getMessage());
                 break;
             }

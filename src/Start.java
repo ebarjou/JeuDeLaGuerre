@@ -2,9 +2,12 @@ import game.EPlayer;
 import game.Game;
 import game.board.BoardManager;
 import game.board.IBoardManager;
+import javafx.application.Application;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
+import ui.TermGUI;
 import ui.TermUI;
+import ui.display.BoardWindow;
 
 public class Start {
 
@@ -26,7 +29,6 @@ public class Start {
         boardManager.setCommunication(EPlayer.PLAYER2, 1, 1, true);
 
         Game game = Game.getInstance();
-        TermUI ui = new TermUI();
-        ui.start();
+        Application.launch(TermGUI.class);
     }
 }
