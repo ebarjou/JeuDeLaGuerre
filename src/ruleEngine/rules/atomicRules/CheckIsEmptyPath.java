@@ -1,14 +1,13 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Board;
+import game.gameMaster.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import game.gameMaster.GameState;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class CheckIsEmptyPath implements IRule {
 

@@ -66,6 +66,12 @@ public class CommandParser {
     }
 
     @Command
+    public void end(){
+        result.setCommand(END_TURN);
+        result.setGameAction(EGameActionType.END_TURN);
+    }
+
+    @Command
     public void exit(){
         result.setCommand(EXIT);
     }

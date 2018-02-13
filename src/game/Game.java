@@ -45,6 +45,11 @@ public class Game {
                 gameMaster.revert();
                 break;
             }
+            case END_TURN: {
+                boardManager.clearHistory();
+                gameMaster.switchPlayer();
+                break;
+            }
             case CMD_ERROR: {
                 return new GameResponse(INVALID, cmd.getErrorMessage());
             }
