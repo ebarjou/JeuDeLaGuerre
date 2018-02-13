@@ -6,11 +6,8 @@ import javafx.application.Application;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import ui.TermGUI;
-import ui.TermUI;
-import ui.display.BoardWindow;
 
 public class Start {
-
     public static void main(String[] arg){
         IBoardManager boardManager = BoardManager.getInstance();
         boardManager.initBoard(25, 20);

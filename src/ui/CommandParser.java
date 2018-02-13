@@ -33,10 +33,10 @@ public class CommandParser {
         return res;
     }
 
-    protected int[] parseCoords(String c) throws CommandException {
+    protected int[] parseCoords(String c) throws Exception {
         int[] coords = new int[2];
         c = c.toLowerCase();
-        if(!c.matches("([a-z]+)([0-9]+)")) throw new CommandException("Invalid coordinate argument : Must be letters followed by a number.");
+        if(!c.matches("([a-z]+)([0-9]+)")) throw new Exception("Invalid coordinate argument : Must be letters followed by a number.");
         String c_splitted[] = c.split("(?<=\\D)(?=\\d)");
         coords[0] = Integer.parseInt(c_splitted[1])-1;
         coords[1] = getIntFromString(c_splitted[0])-1;
@@ -53,7 +53,7 @@ public class CommandParser {
             result.setGameAction(EGameActionType.MOVE);
             result.getGameAction().setSourceCoordinates(parsed_c1[0], parsed_c1[1]);
             result.getGameAction().setTargetCoordinates(parsed_c2[0], parsed_c2[1]);
-        } catch(CommandException e){
+        } catch(Exception e){
             result.setCommand(CMD_ERROR);
             result.setErrorMessage(e.getMessage());
             return;

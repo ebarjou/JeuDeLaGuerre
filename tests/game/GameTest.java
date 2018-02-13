@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
-import ui.CommandException;
 import ui.GameResponse;
 import ui.UIAction;
 import ui.commands.GameToUserCall;
@@ -27,7 +26,7 @@ public class GameTest {
     }
 
     @Test
-    public void gameTest() throws CommandException {
+    public void gameTest() {
         GameAction action = new GameAction(EPlayer.PLAYER1, EGameActionType.MOVE);
         action.setTargetCoordinates(0, 0);
         action.setSourceCoordinates(1, 0);

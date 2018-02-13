@@ -6,8 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 import ui.commands.UserToGameCall;
 
-public class TermUITest {
-    TermUI term;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+public class TermGUITest {
+    TermGUI term;
+    List<COMMANDS> test_fail;
+
     enum COMMANDS{
         C1("move a2 b4", true),
         C2("move aa2 b66", true),
@@ -18,7 +25,8 @@ public class TermUITest {
         C7("move", false),
         C8("move a3 aag", false),
         C9("move 123 f6", false),
-        C10("MoVe c4 g8", false);
+        C10("MoVe c4 g8", false),
+        C11("revert", false);
 
         COMMANDS(String cmd, boolean isValid){
             this.cmd = cmd;
@@ -29,24 +37,25 @@ public class TermUITest {
     }
 
     @Before
-    public void setUp(){
-        //in = new ByteArrayInputStream(("move a3 b1\nmove E7 j23\nmove aaf4 f8\nmove E34t f5\nmove hgt A3\nmfd ef\nmove a3\nmove gg5 e6").getBytes());
-        //System.setIn(in);
-        term = new TermUI();
-
+    public void setUp() throws Exception {
+        term = new TermGUI();
+        term.init();
+        test_fail = new ArrayList<>();
     }
 
     @Test
-    public void process() {
+    public void parse() {
         UIAction UIAction;
         for(COMMANDS cmd : COMMANDS.values()){
-            UIAction = term.processCommand(cmd.cmd);
-            Assert.assertTrue("Error at : "+cmd.toString(), (UIAction.getCommand()==UserToGameCall.CMD_ERROR)==!cmd.isValid );
+            UIAction = term.parse(cmd.cmd);
+            if((UIAction.getCommand()==UserToGameCall.CMD_ERROR) && cmd.isValid ) test_fail.add(cmd);
         }
     }
 
     @After
-    public void tearDown(){
-
+    public void tearDown() throws Exception {
+        for(COMMANDS c: test_fail) System.out.println(c.toString() + " Failed.");
+        assertTrue(test_fail.size() == 0);
     }
+
 }

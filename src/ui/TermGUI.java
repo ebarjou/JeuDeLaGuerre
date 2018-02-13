@@ -3,13 +3,11 @@ package ui;
 import asg.cliche.CLIException;
 import asg.cliche.Shell;
 import asg.cliche.ShellFactory;
-import game.EPlayer;
 import game.Game;
 import game.board.BoardManager;
 import game.gameMaster.GameMaster;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -19,7 +17,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import ui.display.BoardCanvas;
 
@@ -35,16 +32,22 @@ public class TermGUI extends Application{
     private Shell shell;
     private Label displayPlayerTurn;
 
+    @Override
+    public void init() throws Exception{
+        super.init();
+        System.out.println("INIT");
+        this.parser = new CommandParser();
+        shell = ShellFactory.createConsoleShell("Enter command", "", parser);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.parser = new CommandParser();
-        shell = ShellFactory.createConsoleShell("Enter command", "", parser);
-
         primaryStage.setTitle("JdlG");
         Group root = new Group();
+
         textField = new TextField("Enter command here");
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT + 2 * textField.getFont().getSize(), Color.LIGHTGREY);
+
         canvas = new BoardCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
         displayPlayerTurn = new Label(GameMaster.getInstance().getActualState().getActualPlayer().name());
         textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -75,28 +78,33 @@ public class TermGUI extends Application{
         primaryStage.sizeToScene();
         primaryStage.show();
 
-
-
         canvas.draw(BoardManager.getInstance().getBoard());
     }
 
-    private UIAction parse(String cmd) throws CLIException, CommandException{
-        if(cmd == null) return new UIAction(EXIT, null);
-        shell.processLine(cmd);
-        if(parser.getResult().getCommand() == CMD_ERROR) throw new CommandException(parser.getResult().getErrorMessage());
-        return parser.getResult();
-    }
-
-    protected void processCommand(String cmd){
-        try {
-            processResponse(Game.getInstance().processCommand(this.parse(cmd)));
-        } catch (CommandException|CLIException e){
-            if(e.getMessage() != null) System.out.println(e.getMessage());
-            processResponse(Game.getInstance().processCommand(new UIAction(CMD_ERROR, null)));
+    void processCommand(String cmd){
+        UIAction action = this.parse(cmd);
+        if(action.getCommand() == CMD_ERROR){
+            if(action.getErrorMessage() != null) System.out.println(action.getErrorMessage());
+            else System.out.println("Incorrect command.");
+            return;
         }
+        processResponse(Game.getInstance().processCommand(action));
     }
 
-    protected void processResponse(GameResponse response) {
+    UIAction parse(String cmd){
+        if(cmd == null) return new UIAction(EXIT, null);
+        UIAction result;
+        try {
+            shell.processLine(cmd);
+            result = parser.getResult();
+        } catch(CLIException e) {
+            result = new UIAction(CMD_ERROR, null);
+            result.setErrorMessage(e.getMessage());
+        }
+        return result;
+    }
+
+    void processResponse(GameResponse response) {
         switch (response.getResponse()){
             case VALID:{
                 System.out.println("Valid !");

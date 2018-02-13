@@ -2,12 +2,10 @@ package game;
 
 import game.board.BoardManager;
 import game.board.IBoardManager;
-import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import game.gameMaster.GameMaster;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
-import ui.CommandException;
 import ui.GameResponse;
 import ui.UIAction;
 
