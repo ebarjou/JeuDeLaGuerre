@@ -36,6 +36,9 @@ public class BoardCanvas extends Canvas {
                     drawCellItem(board, i, j, x, y, size);
                 }
             }
+            g.setStroke(Color.rgb(255, 50, 50));
+            g.setLineWidth(2);
+            g.strokeLine(0, (board.getHeight() / 2) * caseSize, board.getWidth() * caseSize, board.getHeight() * caseSize / 2);
         }
     }
 
@@ -46,21 +49,21 @@ public class BoardCanvas extends Canvas {
             g.setStroke(Color.ORANGERED);
             g.setLineWidth(stroke_size+1);
             g.strokeRect(pos_x+stroke_size, pos_y+stroke_size, size-stroke_size*2, size-stroke_size*2);
-            g.restore();
+            //g.restore();
             g.setStroke(Color.CORNFLOWERBLUE);
             g.setLineWidth(stroke_size);
             g.strokeRect(pos_x+stroke_size/2, pos_y+stroke_size/2, size-stroke_size, size-stroke_size);
-            g.restore();
+            //g.restore();
         } else if(board.getCommunication(EPlayer.PLAYER1, x, y)){
             g.setStroke(Color.CORNFLOWERBLUE);
             g.setLineWidth(stroke_size);
             g.strokeRect(pos_x+stroke_size/2, pos_y+stroke_size/2, size-stroke_size, size-stroke_size);
-            g.restore();
+            //g.restore();
         } else if(board.getCommunication(EPlayer.PLAYER2, x, y)){
             g.setStroke(Color.ORANGERED);
             g.setLineWidth(stroke_size);
             g.strokeRect(pos_x+stroke_size/2, pos_y+stroke_size/2, size-stroke_size, size-stroke_size);
-            g.restore();
+            //g.restore();
         }
         g.restore();
     }

@@ -16,6 +16,7 @@ import static ui.commands.GameToUserCall.*;
 public class Game {
     private static Game instance;
     private IBoardManager boardManager;
+    private GameMaster gameMaster; //gamestate...
 
     public static Game getInstance(){
         if(instance == null) instance = new Game();
@@ -24,6 +25,7 @@ public class Game {
 
     private Game() {
         boardManager = BoardManager.getInstance();
+        gameMaster = GameMaster.getInstance();
     }
 
     public GameResponse processCommand(UIAction cmd) {
@@ -39,6 +41,8 @@ public class Game {
                 break;
             }
             case REVERT: {
+                boardManager.revert();
+                gameMaster.revert();
                 break;
             }
             case CMD_ERROR: {
@@ -53,6 +57,7 @@ public class Game {
                                 action.getSourceCoordinates().getY(),
                                 action.getTargetCoordinates().getX(),
                                 action.getTargetCoordinates().getY());
+                        gameMaster.removeAction();
 
                         return new GameResponse(VALID, null);
                     } else {

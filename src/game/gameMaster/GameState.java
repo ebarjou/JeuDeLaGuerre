@@ -11,6 +11,8 @@ import java.util.List;
 public class GameState implements Cloneable{
 
     private EPlayer actualPlayer;
+    // TODO: Maybe need this kind of enum to know in which phase we are (INIT / GAME / END ??)
+    //private EStateGame actualPhase;
 
     private List<EUnitData> unitsPlayer1;
     private List<EUnitData> unitsPlayer2;
@@ -111,7 +113,12 @@ public class GameState implements Cloneable{
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-
+        ((GameState)o).unitsPlayer1 = new ArrayList<>(unitsPlayer1);
+        ((GameState)o).unitsPlayer2 = new ArrayList<>(unitsPlayer2);
+        ((GameState)o).priorityUnits1 = new ArrayList<>(priorityUnits1);
+        ((GameState)o).priorityUnits2 = new ArrayList<>(priorityUnits2);
+        ((GameState)o).buildingPlayer1 = new ArrayList<>(buildingPlayer1);
+        ((GameState)o).buildingPlayer2 = new ArrayList<>(buildingPlayer2);
         return (GameState) o;
     }
 }

@@ -9,5 +9,6 @@ public enum EGameActionType {
     END_TURN(),
     SURRENDER(),
     NONE,
+    //REVERT,
 
 }

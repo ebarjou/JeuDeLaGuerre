@@ -27,7 +27,7 @@ public class GameMaster {
     }
 
     public boolean revert(){
-        if(!history.isEmpty())
+        if(history.isEmpty())
             return false;
         actualState = history.pop();
         return true;

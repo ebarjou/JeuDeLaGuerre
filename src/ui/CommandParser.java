@@ -62,6 +62,11 @@ public class CommandParser {
     }
 
     @Command
+    public void revert(){
+        result.setCommand(REVERT);
+    }
+
+    @Command
     public void exit(){
         result.setCommand(EXIT);
     }
