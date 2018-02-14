@@ -27,6 +27,15 @@ public class Game {
     }
 
     public GameResponse processCommand(UIAction cmd) {
+        //for(CommandAction ca : listAction){
+        //  if(ca.getID == cmd.getCommand()){
+        //      ca.doAction(...);
+        //      break;
+        //  }
+        //}
+        //
+
+
         switch (cmd.getCommand()) {
             case EXIT: {
                 System.exit(0);
