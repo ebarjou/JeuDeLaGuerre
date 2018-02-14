@@ -65,19 +65,15 @@ public class Board implements Cloneable {
     void clearCommunication() {
         for (int x = 0; x < width; ++x) {
             for (int y = 0; y < height; ++y) {
-                board[x][y].setCommunication1(false);
-                board[x][y].setCommunication2(false);
+                board[x][y].setCommunication(EPlayer.PLAYER1, false);
+                board[x][y].setCommunication(EPlayer.PLAYER2, false);
             }
         }
     }
 
     void setCommunication(EPlayer player, int x, int y, boolean value) {
-        if (!edge(x, y)) {
-            if (player == EPlayer.PLAYER1)
-                board[x][y].setCommunication1(value);
-            else
-                board[x][y].setCommunication2(value);
-        }
+        if (!edge(x, y))
+            board[x][y].setCommunication(player, value);
     }
 
     Cell getCell(int x, int y) {
@@ -134,7 +130,7 @@ public class Board implements Cloneable {
     }
 
     public boolean getCommunication(EPlayer player, int x, int y) {
-        return !edge(x, y) && board[x][y].getCommunication(player);
+        return !edge(x, y) && board[x][y].isCommunication(player);
     }
 
     @Override

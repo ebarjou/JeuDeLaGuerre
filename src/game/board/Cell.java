@@ -1,18 +1,19 @@
 package game.board;
 
 import game.EPlayer;
+import game.EPlayer.*;
 
 class Cell implements Cloneable {
     private Unit unit;
     private Building building;
-    private boolean communication1;
-    private boolean communication2;
+    private boolean[] communications;
 
     Cell() {
         unit = null;
         building = null;
-        communication1 = false;
-        communication2 = false;
+        communications = new boolean[EPlayer.values().length];
+        for(int i = 0; i < communications.length; i++)
+            communications[i] = false;
     }
 
     @Override
@@ -46,14 +47,14 @@ class Cell implements Cloneable {
         if (res.isEmpty())
             return res;
 
-        return res + "Com1 : " + communication1 + "\nCom2: " + communication2 + "\n";
+        return res + "Com1 : " + communications[EPlayer.PLAYER1.ordinal()] + "\nCom2: " + communications[EPlayer.PLAYER2.ordinal()] + "\n";
     }
 
     public Unit getUnit() {
         return unit;
     }
 
-    public void setUnit(Unit unit) {
+    void setUnit(Unit unit) {
         this.unit = unit;
     }
 
@@ -61,21 +62,15 @@ class Cell implements Cloneable {
         return building;
     }
 
-    public void setBuilding(Building building) {
+    void setBuilding(Building building) {
         this.building = building;
     }
 
-    public void setCommunication1(boolean communication1) {
-        this.communication1 = communication1;
+    void setCommunication(EPlayer player, boolean communication){
+        communications[player.ordinal()] = communication;
     }
 
-    public void setCommunication2(boolean communication2) {
-        this.communication2 = communication2;
-    }
-
-    public boolean getCommunication(EPlayer player) {
-        if (player == EPlayer.PLAYER1)
-            return communication1;
-        return communication2;
+    public boolean isCommunication(EPlayer player) {
+        return communications[player.ordinal()];
     }
 }

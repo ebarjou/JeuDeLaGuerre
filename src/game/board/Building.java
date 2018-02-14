@@ -16,16 +16,8 @@ public class Building implements Cloneable {
         return building;
     }
 
-    void setBuilding(EBuildingData building) {
-        this.building = building;
-    }
-
     public EPlayer getPlayer() {
         return player;
-    }
-
-    void setPlayer(EPlayer player) {
-        this.player = player;
     }
 
     @Override

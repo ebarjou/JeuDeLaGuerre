@@ -16,16 +16,8 @@ public class Unit implements Cloneable {
         return unit;
     }
 
-    void setUnit(EUnitData unit) {
-        this.unit = unit;
-    }
-
     public EPlayer getPlayer() {
         return player;
-    }
-
-    void setPlayer(EPlayer player) {
-        this.player = player;
     }
 
     @Override
