@@ -26,16 +26,27 @@ public class Game {
         return instance;
     }
 
+    private GameResponse handleGameAction(UIAction cmd){
+        try {
+            GameAction action = cmd.getGameAction(GameMaster.getInstance().getActualState().getActualPlayer());
+            RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(), action);
+            if (res.isValid()) {
+                boardManager.moveUnit(action.getSourceCoordinates().getX(),
+                        action.getSourceCoordinates().getY(),
+                        action.getTargetCoordinates().getX(),
+                        action.getTargetCoordinates().getY());
+                gameMaster.removeAction();
+
+                return new GameResponse(VALID, null);
+            } else {
+                return new GameResponse(INVALID, res.getLogMessage());
+            }
+        } catch (Exception e) {
+            return new GameResponse(GAME_ERROR, null);
+        }
+    }
+
     public GameResponse processCommand(UIAction cmd) {
-        //for(CommandAction ca : listAction){
-        //  if(ca.getID == cmd.getCommand()){
-        //      ca.doAction(...);
-        //      break;
-        //  }
-        //}
-        //
-
-
         switch (cmd.getCommand()) {
             case EXIT: {
                 System.exit(0);
@@ -61,23 +72,7 @@ public class Game {
                 return new GameResponse(INVALID, cmd.getErrorMessage());
             }
             case GAME_ACTION: {
-                try {
-                    GameAction action = cmd.getGameAction(GameMaster.getInstance().getActualState().getActualPlayer());
-                    RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(), action);
-                    if (res.isValid()) {
-                        boardManager.moveUnit(action.getSourceCoordinates().getX(),
-                                action.getSourceCoordinates().getY(),
-                                action.getTargetCoordinates().getX(),
-                                action.getTargetCoordinates().getY());
-                        gameMaster.removeAction();
-
-                        return new GameResponse(VALID, null);
-                    } else {
-                        return new GameResponse(INVALID, res.getLogMessage());
-                    }
-                } catch (Exception e) {
-                    return new GameResponse(GAME_ERROR, null);
-                }
+                return handleGameAction(cmd);
             }
             case LIST_UNIT: {
                 break;

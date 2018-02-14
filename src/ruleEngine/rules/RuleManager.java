@@ -24,9 +24,7 @@ public class RuleManager {
         if (!rules.containsKey(rule)) {
             try {
                 rules.put(rule, (IRule) rule.newInstance());
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
+            } catch (IllegalAccessException | InstantiationException e) {
                 e.printStackTrace();
             }
         }

@@ -15,16 +15,13 @@ public class CheckUnitMP implements IRule {
         int x2 = action.getTargetCoordinates().getX();
         int y2 = action.getTargetCoordinates().getY();
 
-        //TODO: should get the actual Unit's MP left (not the normal value of the Type unit)
-        // int MP = 3;
         int MP = board.getUnit(x, y).getUnit().getMovementValue();
         int dist = board.getDistance(x, y, x2, y2);
 
         if (dist > MP) {
             result.addMessage(this,
                     "Not enough movement point, the unit has "
-                            + MP + " MP, and you need " + dist + " MP"
-            );
+                            + MP + " MP, and you need " + dist + " MP");
             result.invalidate();
             return false;
         }

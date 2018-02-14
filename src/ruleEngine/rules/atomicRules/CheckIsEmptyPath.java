@@ -28,62 +28,46 @@ public class CheckIsEmptyPath implements IRule {
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         GameAction.Coordinates src = action.getSourceCoordinates();
         GameAction.Coordinates target = action.getTargetCoordinates();
-
         int MP = board.getUnit(src.getX(), src.getY()).getUnit().getMovementValue();
 
-        Vertex[][] map = initMap(MP, src);
+        assert MP != 0;
 
+        Vertex[][] map = initMap(MP, src);
         List<Vertex> queue = new LinkedList<>();
 
         map[length / 2][length / 2].isMarked = true;
         map[length / 2][length / 2].dist = 0;
         Vertex actual = map[length / 2][length / 2];
         queue.add(actual);
+
         while (!queue.isEmpty()) {
             actual = queue.remove(0);
-            //If the cell we check has the same coords than the target cell
-            //  and it has the right distance, we win, return true.
-            /*if(actual.x == target.getX() && actual.y == target.getY() && actual.dist <= MP){
-                return true;
-            }*/
             for (int i = actual.i - 1; i <= actual.i + 1; i++) {
                 for (int j = actual.j - 1; j <= actual.j + 1; j++) {
-
                     //Don't add the neighbours with invalid coords or those we have already added
-                    if (i < 0 || j < 0 || i >= length || j >= length) {
+                    if (i < 0 || j < 0 || i >= length || j >= length)
                         continue;
-                    }
 
                     int x = map[i][j].x;
                     int y = map[i][j].y;
 
-                    if (board.edge(x, y) || map[i][j].isMarked) {
+                    if (board.edge(x, y) || map[i][j].isMarked)
                         continue;
-                    }
                     //A cell containing a unit isn't valid to find the path
-                    if (board.getUnit(x, y) != null) {
+                    if (board.getUnit(x, y) != null)
                         continue;
-                    }
                     //If there is building and it's a mountain, we can't add it
-                    if (board.getBuilding(x, y) != null && !board.getBuilding(x, y).getBuilding().isAccessible()) {
+                    if (board.getBuilding(x, y) != null && !board.getBuilding(x, y).getBuilding().isAccessible())
                         continue;
-                    }
-
 
                     //Just create the valid neighbour, with dist + 1
                     Vertex neigh = map[i][j];
                     neigh.isMarked = true;
                     neigh.dist = actual.dist + 1;
 
-                    if (x == target.getX() && y == target.getY() && neigh.dist <= MP) {
+                    if (x == target.getX() && y == target.getY() && neigh.dist <= MP)
                         return true;
-                    }
 
-                    //If the neighbours is at a distance > MP, we loose
-                    /*
-                    if(neigh.dist > MP)
-                        continue;
-                        */
                     queue.add(neigh);
                 }
             }
@@ -95,7 +79,8 @@ public class CheckIsEmptyPath implements IRule {
 
     private class Vertex {
         int dist;
-        private int x, y, i, j;
+        private int x, y; // index in array board
+        private int i, j; // index in array map
         private boolean isMarked = false;
 
         Vertex(int x, int y, int i, int j) {

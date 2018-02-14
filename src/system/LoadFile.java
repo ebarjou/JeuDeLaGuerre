@@ -15,15 +15,15 @@ public class LoadFile {
     private IBoardManager boardManager;
     private GameMaster gameMaster;
 
+    //TODO: Need exception on convertBuilding and converUnit
     public LoadFile() {
-
     }
 
     private EBuildingData convertBuilding(String s) {
-        for (EBuildingData e : EBuildingData.values()) {
+        for (EBuildingData e : EBuildingData.values())
             if (e.getID().equalsIgnoreCase(s))
                 return e;
-        }
+
         System.out.println("Error");
         return EBuildingData.ARSENAL;
     }
@@ -38,19 +38,17 @@ public class LoadFile {
     }
 
     private void clearAll() {
-        for (int i = 0; i < boardManager.getBoard().getWidth(); i++) {
-            for (int j = 0; j < boardManager.getBoard().getHeight(); j++) {
-                boardManager.removeBuilding(i, j);
-                boardManager.removeUnit(i, j);
-            }
-        }
-        boardManager.clearCommunication();
+        int width = boardManager.getBoard().getWidth();
+        int height = boardManager.getBoard().getHeight();
+        boardManager.initBoard(width, height);
         boardManager.clearHistory();
         gameMaster.removeAll();
     }
 
     //TODO: Add try catch and controls on type we should have
     public void loadFile(String name) throws IOException {
+        if(name.isEmpty())
+            return;
         boardManager = BoardManager.getInstance();
         gameMaster = GameMaster.getInstance();
 
@@ -62,6 +60,7 @@ public class LoadFile {
         String[] tokens = line.split(";");
         // init board
         boardManager.initBoard(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
+
         // set player
         line = br.readLine();
         tokens = line.split(";");
@@ -73,6 +72,7 @@ public class LoadFile {
         }
         gameMaster.setActionLeft(Integer.parseInt(tokens[1]));
 
+        //Add buildings
         while ((line = br.readLine()) != null) {
             tokens = line.split(";");
             if (tokens.length == 4)
@@ -85,6 +85,7 @@ public class LoadFile {
             gameMaster.addBuilding(p, e);
             boardManager.addBuilding(e, p, x, y);
         }
+        //Add units
         while ((line = br.readLine()) != null) {
             EUnitData u = convertUnit(tokens[0]);
             int x = Integer.parseInt(tokens[1]) - 1;
