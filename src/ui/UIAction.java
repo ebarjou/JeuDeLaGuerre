@@ -12,7 +12,7 @@ public class UIAction {
     private String text;
 
     UIAction(String error_message) {
-        this.command = command;
+        this.command = UserToGameCall.CMD_ERROR;
         this.gameAction = new GameAction(null, null);
         this.text = null;
     }
@@ -27,10 +27,24 @@ public class UIAction {
         return command;
     }
 
-    public String getText() {return text;}
+    void setCommand(UserToGameCall command) {
+        this.command = command;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    void setText(String text) {
+        this.text = text;
+    }
 
     public String getErrorMessage() {
         return error_message;
+    }
+
+    void setErrorMessage(String message) {
+        this.error_message = message;
     }
 
     public GameAction getGameAction(EPlayer player) {
@@ -44,15 +58,5 @@ public class UIAction {
 
     void setGameAction(EGameActionType action) {
         gameAction.setActionType(action);
-    }
-
-    void setCommand(UserToGameCall command) {
-        this.command = command;
-    }
-
-    void setText(String text){ this.text = text; }
-
-    void setErrorMessage(String message) {
-        this.error_message = message;
     }
 }

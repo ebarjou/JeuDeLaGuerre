@@ -15,7 +15,7 @@ public class LoadFile {
     private IBoardManager boardManager;
     private GameMaster gameMaster;
 
-    //TODO: Need exception on convertBuilding and converUnit
+    //TODO: Need exception on convertBuilding and convertUnit
     public LoadFile() {
     }
 
@@ -47,7 +47,7 @@ public class LoadFile {
 
     //TODO: Add try catch and controls on type we should have
     public void loadFile(String name) throws IOException {
-        if(name == null || name.isEmpty())
+        if (name == null || name.isEmpty())
             throw new IOException("Path is empty, can't load.");
         boardManager = BoardManager.getInstance();
         gameMaster = GameMaster.getInstance();

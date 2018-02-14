@@ -2,10 +2,10 @@ package ruleEngine.entity;
 
 
 public enum EBuildingData {
-    MOUNTAIN("M",  false, 0),
-    PASS    ("CO", true,  2),
-    FORTRESS("F",  true,  4),
-    ARSENAL ("AR", true,  0);
+    MOUNTAIN("M", false, 0),
+    PASS("CO", true, 2),
+    FORTRESS("F", true, 4),
+    ARSENAL("AR", true, 0);
 
     private String id;
     private boolean accessible; // the name was crossable before.. ?

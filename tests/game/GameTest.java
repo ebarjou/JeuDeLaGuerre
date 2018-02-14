@@ -10,11 +10,6 @@ import ui.UIAction;
 import ui.commands.GameToUserCall;
 import ui.commands.UserToGameCall;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
-import static org.mockito.Mockito.*;
-
 import static org.junit.Assert.*;
 
 public class GameTest {

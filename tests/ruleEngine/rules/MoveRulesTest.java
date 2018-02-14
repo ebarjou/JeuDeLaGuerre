@@ -1,22 +1,17 @@
 package ruleEngine.rules;
 
-import game.EPlayer;
 import game.board.Board;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.*;
 
-import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
-
-import static org.junit.Assert.*;
 
 public class MoveRulesTest {
 
     private GameAction gameAction;
     private Board board;
+
+    //TODO: Create new tests
 
     @Before
     public void setUp() {

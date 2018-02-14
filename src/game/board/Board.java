@@ -18,8 +18,6 @@ public class Board implements Cloneable {
                 board[x][y] = new Cell();
     }
 
-    //return true if coord (x;y) is beyond board's edges
-
     /**
      * @param x
      * @param y
@@ -136,9 +134,7 @@ public class Board implements Cloneable {
     }
 
     public boolean getCommunication(EPlayer player, int x, int y) {
-        if (edge(x, y))
-            return false;
-        return board[x][y].getCommunication(player);
+        return !edge(x, y) && board[x][y].getCommunication(player);
     }
 
     @Override

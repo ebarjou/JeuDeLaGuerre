@@ -2,9 +2,6 @@ package ui;
 
 import asg.cliche.Command;
 import ruleEngine.EGameActionType;
-import system.LoadFile;
-
-import java.io.IOException;
 
 import static ui.commands.UserToGameCall.*;
 
@@ -56,7 +53,6 @@ public class CommandParser {
         } catch (Exception e) {
             result.setCommand(CMD_ERROR);
             result.setErrorMessage(e.getMessage());
-            return;
         }
     }
 

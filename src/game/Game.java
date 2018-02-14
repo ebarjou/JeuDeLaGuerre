@@ -17,7 +17,7 @@ import static ui.commands.GameToUserCall.*;
 public class Game {
     private static Game instance;
     private IBoardManager boardManager;
-    private GameMaster gameMaster; //gamestate...
+    private GameMaster gameMaster;
 
     private Game() {
         boardManager = BoardManager.getInstance();
@@ -29,7 +29,7 @@ public class Game {
         return instance;
     }
 
-    private GameResponse handleGameAction(UIAction cmd){
+    private GameResponse handleGameAction(UIAction cmd) {
         try {
             GameAction action = cmd.getGameAction(GameMaster.getInstance().getActualState().getActualPlayer());
             RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(), action);

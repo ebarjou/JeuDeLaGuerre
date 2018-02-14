@@ -9,10 +9,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
-public class BoardCanvas extends Canvas {
-    private final int FONT_SIZE = 14;
-    private final int MERGE = 1;
-    private final int COMM_STROKE_SIZE = 2;
+class BoardCanvas extends Canvas {
+    private static final int FONT_SIZE = 14;
+    private static final int MERGE = 1;
+    private static final int COMM_STROKE_SIZE = 2;
     private GraphicsContext g;
 
     BoardCanvas(int w, int h) {

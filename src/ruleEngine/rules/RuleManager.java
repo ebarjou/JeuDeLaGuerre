@@ -23,7 +23,7 @@ public class RuleManager {
     public IRule getRule(Class<? extends IRule> rule) {
         if (!rules.containsKey(rule)) {
             try {
-                rules.put(rule, (IRule) rule.newInstance());
+                rules.put(rule, rule.newInstance());
             } catch (IllegalAccessException | InstantiationException e) {
                 e.printStackTrace();
             }

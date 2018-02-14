@@ -10,21 +10,17 @@ import java.util.List;
 
 public class GameState implements Cloneable {
 
-    private EPlayer actualPlayer;
+    private static final int MAX_ACTION = 5;
     // TODO: Maybe need this kind of enum to know in which phase we are (INIT / GAME / END ??)
     //private EStateGame actualPhase;
-
+    private EPlayer actualPlayer;
     private List<EUnitData> unitsPlayer1;
     private List<EUnitData> unitsPlayer2;
-
     private List<EBuildingData> buildingPlayer1; // Maybe create a Building class
     private List<EBuildingData> buildingPlayer2; //   like the Unit class ... ?
-
     private List<Coordinates> priorityUnits1; //units needed to be move
     private List<Coordinates> priorityUnits2;
-
     private int actionLeft;
-    private static final int MAX_ACTION = 5;
 
     GameState() {
         unitsPlayer1 = new ArrayList<>();
@@ -63,18 +59,18 @@ public class GameState implements Cloneable {
     boolean removePriorityUnit(Coordinates coords) {
         List<Coordinates> priority;
         Coordinates targetCoords = null;
-        if(actualPlayer == EPlayer.PLAYER1)
+        if (actualPlayer == EPlayer.PLAYER1)
             priority = priorityUnits1;
         else
             priority = priorityUnits2;
 
-        for(Coordinates c : priority){
+        for (Coordinates c : priority) {
             if (c.getX() == coords.getX() && c.getY() == coords.getY()) {
                 targetCoords = c;
                 break;
             }
         }
-        if(targetCoords == null)
+        if (targetCoords == null)
             return false;
         priority.remove(targetCoords);
         return true;
@@ -100,22 +96,22 @@ public class GameState implements Cloneable {
         return actionLeft;
     }
 
-    public boolean isPriorityCoord(Coordinates coords){
+    void setActionLeft(int n) {
+        this.actionLeft = n;
+    }
+
+    public boolean isPriorityCoord(Coordinates coords) {
         List<Coordinates> priority;
-        if(actualPlayer == EPlayer.PLAYER1)
+        if (actualPlayer == EPlayer.PLAYER1)
             priority = priorityUnits1;
         else
             priority = priorityUnits2;
 
-        for(Coordinates c : priority)
-            if(c.getX() == coords.getX() && c.getY() == coords.getY())
+        for (Coordinates c : priority)
+            if (c.getX() == coords.getX() && c.getY() == coords.getY())
                 return true;
         return false;
 
-    }
-
-    void setActionLeft(int n) {
-        this.actionLeft = n;
     }
 
     void removeOneAction() {
@@ -125,12 +121,12 @@ public class GameState implements Cloneable {
     }
 
     void removeAll() {
-        unitsPlayer1    = new ArrayList<>();
-        unitsPlayer2    = new ArrayList<>();
+        unitsPlayer1 = new ArrayList<>();
+        unitsPlayer2 = new ArrayList<>();
         buildingPlayer1 = new ArrayList<>();
         buildingPlayer2 = new ArrayList<>();
-        priorityUnits1  = new ArrayList<>();
-        priorityUnits2  = new ArrayList<>();
+        priorityUnits1 = new ArrayList<>();
+        priorityUnits2 = new ArrayList<>();
     }
 
     //TODO: Have to check if the object returned need to clone the Lists
@@ -142,10 +138,11 @@ public class GameState implements Cloneable {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        ((GameState) o).unitsPlayer1    = new ArrayList<>(unitsPlayer1);
-        ((GameState) o).unitsPlayer2    = new ArrayList<>(unitsPlayer2);
-        ((GameState) o).priorityUnits1  = new ArrayList<>(priorityUnits1);
-        ((GameState) o).priorityUnits2  = new ArrayList<>(priorityUnits2);
+        assert o != null;
+        ((GameState) o).unitsPlayer1 = new ArrayList<>(unitsPlayer1);
+        ((GameState) o).unitsPlayer2 = new ArrayList<>(unitsPlayer2);
+        ((GameState) o).priorityUnits1 = new ArrayList<>(priorityUnits1);
+        ((GameState) o).priorityUnits2 = new ArrayList<>(priorityUnits2);
         ((GameState) o).buildingPlayer1 = new ArrayList<>(buildingPlayer1);
         ((GameState) o).buildingPlayer2 = new ArrayList<>(buildingPlayer2);
         return (GameState) o;
