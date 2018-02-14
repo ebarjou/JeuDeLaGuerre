@@ -9,15 +9,28 @@ public class UIAction {
     private UserToGameCall command;
     private GameAction gameAction;
     private String error_message;
+    private String text;
 
-    protected UIAction(String error_message) {
+    UIAction(String error_message) {
         this.command = command;
         this.gameAction = new GameAction(null, null);
+        this.text = null;
     }
 
-    protected UIAction(UserToGameCall command, EGameActionType action) {
+    UIAction(UserToGameCall command, EGameActionType action) {
         this.command = command;
         this.gameAction = new GameAction(null, action);
+        this.text = null;
+    }
+
+    public UserToGameCall getCommand() {
+        return command;
+    }
+
+    public String getText() {return text;}
+
+    public String getErrorMessage() {
+        return error_message;
     }
 
     public GameAction getGameAction(EPlayer player) {
@@ -25,27 +38,21 @@ public class UIAction {
         return gameAction;
     }
 
-    protected GameAction getGameAction() {
+    GameAction getGameAction() {
         return gameAction;
     }
 
-    protected void setGameAction(EGameActionType action) {
+    void setGameAction(EGameActionType action) {
         gameAction.setActionType(action);
     }
 
-    public UserToGameCall getCommand() {
-        return command;
-    }
-
-    protected void setCommand(UserToGameCall command) {
+    void setCommand(UserToGameCall command) {
         this.command = command;
     }
 
-    public String getErrorMessage() {
-        return error_message;
-    }
+    void setText(String text){ this.text = text; }
 
-    public void setErrorMessage(String message) {
+    void setErrorMessage(String message) {
         this.error_message = message;
     }
 }

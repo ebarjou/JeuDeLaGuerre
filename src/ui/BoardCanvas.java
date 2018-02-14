@@ -1,4 +1,4 @@
-package ui.display;
+package ui;
 
 import game.EPlayer;
 import game.board.Board;
@@ -13,17 +13,16 @@ public class BoardCanvas extends Canvas {
     private final int FONT_SIZE = 14;
     private final int MERGE = 1;
     private final int COMM_STROKE_SIZE = 2;
-
     private GraphicsContext g;
 
-    public BoardCanvas(int w, int h) {
+    BoardCanvas(int w, int h) {
         super(w, h);
         g = this.getGraphicsContext2D();
         g.setFont(new Font(FONT_SIZE));
         draw(null);
     }
 
-    public void draw(Board board) {
+    void draw(Board board) {
         g.fillRect(0, 0, getWidth(), getHeight());
         if (board != null) {
             int caseSize = (int) (getWidth() / (board.getWidth()));
@@ -45,11 +44,11 @@ public class BoardCanvas extends Canvas {
         }
     }
 
-    public void drawCellBackground(Board board, int x, int y, int pos_x, int pos_y, int size) {
+    private void drawCellBackground(Board board, int x, int y, int pos_x, int pos_y, int size) {
         g.save();
         if (board.getCommunication(EPlayer.PLAYER1, x, y) && board.getCommunication(EPlayer.PLAYER2, x, y)) {
             g.setStroke(Color.ORANGERED);
-            g.setLineWidth(COMM_STROKE_SIZE *1.5);
+            g.setLineWidth(COMM_STROKE_SIZE * 1.5);
             g.strokeRect(pos_x + COMM_STROKE_SIZE, pos_y + COMM_STROKE_SIZE, size - COMM_STROKE_SIZE * 2, size - COMM_STROKE_SIZE * 2);
             g.setStroke(Color.CORNFLOWERBLUE);
             g.setLineWidth(COMM_STROKE_SIZE);
@@ -65,7 +64,7 @@ public class BoardCanvas extends Canvas {
         g.restore();
     }
 
-    public void drawCellItem(Board board, int x, int y, int pos_x, int pos_y, int size) {
+    private void drawCellItem(Board board, int x, int y, int pos_x, int pos_y, int size) {
         g.save();
         g.setFill(Color.DARKBLUE);
         g.setTextAlign(TextAlignment.CENTER);

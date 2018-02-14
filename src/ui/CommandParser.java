@@ -11,19 +11,26 @@ import static ui.commands.UserToGameCall.*;
 public class CommandParser {
     private UIAction result;
 
-    protected CommandParser() {
+    CommandParser() {
         result = new UIAction(CMD_ERROR, null);
     }
 
-    protected UIAction getResult() {
+    UIAction getResult() {
         return result;
     }
 
-    protected void newCommand() {
-        this.result = new UIAction(CMD_ERROR, null);
+    private int[] parseCoords(String c) throws Exception {
+        int[] coords = new int[2];
+        c = c.toLowerCase();
+        if (!c.matches("([a-z]+)([0-9]+)"))
+            throw new Exception("Invalid coordinate argument : Must be letters followed by a number.");
+        String c_splitted[] = c.split("(?<=\\D)(?=\\d)");
+        coords[0] = Integer.parseInt(c_splitted[1]) - 1;
+        coords[1] = getIntFromLetters(c_splitted[0]) - 1;
+        return coords;
     }
 
-    int getIntFromString(String s) {
+    private int getIntFromLetters(String s) {
         s = s.toLowerCase();
         int res = 0;
         int base = 26;
@@ -34,17 +41,6 @@ public class CommandParser {
             stage++;
         }
         return res;
-    }
-
-    protected int[] parseCoords(String c) throws Exception {
-        int[] coords = new int[2];
-        c = c.toLowerCase();
-        if (!c.matches("([a-z]+)([0-9]+)"))
-            throw new Exception("Invalid coordinate argument : Must be letters followed by a number.");
-        String c_splitted[] = c.split("(?<=\\D)(?=\\d)");
-        coords[0] = Integer.parseInt(c_splitted[1]) - 1;
-        coords[1] = getIntFromString(c_splitted[0]) - 1;
-        return coords;
     }
 
     @Command
@@ -76,13 +72,9 @@ public class CommandParser {
     }
 
     @Command
-    public void load(String name) {
-        LoadFile lf = new LoadFile();
-        try {
-            lf.loadFile(name);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void load(String path) {
+        result.setCommand(LOAD);
+        result.setText(path);
     }
 
     @Command

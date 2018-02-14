@@ -1,7 +1,6 @@
 package ui;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ui.commands.UserToGameCall;
@@ -47,7 +46,7 @@ public class TermGUITest {
     public void parse() {
         UIAction UIAction;
         for(COMMANDS cmd : COMMANDS.values()){
-            UIAction = term.parse(cmd.cmd);
+            UIAction = term.parseCommand(cmd.cmd);
             if((UIAction.getCommand()==UserToGameCall.CMD_ERROR) && cmd.isValid ) test_fail.add(cmd);
         }
     }

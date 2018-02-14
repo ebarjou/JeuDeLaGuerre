@@ -19,7 +19,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import ui.display.BoardCanvas;
 
 import static ui.commands.UserToGameCall.CMD_ERROR;
 import static ui.commands.UserToGameCall.EXIT;
@@ -44,7 +43,19 @@ public class TermGUI extends Application {
         shell = ShellFactory.createConsoleShell("Enter command", "", parser);
     }
 
-    public void createScene() {
+    @Override
+    public void start(Stage primaryStage) {
+        createScene();
+        primaryStage.setTitle("JdlG");
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.sizeToScene();
+        primaryStage.show();
+
+        canvas.draw(BoardManager.getInstance().getBoard());
+    }
+
+    private void createScene() {
         Group root = new Group();
         scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT + COMMAND_PANEL_HEIGHT, Color.LIGHTGREY);
 
@@ -71,29 +82,7 @@ public class TermGUI extends Application {
         root.getChildren().add(layout);
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        createScene();
-        primaryStage.setTitle("JdlG");
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.sizeToScene();
-        primaryStage.show();
-
-        canvas.draw(BoardManager.getInstance().getBoard());
-    }
-
-    void processCommand(String cmd) {
-        UIAction action = this.parse(cmd);
-        if (action.getCommand() == CMD_ERROR) {
-            if (action.getErrorMessage() != null) System.out.println(action.getErrorMessage());
-            else System.out.println("Incorrect command.");
-            return;
-        }
-        processResponse(Game.getInstance().processCommand(action));
-    }
-
-    UIAction parse(String cmd) {
+    UIAction parseCommand(String cmd) {
         if (cmd == null) return new UIAction(EXIT, null);
         UIAction result;
         try {
@@ -106,7 +95,17 @@ public class TermGUI extends Application {
         return result;
     }
 
-    void processResponse(GameResponse response) {
+    private void processCommand(String cmd) {
+        UIAction action = this.parseCommand(cmd);
+        if (action.getCommand() == CMD_ERROR) {
+            if (action.getErrorMessage() != null) System.out.println(action.getErrorMessage());
+            else System.out.println("Incorrect command.");
+            return;
+        }
+        processResponse(Game.getInstance().processCommand(action));
+    }
+
+    private void processResponse(GameResponse response) {
         switch (response.getResponse()) {
             case VALID: {
                 System.out.println("Valid !");

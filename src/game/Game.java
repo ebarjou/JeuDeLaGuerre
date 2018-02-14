@@ -6,8 +6,11 @@ import game.gameMaster.GameMaster;
 import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
+import system.LoadFile;
 import ui.GameResponse;
 import ui.UIAction;
+
+import java.io.IOException;
 
 import static ui.commands.GameToUserCall.*;
 
@@ -53,7 +56,13 @@ public class Game {
                 break;
             }
             case LOAD: {
-                break;
+                LoadFile lf = new LoadFile();
+                try {
+                    lf.loadFile(cmd.getText());
+                } catch (IOException e) {
+                    return new GameResponse(INVALID, e.getMessage());
+                }
+                return new GameResponse(VALID, null);
             }
             case SAVE: {
                 break;

@@ -47,8 +47,8 @@ public class LoadFile {
 
     //TODO: Add try catch and controls on type we should have
     public void loadFile(String name) throws IOException {
-        if(name.isEmpty())
-            return;
+        if(name == null || name.isEmpty())
+            throw new IOException("Path is empty, can't load.");
         boardManager = BoardManager.getInstance();
         gameMaster = GameMaster.getInstance();
 
