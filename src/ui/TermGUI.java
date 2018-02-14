@@ -8,6 +8,7 @@ import game.board.BoardManager;
 import game.gameMaster.GameMaster;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -24,15 +25,17 @@ import static ui.commands.UserToGameCall.CMD_ERROR;
 import static ui.commands.UserToGameCall.EXIT;
 
 public class TermGUI extends Application {
-    private static final int WINDOW_WIDTH = 650;
-    private static final int WINDOW_HEIGHT = 520;
+    private static final int WINDOW_WIDTH = 800;
+    private static final int WINDOW_HEIGHT = 640;
+    private static final int COMMAND_PANEL_HEIGHT = 28;
+    private static final int COMMAND_PANEL_MARGIN = 10;
 
     private Shell shell;
     private Scene scene;
     private BoardCanvas canvas;
     private TextField textField;
     private CommandParser parser;
-    private Label displayPlayerTurn;
+    private Label labelPlayerTurn;
 
     @Override
     public void init() throws Exception {
@@ -43,23 +46,28 @@ public class TermGUI extends Application {
 
     public void createScene() {
         Group root = new Group();
-        scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT + 2 * textField.getFont().getSize(), Color.LIGHTGREY);
+        scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT + COMMAND_PANEL_HEIGHT, Color.LIGHTGREY);
 
         canvas = new BoardCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
 
         textField = new TextField("Enter command here");
         textField.setOnKeyPressed(new CommandEvent());
         textField.setPrefWidth(WINDOW_WIDTH);
+        textField.setPrefHeight(COMMAND_PANEL_HEIGHT);
 
-        displayPlayerTurn = new Label(GameMaster.getInstance().getActualState().getActualPlayer().name());
+        labelPlayerTurn = new Label(GameMaster.getInstance().getActualState().getActualPlayer().name());
+        labelPlayerTurn.setPrefHeight(COMMAND_PANEL_HEIGHT);
 
         HBox layoutCommand = new HBox();
-        layoutCommand.getChildren().add(displayPlayerTurn);
+        layoutCommand.setAlignment(Pos.CENTER_LEFT);
+        layoutCommand.setSpacing(COMMAND_PANEL_MARGIN);
+        layoutCommand.getChildren().add(labelPlayerTurn);
         layoutCommand.getChildren().add(textField);
 
         VBox layout = new VBox();
         layout.getChildren().add(canvas);
         layout.getChildren().add(layoutCommand);
+
         root.getChildren().add(layout);
     }
 
@@ -127,7 +135,7 @@ public class TermGUI extends Application {
             if (event.getCode() == KeyCode.ENTER) {
                 processCommand(textField.getText());
                 textField.clear();
-                displayPlayerTurn.setText(GameMaster.getInstance().getActualState().getActualPlayer().name());
+                labelPlayerTurn.setText(GameMaster.getInstance().getActualState().getActualPlayer().name());
             }
             canvas.draw(BoardManager.getInstance().getBoard());
         }

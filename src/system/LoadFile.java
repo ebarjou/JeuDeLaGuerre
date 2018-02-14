@@ -1,4 +1,4 @@
-package ui;
+package system;
 
 import game.EPlayer;
 import game.board.BoardManager;
