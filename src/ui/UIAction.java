@@ -3,46 +3,42 @@ package ui;
 import game.EPlayer;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
-import ui.commands.GameToUserCall;
 import ui.commands.UserToGameCall;
-
-import static ui.commands.GameToUserCall.*;
-import static ui.commands.UserToGameCall.*;
 
 public class UIAction {
     private UserToGameCall command;
     private GameAction gameAction;
     private String error_message;
 
-    protected UIAction(String error_message){
+    protected UIAction(String error_message) {
         this.command = command;
         this.gameAction = new GameAction(null, null);
     }
 
-    protected UIAction(UserToGameCall command, EGameActionType action){
+    protected UIAction(UserToGameCall command, EGameActionType action) {
         this.command = command;
         this.gameAction = new GameAction(null, action);
     }
 
-    protected void setGameAction(EGameActionType action){
-        gameAction.setActionType(action);
-    }
-
-    public GameAction getGameAction(EPlayer player){
+    public GameAction getGameAction(EPlayer player) {
         gameAction.setPlayer(player);
         return gameAction;
     }
 
-    protected GameAction getGameAction(){
+    protected GameAction getGameAction() {
         return gameAction;
     }
 
-    protected void setCommand(UserToGameCall command){
-        this.command = command;
+    protected void setGameAction(EGameActionType action) {
+        gameAction.setActionType(action);
     }
 
-    public UserToGameCall getCommand(){
+    public UserToGameCall getCommand() {
         return command;
+    }
+
+    protected void setCommand(UserToGameCall command) {
+        this.command = command;
     }
 
     public String getErrorMessage() {

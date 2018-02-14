@@ -6,7 +6,7 @@ public class GameResponse {
     private GameToUserCall response;
     private String message;
 
-    public GameResponse(GameToUserCall response, String message){
+    public GameResponse(GameToUserCall response, String message) {
         this.response = response;
         this.message = message;
     }

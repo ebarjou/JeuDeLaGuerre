@@ -2,13 +2,13 @@ package game.board;
 
 import game.EPlayer;
 
-class Cell implements Cloneable{
+class Cell implements Cloneable {
     private Unit unit;
     private Building building;
     private boolean communication1;
     private boolean communication2;
 
-    Cell(){
+    Cell() {
         unit = null;
         building = null;
         communication1 = false;
@@ -16,9 +16,9 @@ class Cell implements Cloneable{
     }
 
     @Override
-    public Cell clone(){
+    public Cell clone() {
         Object o = null;
-        try{
+        try {
             o = super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
@@ -26,43 +26,43 @@ class Cell implements Cloneable{
 
         assert o != null;
 
-        ((Cell)o).building = null;
-        if(building != null)
-            ((Cell)o).building = building.clone();
+        ((Cell) o).building = null;
+        if (building != null)
+            ((Cell) o).building = building.clone();
 
-        ((Cell)o).unit = null;
-        if(unit != null)
-            ((Cell)o).unit = unit.clone();
+        ((Cell) o).unit = null;
+        if (unit != null)
+            ((Cell) o).unit = unit.clone();
 
         return (Cell) o;
     }
 
-    public String toString(){
+    public String toString() {
         String res = "";
-        if(unit != null)
+        if (unit != null)
             res += unit.getUnit() + "\n";
-        if(building != null)
+        if (building != null)
             res += building.getBuilding() + "\n";
-        if(res.isEmpty())
+        if (res.isEmpty())
             return res;
 
         return res + "Com1 : " + communication1 + "\nCom2: " + communication2 + "\n";
+    }
+
+    public Unit getUnit() {
+        return unit;
     }
 
     public void setUnit(Unit unit) {
         this.unit = unit;
     }
 
-    public Unit getUnit(){
-        return unit;
+    public Building getBuilding() {
+        return building;
     }
 
     public void setBuilding(Building building) {
         this.building = building;
-    }
-
-    public Building getBuilding(){
-        return building;
     }
 
     public void setCommunication1(boolean communication1) {
@@ -73,8 +73,8 @@ class Cell implements Cloneable{
         this.communication2 = communication2;
     }
 
-    public boolean getCommunication(EPlayer player){
-        if(player == EPlayer.PLAYER1)
+    public boolean getCommunication(EPlayer player) {
+        if (player == EPlayer.PLAYER1)
             return communication1;
         return communication2;
     }

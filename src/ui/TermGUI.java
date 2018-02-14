@@ -26,7 +26,7 @@ import static ui.commands.UserToGameCall.EXIT;
 public class TermGUI extends Application {
     private static final int WINDOW_WIDTH = 650;
     private static final int WINDOW_HEIGHT = 520;
-    
+
     private Shell shell;
     private Scene scene;
     private BoardCanvas canvas;
@@ -46,17 +46,17 @@ public class TermGUI extends Application {
         scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT + 2 * textField.getFont().getSize(), Color.LIGHTGREY);
 
         canvas = new BoardCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
-        
+
         textField = new TextField("Enter command here");
         textField.setOnKeyPressed(new CommandEvent());
         textField.setPrefWidth(WINDOW_WIDTH);
-        
+
         displayPlayerTurn = new Label(GameMaster.getInstance().getActualState().getActualPlayer().name());
-        
+
         HBox layoutCommand = new HBox();
         layoutCommand.getChildren().add(displayPlayerTurn);
         layoutCommand.getChildren().add(textField);
-        
+
         VBox layout = new VBox();
         layout.getChildren().add(canvas);
         layout.getChildren().add(layoutCommand);

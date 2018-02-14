@@ -8,7 +8,7 @@ public class GameAction {
     private Coordinates sourceCoordinates;
     private Coordinates targetCoordinates;
 
-    public GameAction(EPlayer player, EGameActionType actionType){
+    public GameAction(EPlayer player, EGameActionType actionType) {
         this.player = player;
         this.actionType = actionType;
     }
@@ -45,7 +45,7 @@ public class GameAction {
         this.player = player;
     }
 
-    public Coordinates createCoordinates(int x, int y){
+    public Coordinates createCoordinates(int x, int y) {
         return new Coordinates(x, y);
     }
 
@@ -53,7 +53,7 @@ public class GameAction {
         private int x;
         private int y;
 
-        Coordinates(int x, int y){
+        Coordinates(int x, int y) {
             this.x = x;
             this.y = y;
         }

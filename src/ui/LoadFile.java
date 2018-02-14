@@ -1,17 +1,13 @@
 package ui;
 
-import com.sun.javafx.image.IntPixelGetter;
 import game.EPlayer;
-import game.Game;
 import game.board.BoardManager;
 import game.board.IBoardManager;
 import game.gameMaster.GameMaster;
-import jdk.nashorn.internal.parser.Token;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -19,7 +15,7 @@ public class LoadFile {
     private IBoardManager boardManager;
     private GameMaster gameMaster;
 
-    public LoadFile(){
+    public LoadFile() {
 
     }
 
@@ -41,9 +37,9 @@ public class LoadFile {
         return EUnitData.INFANTRY;
     }
 
-    private void clearAll(){
-        for(int i = 0; i < boardManager.getBoard().getWidth(); i++){
-            for(int j = 0; j < boardManager.getBoard().getHeight(); j++){
+    private void clearAll() {
+        for (int i = 0; i < boardManager.getBoard().getWidth(); i++) {
+            for (int j = 0; j < boardManager.getBoard().getHeight(); j++) {
                 boardManager.removeBuilding(i, j);
                 boardManager.removeUnit(i, j);
             }
@@ -70,7 +66,7 @@ public class LoadFile {
         line = br.readLine();
         tokens = line.split(";");
         int player = Integer.parseInt(tokens[0]);
-        if(player == 1){
+        if (player == 1) {
             gameMaster.setPlayer(EPlayer.PLAYER1);
         } else {
             gameMaster.setPlayer(EPlayer.PLAYER2);
@@ -79,7 +75,7 @@ public class LoadFile {
 
         while ((line = br.readLine()) != null) {
             tokens = line.split(";");
-            if(tokens.length == 4)
+            if (tokens.length == 4)
                 break;
             EBuildingData e = convertBuilding(tokens[0]);
             int x = Integer.parseInt(tokens[1]) - 1;
@@ -89,7 +85,7 @@ public class LoadFile {
             gameMaster.addBuilding(p, e);
             boardManager.addBuilding(e, p, x, y);
         }
-        while((line = br.readLine()) != null){
+        while ((line = br.readLine()) != null) {
             EUnitData u = convertUnit(tokens[0]);
             int x = Integer.parseInt(tokens[1]) - 1;
             int y = Integer.parseInt(tokens[2]) - 1;

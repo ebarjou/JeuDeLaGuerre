@@ -1,8 +1,8 @@
 package ruleEngine;
 
 import game.board.Board;
-import ruleEngine.exceptions.IncorrectGameActionException;
 import game.gameMaster.GameMaster;
+import ruleEngine.exceptions.IncorrectGameActionException;
 import ruleEngine.rules.MoveRules;
 
 public class RuleChecker {
@@ -10,7 +10,7 @@ public class RuleChecker {
 
     private IRule moveRuleMaster;
 
-    private RuleChecker(){
+    private RuleChecker() {
         moveRuleMaster = MoveRules.getInstance();
     }
 

@@ -10,7 +10,7 @@ public class CheckPlayerMovesLeft implements IRule {
 
     @Override
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
-        if (state.getActionLeft() < 1){
+        if (state.getActionLeft() < 1) {
             result.invalidate();
             result.addMessage(this, "This player has no action left this turn.");
             return false;

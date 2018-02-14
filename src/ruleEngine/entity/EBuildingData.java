@@ -11,17 +11,21 @@ public enum EBuildingData {
     private boolean accessible; // the name was crossable before.. ?
     private int bonusDef;
 
-    EBuildingData(String id, boolean cross, int def){
+    EBuildingData(String id, boolean cross, int def) {
         this.id = id;
         this.accessible = cross;
         this.bonusDef = def;
     }
 
-    public String getID(){
+    public String getID() {
         return id;
     }
 
-    public boolean isAccessible() { return accessible; }
+    public boolean isAccessible() {
+        return accessible;
+    }
 
-    public int getBonusDef() { return bonusDef; }
+    public int getBonusDef() {
+        return bonusDef;
+    }
 }

@@ -10,7 +10,7 @@ public class RuleManager {
 
     private static RuleManager instance;
 
-    private RuleManager(){
+    private RuleManager() {
         rules = new HashMap<>();
     }
 
@@ -20,11 +20,11 @@ public class RuleManager {
         return instance;
     }
 
-    public IRule getRule(Class<? extends IRule> rule){
-        if (!rules.containsKey(rule)){
+    public IRule getRule(Class<? extends IRule> rule) {
+        if (!rules.containsKey(rule)) {
             try {
                 rules.put(rule, (IRule) rule.newInstance());
-            }catch (IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InstantiationException e) {
                 e.printStackTrace();

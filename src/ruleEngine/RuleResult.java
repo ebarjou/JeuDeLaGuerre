@@ -4,7 +4,7 @@ public class RuleResult {
     private boolean isValid;
     private StringBuilder logMessage;
 
-    public RuleResult(){
+    public RuleResult() {
         isValid = true;
         logMessage = new StringBuilder();
     }
@@ -21,7 +21,7 @@ public class RuleResult {
         return logMessage.toString();
     }
 
-    public void addMessage(IRule caster, String message){
+    public void addMessage(IRule caster, String message) {
         logMessage.append(caster.getClass().getSimpleName()).append(" : ").append(message).append("\n");
     }
 }

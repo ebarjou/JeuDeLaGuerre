@@ -2,12 +2,12 @@ package ruleEngine.entity;
 
 //TODO: Maybe use only this enum for the board instead of an enum with only names ..
 public enum EUnitData {
-    INFANTRY   ("I", 4, 6, 1, 2, true, false, true, false),
-    CAVALRY    ("C", 4, 5, 2, 2, false, false, true, true),
-    ARTILLERY  ("A", 5, 8, 1, 3, true, false, true, false),
+    INFANTRY("I", 4, 6, 1, 2, true, false, true, false),
+    CAVALRY("C", 4, 5, 2, 2, false, false, true, true),
+    ARTILLERY("A", 5, 8, 1, 3, true, false, true, false),
     ARTILLERY_HORSE("AC", 5, 8, 2, 3, true, false, true,
             true),
-    RELAY      ("R", 0, 1, 1, 2, false, true, false, false),
+    RELAY("R", 0, 1, 1, 2, false, true, false, false),
     RELAY_HORSE("RC", 0, 1, 2, 2, false, true, false, false);
 
     private String id;
@@ -36,21 +36,39 @@ public enum EUnitData {
         this.canCharge = canCharge;
     }
 
-    public String getID() { return id; }
+    public String getID() {
+        return id;
+    }
 
-    public int getAtkValue() { return atkValue; }
+    public int getAtkValue() {
+        return atkValue;
+    }
 
-    public int getDefValue() { return defValue; }
+    public int getDefValue() {
+        return defValue;
+    }
 
-    public int getMovementValue() { return movementValue; }
+    public int getMovementValue() {
+        return movementValue;
+    }
 
-    public int getFightRange() { return fightRange; }
+    public int getFightRange() {
+        return fightRange;
+    }
 
-    public boolean isGetBonusDef() { return getBonusDef; }
+    public boolean isGetBonusDef() {
+        return getBonusDef;
+    }
 
-    public boolean isRelayCommunication() { return relayCommunication; }
+    public boolean isRelayCommunication() {
+        return relayCommunication;
+    }
 
-    public boolean isCanAttack() { return canAttack; }
+    public boolean isCanAttack() {
+        return canAttack;
+    }
 
-    public boolean isCanCharge() { return canCharge; }
+    public boolean isCanCharge() {
+        return canCharge;
+    }
 }

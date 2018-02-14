@@ -3,11 +3,11 @@ package game.board;
 import game.EPlayer;
 import ruleEngine.entity.EUnitData;
 
-public class Unit implements Cloneable{
+public class Unit implements Cloneable {
     private EUnitData unit;
     private EPlayer player;
 
-    public Unit(EUnitData unit, EPlayer player){
+    public Unit(EUnitData unit, EPlayer player) {
         this.unit = unit;
         this.player = player;
     }
@@ -29,13 +29,13 @@ public class Unit implements Cloneable{
     }
 
     @Override
-    public Unit clone(){
+    public Unit clone() {
         Object o = null;
-        try{
+        try {
             o = super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        return (Unit)o;
+        return (Unit) o;
     }
 }

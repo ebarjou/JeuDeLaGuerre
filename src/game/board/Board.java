@@ -2,19 +2,19 @@ package game.board;
 
 import game.EPlayer;
 
-public class Board implements Cloneable{
+public class Board implements Cloneable {
     private int width, height;
     private Cell[][] board;
 
     Board(int width, int height) {
-        assert(width > 0 && height > 0);
+        assert (width > 0 && height > 0);
 
         this.width = width;
         this.height = height;
         board = new Cell[width][height];
 
-        for(int x = 0; x < width; ++x)
-            for(int y = 0; y < height; ++y)
+        for (int x = 0; x < width; ++x)
+            for (int y = 0; y < height; ++y)
                 board[x][y] = new Cell();
     }
 
@@ -32,17 +32,17 @@ public class Board implements Cloneable{
     /**
      * Swap the information concerning the unit/building at coord (x;y) with the cell at coord (x2, y2);
      *
-     * @param x    coord X source
-     * @param y    coord Y source
-     * @param x2   coord X destination
-     * @param y2   coord Y destination
+     * @param x  coord X source
+     * @param y  coord Y source
+     * @param x2 coord X destination
+     * @param y2 coord Y destination
      * @return true if the move is done, else false
      */
     boolean moveUnit(int x, int y, int x2, int y2) {
-        if(edge(x, y) || edge(x2, y2))
+        if (edge(x, y) || edge(x2, y2))
             return false;
 
-        if(board[x][y].getUnit() == null && board[x2][y2].getUnit() == null)
+        if (board[x][y].getUnit() == null && board[x2][y2].getUnit() == null)
             return false;
 
         Unit tmp = board[x][y].getUnit();
@@ -52,10 +52,10 @@ public class Board implements Cloneable{
     }
 
     boolean moveBuilding(int x, int y, int x2, int y2) {
-        if(edge(x, y) || edge(x2, y2))
+        if (edge(x, y) || edge(x2, y2))
             return false;
 
-        if(board[x][y].getBuilding() == null && board[x2][y2].getBuilding() == null)
+        if (board[x][y].getBuilding() == null && board[x2][y2].getBuilding() == null)
             return false;
 
         Building tmp = board[x][y].getBuilding();
@@ -64,7 +64,7 @@ public class Board implements Cloneable{
         return true;
     }
 
-    void clearCommunication(){
+    void clearCommunication() {
         for (int x = 0; x < width; ++x) {
             for (int y = 0; y < height; ++y) {
                 board[x][y].setCommunication1(false);
@@ -73,28 +73,28 @@ public class Board implements Cloneable{
         }
     }
 
-    void setCommunication(EPlayer player, int x, int y, boolean value){
-        if(!edge(x, y)){
-            if(player == EPlayer.PLAYER1)
+    void setCommunication(EPlayer player, int x, int y, boolean value) {
+        if (!edge(x, y)) {
+            if (player == EPlayer.PLAYER1)
                 board[x][y].setCommunication1(value);
             else
                 board[x][y].setCommunication2(value);
         }
     }
 
-    Cell getCell(int x, int y){
-        if(edge(x, y))
+    Cell getCell(int x, int y) {
+        if (edge(x, y))
             return null;
         return board[x][y];
     }
 
-    void setUnit(Unit unit, int x, int y){
-        if(!edge(x, y))
+    void setUnit(Unit unit, int x, int y) {
+        if (!edge(x, y))
             board[x][y].setUnit(unit);
     }
 
-    void setBuilding(Building building, int x, int y){
-        if(!edge(x, y))
+    void setBuilding(Building building, int x, int y) {
+        if (!edge(x, y))
             board[x][y].setBuilding(building);
     }
 
@@ -107,14 +107,14 @@ public class Board implements Cloneable{
         return height;
     }
 
-    public Unit getUnit(int x, int y){
-        if(edge(x, y))
+    public Unit getUnit(int x, int y) {
+        if (edge(x, y))
             return null;
         return board[x][y].getUnit();
     }
 
-    public Building getBuilding(int x, int y){
-        if(edge(x, y))
+    public Building getBuilding(int x, int y) {
+        if (edge(x, y))
             return null;
         return board[x][y].getBuilding();
     }
@@ -126,8 +126,8 @@ public class Board implements Cloneable{
      * @param y2
      * @return Return the distance in max between two coords
      */
-    public int getDistance(int x, int y, int x2, int y2){
-        if(edge(x, y) || edge(x2, y2)){
+    public int getDistance(int x, int y, int x2, int y2) {
+        if (edge(x, y) || edge(x2, y2)) {
             return -1;
         }
         int diffX = Math.abs(x - x2);
@@ -135,8 +135,8 @@ public class Board implements Cloneable{
         return Math.max(diffX, diffY);
     }
 
-    public boolean getCommunication(EPlayer player, int x, int y){
-        if(edge(x, y))
+    public boolean getCommunication(EPlayer player, int x, int y) {
+        if (edge(x, y))
             return false;
         return board[x][y].getCommunication(player);
     }
@@ -151,21 +151,21 @@ public class Board implements Cloneable{
         }
 
         assert o != null;
-        ((Board)o).board = new Cell[width][height];
-        for(int x = 0; x < width; ++x)
-            for(int y = 0; y < height; ++y)
-                ((Board)o).board[x][y] = this.board[x][y].clone();
+        ((Board) o).board = new Cell[width][height];
+        for (int x = 0; x < width; ++x)
+            for (int y = 0; y < height; ++y)
+                ((Board) o).board[x][y] = this.board[x][y].clone();
 
         return (Board) o;
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("Width = " + width + " ; Height = " + height + "\n");
-        for(int x = 0; x < width; ++x) {
-            for(int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
                 String str = board[x][y].toString();
-                if(!str.isEmpty()) {
+                if (!str.isEmpty()) {
                     result.append("(").append(x).append(";").append(y).append(") -> ");
                     result.append(board[x][y].toString()).append("\n");
                 }

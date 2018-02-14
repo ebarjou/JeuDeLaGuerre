@@ -1,17 +1,17 @@
 package ruleEngine.rules;
 
 import game.board.Board;
+import game.gameMaster.GameMaster;
+import game.gameMaster.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import game.gameMaster.GameMaster;
-import game.gameMaster.GameState;
 import ruleEngine.rules.atomicRules.*;
 
 public class MoveRules implements IRule {
 
-    private RuleList rules;
     private static IRule instance;
+    private RuleList rules;
 
     private MoveRules() {
         //TODO: Put here the sub-rules (atomic) you need to check.

@@ -2,8 +2,8 @@ package game;
 
 import game.board.BoardManager;
 import game.board.IBoardManager;
-import ruleEngine.GameAction;
 import game.gameMaster.GameMaster;
+import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
 import ui.GameResponse;
@@ -16,14 +16,14 @@ public class Game {
     private IBoardManager boardManager;
     private GameMaster gameMaster; //gamestate...
 
-    public static Game getInstance(){
-        if(instance == null) instance = new Game();
-        return instance;
-    }
-
     private Game() {
         boardManager = BoardManager.getInstance();
         gameMaster = GameMaster.getInstance();
+    }
+
+    public static Game getInstance() {
+        if (instance == null) instance = new Game();
+        return instance;
     }
 
     public GameResponse processCommand(UIAction cmd) {
@@ -54,8 +54,8 @@ public class Game {
             case GAME_ACTION: {
                 try {
                     GameAction action = cmd.getGameAction(GameMaster.getInstance().getActualState().getActualPlayer());
-                    RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(),action);
-                    if(res.isValid()){
+                    RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(), action);
+                    if (res.isValid()) {
                         boardManager.moveUnit(action.getSourceCoordinates().getX(),
                                 action.getSourceCoordinates().getY(),
                                 action.getTargetCoordinates().getX(),
@@ -70,7 +70,7 @@ public class Game {
                     return new GameResponse(GAME_ERROR, null);
                 }
             }
-            case LIST_UNIT:{
+            case LIST_UNIT: {
                 break;
             }
         }

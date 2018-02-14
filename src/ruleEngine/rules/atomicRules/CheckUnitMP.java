@@ -1,12 +1,12 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Board;
+import game.gameMaster.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import game.gameMaster.GameState;
 
-public class CheckUnitMP implements IRule{
+public class CheckUnitMP implements IRule {
 
     @Override
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
@@ -20,7 +20,7 @@ public class CheckUnitMP implements IRule{
         int MP = board.getUnit(x, y).getUnit().getMovementValue();
         int dist = board.getDistance(x, y, x2, y2);
 
-        if(dist > MP){
+        if (dist > MP) {
             result.addMessage(this,
                     "Not enough movement point, the unit has "
                             + MP + " MP, and you need " + dist + " MP"

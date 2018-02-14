@@ -13,11 +13,11 @@ public class CheckIsEmptyPath implements IRule {
 
     private int length;
 
-    private Vertex[][] initMap(int MP, GameAction.Coordinates src){
+    private Vertex[][] initMap(int MP, GameAction.Coordinates src) {
         length = 2 * MP + 1;
         Vertex[][] map = new Vertex[length][length];
-        for(int i = 0; i < length; i++){
-            for(int j = 0; j < length; j++){
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
                 map[i][j] = new Vertex(src.getX() - MP + i, src.getY() - MP + j, i, j);
             }
         }
@@ -35,22 +35,22 @@ public class CheckIsEmptyPath implements IRule {
 
         List<Vertex> queue = new LinkedList<>();
 
-        map[length/2][length/2].isMarked = true;
-        map[length/2][length/2].dist = 0;
-        Vertex actual = map[length/2][length/2];
+        map[length / 2][length / 2].isMarked = true;
+        map[length / 2][length / 2].dist = 0;
+        Vertex actual = map[length / 2][length / 2];
         queue.add(actual);
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             actual = queue.remove(0);
             //If the cell we check has the same coords than the target cell
             //  and it has the right distance, we win, return true.
             /*if(actual.x == target.getX() && actual.y == target.getY() && actual.dist <= MP){
                 return true;
             }*/
-            for(int i = actual.i - 1; i <= actual.i + 1; i++){
-                for(int j = actual.j - 1; j <= actual.j + 1; j++) {
+            for (int i = actual.i - 1; i <= actual.i + 1; i++) {
+                for (int j = actual.j - 1; j <= actual.j + 1; j++) {
 
                     //Don't add the neighbours with invalid coords or those we have already added
-                    if (i < 0 || j < 0 || i >= length || j >= length){
+                    if (i < 0 || j < 0 || i >= length || j >= length) {
                         continue;
                     }
 
@@ -61,11 +61,11 @@ public class CheckIsEmptyPath implements IRule {
                         continue;
                     }
                     //A cell containing a unit isn't valid to find the path
-                    if(board.getUnit(x, y) != null) {
+                    if (board.getUnit(x, y) != null) {
                         continue;
                     }
                     //If there is building and it's a mountain, we can't add it
-                    if(board.getBuilding(x, y) != null && !board.getBuilding(x, y).getBuilding().isAccessible()) {
+                    if (board.getBuilding(x, y) != null && !board.getBuilding(x, y).getBuilding().isAccessible()) {
                         continue;
                     }
 
@@ -75,7 +75,7 @@ public class CheckIsEmptyPath implements IRule {
                     neigh.isMarked = true;
                     neigh.dist = actual.dist + 1;
 
-                    if(x == target.getX() && y == target.getY() && neigh.dist <= MP){
+                    if (x == target.getX() && y == target.getY() && neigh.dist <= MP) {
                         return true;
                     }
 
@@ -93,11 +93,12 @@ public class CheckIsEmptyPath implements IRule {
         return false;
     }
 
-    private class Vertex{
-        private int x, y, i , j;
-        private boolean isMarked = false;
+    private class Vertex {
         int dist;
-        Vertex(int x, int y, int i, int j){
+        private int x, y, i, j;
+        private boolean isMarked = false;
+
+        Vertex(int x, int y, int i, int j) {
             this.x = x;
             this.y = y;
             this.i = i;

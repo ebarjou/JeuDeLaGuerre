@@ -8,7 +8,7 @@ import ruleEngine.entity.EUnitData;
 import ui.TermGUI;
 
 public class Start {
-    public static void main(String[] arg){
+    public static void main(String[] arg) {
         IBoardManager boardManager = BoardManager.getInstance();
         boardManager.initBoard(25, 20);
         boardManager.addUnit(EUnitData.RELAY_HORSE, EPlayer.PLAYER2, 10, 10);

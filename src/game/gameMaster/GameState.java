@@ -1,14 +1,14 @@
 package game.gameMaster;
 
 import game.EPlayer;
+import ruleEngine.GameAction.Coordinates;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
-import ruleEngine.GameAction.Coordinates;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameState implements Cloneable{
+public class GameState implements Cloneable {
 
     private EPlayer actualPlayer;
     // TODO: Maybe need this kind of enum to know in which phase we are (INIT / GAME / END ??)
@@ -25,7 +25,7 @@ public class GameState implements Cloneable{
 
     private int actionLeft;
 
-    GameState(){
+    GameState() {
         unitsPlayer1 = new ArrayList<>();
         unitsPlayer2 = new ArrayList<>();
 
@@ -37,20 +37,20 @@ public class GameState implements Cloneable{
         actionLeft = 5;
     }
 
-    void addPriorityUnit(Coordinates coords){
+    void addPriorityUnit(Coordinates coords) {
         priorityUnits1.add(coords);
     }
 
-    void addBuilding(EPlayer player, EBuildingData building){
-        if(player == EPlayer.PLAYER1){
+    void addBuilding(EPlayer player, EBuildingData building) {
+        if (player == EPlayer.PLAYER1) {
             buildingPlayer1.add(building);
         } else {
             buildingPlayer2.add(building);
         }
     }
 
-    void addUnit(EPlayer player, EUnitData unit){
-        if(player == EPlayer.PLAYER1){
+    void addUnit(EPlayer player, EUnitData unit) {
+        if (player == EPlayer.PLAYER1) {
             unitsPlayer1.add(unit);
         } else {
             unitsPlayer2.add(unit);
@@ -58,17 +58,17 @@ public class GameState implements Cloneable{
     }
 
     //Need to be sure of the remove of arraylist ..
-    boolean removePriorityUnit(Coordinates coords){
-        if(actualPlayer == EPlayer.PLAYER1){
-            for(Coordinates c : priorityUnits1){
-                if(c.getX() == coords.getX() && c.getY() == coords.getY()) {
+    boolean removePriorityUnit(Coordinates coords) {
+        if (actualPlayer == EPlayer.PLAYER1) {
+            for (Coordinates c : priorityUnits1) {
+                if (c.getX() == coords.getX() && c.getY() == coords.getY()) {
                     priorityUnits1.remove(c);
                     return true;
                 }
             }
         } else {
-            for(Coordinates c : priorityUnits2){
-                if(c.getX() == coords.getX() && c.getY() == coords.getY()) {
+            for (Coordinates c : priorityUnits2) {
+                if (c.getX() == coords.getX() && c.getY() == coords.getY()) {
                     priorityUnits1.remove(c);
                     return true;
                 }
@@ -77,38 +77,38 @@ public class GameState implements Cloneable{
         return false;
     }
 
-    void setPlayer(EPlayer player){
+    void setPlayer(EPlayer player) {
         actualPlayer = player;
     }
 
-    void switchPlayer(){
-        if(actualPlayer == EPlayer.PLAYER1)
+    void switchPlayer() {
+        if (actualPlayer == EPlayer.PLAYER1)
             actualPlayer = EPlayer.PLAYER2;
         else
             actualPlayer = EPlayer.PLAYER1;
         actionLeft = 5;
     }
 
-    void setActionLeft(int n){
-        this.actionLeft = n;
-    }
-
-    public EPlayer getActualPlayer(){
+    public EPlayer getActualPlayer() {
         return actualPlayer;
     }
 
-    public int getActionLeft(){
+    public int getActionLeft() {
         return actionLeft;
     }
 
-    void removeOneAction(){
+    void setActionLeft(int n) {
+        this.actionLeft = n;
+    }
+
+    void removeOneAction() {
         actionLeft = actionLeft - 1;
-        if(actionLeft < 0){
+        if (actionLeft < 0) {
             actionLeft = 0;
         }
     }
 
-    void removeAll(){
+    void removeAll() {
         unitsPlayer1 = new ArrayList<>();
         unitsPlayer2 = new ArrayList<>();
         buildingPlayer1 = new ArrayList<>();
@@ -119,19 +119,19 @@ public class GameState implements Cloneable{
 
     //TODO: Have to check if the object returned need to clone the Lists
     @Override
-    public GameState clone(){
+    public GameState clone() {
         Object o = null;
-        try{
+        try {
             o = super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        ((GameState)o).unitsPlayer1 = new ArrayList<>(unitsPlayer1);
-        ((GameState)o).unitsPlayer2 = new ArrayList<>(unitsPlayer2);
-        ((GameState)o).priorityUnits1 = new ArrayList<>(priorityUnits1);
-        ((GameState)o).priorityUnits2 = new ArrayList<>(priorityUnits2);
-        ((GameState)o).buildingPlayer1 = new ArrayList<>(buildingPlayer1);
-        ((GameState)o).buildingPlayer2 = new ArrayList<>(buildingPlayer2);
+        ((GameState) o).unitsPlayer1 = new ArrayList<>(unitsPlayer1);
+        ((GameState) o).unitsPlayer2 = new ArrayList<>(unitsPlayer2);
+        ((GameState) o).priorityUnits1 = new ArrayList<>(priorityUnits1);
+        ((GameState) o).priorityUnits2 = new ArrayList<>(priorityUnits2);
+        ((GameState) o).buildingPlayer1 = new ArrayList<>(buildingPlayer1);
+        ((GameState) o).buildingPlayer2 = new ArrayList<>(buildingPlayer2);
         return (GameState) o;
     }
 }

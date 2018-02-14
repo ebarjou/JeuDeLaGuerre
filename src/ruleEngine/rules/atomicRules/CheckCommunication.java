@@ -13,7 +13,7 @@ public class CheckCommunication implements IRule {
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         GameAction.Coordinates src = action.getSourceCoordinates();
         EUnitData unitData = board.getUnit(src.getX(), src.getY()).getUnit();
-        if(unitData.isRelayCommunication() || board.getCommunication(action.getPlayer(), src.getX(), src.getY())) {
+        if (unitData.isRelayCommunication() || board.getCommunication(action.getPlayer(), src.getX(), src.getY())) {
             return true;
         }
 
