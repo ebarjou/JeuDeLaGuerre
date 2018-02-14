@@ -89,6 +89,10 @@ public class GameState implements Cloneable{
         actionLeft = 5;
     }
 
+    void setActionLeft(int n){
+        this.actionLeft = n;
+    }
+
     public EPlayer getActualPlayer(){
         return actualPlayer;
     }
@@ -102,6 +106,15 @@ public class GameState implements Cloneable{
         if(actionLeft < 0){
             actionLeft = 0;
         }
+    }
+
+    void removeAll(){
+        unitsPlayer1 = new ArrayList<>();
+        unitsPlayer2 = new ArrayList<>();
+        buildingPlayer1 = new ArrayList<>();
+        buildingPlayer2 = new ArrayList<>();
+        priorityUnits1 = new ArrayList<>();
+        priorityUnits2 = new ArrayList<>();
     }
 
     //TODO: Have to check if the object returned need to clone the Lists

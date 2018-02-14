@@ -2,6 +2,7 @@ package game.gameMaster;
 
 import game.EPlayer;
 import ruleEngine.GameAction;
+import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 
 import java.util.Random;
@@ -26,6 +27,14 @@ public class GameMaster {
         return instance;
     }
 
+    public void setPlayer(EPlayer player){
+        actualState.setPlayer(player);
+    }
+
+    public void setActionLeft(int n){
+        actualState.setActionLeft(n);
+    }
+
     public boolean revert(){
         if(history.isEmpty())
             return false;
@@ -38,9 +47,9 @@ public class GameMaster {
         actualState.addUnit(player, unit);
     }
 
-    public void addBuilding(EPlayer player, EUnitData unit){
+    public void addBuilding(EPlayer player, EBuildingData building){
         history.push(actualState.clone());
-        actualState.addUnit(player, unit);
+        actualState.addBuilding(player, building);
     }
 
     public GameState getActualState() {
@@ -67,6 +76,10 @@ public class GameMaster {
             return true;
         }
         return false;
+    }
+
+    public void removeAll(){
+        actualState.removeAll();
     }
 
     //Some getter / setter / add / remove / revert methods to manipulate the GameMaster

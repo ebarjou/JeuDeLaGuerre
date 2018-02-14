@@ -11,19 +11,21 @@ public class Board implements Cloneable{
 
         this.width = width;
         this.height = height;
-
         board = new Cell[width][height];
 
-        for(int x = 0; x < width; ++x){
-            for(int y = 0; y < height; ++y){
+        for(int x = 0; x < width; ++x)
+            for(int y = 0; y < height; ++y)
                 board[x][y] = new Cell();
-            }
-        }
     }
 
     //return true if coord (x;y) is beyond board's edges
 
-    public boolean edge(int x, int y) throws ArithmeticException{
+    /**
+     * @param x
+     * @param y
+     * @return true if coords are beyond the board's edges
+     */
+    public boolean edge(int x, int y) {
         return x < 0 || y < 0 || x >= width || y >= height;
     }
 
@@ -37,13 +39,11 @@ public class Board implements Cloneable{
      * @return true if the move is done, else false
      */
     boolean moveUnit(int x, int y, int x2, int y2) {
-        if(edge(x, y) || edge(x2, y2)) {
+        if(edge(x, y) || edge(x2, y2))
             return false;
-        }
 
-        if(board[x][y].getUnit() == null && board[x2][y2].getUnit() == null) {
+        if(board[x][y].getUnit() == null && board[x2][y2].getUnit() == null)
             return false;
-        }
 
         Unit tmp = board[x][y].getUnit();
         board[x][y].setUnit(board[x2][y2].getUnit());
@@ -52,13 +52,11 @@ public class Board implements Cloneable{
     }
 
     boolean moveBuilding(int x, int y, int x2, int y2) {
-        if(edge(x, y) || edge(x2, y2)) {
+        if(edge(x, y) || edge(x2, y2))
             return false;
-        }
 
-        if(board[x][y].getBuilding() == null && board[x2][y2].getBuilding() == null) {
+        if(board[x][y].getBuilding() == null && board[x2][y2].getBuilding() == null)
             return false;
-        }
 
         Building tmp = board[x][y].getBuilding();
         board[x][y].setBuilding(board[x2][y2].getBuilding());
@@ -91,15 +89,13 @@ public class Board implements Cloneable{
     }
 
     void setUnit(Unit unit, int x, int y){
-        if(edge(x, y))
-            return;
-        board[x][y].setUnit(unit);
+        if(!edge(x, y))
+            board[x][y].setUnit(unit);
     }
 
     void setBuilding(Building building, int x, int y){
-        if(edge(x, y))
-            return;
-        board[x][y].setBuilding(building);
+        if(!edge(x, y))
+            board[x][y].setBuilding(building);
     }
 
 
@@ -123,6 +119,13 @@ public class Board implements Cloneable{
         return board[x][y].getBuilding();
     }
 
+    /**
+     * @param x
+     * @param y
+     * @param x2
+     * @param y2
+     * @return Return the distance in max between two coords
+     */
     public int getDistance(int x, int y, int x2, int y2){
         if(edge(x, y) || edge(x2, y2)){
             return -1;
@@ -149,11 +152,9 @@ public class Board implements Cloneable{
 
         assert o != null;
         ((Board)o).board = new Cell[width][height];
-        for(int x = 0; x < width; ++x){
-            for(int y = 0; y < height; ++y){
+        for(int x = 0; x < width; ++x)
+            for(int y = 0; y < height; ++y)
                 ((Board)o).board[x][y] = this.board[x][y].clone();
-            }
-        }
 
         return (Board) o;
     }
@@ -161,8 +162,8 @@ public class Board implements Cloneable{
     public String toString(){
         StringBuilder result = new StringBuilder();
         result.append("Width = " + width + " ; Height = " + height + "\n");
-        for(int x = 0; x < width; x++){
-            for(int y = 0; y < height; y++){
+        for(int x = 0; x < width; ++x) {
+            for(int y = 0; y < height; ++y) {
                 String str = board[x][y].toString();
                 if(!str.isEmpty()) {
                     result.append("(").append(x).append(";").append(y).append(") -> ");

@@ -3,6 +3,8 @@ package ui;
 import asg.cliche.Command;
 import ruleEngine.EGameActionType;
 
+import java.io.IOException;
+
 import static ui.commands.UserToGameCall.*;
 
 public class CommandParser {
@@ -69,6 +71,16 @@ public class CommandParser {
     public void end(){
         result.setCommand(END_TURN);
         result.setGameAction(EGameActionType.END_TURN);
+    }
+
+    @Command
+    public void load(String name){
+        LoadFile lf = new LoadFile();
+        try {
+            lf.loadFile(name);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Command

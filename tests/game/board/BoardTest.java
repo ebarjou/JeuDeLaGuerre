@@ -12,22 +12,22 @@ import static game.EPlayer.*;
 public class BoardTest {
 
     private IBoardManager master;
-    private int w = 25;
-    private int h = 20;
+    private int width = 25;
+    private int height = 20;
     private int x, y, x2, y2;
 
     @Before
     public void setUp() throws Exception {
         master = BoardManager.getInstance();
-        master.initBoard(w, h);
+        master.initBoard(width, height);
 
         Random r = new Random();
 
-        x = r.nextInt(w);
-        y = r.nextInt(h);
+        x = r.nextInt(width);
+        y = r.nextInt(height);
 
-        x2 = r.nextInt(w);
-        y2 = r.nextInt(h);
+        x2 = r.nextInt(width);
+        y2 = r.nextInt(height);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class BoardTest {
 
     @Test
     public void dimension(){
-        assertTrue(master.getBoard().getWidth() == w && master.getBoard().getHeight() == h);
+        assertTrue(master.getBoard().getWidth() == width && master.getBoard().getHeight() == height);
     }
 
     @Test
@@ -82,6 +82,21 @@ public class BoardTest {
         assertTrue(u1.getPlayer() == u2.getPlayer());
     }
 
+    @Test
+    public void moveBuilding(){
+        Building building = new Building(EBuildingData.ARSENAL, PLAYER1);
+        master.addBuilding(building.getBuilding(), building.getPlayer(), x, y);
+        master.moveBuilding(x, y, x2, y2);
+
+        Building building2 = master.getBoard().getBuilding(x2, y2);
+
+        assertTrue(building.getBuilding() == building2.getBuilding());
+        assertTrue(building.getPlayer() == building2.getPlayer());
+
+        assertTrue(master.moveBuilding(x2, y2, x2, y2));
+        assertFalse(master.moveBuilding(x2, y2, x2 + width, y2 + height));
+        assertFalse(master.moveBuilding(x2, y2, x2 - width, y2 - height));
+    }
 
     @Test
     public void move(){
@@ -95,8 +110,8 @@ public class BoardTest {
         assertTrue(soldier.getPlayer() == soldier2.getPlayer());
 
         assertTrue(master.moveUnit(x2, y2, x2, y2));
-        assertFalse(master.moveUnit(x2, y2, x2 + w, y2 + h));
-        assertFalse(master.moveUnit(x2, y2, x2 - w, y2 - h));
+        assertFalse(master.moveUnit(x2, y2, x2 + width, y2 + height));
+        assertFalse(master.moveUnit(x2, y2, x2 - width, y2 - height));
     }
 
     @Test
@@ -148,6 +163,23 @@ public class BoardTest {
         int distance = master.getBoard().getDistance(x, y, x2, y2);
         System.out.println(distance + "\n");
         assertTrue(distance >= 0);
+    }
+
+    @Test
+    public void clearCommunication(){
+        Random r = new Random();
+        for(int i = 0; i < 100; i++)
+            master.setCommunication(PLAYER1, r.nextInt(width), r.nextInt(height), true);
+
+        master.clearCommunication();
+        boolean noCommunication = true;
+        for(int i = 0; i < master.getBoard().getWidth(); i++){
+            for(int j = 0; j < master.getBoard().getHeight(); j++){
+                noCommunication = noCommunication && !master.getBoard().getCommunication(PLAYER1, i, j);
+                noCommunication = noCommunication && !master.getBoard().getCommunication(PLAYER2, i, j);
+            }
+        }
+        assertTrue(noCommunication);
     }
 
     @After
