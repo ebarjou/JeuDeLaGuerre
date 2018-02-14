@@ -100,15 +100,28 @@ public class GameState implements Cloneable {
         return actionLeft;
     }
 
+    public boolean isPriorityCoord(Coordinates coords){
+        List<Coordinates> priority;
+        if(actualPlayer == EPlayer.PLAYER1)
+            priority = priorityUnits1;
+        else
+            priority = priorityUnits2;
+
+        for(Coordinates c : priority)
+            if(c.getX() == coords.getX() && c.getY() == coords.getY())
+                return true;
+        return false;
+
+    }
+
     void setActionLeft(int n) {
         this.actionLeft = n;
     }
 
     void removeOneAction() {
         actionLeft = actionLeft - 1;
-        if (actionLeft < 0) {
+        if (actionLeft < 0)
             actionLeft = 0;
-        }
     }
 
     void removeAll() {

@@ -2,6 +2,7 @@ import game.EPlayer;
 import game.Game;
 import game.board.BoardManager;
 import game.board.IBoardManager;
+import game.gameMaster.GameMaster;
 import javafx.application.Application;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;

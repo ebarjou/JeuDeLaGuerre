@@ -21,6 +21,7 @@ public class MoveRules implements IRule {
         rules.add(CheckCommunication.class);
         rules.add(CheckOnBoard.class);
         rules.add(CheckIsUnit.class);
+        //rules.add(CheckIsPriorityUnit.class);
         rules.add(CheckUnitMP.class);
         rules.add(CheckIsEmptyPath.class);
     }
