@@ -2,10 +2,10 @@ import game.EPlayer;
 import game.Game;
 import game.board.BoardManager;
 import game.board.IBoardManager;
-import javafx.application.Application;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
-import ui.TermGUI;
+import player.GUIPlayer;
+import ui.GUIThread;
 
 public class Start {
     public static void main(String[] arg) {
@@ -25,7 +25,15 @@ public class Start {
         boardManager.setCommunication(EPlayer.PLAYER2, 0, 1, true);
         boardManager.setCommunication(EPlayer.PLAYER2, 1, 1, true);
 
-        Game game = Game.getInstance();
-        Application.launch(TermGUI.class);
+        GUIThread guiThread = new GUIThread();
+
+        GUIPlayer p1 = new GUIPlayer(Thread.currentThread(), guiThread);
+        GUIPlayer p2 = new GUIPlayer(Thread.currentThread(), guiThread);
+
+        Game.init(p1, p2);
+
+        guiThread.start();
+
+        Game.getInstance().start();
     }
 }

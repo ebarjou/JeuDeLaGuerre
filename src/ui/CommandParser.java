@@ -16,6 +16,10 @@ public class CommandParser {
         return result;
     }
 
+    void clearResult() {
+        result.setCommand(CMD_ERROR);
+    }
+
     private int[] parseCoords(String c) throws Exception {
         int[] coords = new int[2];
         c = c.toLowerCase();
@@ -59,12 +63,13 @@ public class CommandParser {
     @Command
     public void revert() {
         result.setCommand(REVERT);
+        return;
     }
 
     @Command
     public void end() {
         result.setCommand(END_TURN);
-        result.setGameAction(EGameActionType.END_TURN);
+        return;
     }
 
     @Command

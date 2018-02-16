@@ -6,38 +6,51 @@ import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EBuildingData;
-import sun.security.provider.certpath.Vertex;
 import system.LoadFile;
 import ui.GameResponse;
+import player.Player;
 import ui.UIAction;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 import static ui.commands.GameToUserCall.*;
 
 public class Game {
-    private static Game instance;
+    private static Game instance = null;
     private IBoardManager boardManager;
     private GameMaster gameMaster;
+    private Player player1;
+    private Player player2;
 
-    private Game() {
-        boardManager = BoardManager.getInstance();
-        gameMaster = GameMaster.getInstance();
-    }
-
-    public static Game getInstance() {
-        if (instance == null) instance = new Game();
+    public static Game getInstance(){
         return instance;
     }
 
-    private class VertexCell{
-        Cell c;
-        boolean isMarked = false;
-        VertexCell(Cell c){
-            this.c = c;
+    public static void init(Player player1, Player player2){
+        instance = new Game(player1, player2);
+    }
+
+    private Game(Player player1, Player player2) {
+        boardManager = BoardManager.getInstance();
+        gameMaster = GameMaster.getInstance();
+        this.player1 = player1;
+        this.player2 = player2;
+    }
+
+    public void start(){
+        computeCommunication();
+        while(true){
+            Player player = getPlayer();
+            UIAction action = player.getCommand();
+            GameResponse response = processCommand(action);
+            player.setResponse(response);
         }
+    }
+
+    public Player getPlayer() {
+        if (gameMaster.getActualState().getActualPlayer() == EPlayer.PLAYER1)
+            return player1;
+        return player2;
     }
 
     private boolean isObstacle(int x, int y, EPlayer player){
@@ -120,6 +133,7 @@ public class Game {
     }
 
     public GameResponse processCommand(UIAction cmd) {
+        if(cmd == null)  new GameResponse(GAME_ERROR, "Error : null call.");
         switch (cmd.getCommand()) {
             case EXIT: {
                 System.exit(0);
@@ -140,12 +154,13 @@ public class Game {
             case REVERT: {
                 boardManager.revert();
                 gameMaster.revert();
-                break;
+                return new GameResponse(VALID, cmd.getErrorMessage());
             }
             case END_TURN: {
+                System.out.println("END TURN");
                 boardManager.clearHistory();
                 gameMaster.switchPlayer();
-                break;
+                return new GameResponse(VALID, cmd.getErrorMessage());
             }
             case CMD_ERROR: {
                 return new GameResponse(INVALID, cmd.getErrorMessage());
@@ -160,4 +175,11 @@ public class Game {
         return new GameResponse(GAME_ERROR, "Error : Unimplemented call.");
     }
 
+    private class VertexCell{
+        Cell c;
+        boolean isMarked = false;
+        VertexCell(Cell c){
+            this.c = c;
+        }
+    }
 }

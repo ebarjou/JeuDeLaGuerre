@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import player.Player;
 
 import static ui.commands.UserToGameCall.CMD_ERROR;
 import static ui.commands.UserToGameCall.EXIT;
@@ -96,13 +97,16 @@ public class TermGUI extends Application {
     }
 
     private void processCommand(String cmd) {
+        parser.clearResult();
         UIAction action = this.parseCommand(cmd);
         if (action.getCommand() == CMD_ERROR) {
             if (action.getErrorMessage() != null) System.out.println(action.getErrorMessage());
             else System.out.println("Incorrect command.");
-            return;
         }
-        processResponse(Game.getInstance().processCommand(action));
+
+        Player player = Game.getInstance().getPlayer();
+        player.setCommand(action);
+        processResponse(player.getResponse());
     }
 
     private void processResponse(GameResponse response) {

@@ -3,6 +3,7 @@ package game;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import player.GUIPlayer;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import ui.GameResponse;
@@ -17,7 +18,11 @@ public class GameTest {
     private Game game;
     @Before
     public void setUp() throws Exception {
+        GUIPlayer p1 = new GUIPlayer(Thread.currentThread(), null);
+        GUIPlayer p2 = new GUIPlayer(Thread.currentThread(), null);
+        game.init(p1, p2);
         game = Game.getInstance();
+
     }
 
     @Test
