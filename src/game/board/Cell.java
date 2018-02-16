@@ -36,6 +36,7 @@ public class Cell implements Cloneable {
         ((Cell) o).unit = null;
         if (unit != null)
             ((Cell) o).unit = unit.clone();
+        ((Cell) o).communications = communications.clone();
 
         return (Cell) o;
     }
