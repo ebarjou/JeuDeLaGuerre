@@ -28,7 +28,7 @@ public class CheckIsEmptyPath implements IRule {
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         GameAction.Coordinates src = action.getSourceCoordinates();
         GameAction.Coordinates target = action.getTargetCoordinates();
-        int MP = board.getUnit(src.getX(), src.getY()).getUnit().getMovementValue();
+        int MP = board.getUnit(src.getX(), src.getY()).getUnitData().getMovementValue();
 
         assert MP != 0;
 
@@ -57,7 +57,7 @@ public class CheckIsEmptyPath implements IRule {
                     if (board.getUnit(x, y) != null)
                         continue;
                     //If there is building and it's a mountain, we can't add it
-                    if (board.getBuilding(x, y) != null && !board.getBuilding(x, y).getBuilding().isAccessible())
+                    if (board.getBuilding(x, y) != null && !board.getBuilding(x, y).getBuildingData().isAccessible())
                         continue;
 
                     //Just create the valid neighbour, with dist + 1

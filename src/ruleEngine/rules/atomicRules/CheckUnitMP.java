@@ -15,7 +15,7 @@ public class CheckUnitMP implements IRule {
         int x2 = action.getTargetCoordinates().getX();
         int y2 = action.getTargetCoordinates().getY();
 
-        int MP = board.getUnit(x, y).getUnit().getMovementValue();
+        int MP = board.getUnit(x, y).getUnitData().getMovementValue();
         int dist = board.getDistance(x, y, x2, y2);
 
         if (dist > MP) {

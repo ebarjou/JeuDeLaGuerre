@@ -49,8 +49,7 @@ public class BoardManager implements IBoardManager {
 
     @Override
     public void clearHistory() {
-        while (!history.empty())
-            history.pop();
+        history = new Stack<>();
     }
 
     @Override

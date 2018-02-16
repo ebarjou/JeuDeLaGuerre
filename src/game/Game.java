@@ -1,16 +1,19 @@
 package game;
 
-import game.board.BoardManager;
-import game.board.IBoardManager;
+import game.board.*;
 import game.gameMaster.GameMaster;
 import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
+import ruleEngine.entity.EBuildingData;
+import sun.security.provider.certpath.Vertex;
 import system.LoadFile;
 import ui.GameResponse;
 import ui.UIAction;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import static ui.commands.GameToUserCall.*;
 
@@ -29,6 +32,69 @@ public class Game {
         return instance;
     }
 
+    private class VertexCell{
+        Cell c;
+        boolean isMarked = false;
+        VertexCell(Cell c){
+            this.c = c;
+        }
+    }
+
+    private boolean isObstacle(int x, int y, EPlayer player){
+        if(boardManager.getBoard().edge(x, y))
+            return true;
+        Unit u = boardManager.getBoard().getUnit(x, y);
+        Building b = boardManager.getBoard().getBuilding(x, y);
+        return (b != null && b.getBuildingData() == EBuildingData.MOUNTAIN)
+                || (u != null && u.getPlayer() != player && !u.getUnitData().isRelayCommunication());
+    }
+
+    private void createCom(int x, int y, EDirection dir, EPlayer player, VertexCell[][] board, int rangeMax){
+        x += dir.getX();
+        y += dir.getY();
+        int dist = 1;
+        while(!isObstacle(x, y, player) && (rangeMax < 0 || dist <= rangeMax)){
+            boardManager.setCommunication(player, x, y, true);
+            Unit u = board[x][y].c.getUnit();
+            if(u != null && u.getPlayer() == player && !board[x][y].isMarked){
+                board[x][y].isMarked = true;
+                int rangeUnit = 1;
+                if(u.getUnitData().isRelayCommunication())
+                    rangeUnit = -1;
+
+                for(EDirection d : EDirection.values())
+                    createCom(x, y, d, player, board, rangeUnit);
+            }
+            board[x][y].isMarked = true;
+            x += dir.getX();
+            y += dir.getY();
+            dist++;
+        }
+    }
+
+    private void computeCommunication(){
+        int w = boardManager.getBoard().getWidth();
+        int h = boardManager.getBoard().getHeight();
+        VertexCell[][] boardVertex = new VertexCell[w][h];
+        for(int x = 0; x < w; x++)
+            for(int y = 0; y < h; y++)
+                boardVertex[x][y] = new VertexCell(boardManager.getBoard().getCell(x, y));
+
+        Board board = boardManager.getBoard();
+        for(int x = 0; x < w; x++){
+            for(int y = 0; y < h; y++){
+                Building building = board.getBuilding(x, y);
+
+                if(building != null && (building.getBuildingData() == EBuildingData.ARSENAL)){
+                    boardManager.setCommunication(building.getPlayer(), x, y, true);
+                    boardVertex[x][y].isMarked = true;
+                    for(EDirection direction : EDirection.values())
+                        createCom(x, y, direction, building.getPlayer(), boardVertex, -1);
+                }
+            }
+        }
+    }
+
     private GameResponse handleGameAction(UIAction cmd) {
         try {
             GameAction action = cmd.getGameAction(GameMaster.getInstance().getActualState().getActualPlayer());
@@ -39,6 +105,10 @@ public class Game {
                         action.getTargetCoordinates().getX(),
                         action.getTargetCoordinates().getY());
                 gameMaster.removeAction();
+
+                // TEMPORARY COMMUNICATION COMPUTING
+                boardManager.clearCommunication();
+                computeCommunication();
 
                 return new GameResponse(VALID, null);
             } else {

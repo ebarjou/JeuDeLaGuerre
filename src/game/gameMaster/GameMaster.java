@@ -57,8 +57,7 @@ public class GameMaster {
     }
 
     public void switchPlayer() {
-        while (!history.isEmpty())
-            history.pop();
+        history = new Stack<>();
 
         actualState.switchPlayer();
     }

@@ -12,7 +12,7 @@ public class Building implements Cloneable {
         this.player = player;
     }
 
-    public EBuildingData getBuilding() {
+    public EBuildingData getBuildingData() {
         return building;
     }
 

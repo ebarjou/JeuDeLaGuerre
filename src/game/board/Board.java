@@ -15,7 +15,7 @@ public class Board implements Cloneable {
 
         for (int x = 0; x < width; ++x)
             for (int y = 0; y < height; ++y)
-                board[x][y] = new Cell();
+                board[x][y] = new Cell(x, y);
     }
 
     /**
@@ -76,10 +76,10 @@ public class Board implements Cloneable {
             board[x][y].setCommunication(player, value);
     }
 
-    Cell getCell(int x, int y) {
+    public Cell getCell(int x, int y) {
         if (edge(x, y))
             return null;
-        return board[x][y];
+        return board[x][y].clone();
     }
 
     void setUnit(Unit unit, int x, int y) {

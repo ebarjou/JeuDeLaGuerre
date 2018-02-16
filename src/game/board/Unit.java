@@ -12,7 +12,7 @@ public class Unit implements Cloneable {
         this.player = player;
     }
 
-    public EUnitData getUnit() {
+    public EUnitData getUnitData() {
         return unit;
     }
 

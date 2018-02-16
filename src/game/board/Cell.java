@@ -1,17 +1,19 @@
 package game.board;
 
 import game.EPlayer;
-import game.EPlayer.*;
 
-class Cell implements Cloneable {
+public class Cell implements Cloneable {
     private Unit unit;
     private Building building;
     private boolean[] communications;
+    private int x, y;
 
-    Cell() {
+    Cell(int x, int y) {
         unit = null;
         building = null;
         communications = new boolean[EPlayer.values().length];
+        this.x = x;
+        this.y = y;
         for(int i = 0; i < communications.length; i++)
             communications[i] = false;
     }
@@ -41,9 +43,9 @@ class Cell implements Cloneable {
     public String toString() {
         String res = "";
         if (unit != null)
-            res += unit.getUnit() + "\n";
+            res += unit.getUnitData() + "\n";
         if (building != null)
-            res += building.getBuilding() + "\n";
+            res += building.getBuildingData() + "\n";
         if (res.isEmpty())
             return res;
 
@@ -73,4 +75,13 @@ class Cell implements Cloneable {
     public boolean isCommunication(EPlayer player) {
         return communications[player.ordinal()];
     }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
 }

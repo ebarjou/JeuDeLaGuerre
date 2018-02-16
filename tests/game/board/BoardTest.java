@@ -44,12 +44,12 @@ public class BoardTest {
     public void addUnitTest(){
         //Test if adding an information to a cell is really added
         Unit soldier = new Unit(EUnitData.INFANTRY, PLAYER1);
-        master.addUnit(soldier.getUnit(), soldier.getPlayer(), x, y);
+        master.addUnit(soldier.getUnitData(), soldier.getPlayer(), x, y);
 
         Unit result = master.getBoard().getUnit(x, y);
 
-        String src = "result : " + soldier.getUnit() + " : joueur" + soldier.getPlayer() + "\n";
-        String res = "result : " + result.getUnit() + " : joueur" + result.getPlayer() + "\n";
+        String src = "result : " + soldier.getUnitData() + " : joueur" + soldier.getPlayer() + "\n";
+        String res = "result : " + result.getUnitData() + " : joueur" + result.getPlayer() + "\n";
 
         assertTrue(src.equalsIgnoreCase(res));
     }
@@ -71,26 +71,26 @@ public class BoardTest {
         Building b2 = board2.getBuilding(x, y);
 
         assertTrue(b1 != b2);
-        assertTrue(b1.getBuilding() == b2.getBuilding());
+        assertTrue(b1.getBuildingData() == b2.getBuildingData());
         assertTrue(b1.getPlayer() == b2.getPlayer());
 
         Unit u1 = board1.getUnit(x, y);
         Unit u2 = board2.getUnit(x, y);
 
         assertTrue(u1 != u2);
-        assertTrue(u1.getUnit() == u2.getUnit());
+        assertTrue(u1.getUnitData() == u2.getUnitData());
         assertTrue(u1.getPlayer() == u2.getPlayer());
     }
 
     @Test
     public void moveBuilding(){
         Building building = new Building(EBuildingData.ARSENAL, PLAYER1);
-        master.addBuilding(building.getBuilding(), building.getPlayer(), x, y);
+        master.addBuilding(building.getBuildingData(), building.getPlayer(), x, y);
         master.moveBuilding(x, y, x2, y2);
 
         Building building2 = master.getBoard().getBuilding(x2, y2);
 
-        assertTrue(building.getBuilding() == building2.getBuilding());
+        assertTrue(building.getBuildingData() == building2.getBuildingData());
         assertTrue(building.getPlayer() == building2.getPlayer());
 
         assertTrue(master.moveBuilding(x2, y2, x2, y2));
@@ -101,12 +101,12 @@ public class BoardTest {
     @Test
     public void move(){
         Unit soldier = new Unit(EUnitData.INFANTRY, PLAYER1);
-        master.addUnit(soldier.getUnit(), soldier.getPlayer(), x, y);
+        master.addUnit(soldier.getUnitData(), soldier.getPlayer(), x, y);
         master.moveUnit(x, y, x2, y2);
 
         Unit soldier2 = master.getBoard().getUnit(x2, y2);
 
-        assertTrue(soldier.getUnit() == soldier2.getUnit());
+        assertTrue(soldier.getUnitData() == soldier2.getUnitData());
         assertTrue(soldier.getPlayer() == soldier2.getPlayer());
 
         assertTrue(master.moveUnit(x2, y2, x2, y2));
@@ -137,7 +137,7 @@ public class BoardTest {
         Unit soldier2 = master.getBoard().getUnit(x, y);
 
         //Test if we still have the same information we put.
-        assertTrue(soldier1.getUnit() == soldier2.getUnit()
+        assertTrue(soldier1.getUnitData() == soldier2.getUnitData()
                 && soldier1.getPlayer() == soldier2.getPlayer()
         );
     }
