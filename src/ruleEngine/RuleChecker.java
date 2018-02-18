@@ -1,5 +1,6 @@
 package ruleEngine;
 
+import game.Game;
 import game.board.Board;
 import game.gameMaster.GameMaster;
 import ruleEngine.exceptions.IncorrectGameActionException;
@@ -25,7 +26,7 @@ public class RuleChecker {
         RuleResult result = new RuleResult();
         switch (action.getActionType()) {
             case MOVE:
-                moveRuleMaster.checkAction(board, GameMaster.getInstance().getActualState(), action, result);
+                moveRuleMaster.checkAction(board, Game.getInstance().getGameMaster().getActualState(), action, result);
                 break;
             default:
                 throw new IncorrectGameActionException("Unhandled GameAction type.");

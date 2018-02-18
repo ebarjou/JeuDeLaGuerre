@@ -1,5 +1,6 @@
 package ruleEngine.rules;
 
+import game.Game;
 import game.board.Board;
 import game.gameMaster.GameMaster;
 import game.gameMaster.GameState;
@@ -36,7 +37,7 @@ public class MoveRules implements IRule {
     @Override
     public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
         for (IRule r : rules)
-            r.checkAction(board, GameMaster.getInstance().getActualState(), action, result);
+            r.checkAction(board, Game.getInstance().getGameMaster().getActualState(), action, result);
 
         return result.isValid();
     }

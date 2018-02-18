@@ -1,6 +1,7 @@
 package system;
 
 import game.EPlayer;
+import game.Game;
 import game.board.BoardManager;
 import game.board.IBoardManager;
 import game.gameMaster.GameMaster;
@@ -49,8 +50,8 @@ public class LoadFile {
     public void loadFile(String name) throws IOException {
         if (name == null || name.isEmpty())
             throw new IOException("Path is empty, can't load.");
-        boardManager = BoardManager.getInstance();
-        gameMaster = GameMaster.getInstance();
+        boardManager = Game.getInstance().getBoardManager();
+        gameMaster = Game.getInstance().getGameMaster();
 
         clearAll();
 

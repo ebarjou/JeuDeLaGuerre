@@ -18,7 +18,7 @@ public class BoardTest {
 
     @Before
     public void setUp() throws Exception {
-        master = BoardManager.getInstance();
+        master = new BoardManager();
         master.initBoard(width, height);
 
         Random r = new Random();
@@ -28,11 +28,6 @@ public class BoardTest {
 
         x2 = r.nextInt(width);
         y2 = r.nextInt(height);
-    }
-
-    @Test
-    public void singleton(){
-        assertTrue(master == BoardManager.getInstance());
     }
 
     @Test

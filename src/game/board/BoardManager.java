@@ -7,19 +7,11 @@ import ruleEngine.entity.EUnitData;
 import java.util.Stack;
 
 public class BoardManager implements IBoardManager {
-    private static BoardManager boardMaster;
     private Board actualBoard;
     private Stack<Board> history;
 
-    private BoardManager() {
+    public BoardManager() {
         history = new Stack<>();
-    }
-
-    public static IBoardManager getInstance() {
-        if (boardMaster == null) {
-            boardMaster = new BoardManager();
-        }
-        return boardMaster;
     }
 
     /**

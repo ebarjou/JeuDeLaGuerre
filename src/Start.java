@@ -9,7 +9,14 @@ import ui.GUIThread;
 
 public class Start {
     public static void main(String[] arg) {
-        IBoardManager boardManager = BoardManager.getInstance();
+        GUIThread guiThread = new GUIThread();
+
+        GUIPlayer p1 = new GUIPlayer(Thread.currentThread(), guiThread);
+        GUIPlayer p2 = new GUIPlayer(Thread.currentThread(), guiThread);
+
+        Game.init(p1, p2);
+
+        IBoardManager boardManager = Game.getInstance().getBoardManager();
         boardManager.initBoard(25, 20);
         boardManager.addUnit(EUnitData.RELAY_HORSE, EPlayer.PLAYER2, 10, 10);
         boardManager.addUnit(EUnitData.CAVALRY, EPlayer.PLAYER1, 0, 0);
@@ -24,13 +31,6 @@ public class Start {
 
         boardManager.setCommunication(EPlayer.PLAYER2, 0, 1, true);
         boardManager.setCommunication(EPlayer.PLAYER2, 1, 1, true);
-
-        GUIThread guiThread = new GUIThread();
-
-        GUIPlayer p1 = new GUIPlayer(Thread.currentThread(), guiThread);
-        GUIPlayer p2 = new GUIPlayer(Thread.currentThread(), guiThread);
-
-        Game.init(p1, p2);
 
         guiThread.start();
 

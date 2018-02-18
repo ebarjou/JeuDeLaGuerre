@@ -31,8 +31,8 @@ public class Game {
     }
 
     private Game(Player player1, Player player2) {
-        boardManager = BoardManager.getInstance();
-        gameMaster = GameMaster.getInstance();
+        boardManager = new BoardManager();
+        gameMaster = new GameMaster();
         this.player1 = player1;
         this.player2 = player2;
     }
@@ -51,6 +51,18 @@ public class Game {
         if (gameMaster.getActualState().getActualPlayer() == EPlayer.PLAYER1)
             return player1;
         return player2;
+    }
+
+    public Board getBoard(){
+        return boardManager.getBoard();
+    }
+
+    public IBoardManager getBoardManager(){
+        return boardManager;
+    }
+
+    public GameMaster getGameMaster(){
+        return gameMaster;
     }
 
     private boolean isObstacle(int x, int y, EPlayer player){
@@ -110,7 +122,7 @@ public class Game {
 
     private GameResponse handleGameAction(UIAction cmd) {
         try {
-            GameAction action = cmd.getGameAction(GameMaster.getInstance().getActualState().getActualPlayer());
+            GameAction action = cmd.getGameAction(gameMaster.getActualState().getActualPlayer());
             RuleResult res = RuleChecker.getInstance().checkAction(boardManager.getBoard(), action);
             if (res.isValid()) {
                 boardManager.moveUnit(action.getSourceCoordinates().getX(),

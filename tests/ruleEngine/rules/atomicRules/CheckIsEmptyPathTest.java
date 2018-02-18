@@ -20,7 +20,7 @@ public class CheckIsEmptyPathTest {
     //TODO: Tests should be better ...
     @Before
     public void setUp(){
-        master = BoardManager.getInstance();
+        master = new BoardManager();
         master.initBoard(25, 20);
 
         master.addBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1,0, 1); ///////////////

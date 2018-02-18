@@ -53,7 +53,7 @@ public class TermGUI extends Application {
         primaryStage.sizeToScene();
         primaryStage.show();
 
-        canvas.draw(BoardManager.getInstance().getBoard());
+        canvas.draw(Game.getInstance().getBoard());
     }
 
     private void createScene() {
@@ -67,7 +67,7 @@ public class TermGUI extends Application {
         textField.setPrefWidth(WINDOW_WIDTH);
         textField.setPrefHeight(COMMAND_PANEL_HEIGHT);
 
-        labelPlayerTurn = new Label(GameMaster.getInstance().getActualState().getActualPlayer().name());
+        labelPlayerTurn = new Label(Game.getInstance().getGameMaster().getActualState().getActualPlayer().name());
         labelPlayerTurn.setPrefHeight(COMMAND_PANEL_HEIGHT);
 
         HBox layoutCommand = new HBox();
@@ -138,9 +138,9 @@ public class TermGUI extends Application {
             if (event.getCode() == KeyCode.ENTER) {
                 processCommand(textField.getText());
                 textField.clear();
-                labelPlayerTurn.setText(GameMaster.getInstance().getActualState().getActualPlayer().name());
+                labelPlayerTurn.setText(Game.getInstance().getGameMaster().getActualState().getActualPlayer().name());
             }
-            canvas.draw(BoardManager.getInstance().getBoard());
+            canvas.draw(Game.getInstance().getBoard());
         }
     }
 }

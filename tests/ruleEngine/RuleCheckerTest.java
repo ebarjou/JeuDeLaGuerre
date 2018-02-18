@@ -17,7 +17,7 @@ public class RuleCheckerTest {
     @Before
     public void setUp(){
         rulechecker = RuleChecker.getInstance();
-        board = BoardManager.getInstance();
+        board = new BoardManager();
         board.initBoard(25, 20);
     }
 

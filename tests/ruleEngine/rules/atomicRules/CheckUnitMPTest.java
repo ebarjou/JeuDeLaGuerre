@@ -23,7 +23,7 @@ public class CheckUnitMPTest {
 
     @Before
     public void setUp(){
-        board = BoardManager.getInstance();
+        board = new BoardManager();
         board.initBoard(25, 20);
 
         // MovementValue = 1

@@ -9,22 +9,14 @@ import java.util.Random;
 import java.util.Stack;
 
 public class GameMaster {
-
-    private static GameMaster instance;
     private Stack<GameState> history;
     private GameState actualState;
 
-    private GameMaster() { //Maybe singleton
+    public GameMaster() {
         history = new Stack<>();
         Random r = new Random();
         actualState = new GameState();
         actualState.setPlayer(r.nextInt(1) == 0 ? EPlayer.PLAYER1 : EPlayer.PLAYER2);
-    }
-
-    public static GameMaster getInstance() {
-        if (instance == null)
-            instance = new GameMaster();
-        return instance;
     }
 
     public void setPlayer(EPlayer player) {
