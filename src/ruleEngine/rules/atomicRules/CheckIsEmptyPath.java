@@ -72,7 +72,7 @@ public class CheckIsEmptyPath implements IRule {
                 }
             }
         }
-        result.addMessage(this, "There is no empty path found.");
+        result.addMessage(this, "There is no path found using " + MP + " movement points");
         result.invalidate();
         return false;
     }

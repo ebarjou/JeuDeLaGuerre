@@ -107,11 +107,13 @@ public class GameState implements Cloneable {
         else
             priority = priorityUnits2;
 
+        if(priority.isEmpty())
+            return true;
+
         for (Coordinates c : priority)
             if (c.getX() == coords.getX() && c.getY() == coords.getY())
                 return true;
         return false;
-
     }
 
     void removeOneAction() {

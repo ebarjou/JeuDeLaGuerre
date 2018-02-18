@@ -27,11 +27,9 @@ public class GameMaster {
         actualState.setActionLeft(n);
     }
 
-    public boolean revert() {
-        if (history.isEmpty())
-            return false;
-        actualState = history.pop();
-        return true;
+    public void revert() {
+        if (!history.isEmpty())
+            actualState = history.pop();
     }
 
     public void addUnit(EPlayer player, EUnitData unit) {
@@ -50,7 +48,6 @@ public class GameMaster {
 
     public void switchPlayer() {
         history = new Stack<>();
-
         actualState.switchPlayer();
     }
 
@@ -60,20 +57,15 @@ public class GameMaster {
         actualState.removeOneAction();
     }
 
-    public boolean removePriorityUnit(GameAction.Coordinates coords) {
+    public void removePriorityUnit(GameAction.Coordinates coords) {
         GameState tmp = actualState.clone();
         if (actualState.removePriorityUnit(coords)) {
             history.push(tmp);
-            return true;
         }
-        return false;
     }
 
     public void removeAll() {
         actualState.removeAll();
     }
-
-    //Some getter / setter / add / remove / revert methods to manipulate the GameMaster
-    // ...
 
 }

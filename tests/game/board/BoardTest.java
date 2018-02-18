@@ -87,10 +87,12 @@ public class BoardTest {
 
         assertTrue(building.getBuildingData() == building2.getBuildingData());
         assertTrue(building.getPlayer() == building2.getPlayer());
-
+        //TODO: NEED TO DO NEW TESTS ( REMOVE BOOLEAN FROM SOME METHODS IN BOARD )
+        /*
         assertTrue(master.moveBuilding(x2, y2, x2, y2));
         assertFalse(master.moveBuilding(x2, y2, x2 + width, y2 + height));
         assertFalse(master.moveBuilding(x2, y2, x2 - width, y2 - height));
+        */
     }
 
     @Test
@@ -104,9 +106,11 @@ public class BoardTest {
         assertTrue(soldier.getUnitData() == soldier2.getUnitData());
         assertTrue(soldier.getPlayer() == soldier2.getPlayer());
 
+        /*
         assertTrue(master.moveUnit(x2, y2, x2, y2));
         assertFalse(master.moveUnit(x2, y2, x2 + width, y2 + height));
         assertFalse(master.moveUnit(x2, y2, x2 - width, y2 - height));
+        */
     }
 
     @Test

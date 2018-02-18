@@ -16,17 +16,17 @@ public interface IBoardManager {
 
     boolean isEmptyHistory();
 
-    boolean moveUnit(int x, int y, int x2, int y2);
+    void moveUnit(int x, int y, int x2, int y2);
 
-    boolean moveBuilding(int x, int y, int x2, int y2);
+    void moveBuilding(int x, int y, int x2, int y2);
 
-    boolean addUnit(EUnitData unitType, EPlayer player, int x, int y);
+    void addUnit(EUnitData unitType, EPlayer player, int x, int y);
 
-    boolean addBuilding(EBuildingData buildingType, EPlayer player, int x, int y);
+    void addBuilding(EBuildingData buildingType, EPlayer player, int x, int y);
 
-    boolean removeUnit(int x, int y);
+    void removeUnit(int x, int y);
 
-    boolean removeBuilding(int x, int y);
+    void removeBuilding(int x, int y);
 
     void setCommunication(EPlayer player, int x, int y, boolean value);
 

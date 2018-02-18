@@ -130,8 +130,7 @@ public class Game {
                         action.getTargetCoordinates().getX(),
                         action.getTargetCoordinates().getY());
                 gameMaster.removeAction();
-
-                // TEMPORARY COMMUNICATION COMPUTING
+                //Communication
                 boardManager.clearCommunication();
                 computeCommunication();
 
@@ -155,6 +154,8 @@ public class Game {
                 LoadFile lf = new LoadFile();
                 try {
                     lf.loadFile(cmd.getText());
+                    boardManager.clearCommunication();
+                    computeCommunication();
                 } catch (IOException e) {
                     return new GameResponse(INVALID, e.getMessage(), boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
                 }
