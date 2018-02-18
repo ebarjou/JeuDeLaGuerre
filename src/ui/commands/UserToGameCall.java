@@ -8,5 +8,6 @@ public enum UserToGameCall {
     LOAD(),
     REVERT(),
     END_TURN(),
-    EXIT();
+    EXIT(),
+    REFRESH();
 }

@@ -23,6 +23,7 @@ import player.Player;
 
 import static ui.commands.UserToGameCall.CMD_ERROR;
 import static ui.commands.UserToGameCall.EXIT;
+import static ui.commands.UserToGameCall.REFRESH;
 
 public class TermGUI extends Application {
     private static final int WINDOW_WIDTH = 800;
@@ -53,7 +54,9 @@ public class TermGUI extends Application {
         primaryStage.sizeToScene();
         primaryStage.show();
 
-        canvas.draw(Game.getInstance().getBoard());
+        Player player = Game.getInstance().getPlayer();
+        player.setCommand(new UIAction(REFRESH, null));
+        processResponse(player.getResponse());
     }
 
     private void createScene() {
@@ -123,13 +126,15 @@ public class TermGUI extends Application {
             case APPLIED: {
                 break;
             }
-            case REFRESH: {
-                break;
-            }
             case GAME_ERROR: {
                 break;
             }
+            case REFRESH: {
+                break;
+            }
         }
+        labelPlayerTurn.setText(response.getPlayer().name());
+        canvas.draw(response.getBoard());
     }
 
     private class CommandEvent implements EventHandler<KeyEvent> {
@@ -138,9 +143,7 @@ public class TermGUI extends Application {
             if (event.getCode() == KeyCode.ENTER) {
                 processCommand(textField.getText());
                 textField.clear();
-                labelPlayerTurn.setText(Game.getInstance().getGameMaster().getActualState().getActualPlayer().name());
             }
-            canvas.draw(Game.getInstance().getBoard());
         }
     }
 }

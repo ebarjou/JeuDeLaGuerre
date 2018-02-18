@@ -135,17 +135,17 @@ public class Game {
                 boardManager.clearCommunication();
                 computeCommunication();
 
-                return new GameResponse(VALID, null);
+                return new GameResponse(VALID, null, boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
             } else {
-                return new GameResponse(INVALID, res.getLogMessage());
+                return new GameResponse(INVALID, res.getLogMessage(), boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
             }
         } catch (Exception e) {
-            return new GameResponse(GAME_ERROR, null);
+            return new GameResponse(GAME_ERROR, null, boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
         }
     }
 
     public GameResponse processCommand(UIAction cmd) {
-        if(cmd == null)  new GameResponse(GAME_ERROR, "Error : null call.");
+        if(cmd == null)  new GameResponse(GAME_ERROR, "Error : null call.", boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
         switch (cmd.getCommand()) {
             case EXIT: {
                 System.exit(0);
@@ -156,9 +156,9 @@ public class Game {
                 try {
                     lf.loadFile(cmd.getText());
                 } catch (IOException e) {
-                    return new GameResponse(INVALID, e.getMessage());
+                    return new GameResponse(INVALID, e.getMessage(), boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
                 }
-                return new GameResponse(VALID, null);
+                return new GameResponse(VALID, null, boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
             }
             case SAVE: {
                 break;
@@ -166,16 +166,16 @@ public class Game {
             case REVERT: {
                 boardManager.revert();
                 gameMaster.revert();
-                return new GameResponse(VALID, cmd.getErrorMessage());
+                return new GameResponse(VALID, cmd.getErrorMessage(), boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
             }
             case END_TURN: {
                 System.out.println("END TURN");
                 boardManager.clearHistory();
                 gameMaster.switchPlayer();
-                return new GameResponse(VALID, cmd.getErrorMessage());
+                return new GameResponse(VALID, cmd.getErrorMessage(), boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
             }
             case CMD_ERROR: {
-                return new GameResponse(INVALID, cmd.getErrorMessage());
+                return new GameResponse(INVALID, cmd.getErrorMessage(), boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
             }
             case GAME_ACTION: {
                 return handleGameAction(cmd);
@@ -184,7 +184,7 @@ public class Game {
                 break;
             }
         }
-        return new GameResponse(GAME_ERROR, "Error : Unimplemented call.");
+        return new GameResponse(GAME_ERROR, "Error : Unimplemented call.", boardManager.getBoard(), gameMaster.getActualState().getActualPlayer());
     }
 
     private class VertexCell{
