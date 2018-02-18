@@ -105,6 +105,7 @@ public class TermGUI extends Application {
         if (action.getCommand() == CMD_ERROR) {
             if (action.getErrorMessage() != null) System.out.println(action.getErrorMessage());
             else System.out.println("Incorrect command.");
+            return;
         }
 
         Player player = Game.getInstance().getPlayer();
