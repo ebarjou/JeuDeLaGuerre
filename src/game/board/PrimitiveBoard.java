@@ -33,11 +33,13 @@ public class PrimitiveBoard {
         return x >= 0 && y >= 0 && x < height && y < width;
     }
 
-    public boolean getCommunication(EPlayer player, int x, int y) {
+    public boolean isInCommunication(EPlayer player, int x, int y) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
         return (communication[getOffset(x, y)] & 1 << player.ordinal()) == 1;
     }
 
-    public void setCommunication(EPlayer player, int x, int y, boolean enable) {
+    public void setInCommunication(EPlayer player, int x, int y, boolean enable) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
         if (enable) communication[getOffset(x, y)] |= 1 << player.ordinal();
         else communication[getOffset(x, y)] &= 0 << player.ordinal();
     }
@@ -47,6 +49,7 @@ public class PrimitiveBoard {
     }
 
     public boolean isBuilding(int x, int y) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
         return buildings[getOffset(x, y)] != 0;
     }
 
@@ -55,26 +58,32 @@ public class PrimitiveBoard {
     }
 
     public EBuildingData getBuildingType(int x, int y) {
+        if(!isBuilding(x,y)) throw new NullPointerException();
         return getBuildingType(buildings[getOffset(x, y)]);
     }
 
     public EPlayer getBuildingPlayer(int x, int y) {
+        if(!isBuilding(x,y)) throw new NullPointerException();
         return getPlayer(buildings[getOffset(x, y)]);
     }
 
     public boolean isUnit(int x, int y) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
         return units[getOffset(x, y)] != 0;
     }
 
     public void setUnit(EUnitData unit, EPlayer player, int x, int y) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
         units[getOffset(x, y)] = setItemPlayer(player, setItemType(unit, (short) 0));
     }
 
     public EUnitData getUnitType(int x, int y) {
+        if(!isUnit(x,y)) throw new NullPointerException();
         return getUnitType(units[getOffset(x, y)]);
     }
 
     public EPlayer getUnitPlayer(int x, int y) {
+        if(!isUnit(x,y)) throw new NullPointerException();
         return getPlayer(units[getOffset(x, y)]);
     }
 
@@ -91,15 +100,15 @@ public class PrimitiveBoard {
     }
 
     private EUnitData getUnitType(short unit) {
-        return EUnitData.values()[(unit >> 8)];
+        return EUnitData.values()[((unit) >> 8)-1];
     }
 
     private EBuildingData getBuildingType(short building) {
-        return EBuildingData.values()[building >> 8];
+        return EBuildingData.values()[(building >> 8)-1];
     }
 
-    private short setItemType(Enum unit, short item) {
-        return (short) ((item & 0x00FF) | (unit.ordinal() << 8));
+    private short setItemType(Enum type, short item) {
+        return (short) ((item & 0x00FF) | ((type.ordinal()+1) << 8));
     }
 
     private EPlayer getPlayer(short item) {
