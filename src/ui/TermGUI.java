@@ -30,6 +30,7 @@ public class TermGUI extends Application {
     private static final int WINDOW_HEIGHT = 640;
     private static final int COMMAND_PANEL_HEIGHT = 28;
     private static final int COMMAND_PANEL_MARGIN = 10;
+    private static final int BOARD_INDICES_SIZE = 20;
 
     private Shell shell;
     private Scene scene;
@@ -61,9 +62,9 @@ public class TermGUI extends Application {
 
     private void createScene() {
         Group root = new Group();
-        scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT + COMMAND_PANEL_HEIGHT, Color.LIGHTGREY);
+        scene = new Scene(root, WINDOW_WIDTH + BOARD_INDICES_SIZE, WINDOW_HEIGHT + COMMAND_PANEL_HEIGHT + BOARD_INDICES_SIZE, Color.LIGHTGREY);
 
-        canvas = new BoardCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
+        canvas = new BoardCanvas(WINDOW_WIDTH, WINDOW_HEIGHT, BOARD_INDICES_SIZE, BOARD_INDICES_SIZE);
 
         textField = new TextField("Enter command here");
         textField.setOnKeyPressed(new CommandEvent());
