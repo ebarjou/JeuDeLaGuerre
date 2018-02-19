@@ -32,11 +32,9 @@ public class BoardManager implements IBoardManager {
     }
 
     @Override
-    public boolean revert() {
-        if (history.empty())
-            return false;
-        actualBoard = history.pop().clone();
-        return true;
+    public void revert() {
+        if (!history.empty())
+            actualBoard = history.pop().clone();
     }
 
     @Override

@@ -10,7 +10,7 @@ public interface IBoardManager {
 
     Board getBoard();
 
-    boolean revert();
+    void revert();
 
     void clearHistory();
 
