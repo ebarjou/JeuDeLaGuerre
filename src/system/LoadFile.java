@@ -1,6 +1,7 @@
 package system;
 
 import game.EPlayer;
+import game.Game;
 import game.board.Board;
 import game.gameMaster.GameMaster;
 import ruleEngine.entity.EBuildingData;
@@ -93,6 +94,7 @@ public class LoadFile {
         }
         br.close();
 
+        Game.getInstance().reinit(boardManager, gameMaster);
     }
 
 }
