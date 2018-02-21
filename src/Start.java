@@ -1,6 +1,6 @@
 import game.EPlayer;
 import game.Game;
-import game.board.PrimitiveBoard;
+import game.board.Board;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import player.GUIPlayer;
@@ -15,7 +15,7 @@ public class Start {
 
         Game.init(p1, p2);
 
-        PrimitiveBoard boardManager = Game.getInstance().getBoardManager();
+        Board boardManager = Game.getInstance().getBoardManager();
 
         boardManager.setUnit(EUnitData.RELAY_HORSE, EPlayer.PLAYER_SOUTH, 10, 10);
         boardManager.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH, 0, 0);

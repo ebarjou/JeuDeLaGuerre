@@ -1,9 +1,7 @@
 package ruleEngine;
 
 import game.Game;
-import game.board.Board;
 import game.board.IBoard;
-import game.gameMaster.GameMaster;
 import ruleEngine.exceptions.IncorrectGameActionException;
 import ruleEngine.rules.MoveRules;
 
@@ -31,7 +29,6 @@ public class RuleChecker {
                 break;
             default:
                 throw new IncorrectGameActionException("Unhandled GameAction type.");
-
         }
 
         return result;

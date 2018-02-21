@@ -1,7 +1,7 @@
 package ruleEngine;
 
 import game.EPlayer;
-import game.board.PrimitiveBoard;
+import game.board.Board;
 import org.junit.Before;
 import org.junit.Test;
 import ruleEngine.entity.EUnitData;
@@ -12,12 +12,12 @@ import static org.junit.Assert.assertTrue;
 public class RuleCheckerTest {
 
     private RuleChecker rulechecker;
-    private PrimitiveBoard board;
+    private Board board;
 
     @Before
     public void setUp(){
         rulechecker = RuleChecker.getInstance();
-        board = new PrimitiveBoard(25, 20);
+        board = new Board(25, 20);
     }
 
     @Test

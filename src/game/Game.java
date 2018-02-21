@@ -18,7 +18,7 @@ import static ui.commands.GameToUserCall.*;
 
 public class Game {
     private static Game instance = null;
-    private PrimitiveBoard board;
+    private Board board;
     private GameMaster gameMaster;
     private Player player1;
     private Player player2;
@@ -32,7 +32,7 @@ public class Game {
     }
 
     private Game(Player player1, Player player2) {
-        board = new PrimitiveBoard(25, 20);
+        board = new Board(25, 20);
         gameMaster = new GameMaster();
         this.player1 = player1;
         this.player2 = player2;
@@ -58,11 +58,11 @@ public class Game {
         return board;
     }
 
-    public PrimitiveBoard getBoardManager(){
+    public Board getBoardManager(){
         return board;
     }
 
-    public void reinit(PrimitiveBoard board, GameMaster gameMaster){
+    public void reinit(Board board, GameMaster gameMaster){
         this.board = board;
         this.gameMaster = gameMaster;
     }

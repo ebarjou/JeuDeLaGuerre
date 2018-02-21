@@ -1,9 +1,7 @@
 package ruleEngine.rules;
 
 import game.Game;
-import game.board.Board;
 import game.board.IBoard;
-import game.gameMaster.GameMaster;
 import game.gameMaster.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;

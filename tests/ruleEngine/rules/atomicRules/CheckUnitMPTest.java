@@ -1,7 +1,7 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.PrimitiveBoard;
+import game.board.Board;
 import game.gameMaster.GameState;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,12 +17,12 @@ public class CheckUnitMPTest {
 
     private GameAction gameAction;
     private GameState gameState;
-    private PrimitiveBoard board;
+    private Board board;
     private CheckUnitMP rule;
 
     @Before
     public void setUp(){
-        board = new PrimitiveBoard(25, 20);
+        board = new Board(25, 20);
 
         // MovementValue = 1
         board.setUnit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH,0, 0);

@@ -1,116 +1,126 @@
 package game.board;
 
 import game.EPlayer;
+import ruleEngine.entity.EBuildingData;
+import ruleEngine.entity.EUnitData;
 
-public class Board implements Cloneable {
-    private int width, height;
-    private Cell[][] board;
+import java.util.Arrays;
 
-    Board(int width, int height) {
-        assert (width > 0 && height > 0);
+public class Board implements IBoard{
+    private int height, width;
+    private short[] units;
+    private short[] buildings;
 
-        this.width = width;
+    private byte[] communication;
+    private boolean[] marked;
+
+    public Board(int width, int height) {
         this.height = height;
-        board = new Cell[width][height];
-
-        for (int x = 0; x < width; ++x)
-            for (int y = 0; y < height; ++y)
-                board[x][y] = new Cell(x, y);
+        this.width = width;
+        units = new short[height * width];
+        buildings = new short[height * width];
+        communication = new byte[height * width];
+        marked = new boolean[height * width];
     }
 
-    /**
-     * @param x
-     * @param y
-     * @return true if coords are beyond the board's edges
-     */
-    public boolean edge(int x, int y) {
-        return x < 0 || y < 0 || x >= width || y >= height;
+    private Board(int width, int height, short[] units, short[] buildings) {
+        this.height = height;
+        this.width = width;
+        this.units = units;
+        this.buildings = buildings;
+        communication = new byte[height * width];
+        marked = new boolean[height * width];
     }
 
-    /**
-     * Swap the information concerning the unit/building at coord (x;y) with the cell at coord (x2, y2);
-     *
-     * @param x  coord X source
-     * @param y  coord Y source
-     * @param x2 coord X destination
-     * @param y2 coord Y destination
-     * @return true if the move is done, else false
-     */
-    boolean moveUnit(int x, int y, int x2, int y2) {
-        if (edge(x, y) || edge(x2, y2))
-            return false;
-
-        if (board[x][y].getUnit() == null && board[x2][y2].getUnit() == null)
-            return false;
-
-        Unit tmp = board[x][y].getUnit();
-        board[x][y].setUnit(board[x2][y2].getUnit());
-        board[x2][y2].setUnit(tmp);
-        return true;
-    }
-
-    boolean moveBuilding(int x, int y, int x2, int y2) {
-        if (edge(x, y) || edge(x2, y2))
-            return false;
-
-        if (board[x][y].getBuilding() == null && board[x2][y2].getBuilding() == null)
-            return false;
-
-        Building tmp = board[x][y].getBuilding();
-        board[x][y].setBuilding(board[x2][y2].getBuilding());
-        board[x2][y2].setBuilding(tmp);
-        return true;
-    }
-
-    void clearCommunication() {
-        for (int x = 0; x < width; ++x) {
-            for (int y = 0; y < height; ++y) {
-                board[x][y].setCommunication(EPlayer.PLAYER_NORTH, false);
-                board[x][y].setCommunication(EPlayer.PLAYER_SOUTH, false);
-            }
-        }
-    }
-
-    void setCommunication(EPlayer player, int x, int y, boolean value) {
-        if (!edge(x, y))
-            board[x][y].setCommunication(player, value);
-    }
-
-    public Cell getCell(int x, int y) {
-        if (edge(x, y))
-            return null;
-        return board[x][y].clone();
-    }
-
-    void setUnit(Unit unit, int x, int y) {
-        if (!edge(x, y))
-            board[x][y].setUnit(unit);
-    }
-
-    void setBuilding(Building building, int x, int y) {
-        if (!edge(x, y))
-            board[x][y].setBuilding(building);
-    }
-
-
-    public int getWidth() {
+    public int getWidth(){
         return width;
     }
 
-    public int getHeight() {
+    public int getHeight(){
         return height;
     }
 
-    public Unit getUnit(int x, int y) {
-        if (edge(x, y))
-            return null;
-        return board[x][y].getUnit();
+    public boolean isValidCoordinate(int x, int y) {
+        return x >= 0 && y >= 0 && x < width && y < height;
     }
 
-    public Building getBuilding(int x, int y) {
-        if (edge(x, y))
-            return null;
-        return board[x][y].getBuilding();
+    public boolean isInCommunication(EPlayer player, int x, int y) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        return (communication[getOffset(x, y)] & 1 << player.ordinal()) == 1;
+    }
+
+    public void setInCommunication(EPlayer player, int x, int y, boolean enable) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        if (enable) communication[getOffset(x, y)] |= 1 << player.ordinal();
+        else communication[getOffset(x, y)] &= ~(1 << player.ordinal());
+    }
+
+    public void clearCommunication() {
+        Arrays.fill(communication, (byte) 0);
+    }
+
+    public boolean isBuilding(int x, int y) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        return buildings[getOffset(x, y)] != 0;
+    }
+
+    public void setBuilding(EBuildingData building, EPlayer player, int x, int y) {
+        buildings[getOffset(x, y)] = setItemPlayer(player, setItemType(building, (short) 0));
+    }
+
+    public EBuildingData getBuildingType(int x, int y) {
+        if(!isBuilding(x,y)) throw new NullPointerException();
+        return getBuildingType(buildings[getOffset(x, y)]);
+    }
+
+    public EPlayer getBuildingPlayer(int x, int y) {
+        if(!isBuilding(x,y)) throw new NullPointerException();
+        return getPlayer(buildings[getOffset(x, y)]);
+    }
+
+    public boolean isUnit(int x, int y) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        return units[getOffset(x, y)] != 0;
+    }
+
+    public void setUnit(EUnitData unit, EPlayer player, int x, int y) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        units[getOffset(x, y)] = setItemPlayer(player, setItemType(unit, (short) 0));
+    }
+
+    public EUnitData getUnitType(int x, int y) {
+        if(!isUnit(x,y)) throw new NullPointerException();
+        return getUnitType(units[getOffset(x, y)]);
+    }
+
+    public EPlayer getUnitPlayer(int x, int y) {
+        if(!isUnit(x,y)) throw new NullPointerException();
+        return getPlayer(units[getOffset(x, y)]);
+    }
+
+    protected Board clone() {
+        return new Board(this.width, this.height, units.clone(), buildings.clone());
+    }
+
+    public boolean isMarked(int x, int y) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        return marked[getOffset(x, y)];
+    }
+
+    public void setMarked(int x, int y, boolean mark) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        marked[getOffset(x, y)] = mark;
+    }
+
+    public void clearMarked() {
+        Arrays.fill(marked,false);
+    }
+
+
+    public void moveUnit(int xs, int ys, int xd, int yd){
+        if(!isUnit(xs,ys) || isUnit(xd, yd)) throw new NullPointerException();
+        units[getOffset(xd, yd)] = units[getOffset(xs, ys)];
+        units[getOffset(xs, ys)] = 0;
     }
 
     /**
@@ -121,7 +131,7 @@ public class Board implements Cloneable {
      * @return Return the distance in max between two coords
      */
     public int getDistance(int x, int y, int x2, int y2) {
-        if (edge(x, y) || edge(x2, y2)) {
+        if (!isValidCoordinate(x, y) || !isValidCoordinate(x2, y2)) {
             return -1;
         }
         int diffX = Math.abs(x - x2);
@@ -129,41 +139,32 @@ public class Board implements Cloneable {
         return Math.max(diffX, diffY);
     }
 
-    public boolean getCommunication(EPlayer player, int x, int y) {
-        return !edge(x, y) && board[x][y].isCommunication(player);
+
+    /*
+     * Private atomic methods to abstract the bit manipulation.
+     */
+
+    private int getOffset(int x, int y) {
+        return y * width + x;
     }
 
-    @Override
-    public Board clone() {
-        Object o = null;
-        try {
-            o = super.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-
-        assert o != null;
-        ((Board) o).board = new Cell[width][height];
-        for (int x = 0; x < width; ++x)
-            for (int y = 0; y < height; ++y)
-                ((Board) o).board[x][y] = this.board[x][y].clone();
-
-        return (Board) o;
+    private EUnitData getUnitType(short unit) {
+        return EUnitData.values()[((unit) >> 8)-1];
     }
 
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        result.append("Width = " + width + " ; Height = " + height + "\n");
-        for (int x = 0; x < width; ++x) {
-            for (int y = 0; y < height; ++y) {
-                String str = board[x][y].toString();
-                if (!str.isEmpty()) {
-                    result.append("(").append(x).append(";").append(y).append(") -> ");
-                    result.append(board[x][y].toString()).append("\n");
-                }
-            }
-        }
-        return result.toString();
+    private EBuildingData getBuildingType(short building) {
+        return EBuildingData.values()[(building >> 8)-1];
     }
 
+    private short setItemType(Enum type, short item) {
+        return (short) ((item & 0x00FF) | ((type.ordinal()+1) << 8));
+    }
+
+    private EPlayer getPlayer(short item) {
+        return EPlayer.values()[(item & 0x00FF)];
+    }
+
+    private short setItemPlayer(EPlayer player, short item) {
+        return (short) ((item & 0xFF00) | player.ordinal());
+    }
 }

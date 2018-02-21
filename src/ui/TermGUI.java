@@ -4,8 +4,6 @@ import asg.cliche.CLIException;
 import asg.cliche.Shell;
 import asg.cliche.ShellFactory;
 import game.Game;
-import game.board.BoardManager;
-import game.gameMaster.GameMaster;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

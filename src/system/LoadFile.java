@@ -1,7 +1,7 @@
 package system;
 
 import game.EPlayer;
-import game.board.PrimitiveBoard;
+import game.board.Board;
 import game.gameMaster.GameMaster;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
@@ -11,7 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LoadFile {
-    private PrimitiveBoard boardManager;
+    private Board boardManager;
     private GameMaster gameMaster;
 
     //TODO: Need exception on convertBuilding and convertUnit
@@ -40,7 +40,7 @@ public class LoadFile {
     public void loadFile(String name) throws IOException {
         if (name == null || name.isEmpty())
             throw new IOException("Path is empty, can't load.");
-        boardManager = new PrimitiveBoard(25, 20);
+        boardManager = new Board(25, 20);
         gameMaster = new GameMaster();
         gameMaster.removeAll();
 
@@ -50,7 +50,7 @@ public class LoadFile {
         line = br.readLine();
         String[] tokens = line.split(";");
         // init board
-        boardManager = new PrimitiveBoard(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
+        boardManager = new Board(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
 
         // set player
         line = br.readLine();

@@ -1,7 +1,7 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.PrimitiveBoard;
+import game.board.Board;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -16,13 +16,13 @@ public class CheckPlayerTurnTest {
 
     private GameAction gameAction;
     private GameState gameState;
-    private PrimitiveBoard board;
+    private Board board;
     private RuleResult result;
 
     @Before
     public void setUp(){
         gameAction = Mockito.mock(GameAction.class);
-        board = Mockito.mock(PrimitiveBoard.class);
+        board = Mockito.mock(Board.class);
         gameState = Mockito.mock(GameState.class);
     }
 

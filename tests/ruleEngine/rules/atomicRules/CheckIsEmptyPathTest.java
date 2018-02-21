@@ -1,9 +1,7 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.BoardManager;
-import game.board.IBoardManager;
-import game.board.PrimitiveBoard;
+import game.board.Board;
 import org.junit.Before;
 import org.junit.Test;
 import ruleEngine.*;
@@ -15,13 +13,13 @@ import ruleEngine.exceptions.IncorrectGameActionException;
 public class CheckIsEmptyPathTest {
 
     private GameAction gameAction;
-    private PrimitiveBoard master;
+    private Board master;
     RuleChecker moveRules;
 
     //TODO: Tests should be better ...
     @Before
     public void setUp(){
-        master = new PrimitiveBoard(25, 20);
+        master = new Board(25, 20);
 
         master.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH,0, 1); ///////////////
         master.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH,1, 0); // C  M  -  -
