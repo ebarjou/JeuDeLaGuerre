@@ -112,7 +112,7 @@ public class Game {
                 for(EDirection d : EDirection.values())
                     createCom(x, y, d, player, rangeUnit);
             }
-            board.setMarked(x, y, true);
+            //board.setMarked(x, y, true);
             x += dir.getX();
             y += dir.getY();
             dist++;
@@ -123,17 +123,26 @@ public class Game {
         int w = board.getWidth();
         int h = board.getHeight();
 
+        board.clearCommunication();
+        board.clearMarked();
+        System.out.println(board.toString());
+
         for(int x = 0; x < w; x++){
             for(int y = 0; y < h; y++){
+                EBuildingData building;
                 try {
-                    EBuildingData building = board.getBuildingType(x, y);
-                    if(building == EBuildingData.ARSENAL) {
-                        board.setInCommunication(board.getBuildingPlayer(x, y), x, y, true);
-                        board.setMarked(x, y, true);
-                        for (EDirection direction : EDirection.values())
-                            createCom(x, y, direction, board.getBuildingPlayer(x, y), -1);
-                    }
-                } catch(NullPointerException e) { }
+                    building = board.getBuildingType(x, y);
+                } catch(NullPointerException e) {
+                    building = null;
+                }
+
+                if(building == EBuildingData.ARSENAL) {
+                    board.setInCommunication(board.getBuildingPlayer(x, y), x, y, true);
+                    board.setMarked(x, y, true);
+                    board.cellToString(x, y);
+                    for (EDirection direction : EDirection.values())
+                        createCom(x, y, direction, board.getBuildingPlayer(x, y), -1);
+                }
             }
         }
     }
@@ -172,7 +181,6 @@ public class Game {
                 LoadFile lf = new LoadFile();
                 try {
                     lf.loadFile(cmd.getText());
-                    board.clearCommunication();
                     computeCommunication();
                 } catch (IOException e) {
                     return new GameResponse(INVALID, e.getMessage(), board, gameMaster.getActualState().getActualPlayer());

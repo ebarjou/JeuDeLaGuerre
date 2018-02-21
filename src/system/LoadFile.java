@@ -12,7 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LoadFile {
-    private Board boardManager;
+    private Board board;
     private GameMaster gameMaster;
 
     //TODO: Need exception on convertBuilding and convertUnit
@@ -41,7 +41,7 @@ public class LoadFile {
     public void loadFile(String name) throws IOException {
         if (name == null || name.isEmpty())
             throw new IOException("Path is empty, can't load.");
-        boardManager = new Board(25, 20);
+        board = new Board(25, 20);
         gameMaster = new GameMaster();
         gameMaster.removeAll();
 
@@ -51,17 +51,14 @@ public class LoadFile {
         line = br.readLine();
         String[] tokens = line.split(";");
         // init board
-        boardManager = new Board(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
+        board = new Board(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
 
         // set player
         line = br.readLine();
         tokens = line.split(";");
         int player = Integer.parseInt(tokens[0]);
-        if (player == 1) {
-            gameMaster.setPlayer(EPlayer.PLAYER_NORTH);
-        } else {
-            gameMaster.setPlayer(EPlayer.PLAYER_SOUTH);
-        }
+        gameMaster.setPlayer(EPlayer.values()[player]);
+
         gameMaster.setActionLeft(Integer.parseInt(tokens[1]));
 
         //Add buildings
@@ -73,9 +70,9 @@ public class LoadFile {
             int x = Integer.parseInt(tokens[1]) - 1;
             int y = Integer.parseInt(tokens[2]) - 1;
             boolean destroy = Boolean.parseBoolean(tokens[3]);
-            EPlayer p = Integer.parseInt(tokens[4]) == 1 ? EPlayer.PLAYER_NORTH : EPlayer.PLAYER_SOUTH;
+            EPlayer p = EPlayer.values()[ Integer.parseInt(tokens[4]) - 1];
             gameMaster.addBuilding(p, e);
-            boardManager.setBuilding(e, p, x, y);
+            board.setBuilding(e, p, x, y);
         }
         //Add units
         while ((line = br.readLine()) != null) {
@@ -89,12 +86,11 @@ public class LoadFile {
             */
             EPlayer p = Integer.parseInt(tokens[3]) == 1 ? EPlayer.PLAYER_NORTH : EPlayer.PLAYER_SOUTH;
             gameMaster.addUnit(p, u);
-            boardManager.setUnit(u, p, x, y);
+            board.setUnit(u, p, x, y);
             tokens = line.split(";");
         }
         br.close();
 
-        Game.getInstance().reinit(boardManager, gameMaster);
+        Game.getInstance().reinit(board, gameMaster);
     }
-
 }

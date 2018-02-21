@@ -142,6 +142,48 @@ public class Board implements IBoard{
         return Math.max(diffX, diffY);
     }
 
+    public String cellToString(int x, int y){
+        String res = "";
+        EUnitData u;
+        EBuildingData b;
+        EPlayer pU = null;
+        EPlayer pB = null;
+        try {
+            u = this.getUnitType(x, y);
+            pU = this.getUnitPlayer(x, y);
+            res += u + " ; " + pU + "\n";
+        } catch (NullPointerException e){
+            u = null;
+        }
+        try {
+            pB = this.getBuildingPlayer(x, y);
+            b = this.getBuildingType(x, y);
+            res += b + " ; " + pB + "\n";
+        } catch (NullPointerException e){
+            b = null;
+        }
+        if(res.isEmpty())
+            return res;
+
+        return res + "Com1 : " + isInCommunication(EPlayer.PLAYER_NORTH, x, y)
+                + "\nCom2: " + isInCommunication(EPlayer.PLAYER_SOUTH, x, y) + "\n";
+    }
+
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append("Width = " + width + " ; Height = " + height + "\n");
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
+                String str = cellToString(x, y);
+                if(!str.isEmpty()) {
+                    result.append("(").append(x).append(";").append(y).append(") -> ");
+                    result.append(cellToString(x, y)).append("\n");
+                }
+            }
+        }
+        return result.toString();
+    }
+
 
     /*
      * Private atomic methods to abstract the bit manipulation.
