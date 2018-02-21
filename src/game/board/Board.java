@@ -7,6 +7,8 @@ import ruleEngine.entity.EUnitData;
 import java.util.Arrays;
 
 public class Board implements IBoard{
+    private final static int MASK_TYPE = 0x00FF;
+    private final static int MASK_PLAYER = 0xFF00;
     private int height, width;
     private short[] units;
     private short[] buildings;
@@ -45,12 +47,12 @@ public class Board implements IBoard{
     }
 
     public boolean isInCommunication(EPlayer player, int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
         return (communication[getOffset(x, y)] & 1 << player.ordinal()) > 0;
     }
 
     public void setInCommunication(EPlayer player, int x, int y, boolean enable) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
         if (enable) communication[getOffset(x, y)] |= 1 << player.ordinal();
         else communication[getOffset(x, y)] &= ~(1 << player.ordinal());
     }
@@ -60,7 +62,7 @@ public class Board implements IBoard{
     }
 
     public boolean isBuilding(int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
         return buildings[getOffset(x, y)] != 0;
     }
 
@@ -69,32 +71,33 @@ public class Board implements IBoard{
     }
 
     public EBuildingData getBuildingType(int x, int y) {
-        if(!isBuilding(x,y)) throw new NullPointerException();
+        if(!isBuilding(x,y)) throw new NullPointerException("Not a building.");
         return getBuildingType(buildings[getOffset(x, y)]);
     }
 
     public EPlayer getBuildingPlayer(int x, int y) {
-        if(!isBuilding(x,y)) throw new NullPointerException();
+        if(!isBuilding(x,y)) throw new NullPointerException("Not a building.");
         return getPlayer(buildings[getOffset(x, y)]);
     }
 
     public boolean isUnit(int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
         return units[getOffset(x, y)] != 0;
     }
 
     public void setUnit(EUnitData unit, EPlayer player, int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
         units[getOffset(x, y)] = setItemPlayer(player, setItemType(unit, (short) 0));
     }
 
     public EUnitData getUnitType(int x, int y) {
-        if(!isUnit(x,y)) throw new NullPointerException();
+        if(!isUnit(x,y))
+            throw new NullPointerException("Not an unit.");
         return getUnitType(units[getOffset(x, y)]);
     }
 
     public EPlayer getUnitPlayer(int x, int y) {
-        if(!isUnit(x,y)) throw new NullPointerException();
+        if(!isUnit(x,y)) throw new NullPointerException("Not an unit.");
         return getPlayer(units[getOffset(x, y)]);
     }
 
@@ -103,12 +106,12 @@ public class Board implements IBoard{
     }
 
     public boolean isMarked(int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
         return marked[getOffset(x, y)];
     }
 
     public void setMarked(int x, int y, boolean mark) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
         marked[getOffset(x, y)] = mark;
     }
 
@@ -118,7 +121,7 @@ public class Board implements IBoard{
 
 
     public void moveUnit(int xs, int ys, int xd, int yd){
-        if(!isUnit(xs,ys) || isUnit(xd, yd)) throw new NullPointerException();
+        if(!isUnit(xs,ys) || isUnit(xd, yd)) throw new NullPointerException("Not an unit.");
         units[getOffset(xd, yd)] = units[getOffset(xs, ys)];
         units[getOffset(xs, ys)] = 0;
     }
@@ -157,14 +160,14 @@ public class Board implements IBoard{
     }
 
     private short setItemType(Enum type, short item) {
-        return (short) ((item & 0x00FF) | ((type.ordinal()+1) << 8));
+        return (short) ((item & MASK_TYPE) | ((type.ordinal()+1) << 8));
     }
 
     private EPlayer getPlayer(short item) {
-        return EPlayer.values()[(item & 0x00FF)];
+        return EPlayer.values()[(item & MASK_TYPE)];
     }
 
     private short setItemPlayer(EPlayer player, short item) {
-        return (short) ((item & 0xFF00) | player.ordinal());
+        return (short) ((item & MASK_PLAYER) | player.ordinal());
     }
 }

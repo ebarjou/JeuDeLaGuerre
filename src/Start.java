@@ -24,13 +24,6 @@ public class Start {
         boardManager.setBuilding(EBuildingData.FORTRESS, EPlayer.PLAYER_NORTH, 10, 10);
         boardManager.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH, 1, 1);
 
-        boardManager.setInCommunication(EPlayer.PLAYER_NORTH, 0, 0, true);
-        boardManager.setInCommunication(EPlayer.PLAYER_NORTH, 1, 0, true);
-        boardManager.setInCommunication(EPlayer.PLAYER_NORTH, 0, 1, true);
-
-        boardManager.setInCommunication(EPlayer.PLAYER_SOUTH, 0, 1, true);
-        boardManager.setInCommunication(EPlayer.PLAYER_SOUTH, 1, 1, true);
-
         guiThread.start();
 
         Game.getInstance().start();

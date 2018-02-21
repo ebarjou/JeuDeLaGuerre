@@ -65,6 +65,7 @@ public class Game {
     public void reinit(Board board, GameMaster gameMaster){
         this.board = board;
         this.gameMaster = gameMaster;
+        computeCommunication();
     }
 
     public GameMaster getGameMaster(){
@@ -102,7 +103,7 @@ public class Game {
             } catch(NullPointerException e) {
                 u = null;
             }
-            if(u != null && board.getUnitPlayer(x, y) == player && board.isMarked(x, y)){
+            if(u != null && board.getUnitPlayer(x, y) == player && !board.isMarked(x, y)){
                 board.setMarked(x, y, true);
                 int rangeUnit = 1;
                 if(u.isRelayCommunication())
