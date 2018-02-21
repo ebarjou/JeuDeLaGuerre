@@ -1,6 +1,7 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Board;
+import game.board.IBoard;
 import game.gameMaster.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
@@ -9,13 +10,13 @@ import ruleEngine.RuleResult;
 public class CheckOnBoard implements IRule {
 
     @Override
-    public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
-        if (board.edge(action.getSourceCoordinates().getX(), action.getTargetCoordinates().getY())) {
+    public boolean checkAction(IBoard board, GameState state, GameAction action, RuleResult result) {
+        if (board.isValidCoordinate(action.getSourceCoordinates().getX(), action.getTargetCoordinates().getY())) {
             result.addMessage(this, "Source coordinates are beyond the board's edges");
             result.invalidate();
             return false;
         }
-        if (board.edge(action.getTargetCoordinates().getX(), action.getTargetCoordinates().getY())) {
+        if (board.isValidCoordinate(action.getTargetCoordinates().getX(), action.getTargetCoordinates().getY())) {
             result.addMessage(this, "Target coordinates are beyond the board's edges");
             result.invalidate();
             return false;

@@ -6,12 +6,13 @@ import ruleEngine.entity.EUnitData;
 
 import java.util.Arrays;
 
-public class PrimitiveBoard {
+public class PrimitiveBoard implements IBoard{
     private int height, width;
     private short[] units;
     private short[] buildings;
 
     private byte[] communication;
+    private boolean[] marked;
 
     public PrimitiveBoard(int width, int height) {
         this.height = height;
@@ -19,6 +20,7 @@ public class PrimitiveBoard {
         units = new short[height * width];
         buildings = new short[height * width];
         communication = new byte[height * width];
+        marked = new boolean[height * width];
     }
 
     private PrimitiveBoard(int width, int height, short[] units, short[] buildings) {
@@ -27,6 +29,15 @@ public class PrimitiveBoard {
         this.units = units;
         this.buildings = buildings;
         communication = new byte[height * width];
+        marked = new boolean[height * width];
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
+    public int getHeight(){
+        return height;
     }
 
     public boolean isValidCoordinate(int x, int y) {
@@ -41,7 +52,7 @@ public class PrimitiveBoard {
     public void setInCommunication(EPlayer player, int x, int y, boolean enable) {
         if(!isValidCoordinate(x,y)) throw new NullPointerException();
         if (enable) communication[getOffset(x, y)] |= 1 << player.ordinal();
-        else communication[getOffset(x, y)] &= 0 << player.ordinal();
+        else communication[getOffset(x, y)] &= ~(1 << player.ordinal());
     }
 
     public void clearCommunication() {
@@ -90,6 +101,44 @@ public class PrimitiveBoard {
     protected PrimitiveBoard clone() {
         return new PrimitiveBoard(this.width, this.height, units.clone(), buildings.clone());
     }
+
+    public boolean isMarked(int x, int y) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        return marked[getOffset(x, y)];
+    }
+
+    public void setMarked(int x, int y, boolean mark) {
+        if(!isValidCoordinate(x,y)) throw new NullPointerException();
+        marked[getOffset(x, y)] = mark;
+    }
+
+    public void clearMarked() {
+        Arrays.fill(marked,false);
+    }
+
+
+    public void moveUnit(int xs, int ys, int xd, int yd){
+        if(!isUnit(xs,ys) || isUnit(xd, yd)) throw new NullPointerException();
+        units[getOffset(xd, yd)] = units[getOffset(xs, ys)];
+        units[getOffset(xs, ys)] = 0;
+    }
+
+    /**
+     * @param x
+     * @param y
+     * @param x2
+     * @param y2
+     * @return Return the distance in max between two coords
+     */
+    public int getDistance(int x, int y, int x2, int y2) {
+        if (!isValidCoordinate(x, y) || !isValidCoordinate(x2, y2)) {
+            return -1;
+        }
+        int diffX = Math.abs(x - x2);
+        int diffY = Math.abs(y - y2);
+        return Math.max(diffX, diffY);
+    }
+
 
     /*
      * Private atomic methods to abstract the bit manipulation.

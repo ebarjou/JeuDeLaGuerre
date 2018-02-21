@@ -4,6 +4,7 @@ import game.EPlayer;
 import game.Game;
 import game.board.BoardManager;
 import game.board.IBoardManager;
+import game.board.PrimitiveBoard;
 import game.gameMaster.GameMaster;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
@@ -13,7 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LoadFile {
-    private IBoardManager boardManager;
+    private PrimitiveBoard boardManager;
     private GameMaster gameMaster;
 
     //TODO: Need exception on convertBuilding and convertUnit
@@ -38,29 +39,21 @@ public class LoadFile {
         return EUnitData.INFANTRY;
     }
 
-    private void clearAll() {
-        int width = boardManager.getBoard().getWidth();
-        int height = boardManager.getBoard().getHeight();
-        boardManager.initBoard(width, height);
-        boardManager.clearHistory();
-        gameMaster.removeAll();
-    }
-
     //TODO: Add try catch and controls on type we should have
     public void loadFile(String name) throws IOException {
         if (name == null || name.isEmpty())
             throw new IOException("Path is empty, can't load.");
-        boardManager = Game.getInstance().getBoardManager();
-        gameMaster = Game.getInstance().getGameMaster();
+        boardManager = new PrimitiveBoard(25, 20);
+        gameMaster = new GameMaster();
+        gameMaster.removeAll();
 
-        clearAll();
 
         BufferedReader br = new BufferedReader(new FileReader(name));
         String line;
         line = br.readLine();
         String[] tokens = line.split(";");
         // init board
-        boardManager.initBoard(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
+        boardManager = new PrimitiveBoard(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
 
         // set player
         line = br.readLine();
@@ -84,7 +77,7 @@ public class LoadFile {
             boolean destroy = Boolean.parseBoolean(tokens[3]);
             EPlayer p = Integer.parseInt(tokens[4]) == 1 ? EPlayer.PLAYER1 : EPlayer.PLAYER2;
             gameMaster.addBuilding(p, e);
-            boardManager.addBuilding(e, p, x, y);
+            boardManager.setBuilding(e, p, x, y);
         }
         //Add units
         while ((line = br.readLine()) != null) {
@@ -98,7 +91,7 @@ public class LoadFile {
             */
             EPlayer p = Integer.parseInt(tokens[3]) == 1 ? EPlayer.PLAYER1 : EPlayer.PLAYER2;
             gameMaster.addUnit(p, u);
-            boardManager.addUnit(u, p, x, y);
+            boardManager.setUnit(u, p, x, y);
             tokens = line.split(";");
         }
         br.close();

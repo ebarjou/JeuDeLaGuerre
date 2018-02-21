@@ -2,6 +2,7 @@ package ruleEngine;
 
 import game.Game;
 import game.board.Board;
+import game.board.IBoard;
 import game.gameMaster.GameMaster;
 import ruleEngine.exceptions.IncorrectGameActionException;
 import ruleEngine.rules.MoveRules;
@@ -22,7 +23,7 @@ public class RuleChecker {
         return instance;
     }
 
-    public RuleResult checkAction(Board board, GameAction action) throws IncorrectGameActionException {
+    public RuleResult checkAction(IBoard board, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
         switch (action.getActionType()) {
             case MOVE:

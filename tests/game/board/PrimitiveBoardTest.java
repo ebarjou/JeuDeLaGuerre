@@ -8,7 +8,7 @@ import ruleEngine.entity.EUnitData;
 
 import static org.junit.Assert.*;
 
-public class PrimitiveBoardTest {
+public class PrimitiveBoardTest{
     PrimitiveBoard board;
 
     @Before

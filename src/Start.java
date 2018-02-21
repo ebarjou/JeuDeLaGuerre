@@ -1,7 +1,9 @@
 import game.EPlayer;
 import game.Game;
 import game.board.BoardManager;
+import game.board.IBoard;
 import game.board.IBoardManager;
+import game.board.PrimitiveBoard;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import player.GUIPlayer;
@@ -16,21 +18,21 @@ public class Start {
 
         Game.init(p1, p2);
 
-        IBoardManager boardManager = Game.getInstance().getBoardManager();
-        boardManager.initBoard(25, 20);
-        boardManager.addUnit(EUnitData.RELAY_HORSE, EPlayer.PLAYER2, 10, 10);
-        boardManager.addUnit(EUnitData.CAVALRY, EPlayer.PLAYER1, 0, 0);
+        PrimitiveBoard boardManager = Game.getInstance().getBoardManager();
 
-        boardManager.addBuilding(EBuildingData.ARSENAL, EPlayer.PLAYER1, 0, 7);
-        boardManager.addBuilding(EBuildingData.FORTRESS, EPlayer.PLAYER1, 10, 10);
-        boardManager.addBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1, 1, 1);
+        boardManager.setUnit(EUnitData.RELAY_HORSE, EPlayer.PLAYER2, 10, 10);
+        boardManager.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER1, 0, 0);
 
-        boardManager.setCommunication(EPlayer.PLAYER1, 0, 0, true);
-        boardManager.setCommunication(EPlayer.PLAYER1, 1, 0, true);
-        boardManager.setCommunication(EPlayer.PLAYER1, 0, 1, true);
+        boardManager.setBuilding(EBuildingData.ARSENAL, EPlayer.PLAYER1, 0, 7);
+        boardManager.setBuilding(EBuildingData.FORTRESS, EPlayer.PLAYER1, 10, 10);
+        boardManager.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1, 1, 1);
 
-        boardManager.setCommunication(EPlayer.PLAYER2, 0, 1, true);
-        boardManager.setCommunication(EPlayer.PLAYER2, 1, 1, true);
+        boardManager.setInCommunication(EPlayer.PLAYER1, 0, 0, true);
+        boardManager.setInCommunication(EPlayer.PLAYER1, 1, 0, true);
+        boardManager.setInCommunication(EPlayer.PLAYER1, 0, 1, true);
+
+        boardManager.setInCommunication(EPlayer.PLAYER2, 0, 1, true);
+        boardManager.setInCommunication(EPlayer.PLAYER2, 1, 1, true);
 
         guiThread.start();
 

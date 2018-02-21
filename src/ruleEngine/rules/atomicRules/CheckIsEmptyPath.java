@@ -1,6 +1,7 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Board;
+import game.board.IBoard;
 import game.gameMaster.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
@@ -25,56 +26,61 @@ public class CheckIsEmptyPath implements IRule {
     }
 
     @Override
-    public boolean checkAction(Board board, GameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IBoard board, GameState state, GameAction action, RuleResult result) {
         GameAction.Coordinates src = action.getSourceCoordinates();
         GameAction.Coordinates target = action.getTargetCoordinates();
-        int MP = board.getUnit(src.getX(), src.getY()).getUnitData().getMovementValue();
+        try {
+            int MP = board.getUnitType(src.getX(), src.getY()).getMovementValue();
 
-        assert MP != 0;
+            assert MP != 0;
 
-        Vertex[][] map = initMap(MP, src);
-        List<Vertex> queue = new LinkedList<>();
+            Vertex[][] map = initMap(MP, src);
+            List<Vertex> queue = new LinkedList<>();
 
-        map[length / 2][length / 2].isMarked = true;
-        map[length / 2][length / 2].dist = 0;
-        Vertex actual = map[length / 2][length / 2];
-        queue.add(actual);
+            map[length / 2][length / 2].isMarked = true;
+            map[length / 2][length / 2].dist = 0;
+            Vertex actual = map[length / 2][length / 2];
+            queue.add(actual);
 
-        while (!queue.isEmpty()) {
-            actual = queue.remove(0);
-            for (int i = actual.i - 1; i <= actual.i + 1; i++) {
-                for (int j = actual.j - 1; j <= actual.j + 1; j++) {
-                    //Don't add the neighbours with invalid coords or those we have already added
-                    if (i < 0 || j < 0 || i >= length || j >= length)
-                        continue;
+            while (!queue.isEmpty()) {
+                actual = queue.remove(0);
+                for (int i = actual.i - 1; i <= actual.i + 1; i++) {
+                    for (int j = actual.j - 1; j <= actual.j + 1; j++) {
+                        //Don't add the neighbours with invalid coords or those we have already added
+                        if (i < 0 || j < 0 || i >= length || j >= length)
+                            continue;
 
-                    int x = map[i][j].x;
-                    int y = map[i][j].y;
+                        int x = map[i][j].x;
+                        int y = map[i][j].y;
 
-                    if (board.edge(x, y) || map[i][j].isMarked)
-                        continue;
-                    //A cell containing a unit isn't valid to find the path
-                    if (board.getUnit(x, y) != null)
-                        continue;
-                    //If there is building and it's a mountain, we can't add it
-                    if (board.getBuilding(x, y) != null && !board.getBuilding(x, y).getBuildingData().isAccessible())
-                        continue;
+                        if (board.isValidCoordinate(x, y) || map[i][j].isMarked)
+                            continue;
+                        //A cell containing a unit isn't valid to find the path
+                        if (board.isUnit(x, y))
+                            continue;
+                        //If there is building and it's a mountain, we can't add it
+                        if (board.isBuilding(x, y) && !board.getBuildingType(x, y).isAccessible())
+                            continue;
 
-                    //Just create the valid neighbour, with dist + 1
-                    Vertex neigh = map[i][j];
-                    neigh.isMarked = true;
-                    neigh.dist = actual.dist + 1;
+                        //Just create the valid neighbour, with dist + 1
+                        Vertex neigh = map[i][j];
+                        neigh.isMarked = true;
+                        neigh.dist = actual.dist + 1;
 
-                    if (x == target.getX() && y == target.getY() && neigh.dist <= MP)
-                        return true;
+                        if (x == target.getX() && y == target.getY() && neigh.dist <= MP)
+                            return true;
 
-                    queue.add(neigh);
+                        queue.add(neigh);
+                    }
                 }
             }
+            result.addMessage(this, "There is no path found using " + MP + " movement points");
+            result.invalidate();
+            return false;
+        } catch (NullPointerException e){
+            result.invalidate();
+            return false;
         }
-        result.addMessage(this, "There is no path found using " + MP + " movement points");
-        result.invalidate();
-        return false;
     }
 
     private class Vertex {
