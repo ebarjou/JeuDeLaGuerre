@@ -46,7 +46,7 @@ public class Board implements IBoard{
 
     public boolean isInCommunication(EPlayer player, int x, int y) {
         if(!isValidCoordinate(x,y)) throw new NullPointerException();
-        return (communication[getOffset(x, y)] & 1 << player.ordinal()) == 1;
+        return (communication[getOffset(x, y)] & 1 << player.ordinal()) > 0;
     }
 
     public void setInCommunication(EPlayer player, int x, int y, boolean enable) {
