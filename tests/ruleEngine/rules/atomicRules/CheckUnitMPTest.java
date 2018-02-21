@@ -1,11 +1,8 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.BoardManager;
-import game.board.IBoardManager;
 import game.board.PrimitiveBoard;
 import game.gameMaster.GameState;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -14,6 +11,7 @@ import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 
+import static org.junit.Assert.*;
 
 public class CheckUnitMPTest {
 
@@ -49,9 +47,9 @@ public class CheckUnitMPTest {
         RuleResult result = new RuleResult();
         String expectedMessage = "";
 
-        Assert.assertTrue(rule.checkAction(board, null, gameAction, result));
-        Assert.assertTrue(result.getLogMessage().equals(expectedMessage));
-        Assert.assertTrue(result.isValid());
+        assertTrue(rule.checkAction(board, null, gameAction, result));
+        assertTrue(result.getLogMessage().equals(expectedMessage));
+        assertTrue(result.isValid());
     }
 
     @Test
@@ -63,8 +61,8 @@ public class CheckUnitMPTest {
         String expectedMessage = "CheckUnitMP : Not enough movement point, the unit has "
                 + "1 MP, and you need 2 MP\n";
 
-        Assert.assertFalse(rule.checkAction(board, null, gameAction, result));
-        Assert.assertTrue(result.getLogMessage().equals(expectedMessage));
-        Assert.assertFalse(result.isValid());
+        assertFalse(rule.checkAction(board, null, gameAction, result));
+        assertTrue(result.getLogMessage().equals(expectedMessage));
+        assertFalse(result.isValid());
     }
 }

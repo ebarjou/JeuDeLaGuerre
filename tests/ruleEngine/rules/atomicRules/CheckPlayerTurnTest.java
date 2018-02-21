@@ -1,15 +1,15 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.Board;
 import game.board.PrimitiveBoard;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import game.gameMaster.GameState;
+
+import static org.junit.Assert.*;
 
 
 public class CheckPlayerTurnTest {
@@ -34,9 +34,9 @@ public class CheckPlayerTurnTest {
         result = new RuleResult();
         String expectedMessage = "";
 
-        Assert.assertTrue(rule.checkAction(board, gameState, gameAction, result));
-        Assert.assertTrue(result.getLogMessage().equals(expectedMessage));
-        Assert.assertTrue(result.isValid());
+        assertTrue(rule.checkAction(board, gameState, gameAction, result));
+        assertTrue(result.getLogMessage().equals(expectedMessage));
+        assertTrue(result.isValid());
     }
 
     @Test
@@ -47,8 +47,8 @@ public class CheckPlayerTurnTest {
         result = new RuleResult();
         String expectedMessage = "CheckPlayerTurn : This is not player PLAYER1's turn.\n";
 
-        Assert.assertFalse(rule.checkAction(board, gameState, gameAction, result));
-        Assert.assertTrue(result.getLogMessage().equals(expectedMessage));
-        Assert.assertFalse(result.isValid());
+        assertFalse(rule.checkAction(board, gameState, gameAction, result));
+        assertTrue(result.getLogMessage().equals(expectedMessage));
+        assertFalse(result.isValid());
     }
 }

@@ -23,13 +23,13 @@ public class PrimitiveBoardTest{
         board.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER1, 1, 1);
         board.setInCommunication(EPlayer.PLAYER1, 2, 4, true);
 
-        assertTrue(board.getUnitType(4, 5)==EUnitData.INFANTRY);
-        assertTrue(board.getBuildingType(1, 1)==EBuildingData.ARSENAL);
-        assertTrue(board.getUnitType(1, 1)==EUnitData.CAVALRY);
+        assertTrue(board.getUnitType(4, 5) == EUnitData.INFANTRY);
+        assertTrue(board.getBuildingType(1, 1) == EBuildingData.ARSENAL);
+        assertTrue(board.getUnitType(1, 1) == EUnitData.CAVALRY);
 
-        assertTrue(board.getUnitPlayer(1, 1)==EPlayer.PLAYER1);
-        assertTrue(board.getBuildingPlayer(1, 1)==EPlayer.PLAYER1);
-        assertTrue(board.getUnitPlayer(4, 5)==EPlayer.PLAYER2);
+        assertTrue(board.getUnitPlayer(1, 1) == EPlayer.PLAYER1);
+        assertTrue(board.getBuildingPlayer(1, 1) == EPlayer.PLAYER1);
+        assertTrue(board.getUnitPlayer(4, 5) == EPlayer.PLAYER2);
 
         try{
             board.getUnitType(5, 5);
@@ -73,13 +73,13 @@ public class PrimitiveBoardTest{
 
         PrimitiveBoard boardClone = board.clone();
 
-        assertTrue(board.getUnitType(4, 5)==EUnitData.INFANTRY);
-        assertTrue(board.getBuildingType(1, 1)==EBuildingData.ARSENAL);
-        assertTrue(board.getUnitType(1, 1)==EUnitData.CAVALRY);
+        assertTrue(board.getUnitType(4, 5) == EUnitData.INFANTRY);
+        assertTrue(board.getBuildingType(1, 1) == EBuildingData.ARSENAL);
+        assertTrue(board.getUnitType(1, 1) == EUnitData.CAVALRY);
 
-        assertTrue(board.getUnitPlayer(1, 1)==EPlayer.PLAYER1);
-        assertTrue(board.getBuildingPlayer(1, 1)==EPlayer.PLAYER1);
-        assertTrue(board.getUnitPlayer(4, 5)==EPlayer.PLAYER2);
+        assertTrue(board.getUnitPlayer(1, 1) == EPlayer.PLAYER1);
+        assertTrue(board.getBuildingPlayer(1, 1) == EPlayer.PLAYER1);
+        assertTrue(board.getUnitPlayer(4, 5) == EPlayer.PLAYER2);
 
     }
 }

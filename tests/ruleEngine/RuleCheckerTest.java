@@ -1,14 +1,13 @@
 package ruleEngine;
 
 import game.EPlayer;
-import game.board.BoardManager;
-import game.board.IBoardManager;
 import game.board.PrimitiveBoard;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.exceptions.IncorrectGameActionException;
+
+import static org.junit.Assert.assertTrue;
 
 public class RuleCheckerTest {
 
@@ -37,10 +36,10 @@ public class RuleCheckerTest {
         try {
             result = rulechecker.checkAction(board, gameAction);
         } catch (IncorrectGameActionException e) {
-            Assert.assertTrue("Action MOVE unrecognized by RuleChecker.checkAction().", false);
+            assertTrue("Action MOVE unrecognized by RuleChecker.checkAction().", false);
         }
-        Assert.assertTrue(result.getLogMessage().equals(expectedMessage));
-        Assert.assertTrue(result.isValid());
+        assertTrue(result.getLogMessage().equals(expectedMessage));
+        assertTrue(result.isValid());
     }
 
     @Test
@@ -48,7 +47,7 @@ public class RuleCheckerTest {
         GameAction gameAction = new GameAction(EPlayer.PLAYER1, EGameActionType.NONE);
         try {
             rulechecker.checkAction(board, gameAction);
-            Assert.assertTrue("Action NONE should not be recognized by RuleChecker.checkAction().", false);
+            assertTrue("Action NONE should not be recognized by RuleChecker.checkAction().", false);
         } catch (IncorrectGameActionException e) {
             // Intended : Do nothing
         }
