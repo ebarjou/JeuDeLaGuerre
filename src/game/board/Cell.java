@@ -50,7 +50,7 @@ public class Cell implements Cloneable {
         if (res.isEmpty())
             return res;
 
-        return res + "Com1 : " + communications[EPlayer.PLAYER1.ordinal()] + "\nCom2: " + communications[EPlayer.PLAYER2.ordinal()] + "\n";
+        return res + "Com1 : " + communications[EPlayer.PLAYER_NORTH.ordinal()] + "\nCom2: " + communications[EPlayer.PLAYER_SOUTH.ordinal()] + "\n";
     }
 
     public Unit getUnit() {

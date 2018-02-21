@@ -49,7 +49,7 @@ public class Game {
     }
 
     public Player getPlayer() {
-        if (gameMaster.getActualState().getActualPlayer() == EPlayer.PLAYER1)
+        if (gameMaster.getActualState().getActualPlayer() == EPlayer.PLAYER_NORTH)
             return player1;
         return player2;
     }

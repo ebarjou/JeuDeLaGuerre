@@ -16,7 +16,7 @@ public class GameMaster {
         history = new Stack<>();
         Random r = new Random();
         actualState = new GameState();
-        actualState.setPlayer(r.nextInt(1) == 0 ? EPlayer.PLAYER1 : EPlayer.PLAYER2);
+        actualState.setPlayer(r.nextInt(1) == 0 ? EPlayer.PLAYER_NORTH : EPlayer.PLAYER_SOUTH);
     }
 
     public void setPlayer(EPlayer player) {

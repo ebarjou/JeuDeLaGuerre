@@ -25,11 +25,11 @@ public class CheckUnitMPTest {
         board = new PrimitiveBoard(25, 20);
 
         // MovementValue = 1
-        board.setUnit(EUnitData.INFANTRY, EPlayer.PLAYER1,0, 0);
+        board.setUnit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH,0, 0);
         // MovementValue = 2
-        board.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER1,5, 5);
+        board.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH,5, 5);
 
-        gameAction = new GameAction(EPlayer.PLAYER1, EGameActionType.MOVE);
+        gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
 
         gameAction.setSourceCoordinates(0, 0);
         gameAction.setTargetCoordinates(2, 2);

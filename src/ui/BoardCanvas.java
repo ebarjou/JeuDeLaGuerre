@@ -1,7 +1,6 @@
 package ui;
 
 import game.EPlayer;
-import game.board.Board;
 import game.board.IBoard;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
@@ -87,20 +86,20 @@ class BoardCanvas extends Canvas {
 
     private void drawCellBackground(IBoard board, int x, int y, int pos_x, int pos_y, int size) {
         g.save();
-        if (board.isInCommunication(EPlayer.PLAYER1, x, y) && board.isInCommunication(EPlayer.PLAYER2, x, y)) {
+        if (board.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && board.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
             g.setStroke(Color.ORANGERED);
             g.setLineWidth(COMM_STROKE_SIZE * 1.5);
             g.strokeRect(pos_x + COMM_STROKE_SIZE, pos_y + COMM_STROKE_SIZE, size - COMM_STROKE_SIZE * 2, size - COMM_STROKE_SIZE * 2);
             g.setStroke(Color.CORNFLOWERBLUE);
             g.setLineWidth(COMM_STROKE_SIZE);
-        } else if (board.isInCommunication(EPlayer.PLAYER1, x, y)) {
+        } else if (board.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
             g.setStroke(Color.CORNFLOWERBLUE);
             g.setLineWidth(COMM_STROKE_SIZE);
-        } else if (board.isInCommunication(EPlayer.PLAYER2, x, y)) {
+        } else if (board.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
             g.setStroke(Color.ORANGERED);
             g.setLineWidth(COMM_STROKE_SIZE);
         }
-        if (board.isInCommunication(EPlayer.PLAYER1, x, y) || board.isInCommunication(EPlayer.PLAYER2, x, y))
+        if (board.isInCommunication(EPlayer.PLAYER_NORTH, x, y) || board.isInCommunication(EPlayer.PLAYER_SOUTH, x, y))
             g.strokeRect(pos_x + COMM_STROKE_SIZE / 2, pos_y + COMM_STROKE_SIZE / 2, size - COMM_STROKE_SIZE, size - COMM_STROKE_SIZE);
         g.restore();
     }

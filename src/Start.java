@@ -1,8 +1,5 @@
 import game.EPlayer;
 import game.Game;
-import game.board.BoardManager;
-import game.board.IBoard;
-import game.board.IBoardManager;
 import game.board.PrimitiveBoard;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
@@ -20,19 +17,19 @@ public class Start {
 
         PrimitiveBoard boardManager = Game.getInstance().getBoardManager();
 
-        boardManager.setUnit(EUnitData.RELAY_HORSE, EPlayer.PLAYER2, 10, 10);
-        boardManager.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER1, 0, 0);
+        boardManager.setUnit(EUnitData.RELAY_HORSE, EPlayer.PLAYER_SOUTH, 10, 10);
+        boardManager.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH, 0, 0);
 
-        boardManager.setBuilding(EBuildingData.ARSENAL, EPlayer.PLAYER1, 0, 7);
-        boardManager.setBuilding(EBuildingData.FORTRESS, EPlayer.PLAYER1, 10, 10);
-        boardManager.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1, 1, 1);
+        boardManager.setBuilding(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH, 0, 7);
+        boardManager.setBuilding(EBuildingData.FORTRESS, EPlayer.PLAYER_NORTH, 10, 10);
+        boardManager.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH, 1, 1);
 
-        boardManager.setInCommunication(EPlayer.PLAYER1, 0, 0, true);
-        boardManager.setInCommunication(EPlayer.PLAYER1, 1, 0, true);
-        boardManager.setInCommunication(EPlayer.PLAYER1, 0, 1, true);
+        boardManager.setInCommunication(EPlayer.PLAYER_NORTH, 0, 0, true);
+        boardManager.setInCommunication(EPlayer.PLAYER_NORTH, 1, 0, true);
+        boardManager.setInCommunication(EPlayer.PLAYER_NORTH, 0, 1, true);
 
-        boardManager.setInCommunication(EPlayer.PLAYER2, 0, 1, true);
-        boardManager.setInCommunication(EPlayer.PLAYER2, 1, 1, true);
+        boardManager.setInCommunication(EPlayer.PLAYER_SOUTH, 0, 1, true);
+        boardManager.setInCommunication(EPlayer.PLAYER_SOUTH, 1, 1, true);
 
         guiThread.start();
 

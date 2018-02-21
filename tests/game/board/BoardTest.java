@@ -37,7 +37,7 @@ public class BoardTest {
 
     @Test
     public void addUnit(){
-        Unit soldier = new Unit(EUnitData.INFANTRY, PLAYER1);
+        Unit soldier = new Unit(EUnitData.INFANTRY, PLAYER_NORTH);
         master.addUnit(soldier.getUnitData(), soldier.getPlayer(), x, y);
 
         Unit result = master.getBoard().getUnit(x, y);
@@ -53,8 +53,8 @@ public class BoardTest {
         //Here we test if we clone the board, we clone its attributes too. So we don't have twice
         //  the same reference.
 
-        master.addUnit(EUnitData.INFANTRY, PLAYER1, x, y);
-        master.addBuilding(EBuildingData.ARSENAL, PLAYER1, x, y);
+        master.addUnit(EUnitData.INFANTRY, PLAYER_NORTH, x, y);
+        master.addBuilding(EBuildingData.ARSENAL, PLAYER_NORTH, x, y);
 
         Board board1 = master.getBoard();
         Board board2 = board1.clone();
@@ -78,7 +78,7 @@ public class BoardTest {
 
     @Test
     public void moveBuilding(){
-        Building building = new Building(EBuildingData.ARSENAL, PLAYER1);
+        Building building = new Building(EBuildingData.ARSENAL, PLAYER_NORTH);
         master.addBuilding(building.getBuildingData(), building.getPlayer(), x, y);
         master.moveBuilding(x, y, x2, y2);
         Building building2 = master.getBoard().getBuilding(x2, y2);
@@ -98,7 +98,7 @@ public class BoardTest {
 
     @Test
     public void move(){
-        Unit soldier = new Unit(EUnitData.INFANTRY, PLAYER1);
+        Unit soldier = new Unit(EUnitData.INFANTRY, PLAYER_NORTH);
         master.addUnit(soldier.getUnitData(), soldier.getPlayer(), x, y);
         master.moveUnit(x, y, x2, y2);
 
@@ -120,7 +120,7 @@ public class BoardTest {
     public void revert(){
         //Add a unit infantery at a random location on the board
         //  and move it to a random position.
-        master.addUnit(EUnitData.INFANTRY, PLAYER1, x, y);
+        master.addUnit(EUnitData.INFANTRY, PLAYER_NORTH, x, y);
         Unit soldier1 = master.getBoard().getUnit(x, y);
         String actualBoardState = master.getBoard().toString();
         master.moveUnit(x, y, x2, y2);
@@ -137,12 +137,12 @@ public class BoardTest {
 
     @Test
     public void displayBoard(){
-        master.addUnit(EUnitData.INFANTRY, PLAYER1, x, y);
-        master.addBuilding(EBuildingData.ARSENAL, PLAYER1, x, y);
-        master.setCommunication(PLAYER1, x, y, true);
+        master.addUnit(EUnitData.INFANTRY, PLAYER_NORTH, x, y);
+        master.addBuilding(EBuildingData.ARSENAL, PLAYER_NORTH, x, y);
+        master.setCommunication(PLAYER_NORTH, x, y, true);
 
-        master.addUnit(EUnitData.CAVALRY, PLAYER2, x2, y2);
-        master.addBuilding(EBuildingData.FORTRESS, PLAYER2, x2, y2);
+        master.addUnit(EUnitData.CAVALRY, PLAYER_SOUTH, x2, y2);
+        master.addBuilding(EBuildingData.FORTRESS, PLAYER_SOUTH, x2, y2);
 
         Board board = master.getBoard();
         System.out.println(board.toString());
@@ -158,14 +158,14 @@ public class BoardTest {
     public void clearCommunication(){
         Random r = new Random();
         for(int i = 0; i < 100; i++)
-            master.setCommunication(PLAYER1, r.nextInt(width), r.nextInt(height), true);
+            master.setCommunication(PLAYER_NORTH, r.nextInt(width), r.nextInt(height), true);
 
         master.clearCommunication();
         boolean noCommunication = true;
         for(int i = 0; i < master.getBoard().getWidth(); i++){
             for(int j = 0; j < master.getBoard().getHeight(); j++){
-                noCommunication = noCommunication && !master.getBoard().getCommunication(PLAYER1, i, j);
-                noCommunication = noCommunication && !master.getBoard().getCommunication(PLAYER2, i, j);
+                noCommunication = noCommunication && !master.getBoard().getCommunication(PLAYER_NORTH, i, j);
+                noCommunication = noCommunication && !master.getBoard().getCommunication(PLAYER_SOUTH, i, j);
             }
         }
         assertTrue(noCommunication);

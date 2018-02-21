@@ -39,7 +39,7 @@ public class GameState implements Cloneable {
     }
 
     void addBuilding(EPlayer player, EBuildingData building) {
-        if (player == EPlayer.PLAYER1) {
+        if (player == EPlayer.PLAYER_NORTH) {
             buildingPlayer1.add(building);
         } else {
             buildingPlayer2.add(building);
@@ -47,7 +47,7 @@ public class GameState implements Cloneable {
     }
 
     void addUnit(EPlayer player, EUnitData unit) {
-        if (player == EPlayer.PLAYER1) {
+        if (player == EPlayer.PLAYER_NORTH) {
             unitsPlayer1.add(unit);
         } else {
             unitsPlayer2.add(unit);
@@ -59,7 +59,7 @@ public class GameState implements Cloneable {
     boolean removePriorityUnit(Coordinates coords) {
         List<Coordinates> priority;
         Coordinates targetCoords = null;
-        if (actualPlayer == EPlayer.PLAYER1)
+        if (actualPlayer == EPlayer.PLAYER_NORTH)
             priority = priorityUnits1;
         else
             priority = priorityUnits2;
@@ -81,10 +81,10 @@ public class GameState implements Cloneable {
     }
 
     void switchPlayer() {
-        if (actualPlayer == EPlayer.PLAYER1)
-            actualPlayer = EPlayer.PLAYER2;
+        if (actualPlayer == EPlayer.PLAYER_NORTH)
+            actualPlayer = EPlayer.PLAYER_SOUTH;
         else
-            actualPlayer = EPlayer.PLAYER1;
+            actualPlayer = EPlayer.PLAYER_NORTH;
         actionLeft = MAX_ACTION;
     }
 
@@ -102,7 +102,7 @@ public class GameState implements Cloneable {
 
     public boolean isPriorityCoord(Coordinates coords) {
         List<Coordinates> priority;
-        if (actualPlayer == EPlayer.PLAYER1)
+        if (actualPlayer == EPlayer.PLAYER_NORTH)
             priority = priorityUnits1;
         else
             priority = priorityUnits2;

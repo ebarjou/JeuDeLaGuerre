@@ -1,9 +1,6 @@
 package system;
 
 import game.EPlayer;
-import game.Game;
-import game.board.BoardManager;
-import game.board.IBoardManager;
 import game.board.PrimitiveBoard;
 import game.gameMaster.GameMaster;
 import ruleEngine.entity.EBuildingData;
@@ -60,9 +57,9 @@ public class LoadFile {
         tokens = line.split(";");
         int player = Integer.parseInt(tokens[0]);
         if (player == 1) {
-            gameMaster.setPlayer(EPlayer.PLAYER1);
+            gameMaster.setPlayer(EPlayer.PLAYER_NORTH);
         } else {
-            gameMaster.setPlayer(EPlayer.PLAYER2);
+            gameMaster.setPlayer(EPlayer.PLAYER_SOUTH);
         }
         gameMaster.setActionLeft(Integer.parseInt(tokens[1]));
 
@@ -75,7 +72,7 @@ public class LoadFile {
             int x = Integer.parseInt(tokens[1]) - 1;
             int y = Integer.parseInt(tokens[2]) - 1;
             boolean destroy = Boolean.parseBoolean(tokens[3]);
-            EPlayer p = Integer.parseInt(tokens[4]) == 1 ? EPlayer.PLAYER1 : EPlayer.PLAYER2;
+            EPlayer p = Integer.parseInt(tokens[4]) == 1 ? EPlayer.PLAYER_NORTH : EPlayer.PLAYER_SOUTH;
             gameMaster.addBuilding(p, e);
             boardManager.setBuilding(e, p, x, y);
         }
@@ -89,7 +86,7 @@ public class LoadFile {
             boolean hasMoved = Boolean.parseBoolean(tokens[4]);
             boolean hasAttacked = Boolean.parseBoolean(tokens[5]);
             */
-            EPlayer p = Integer.parseInt(tokens[3]) == 1 ? EPlayer.PLAYER1 : EPlayer.PLAYER2;
+            EPlayer p = Integer.parseInt(tokens[3]) == 1 ? EPlayer.PLAYER_NORTH : EPlayer.PLAYER_SOUTH;
             gameMaster.addUnit(p, u);
             boardManager.setUnit(u, p, x, y);
             tokens = line.split(";");

@@ -23,14 +23,14 @@ public class CheckIsEmptyPathTest {
     public void setUp(){
         master = new PrimitiveBoard(25, 20);
 
-        master.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1,0, 1); ///////////////
-        master.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1,1, 0); // C  M  -  -
-        master.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER1,1, 2); // M  -  -  -
+        master.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH,0, 1); ///////////////
+        master.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH,1, 0); // C  M  -  -
+        master.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH,1, 2); // M  -  -  -
                                                                            // -  M  -  -
-        master.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER1,0, 0);
-        master.setInCommunication(EPlayer.PLAYER1, 0, 0, true);
+        master.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH,0, 0);
+        master.setInCommunication(EPlayer.PLAYER_NORTH, 0, 0, true);
 
-        gameAction = new GameAction(EPlayer.PLAYER1, EGameActionType.MOVE);
+        gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
 
         gameAction.setSourceCoordinates(0, 0);
         gameAction.setTargetCoordinates(2, 2);

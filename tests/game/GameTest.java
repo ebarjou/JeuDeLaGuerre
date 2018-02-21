@@ -27,7 +27,7 @@ public class GameTest {
 
     @Test
     public void gameTest() {
-        GameAction action = new GameAction(EPlayer.PLAYER1, EGameActionType.MOVE);
+        GameAction action = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
         action.setTargetCoordinates(0, 0);
         action.setSourceCoordinates(1, 0);
         UIAction uiAction = Mockito.mock(UIAction.class);

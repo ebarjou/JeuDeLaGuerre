@@ -22,10 +22,10 @@ public class RuleCheckerTest {
 
     @Test
     public void checkActionMoveTest() {
-        board.setUnit(EUnitData.INFANTRY, EPlayer.PLAYER1,0, 0);
-        board.setInCommunication(EPlayer.PLAYER1, 0, 0, true);
+        board.setUnit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH,0, 0);
+        board.setInCommunication(EPlayer.PLAYER_NORTH, 0, 0, true);
 
-        GameAction gameAction = new GameAction(EPlayer.PLAYER1, EGameActionType.MOVE);
+        GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
         gameAction.setSourceCoordinates(0, 0);
         gameAction.setTargetCoordinates(1, 1);
 
@@ -44,7 +44,7 @@ public class RuleCheckerTest {
 
     @Test
     public void checkActionInvalidTest() {
-        GameAction gameAction = new GameAction(EPlayer.PLAYER1, EGameActionType.NONE);
+        GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.NONE);
         try {
             rulechecker.checkAction(board, gameAction);
             assertTrue("Action NONE should not be recognized by RuleChecker.checkAction().", false);

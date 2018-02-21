@@ -1,6 +1,6 @@
 package game;
 
 public enum EPlayer {
-    PLAYER1,
-    PLAYER2;
+    PLAYER_NORTH,
+    PLAYER_SOUTH;
 }
