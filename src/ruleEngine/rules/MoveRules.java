@@ -18,9 +18,9 @@ public class MoveRules extends MasterRule {
         addRule(CheckPlayerMovesLeft.class);
         addRule(CheckCommunication.class);
         addRule(CheckOnBoard.class);
-        addRule(CheckIsUnit.class);
+        addRule(CheckIsAllyUnit.class);
         //addRule();(CheckIsPriorityUnit.class);
-        addDependantRule(CheckUnitMP.class, CheckIsUnit.class);
+        addDependantRule(CheckUnitMP.class, CheckIsAllyUnit.class);
         addRule(CheckIsEmptyPath.class);
     }
 
