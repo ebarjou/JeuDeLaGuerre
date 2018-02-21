@@ -126,10 +126,12 @@ public class Game {
             for(int y = 0; y < h; y++){
                 try {
                     EBuildingData building = board.getBuildingType(x, y);
-                    board.setInCommunication(board.getBuildingPlayer(x, y), x, y, true);
-                    board.setMarked(x, y, true);
-                    for(EDirection direction : EDirection.values())
-                        createCom(x, y, direction, board.getBuildingPlayer(x, y), -1);
+                    if(building == EBuildingData.ARSENAL) {
+                        board.setInCommunication(board.getBuildingPlayer(x, y), x, y, true);
+                        board.setMarked(x, y, true);
+                        for (EDirection direction : EDirection.values())
+                            createCom(x, y, direction, board.getBuildingPlayer(x, y), -1);
+                    }
                 } catch(NullPointerException e) { }
             }
         }
@@ -187,7 +189,7 @@ public class Game {
             case END_TURN: {
                 System.out.println("END TURN");
                 //board.clearHistory();
-                //gameMaster.switchPlayer();
+                gameMaster.switchPlayer();
                 return new GameResponse(VALID, cmd.getErrorMessage(), board, gameMaster.getActualState().getActualPlayer());
             }
             case CMD_ERROR: {
