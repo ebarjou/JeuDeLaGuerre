@@ -8,22 +8,25 @@ import ruleEngine.IRule;
 import ruleEngine.RuleResult;
 import ruleEngine.rules.atomicRules.*;
 
-public class MoveRules implements IRule {
+public class MoveRules extends MasterRule {
 
     private static IRule instance;
-    private RuleList rules;
 
     private MoveRules() {
         //TODO: Put here the sub-rules (atomic) you need to check.
-        rules = new RuleList();
-        rules.add(CheckPlayerTurn.class);
-        rules.add(CheckPlayerMovesLeft.class);
-        rules.add(CheckCommunication.class);
-        rules.add(CheckOnBoard.class);
-        rules.add(CheckIsUnit.class);
-        //rules.add(CheckIsPriorityUnit.class);
-        rules.add(CheckUnitMP.class);
-        rules.add(CheckIsEmptyPath.class);
+        addRule(CheckPlayerTurn.class);
+        addRule(CheckPlayerMovesLeft.class);
+        addRule(CheckCommunication.class);
+        addRule(CheckOnBoard.class);
+        addRule(CheckIsUnit.class);
+        //addRule();(CheckIsPriorityUnit.class);
+        addDependantRule(CheckUnitMP.class, CheckIsUnit.class);
+        addRule(CheckIsEmptyPath.class);
+    }
+
+    @Override
+    void applyResult(IBoard board, GameState state, GameAction action, RuleResult result) {
+        //TODO: Apply move on Board here
     }
 
     public static IRule getInstance() {
@@ -31,13 +34,5 @@ public class MoveRules implements IRule {
             instance = new MoveRules();
 
         return instance;
-    }
-
-    @Override
-    public boolean checkAction(IBoard board, GameState state, GameAction action, RuleResult result) {
-        for (IRule r : rules)
-            r.checkAction(board, Game.getInstance().getGameMaster().getActualState(), action, result);
-
-        return result.isValid();
     }
 }

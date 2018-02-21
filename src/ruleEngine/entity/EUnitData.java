@@ -5,7 +5,7 @@ public enum EUnitData {
     INFANTRY("I", 4, 6, 1, 2,           true,   false,  true,   false),
     CAVALRY("C", 4, 5, 2, 2,            false,  false,  true,   true),
     ARTILLERY("A", 5, 8, 1, 3,          true,   false,  true,   false),
-    ARTILLERY_HORSE("AC", 5, 8, 2, 3,   true,   false,  true,   true),
+    ARTILLERY_HORSE("AC", 5, 8, 2, 3,   true,   false,  true,   false),
     RELAY("R", 0, 1, 1, 2,              false,  true,   false,  false),
     RELAY_HORSE("RC", 0, 1, 2, 2,       false,  true,   false,  false);
 
