@@ -41,7 +41,7 @@ public class PrimitiveBoard implements IBoard{
     }
 
     public boolean isValidCoordinate(int x, int y) {
-        return x >= 0 && y >= 0 && x < height && y < width;
+        return x >= 0 && y >= 0 && x < width && y < height;
     }
 
     public boolean isInCommunication(EPlayer player, int x, int y) {
