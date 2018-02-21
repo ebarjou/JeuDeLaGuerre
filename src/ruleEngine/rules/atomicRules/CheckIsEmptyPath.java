@@ -53,7 +53,7 @@ public class CheckIsEmptyPath implements IRule {
                         int x = map[i][j].x;
                         int y = map[i][j].y;
 
-                        if (board.isValidCoordinate(x, y) || map[i][j].isMarked)
+                        if (!board.isValidCoordinate(x, y) || map[i][j].isMarked)
                             continue;
                         //A cell containing a unit isn't valid to find the path
                         if (board.isUnit(x, y))
@@ -78,6 +78,7 @@ public class CheckIsEmptyPath implements IRule {
             result.invalidate();
             return false;
         } catch (NullPointerException e){
+            result.addMessage(this, "There is no path found");
             result.invalidate();
             return false;
         }

@@ -29,6 +29,7 @@ public class CheckUnitMP implements IRule {
             }
             return true;
         } catch (NullPointerException e){
+            result.addMessage(this, "Not enough movement point");
             result.invalidate();
             return false;
         }

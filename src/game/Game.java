@@ -72,12 +72,20 @@ public class Game {
     }
 
     private boolean isObstacle(int x, int y, EPlayer player){
-        if(board.isValidCoordinate(x, y))
+        if(!board.isValidCoordinate(x, y))
             return true;
         EUnitData u;
         EBuildingData b;
-        try { u = board.getUnitType(x, y); } catch(NullPointerException e) {u = null;}
-        try { b = board.getBuildingType(x, y); } catch(NullPointerException e) {b = null;}
+        try {
+            u = board.getUnitType(x, y);
+        } catch(NullPointerException e) {
+            u = null;
+        }
+        try {
+            b = board.getBuildingType(x, y);
+        } catch(NullPointerException e) {
+            b = null;
+        }
         return (b != null && b == EBuildingData.MOUNTAIN)
                 || (u != null && board.getUnitPlayer(x, y) != player && !u.isRelayCommunication());
     }
@@ -89,7 +97,11 @@ public class Game {
         while(!isObstacle(x, y, player) && (rangeMax < 0 || dist <= rangeMax)){
             board.setInCommunication(player, x, y, true);
             EUnitData u;
-            try { u = board.getUnitType(x, y); } catch(NullPointerException e) {u = null;}
+            try {
+                u = board.getUnitType(x, y);
+            } catch(NullPointerException e) {
+                u = null;
+            }
             if(u != null && board.getUnitPlayer(x, y) == player && board.isMarked(x, y)){
                 board.setMarked(x, y, true);
                 int rangeUnit = 1;

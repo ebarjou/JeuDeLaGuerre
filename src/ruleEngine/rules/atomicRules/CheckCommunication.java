@@ -23,6 +23,7 @@ public class CheckCommunication implements IRule {
             result.invalidate();
             return false;
         } catch (NullPointerException e){
+            result.addMessage(this, "This unit is not in communication, you can't use it");
             result.invalidate();
             return false;
         }
