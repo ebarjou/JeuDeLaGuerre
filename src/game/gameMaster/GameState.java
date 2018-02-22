@@ -126,6 +126,13 @@ public class GameState implements IGameState, Cloneable {
     }
 
     public void switchPlayer() {
+        List<Unit> units = unitsPlayerSouth;
+        if(actualPlayer == EPlayer.PLAYER_NORTH)
+            units = unitsPlayerNorth;
+        for(Unit unit : units) {
+            unit.setCanAttack(true);
+            unit.setCanMove(true);
+        }
         actualPlayer = EPlayer.values()[(actualPlayer.ordinal() + 1) % EPlayer.values().length];
         actionLeft = MAX_ACTION;
     }
@@ -174,18 +181,26 @@ public class GameState implements IGameState, Cloneable {
     }
 
     public void addUnitMoved(Coordinates coords){
-        for(Unit unit : unitsPlayerNorth)
-            if(unit.getX() == coords.getX() && unit.getY() == unit.getX()){
-                unit.setCanMove(true);
+        for(Unit unit : unitsPlayerNorth) {
+            if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
+                unit.setCanMove(false);
+                try {
+                    lastUnitMoved.setCanAttack(false);
+                } catch (NullPointerException e){}
                 lastUnitMoved = unit;
                 return;
             }
-        for(Unit unit : unitsPlayerSouth)
-            if(unit.getX() == coords.getX() && unit.getY() == unit.getX()) {
-                unit.setCanMove(true);
+        }
+        for(Unit unit : unitsPlayerSouth) {
+            if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
+                unit.setCanMove(false);
+                try {
+                    lastUnitMoved.setCanAttack(false);
+                } catch (NullPointerException e){}
                 lastUnitMoved = unit;
                 return;
             }
+        }
     }
 /*
     public Unit getUnit(Coordinates coords){
@@ -217,6 +232,14 @@ public class GameState implements IGameState, Cloneable {
         return false;
     }
 
+    private List cloneArrays(List<Unit> array){
+        List<Unit> newArray = new ArrayList<>();
+        for(Unit unit : array){
+            newArray.add(unit.clone());
+        }
+        return newArray;
+    }
+
     //TODO: Have to check if the object returned need to clone the Lists
     @Override
     public GameState clone() {
@@ -227,10 +250,10 @@ public class GameState implements IGameState, Cloneable {
             e.printStackTrace();
         }
         assert o != null;
-        ((GameState) o).unitsPlayerNorth = new ArrayList<>(unitsPlayerNorth);
-        ((GameState) o).unitsPlayerSouth = new ArrayList<>(unitsPlayerSouth);
-        ((GameState) o).priorityUnitsNorth = new ArrayList<>(priorityUnitsNorth);
-        ((GameState) o).priorityUnitsSouth = new ArrayList<>(priorityUnitsSouth);
+        ((GameState) o).unitsPlayerNorth = cloneArrays(unitsPlayerNorth);
+        ((GameState) o).unitsPlayerSouth = cloneArrays(unitsPlayerSouth);
+        ((GameState) o).priorityUnitsNorth = cloneArrays(priorityUnitsNorth);
+        ((GameState) o).priorityUnitsSouth = cloneArrays(priorityUnitsSouth);
         ((GameState) o).buildingPlayerNorth = new ArrayList<>(buildingPlayerNorth);
         ((GameState) o).buildingPlayerSouth = new ArrayList<>(buildingPlayerSouth);
         ((GameState) o).lastUnitMoved = null;

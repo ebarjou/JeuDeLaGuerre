@@ -24,7 +24,7 @@ public class MoveRules extends MasterRule {
         addRule(CheckIsAllyUnit.class);
         addRule(CheckIsPriorityUnit.class);
         addRule(CheckCanMoveUnit.class);
-        //addDependantRule(CheckUnitMP.class, CheckIsAllyUnit.class);
+        addDependantRule(CheckUnitMP.class, CheckIsAllyUnit.class);
         addRule(CheckIsEmptyPath.class);
     }
 

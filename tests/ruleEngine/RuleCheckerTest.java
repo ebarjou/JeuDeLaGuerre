@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
 public class RuleCheckerTest {
 
     private RuleChecker rulechecker;
-    private GameState gameState;;
+    private GameState gameState;
 
     @Before
     public void setUp(){
