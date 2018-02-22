@@ -69,7 +69,7 @@ public class TermGUI extends Application {
         textField.setPrefWidth(WINDOW_WIDTH);
         textField.setPrefHeight(COMMAND_PANEL_HEIGHT);
 
-        labelPlayerTurn = new Label(Game.getInstance().getGameMaster().getActualState().getActualPlayer().name());
+        labelPlayerTurn = new Label(Game.getInstance().getGameState().getActualPlayer().name());
         labelPlayerTurn.setPrefHeight(COMMAND_PANEL_HEIGHT);
 
         HBox layoutCommand = new HBox();

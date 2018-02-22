@@ -1,7 +1,9 @@
 package game;
 
 import game.board.*;
-import game.gameMaster.GameMaster;
+import game.gameMaster.GameState;
+import game.gameMaster.IGameState;
+import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
@@ -13,13 +15,16 @@ import player.Player;
 import ui.UIAction;
 
 import java.io.IOException;
+import java.util.Stack;
 
 import static ui.commands.GameToUserCall.*;
 
 public class Game {
     private static Game instance = null;
-    private Board board;
-    private GameMaster gameMaster;
+    //private Board board;
+    //private GameMaster gameMaster;
+    private GameState gameState;
+    private Stack<GameState> historyGameState;
     private Player player1;
     private Player player2;
 
@@ -32,10 +37,10 @@ public class Game {
     }
 
     private Game(Player player1, Player player2) {
-        board = new Board(25, 20);
-        gameMaster = new GameMaster();
+        gameState = new GameState(25, 20); // Not sure if we should let 25 / 20 like this
         this.player1 = player1;
         this.player2 = player2;
+        historyGameState = new Stack<>();
     }
 
     public void start(){
@@ -49,30 +54,34 @@ public class Game {
     }
 
     public Player getPlayer() {
-        if (gameMaster.getActualState().getActualPlayer() == EPlayer.PLAYER_NORTH)
+        if (gameState.getActualPlayer() == EPlayer.PLAYER_NORTH)
             return player1;
         return player2;
     }
 
     public IBoard getBoard(){
-        return board;
+        return gameState.getBoard();
     }
 
     public Board getBoardManager(){
-        return board;
+        return gameState.getBoard();
     }
 
-    public void reinit(Board board, GameMaster gameMaster){
-        this.board = board;
-        this.gameMaster = gameMaster;
+    public IGameState getGameState(){
+        return gameState;
+    }
+
+    public GameState getGameStateManager() {
+        return gameState;
+    }
+
+    public void reinit(GameState gameState){
+        this.gameState = gameState;
         computeCommunication();
     }
 
-    public GameMaster getGameMaster(){
-        return gameMaster;
-    }
-
     private boolean isObstacle(int x, int y, EPlayer player){
+        Board board = gameState.getBoard();
         if(!board.isValidCoordinate(x, y))
             return true;
         EUnitData u;
@@ -96,15 +105,15 @@ public class Game {
         y += dir.getY();
         int dist = 1;
         while(!isObstacle(x, y, player) && (rangeMax < 0 || dist <= rangeMax)){
-            board.setInCommunication(player, x, y, true);
+            gameState.getBoard().setInCommunication(player, x, y, true);
             EUnitData u;
             try {
-                u = board.getUnitType(x, y);
+                u = gameState.getBoard().getUnitType(x, y);
             } catch(NullPointerException e) {
                 u = null;
             }
-            if(u != null && board.getUnitPlayer(x, y) == player && !board.isMarked(x, y)){
-                board.setMarked(x, y, true);
+            if(u != null && gameState.getBoard().getUnitPlayer(x, y) == player && !gameState.getBoard().isMarked(x, y)){
+                gameState.getBoard().setMarked(x, y, true);
                 int rangeUnit = 1;
                 if(u.isRelayCommunication())
                     rangeUnit = -1;
@@ -120,6 +129,7 @@ public class Game {
     }
 
     private void computeCommunication(){
+        Board board = gameState.getBoard();
         int w = board.getWidth();
         int h = board.getHeight();
 
@@ -148,30 +158,26 @@ public class Game {
     }
 
     private GameResponse handleGameAction(UIAction cmd) {
+        GameState actualGameState = this.gameState.clone(); // copy of the GameState & Board before attempting the action
+        Board board = gameState.getBoard();
         try {
-            GameAction action = cmd.getGameAction(gameMaster.getActualState().getActualPlayer());
-            RuleResult res = RuleChecker.getInstance().checkAction(board, action);
+            GameAction action = cmd.getGameAction(gameState.getActualPlayer());
+            RuleResult res = RuleChecker.getInstance().checkAction(board, gameState, action);
             if (res.isValid()) {
-                board.moveUnit(action.getSourceCoordinates().getX(),
-                        action.getSourceCoordinates().getY(),
-                        action.getTargetCoordinates().getX(),
-                        action.getTargetCoordinates().getY());
-                gameMaster.removeAction();
+                historyGameState.push(actualGameState);
                 //Communication
-                board.clearCommunication();
                 computeCommunication();
-
-                return new GameResponse(VALID, null, board, gameMaster.getActualState().getActualPlayer());
+                return new GameResponse(VALID, null, board, gameState.getActualPlayer());
             } else {
-                return new GameResponse(INVALID, res.getLogMessage(), board, gameMaster.getActualState().getActualPlayer());
+                return new GameResponse(INVALID, res.getLogMessage(), board, gameState.getActualPlayer());
             }
         } catch (Exception e) {
-            return new GameResponse(GAME_ERROR, null, board, gameMaster.getActualState().getActualPlayer());
+            return new GameResponse(GAME_ERROR, null, board, gameState.getActualPlayer());
         }
     }
 
     public GameResponse processCommand(UIAction cmd) {
-        if(cmd == null)  new GameResponse(GAME_ERROR, "Error : null call.", board, gameMaster.getActualState().getActualPlayer());
+        if(cmd == null)  new GameResponse(GAME_ERROR, "Error : null call.", gameState.getBoard(), gameState.getActualPlayer());
         switch (cmd.getCommand()) {
             case EXIT: {
                 System.exit(0);
@@ -183,9 +189,9 @@ public class Game {
                     lf.loadFile(cmd.getText());
                     computeCommunication();
                 } catch (IOException e) {
-                    return new GameResponse(INVALID, e.getMessage(), board, gameMaster.getActualState().getActualPlayer());
+                    return new GameResponse(INVALID, e.getMessage(), gameState.getBoard(), gameState.getActualPlayer());
                 }
-                return new GameResponse(VALID, null, board, gameMaster.getActualState().getActualPlayer());
+                return new GameResponse(VALID, null, gameState.getBoard(), gameState.getActualPlayer());
             }
             case SAVE: {
                 break;
@@ -193,16 +199,18 @@ public class Game {
             case REVERT: {
                 //board.revert();
                 //gameMaster.revert();
-                return new GameResponse(VALID, cmd.getErrorMessage(), board, gameMaster.getActualState().getActualPlayer());
+                if(!historyGameState.isEmpty())
+                    this.gameState = historyGameState.pop();
+                return new GameResponse(VALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
             }
             case END_TURN: {
                 System.out.println("END TURN");
                 //board.clearHistory();
-                gameMaster.switchPlayer();
-                return new GameResponse(VALID, cmd.getErrorMessage(), board, gameMaster.getActualState().getActualPlayer());
+                gameState.switchPlayer();
+                return new GameResponse(VALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
             }
             case CMD_ERROR: {
-                return new GameResponse(INVALID, cmd.getErrorMessage(), board, gameMaster.getActualState().getActualPlayer());
+                return new GameResponse(INVALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
             }
             case GAME_ACTION: {
                 return handleGameAction(cmd);
@@ -211,6 +219,6 @@ public class Game {
                 break;
             }
         }
-        return new GameResponse(GAME_ERROR, "Error : Unimplemented call.", board, gameMaster.getActualState().getActualPlayer());
+        return new GameResponse(GAME_ERROR, "Error : Unimplemented call.", gameState.getBoard(), gameState.getActualPlayer());
     }
 }

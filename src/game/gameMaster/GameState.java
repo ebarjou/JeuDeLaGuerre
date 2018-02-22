@@ -1,134 +1,220 @@
 package game.gameMaster;
 
 import game.EPlayer;
-import ruleEngine.GameAction.Coordinates;
+import game.board.Board;
+import game.board.Unit;
+import ruleEngine.Coordinates;
 import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameState implements Cloneable {
+public class GameState implements IGameState, Cloneable {
 
     private static final int MAX_ACTION = 5;
     // TODO: Maybe need this kind of enum to know in which phase we are (INIT / GAME / END ??)
     //private EStateGame actualPhase;
     private EPlayer actualPlayer;
-    private List<EUnitData> unitsPlayer1;
-    private List<EUnitData> unitsPlayer2;
-    private List<EBuildingData> buildingPlayer1; // Maybe create a Building class
-    private List<EBuildingData> buildingPlayer2; //   like the Unit class ... ?
-    private List<Coordinates> priorityUnits1; //units needed to be move
-    private List<Coordinates> priorityUnits2;
+    private List<Unit> unitsPlayerNorth;
+    private List<Unit> unitsPlayerSouth;
+    private List<EBuildingData> buildingPlayerNorth; // Maybe create a Building class
+    private List<EBuildingData> buildingPlayerSouth; //   like the Unit class ... ?
+    private List<Unit> priorityUnitsNorth; //units needed to be move
+    private List<Unit> priorityUnitsSouth;
+    private Unit lastUnitMoved;
+    private Board board;
     private int actionLeft;
 
-    GameState() {
-        unitsPlayer1 = new ArrayList<>();
-        unitsPlayer2 = new ArrayList<>();
+    public GameState(int w, int h) {
+        board = new Board(w, h);
+        lastUnitMoved = null;
 
-        buildingPlayer1 = new ArrayList<>();
-        buildingPlayer2 = new ArrayList<>();
+        unitsPlayerNorth = new ArrayList<>();
+        unitsPlayerSouth = new ArrayList<>();
 
-        priorityUnits1 = new ArrayList<>();
-        priorityUnits2 = new ArrayList<>();
+        buildingPlayerNorth = new ArrayList<>();
+        buildingPlayerSouth = new ArrayList<>();
+
+        priorityUnitsNorth = new ArrayList<>();
+        priorityUnitsSouth = new ArrayList<>();
         actionLeft = 5;
+
+        actualPlayer = EPlayer.PLAYER_NORTH;
     }
 
-    void addPriorityUnit(Coordinates coords) {
-        priorityUnits1.add(coords);
+    public GameState(Board board) {
+        this.board = board;
+        lastUnitMoved = null;
+
+        unitsPlayerNorth = new ArrayList<>();
+        unitsPlayerSouth = new ArrayList<>();
+
+        buildingPlayerNorth = new ArrayList<>();
+        buildingPlayerSouth = new ArrayList<>();
+
+        priorityUnitsNorth = new ArrayList<>();
+        priorityUnitsSouth = new ArrayList<>();
+        actionLeft = 5;
+
+        actualPlayer = EPlayer.PLAYER_NORTH;
     }
 
-    void addBuilding(EPlayer player, EBuildingData building) {
+    public void addBuilding(EPlayer player, EBuildingData building) {
         if (player == EPlayer.PLAYER_NORTH) {
-            buildingPlayer1.add(building);
+            buildingPlayerNorth.add(building);
         } else {
-            buildingPlayer2.add(building);
+            buildingPlayerSouth.add(building);
         }
     }
 
-    void addUnit(EPlayer player, EUnitData unit) {
-        if (player == EPlayer.PLAYER_NORTH) {
-            unitsPlayer1.add(unit);
+    public void addUnit(Unit unit) {
+        if (unit.getPlayer() == EPlayer.PLAYER_NORTH) {
+            unitsPlayerNorth.add(unit);
         } else {
-            unitsPlayer2.add(unit);
+            unitsPlayerSouth.add(unit);
         }
+    }
+
+    public void addPriorityUnit(Unit unit) {
+        if(unit.getPlayer() == EPlayer.PLAYER_NORTH)
+            priorityUnitsNorth.add(unit);
+        else
+            priorityUnitsSouth.add(unit);
     }
 
     //Need to be sure of the remove of arraylist ..
     //Remove a priority coords to the actual player
-    boolean removePriorityUnit(Coordinates coords) {
-        List<Coordinates> priority;
-        Coordinates targetCoords = null;
+    public void removePriorityUnit(Coordinates coords) {
+        List<Unit> priority;
+        Unit targetUnit = null;
         if (actualPlayer == EPlayer.PLAYER_NORTH)
-            priority = priorityUnits1;
+            priority = priorityUnitsNorth;
         else
-            priority = priorityUnits2;
+            priority = priorityUnitsSouth;
 
-        for (Coordinates c : priority) {
-            if (c.getX() == coords.getX() && c.getY() == coords.getY()) {
-                targetCoords = c;
+        for (Unit unit : priority) {
+            if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
+                targetUnit = unit;
                 break;
             }
         }
-        if (targetCoords == null)
-            return false;
-        priority.remove(targetCoords);
-        return true;
+        priority.remove(targetUnit);
     }
 
-    void setPlayer(EPlayer player) {
-        actualPlayer = player;
-    }
-
-    void switchPlayer() {
+    public boolean isUnitHasPriority(Coordinates coords) {
+        List<Unit> priority;
         if (actualPlayer == EPlayer.PLAYER_NORTH)
-            actualPlayer = EPlayer.PLAYER_SOUTH;
+            priority = priorityUnitsNorth;
         else
-            actualPlayer = EPlayer.PLAYER_NORTH;
-        actionLeft = MAX_ACTION;
+            priority = priorityUnitsSouth;
+
+        if(priority.isEmpty())
+            return true;
+
+        for (Unit unit : priority)
+            if (unit.getX() == coords.getX() && unit.getY() == coords.getY())
+                return true;
+        return false;
+    }
+
+    public void setActualPlayer(EPlayer player) {
+        actualPlayer = player;
     }
 
     public EPlayer getActualPlayer() {
         return actualPlayer;
     }
 
+    public void switchPlayer() {
+        actualPlayer = EPlayer.values()[(actualPlayer.ordinal() + 1) % EPlayer.values().length];
+        actionLeft = MAX_ACTION;
+    }
+
     public int getActionLeft() {
         return actionLeft;
     }
 
-    void setActionLeft(int n) {
+    public void setActionLeft(int n) {
         this.actionLeft = n;
     }
 
-    public boolean isPriorityCoord(Coordinates coords) {
-        List<Coordinates> priority;
-        if (actualPlayer == EPlayer.PLAYER_NORTH)
-            priority = priorityUnits1;
-        else
-            priority = priorityUnits2;
-
-        if(priority.isEmpty())
-            return true;
-
-        for (Coordinates c : priority)
-            if (c.getX() == coords.getX() && c.getY() == coords.getY())
-                return true;
-        return false;
-    }
-
-    void removeOneAction() {
+    public void removeOneAction() {
         actionLeft = actionLeft - 1;
         if (actionLeft < 0)
             actionLeft = 0;
     }
 
-    void removeAll() {
-        unitsPlayer1 = new ArrayList<>();
-        unitsPlayer2 = new ArrayList<>();
-        buildingPlayer1 = new ArrayList<>();
-        buildingPlayer2 = new ArrayList<>();
-        priorityUnits1 = new ArrayList<>();
-        priorityUnits2 = new ArrayList<>();
+    public void removeAll() {
+        unitsPlayerNorth = new ArrayList<>();
+        unitsPlayerSouth = new ArrayList<>();
+        buildingPlayerNorth = new ArrayList<>();
+        buildingPlayerSouth = new ArrayList<>();
+        priorityUnitsNorth = new ArrayList<>();
+        priorityUnitsSouth = new ArrayList<>();
+        lastUnitMoved = null;
+    }
+
+    public Board getBoard(){
+        return board;
+    }
+
+    public void setBoard(Board board){this.board = board;}
+
+    public void updateUnitPosition(EPlayer player, Coordinates src, Coordinates target){
+        List<Unit> units;
+        if(player == EPlayer.PLAYER_NORTH)
+            units = unitsPlayerNorth;
+        else
+            units = unitsPlayerSouth;
+        for(Unit u : units){
+            if(u.getX() == src.getX() && u.getY() == src.getY()){
+                u.setPosition(target.getX(), target.getY());
+            }
+        }
+    }
+
+    public void addUnitMoved(Coordinates coords){
+        for(Unit unit : unitsPlayerNorth)
+            if(unit.getX() == coords.getX() && unit.getY() == unit.getX()){
+                unit.setCanMove(true);
+                lastUnitMoved = unit;
+                return;
+            }
+        for(Unit unit : unitsPlayerSouth)
+            if(unit.getX() == coords.getX() && unit.getY() == unit.getX()) {
+                unit.setCanMove(true);
+                lastUnitMoved = unit;
+                return;
+            }
+    }
+/*
+    public Unit getUnit(Coordinates coords){
+        for(Unit u : unitsPlayerSouth)
+            if(u.getX() == coords.getX() && u.getY() == coords.getY())
+                return u;
+        for(Unit u : unitsPlayerNorth)
+            if(u.getX() == coords.getX() && u.getY() == coords.getY())
+                return u;
+        throw new NullPointerException();
+    }*/
+
+    public Unit getLastUnitMoved(){
+        if(lastUnitMoved == null){
+            throw new NullPointerException();
+        }
+        return lastUnitMoved;
+    }
+
+    public boolean isUnitCanMove(Coordinates coords){
+        for(Unit unit : unitsPlayerNorth)
+            if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
+                if(unit.getCanMove())
+                    return true;
+        for(Unit unit : unitsPlayerSouth)
+            if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
+                if(unit.getCanMove())
+                    return true;
+        return false;
     }
 
     //TODO: Have to check if the object returned need to clone the Lists
@@ -141,12 +227,14 @@ public class GameState implements Cloneable {
             e.printStackTrace();
         }
         assert o != null;
-        ((GameState) o).unitsPlayer1 = new ArrayList<>(unitsPlayer1);
-        ((GameState) o).unitsPlayer2 = new ArrayList<>(unitsPlayer2);
-        ((GameState) o).priorityUnits1 = new ArrayList<>(priorityUnits1);
-        ((GameState) o).priorityUnits2 = new ArrayList<>(priorityUnits2);
-        ((GameState) o).buildingPlayer1 = new ArrayList<>(buildingPlayer1);
-        ((GameState) o).buildingPlayer2 = new ArrayList<>(buildingPlayer2);
+        ((GameState) o).unitsPlayerNorth = new ArrayList<>(unitsPlayerNorth);
+        ((GameState) o).unitsPlayerSouth = new ArrayList<>(unitsPlayerSouth);
+        ((GameState) o).priorityUnitsNorth = new ArrayList<>(priorityUnitsNorth);
+        ((GameState) o).priorityUnitsSouth = new ArrayList<>(priorityUnitsSouth);
+        ((GameState) o).buildingPlayerNorth = new ArrayList<>(buildingPlayerNorth);
+        ((GameState) o).buildingPlayerSouth = new ArrayList<>(buildingPlayerSouth);
+        ((GameState) o).lastUnitMoved = null;
+        ((GameState) o).board = board.clone();
         return (GameState) o;
     }
 }

@@ -3,7 +3,8 @@ package system;
 import game.EPlayer;
 import game.Game;
 import game.board.Board;
-import game.gameMaster.GameMaster;
+import game.board.Unit;
+import game.gameMaster.GameState;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 public class LoadFile {
     private Board board;
-    private GameMaster gameMaster;
+    private GameState gameState;
 
     //TODO: Need exception on convertBuilding and convertUnit
     public LoadFile() {
@@ -41,25 +42,26 @@ public class LoadFile {
     public void loadFile(String name) throws IOException {
         if (name == null || name.isEmpty())
             throw new IOException("Path is empty, can't load.");
-        board = new Board(25, 20);
-        gameMaster = new GameMaster();
-        gameMaster.removeAll();
-
+        //board = new Board(25, 20);
 
         BufferedReader br = new BufferedReader(new FileReader(name));
         String line;
         line = br.readLine();
         String[] tokens = line.split(";");
         // init board
-        board = new Board(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
+        int w = Integer.parseInt(tokens[0]);
+        int h = Integer.parseInt(tokens[1]);
+
+        gameState = new GameState(w, h);
+        board = gameState.getBoard();
+        gameState.removeAll();
 
         // set player
         line = br.readLine();
         tokens = line.split(";");
         int player = Integer.parseInt(tokens[0]);
-        gameMaster.setPlayer(EPlayer.values()[player]);
-
-        gameMaster.setActionLeft(Integer.parseInt(tokens[1]));
+        gameState.setActualPlayer(EPlayer.values()[player]);
+        gameState.setActionLeft(Integer.parseInt(tokens[1]));
 
         //Add buildings
         while ((line = br.readLine()) != null) {
@@ -71,7 +73,7 @@ public class LoadFile {
             int y = Integer.parseInt(tokens[2]) - 1;
             boolean destroy = Boolean.parseBoolean(tokens[3]);
             EPlayer p = EPlayer.values()[ Integer.parseInt(tokens[4]) - 1];
-            gameMaster.addBuilding(p, e);
+            gameState.addBuilding(p, e);
             board.setBuilding(e, p, x, y);
         }
         //Add units
@@ -85,12 +87,15 @@ public class LoadFile {
             boolean hasAttacked = Boolean.parseBoolean(tokens[5]);
             */
             EPlayer p = Integer.parseInt(tokens[3]) == 1 ? EPlayer.PLAYER_NORTH : EPlayer.PLAYER_SOUTH;
-            gameMaster.addUnit(p, u);
+            Unit unit = new Unit(u, p);
+            unit.setPosition(x, y);
+
+            gameState.addUnit(unit);
             board.setUnit(u, p, x, y);
             tokens = line.split(";");
         }
         br.close();
 
-        Game.getInstance().reinit(board, gameMaster);
+        Game.getInstance().reinit(gameState);
     }
 }

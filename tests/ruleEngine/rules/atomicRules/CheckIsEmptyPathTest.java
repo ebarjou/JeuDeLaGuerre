@@ -35,11 +35,11 @@ public class CheckIsEmptyPathTest {
 
         moveRules = RuleChecker.getInstance();
     }
-
+/*
     @Test
     public void isEmptyPath() throws IncorrectGameActionException {
         System.out.println(master.toString());
         System.out.println(moveRules.checkAction(master, gameAction).getLogMessage());
-    }
+    }*/
 
 }

@@ -1,7 +1,8 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.IBoard;
-import game.gameMaster.GameState;
+import game.gameMaster.IGameState;
+import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
@@ -13,7 +14,7 @@ public class CheckIsEmptyPath implements IRule {
 
     private int length;
 
-    private Vertex[][] initMap(int MP, GameAction.Coordinates src) {
+    private Vertex[][] initMap(int MP, Coordinates src) {
         length = 2 * MP + 1;
         Vertex[][] map = new Vertex[length][length];
         for (int i = 0; i < length; i++) {
@@ -25,9 +26,9 @@ public class CheckIsEmptyPath implements IRule {
     }
 
     @Override
-    public boolean checkAction(IBoard board, GameState state, GameAction action, RuleResult result) {
-        GameAction.Coordinates src = action.getSourceCoordinates();
-        GameAction.Coordinates target = action.getTargetCoordinates();
+    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
+        Coordinates src = action.getSourceCoordinates();
+        Coordinates target = action.getTargetCoordinates();
         try {
             int MP = board.getUnitType(src.getX(), src.getY()).getMovementValue();
 

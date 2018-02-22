@@ -25,12 +25,12 @@ public class Board implements IBoard{
         marked = new boolean[height * width];
     }
 
-    private Board(int width, int height, short[] units, short[] buildings) {
+    private Board(int width, int height, short[] units, short[] buildings, byte[] communications) {
         this.height = height;
         this.width = width;
         this.units = units;
         this.buildings = buildings;
-        communication = new byte[height * width];
+        communication = communications;
         marked = new boolean[height * width];
     }
 
@@ -101,8 +101,8 @@ public class Board implements IBoard{
         return getPlayer(units[getOffset(x, y)]);
     }
 
-    protected Board clone() {
-        return new Board(this.width, this.height, units.clone(), buildings.clone());
+    public Board clone() {
+        return new Board(this.width, this.height, units.clone(), buildings.clone(), communication.clone());
     }
 
     public boolean isMarked(int x, int y) {

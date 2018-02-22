@@ -2,6 +2,7 @@ package ruleEngine.rules.atomicRules;
 
 import game.board.IBoard;
 import game.gameMaster.GameState;
+import game.gameMaster.IGameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
@@ -9,7 +10,7 @@ import ruleEngine.RuleResult;
 public class CheckIsEnemyUnit implements IRule {
 
     @Override
-    public boolean checkAction(IBoard board, GameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
         int x = action.getTargetCoordinates().getX();
         int y = action.getTargetCoordinates().getY();
 

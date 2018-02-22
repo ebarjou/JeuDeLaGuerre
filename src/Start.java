@@ -1,6 +1,8 @@
 import game.EPlayer;
 import game.Game;
 import game.board.Board;
+import game.board.Unit;
+import game.gameMaster.GameState;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import player.GUIPlayer;
@@ -15,14 +17,25 @@ public class Start {
 
         Game.init(p1, p2);
 
-        Board boardManager = Game.getInstance().getBoardManager();
+        Board board = Game.getInstance().getBoardManager();
+        GameState gameState = Game.getInstance().getGameStateManager();
 
-        boardManager.setUnit(EUnitData.RELAY_HORSE, EPlayer.PLAYER_SOUTH, 10, 10);
-        boardManager.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH, 0, 0);
+        board.setUnit(EUnitData.RELAY_HORSE, EPlayer.PLAYER_SOUTH, 10, 10);
+        Unit u = new Unit(EUnitData.RELAY_HORSE, EPlayer.PLAYER_SOUTH);
+        u.setPosition(10, 10);
+        gameState.addUnit(u);
 
-        boardManager.setBuilding(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH, 0, 7);
-        boardManager.setBuilding(EBuildingData.FORTRESS, EPlayer.PLAYER_NORTH, 10, 10);
-        boardManager.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH, 1, 1);
+        board.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH, 0, 0);
+        u = new Unit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH);
+        u.setPosition(0, 0);
+        gameState.addUnit(u);
+
+        board.setBuilding(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH, 0, 7);
+        gameState.addBuilding(EPlayer.PLAYER_NORTH, EBuildingData.ARSENAL);
+        board.setBuilding(EBuildingData.FORTRESS, EPlayer.PLAYER_NORTH, 10, 10);
+        gameState.addBuilding(EPlayer.PLAYER_NORTH, EBuildingData.FORTRESS);
+        board.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH, 1, 1);
+        gameState.addBuilding(EPlayer.PLAYER_NORTH, EBuildingData.MOUNTAIN);
 
         guiThread.start();
 

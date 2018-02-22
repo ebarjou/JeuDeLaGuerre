@@ -1,23 +1,23 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.IBoard;
-import game.gameMaster.GameState;
 import game.gameMaster.IGameState;
+import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
 
-public class CheckPlayerTurn implements IRule {
-
+//Est ce que cette unité peut bouger
+public class CheckCanMoveUnit implements IRule{
     @Override
     public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
-        if (action.getPlayer() != state.getActualPlayer()) {
+        Coordinates src = action.getSourceCoordinates();
+        boolean canMove = state.isUnitCanMove(src);
+        if(!canMove){
             result.invalidate();
-            //TODO: Access player's name through EPlayer enum ?
-            result.addMessage(this, "This is not player " + action.getPlayer().name() + "'s turn.");
+            result.addMessage(this, "This unit has already moved.");
             return false;
         }
-
         return true;
     }
 }
