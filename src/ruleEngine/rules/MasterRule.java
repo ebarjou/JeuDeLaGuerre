@@ -32,7 +32,7 @@ public abstract class MasterRule implements IRule {
         dependances.put(RuleManager.getInstance().getRule(rule), RuleManager.getInstance().getRule(dependance));
     }
 
-    abstract void applyResult(Board board, GameState state, GameAction action, RuleResult result);
+    abstract public void applyResult(Board board, IGameState state, GameAction action, RuleResult result);
 
     @Override
     public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
@@ -46,9 +46,6 @@ public abstract class MasterRule implements IRule {
                     invalidateRules.add(r);
             }
         }
-
-        if (result.isValid())
-            applyResult(state.getBoard(), Game.getInstance().getGameStateManager(), action, result);
 
         return result.isValid();
     }

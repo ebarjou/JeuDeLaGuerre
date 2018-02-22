@@ -1,15 +1,17 @@
 package ruleEngine;
 
 import game.Game;
+import game.board.Board;
 import game.board.IBoard;
 import game.gameMaster.IGameState;
 import ruleEngine.exceptions.IncorrectGameActionException;
+import ruleEngine.rules.MasterRule;
 import ruleEngine.rules.MoveRules;
 
 public class RuleChecker {
     private static RuleChecker instance;
 
-    private IRule moveRuleMaster;
+    private MasterRule moveRuleMaster;
 
     private RuleChecker() {
         moveRuleMaster = MoveRules.getInstance();
@@ -22,15 +24,21 @@ public class RuleChecker {
         return instance;
     }
 
-    public RuleResult checkAction(IBoard board, IGameState gameState, GameAction action) throws IncorrectGameActionException {
+    public RuleResult checkAction(Board board, IGameState gameState, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
+        MasterRule mr = null;
         switch (action.getActionType()) {
             case MOVE:
-                moveRuleMaster.checkAction(board, Game.getInstance().getGameState(), action, result);
+                mr = moveRuleMaster;
                 break;
             default:
                 throw new IncorrectGameActionException("Unhandled GameAction type.");
         }
+
+        mr.checkAction(board, Game.getInstance().getGameState(), action, result);
+
+        if (result.isValid())
+            mr.applyResult(board, gameState, action, result);
 
         return result;
     }

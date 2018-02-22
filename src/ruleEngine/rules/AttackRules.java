@@ -3,6 +3,7 @@ package ruleEngine.rules;
 import game.board.Board;
 import game.board.IBoard;
 import game.gameMaster.GameState;
+import game.gameMaster.IGameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
@@ -43,7 +44,7 @@ public class AttackRules extends MasterRule {
     }
 
     @Override
-    void applyResult(Board board, GameState state, GameAction action, RuleResult result) {
+    public void applyResult(Board board, IGameState state, GameAction action, RuleResult result) {
         // attack <= def : do nothing
         // attack+1 = def : retreat
         // attack+2 >= def : death of defensive unit

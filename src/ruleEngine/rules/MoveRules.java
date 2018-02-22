@@ -13,7 +13,7 @@ import ruleEngine.rules.atomicRules.*;
 
 public class MoveRules extends MasterRule {
 
-    private static IRule instance;
+    private static MasterRule instance;
 
     private MoveRules() {
         //TODO: Put here the sub-rules (atomic) you need to check.
@@ -29,7 +29,7 @@ public class MoveRules extends MasterRule {
     }
 
     @Override
-    void applyResult(Board board, GameState state, GameAction action, RuleResult result) {
+    public void applyResult(Board board, IGameState state, GameAction action, RuleResult result) {
         //System.out.println("ApplyResulMove");
         Coordinates src = action.getSourceCoordinates();
         Coordinates target = action.getTargetCoordinates();
@@ -45,7 +45,7 @@ public class MoveRules extends MasterRule {
 
     }
 
-    public static IRule getInstance() {
+    public static MasterRule getInstance() {
         if (instance == null)
             instance = new MoveRules();
 
