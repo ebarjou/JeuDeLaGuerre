@@ -53,7 +53,7 @@ public class LoadFile {
         int h = Integer.parseInt(tokens[1]);
 
         gameState = new GameState(w, h);
-        board = gameState.getBoard();
+        board = gameState.getBoardManager();
         gameState.removeAll();
 
         // set player

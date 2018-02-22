@@ -44,7 +44,7 @@ public class AttackRules extends MasterRule {
     }
 
     @Override
-    public void applyResult(Board board, IGameState state, GameAction action, RuleResult result) {
+    public void applyResult(Board board, GameState state, GameAction action, RuleResult result) {
         // attack <= def : do nothing
         // attack+1 = def : retreat
         // attack+2 >= def : death of defensive unit

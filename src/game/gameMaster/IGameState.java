@@ -2,6 +2,7 @@ package game.gameMaster;
 
 import game.EPlayer;
 import game.board.Board;
+import game.board.IBoard;
 import game.board.Unit;
 import ruleEngine.Coordinates;
 
@@ -11,7 +12,7 @@ public interface IGameState {
     boolean isUnitHasPriority(Coordinates coords);
     boolean isUnitCanMove(Coordinates coords);
     Unit getLastUnitMoved();
-    Board getBoard();
+    IBoard getBoard();
     GameState clone();
 
 }

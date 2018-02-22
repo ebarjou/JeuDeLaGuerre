@@ -1,10 +1,7 @@
 package ruleEngine.rules;
 
-import game.Game;
 import game.board.Board;
-import game.board.IBoard;
 import game.gameMaster.GameState;
-import game.gameMaster.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
@@ -29,8 +26,7 @@ public class MoveRules extends MasterRule {
     }
 
     @Override
-    public void applyResult(Board board, IGameState state, GameAction action, RuleResult result) {
-        //System.out.println("ApplyResulMove");
+    public void applyResult(Board board, GameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
         Coordinates target = action.getTargetCoordinates();
         state.removePriorityUnit(src);
@@ -38,10 +34,10 @@ public class MoveRules extends MasterRule {
             state.getLastUnitMoved().setCanAttack(false);
         } catch (NullPointerException ignored){}
 
-        state.addUnitMoved(src);
+        state.setUnitHasMoved(src);
         state.updateUnitPosition(board.getUnitPlayer(src.getX(), src.getY()), src, target);
         state.removeOneAction();
-        state.getBoard().moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
+        state.getBoardManager().moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
 
     }
 

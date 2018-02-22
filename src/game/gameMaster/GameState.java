@@ -2,6 +2,7 @@ package game.gameMaster;
 
 import game.EPlayer;
 import game.board.Board;
+import game.board.IBoard;
 import game.board.Unit;
 import ruleEngine.Coordinates;
 import ruleEngine.entity.EBuildingData;
@@ -161,7 +162,11 @@ public class GameState implements IGameState, Cloneable {
         lastUnitMoved = null;
     }
 
-    public Board getBoard(){
+    public IBoard getBoard(){
+        return board;
+    }
+
+    public Board getBoardManager(){
         return board;
     }
 
@@ -180,8 +185,8 @@ public class GameState implements IGameState, Cloneable {
         }
     }
 
-    public void addUnitMoved(Coordinates coords){
-        for(Unit unit : unitsPlayerNorth) {
+    private void setUnitHasMovedBis(List<Unit> units, Coordinates coords){
+        for(Unit unit : units) {
             if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
                 unit.setCanMove(false);
                 try {
@@ -191,16 +196,11 @@ public class GameState implements IGameState, Cloneable {
                 return;
             }
         }
-        for(Unit unit : unitsPlayerSouth) {
-            if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
-                unit.setCanMove(false);
-                try {
-                    lastUnitMoved.setCanAttack(false);
-                } catch (NullPointerException e){}
-                lastUnitMoved = unit;
-                return;
-            }
-        }
+    }
+
+    public void setUnitHasMoved(Coordinates coords){
+        setUnitHasMovedBis(unitsPlayerNorth, coords);
+        setUnitHasMovedBis(unitsPlayerSouth, coords);
     }
 /*
     public Unit getUnit(Coordinates coords){
@@ -240,7 +240,6 @@ public class GameState implements IGameState, Cloneable {
         return newArray;
     }
 
-    //TODO: Have to check if the object returned need to clone the Lists
     @Override
     public GameState clone() {
         Object o = null;

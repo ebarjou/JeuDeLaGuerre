@@ -3,6 +3,7 @@ package ruleEngine;
 import game.Game;
 import game.board.Board;
 import game.board.IBoard;
+import game.gameMaster.GameState;
 import game.gameMaster.IGameState;
 import ruleEngine.exceptions.IncorrectGameActionException;
 import ruleEngine.rules.MasterRule;
@@ -24,7 +25,7 @@ public class RuleChecker {
         return instance;
     }
 
-    public RuleResult checkAction(Board board, IGameState gameState, GameAction action) throws IncorrectGameActionException {
+    public RuleResult checkAction(Board board, GameState gameState, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
         MasterRule mr = null;
         switch (action.getActionType()) {

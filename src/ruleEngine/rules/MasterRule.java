@@ -32,7 +32,7 @@ public abstract class MasterRule implements IRule {
         dependances.put(RuleManager.getInstance().getRule(rule), RuleManager.getInstance().getRule(dependance));
     }
 
-    abstract public void applyResult(Board board, IGameState state, GameAction action, RuleResult result);
+    abstract public void applyResult(Board board, GameState state, GameAction action, RuleResult result);
 
     @Override
     public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
@@ -42,12 +42,11 @@ public abstract class MasterRule implements IRule {
                 result.addMessage(this, r.getClass().getSimpleName() + " is not checked because it is dependant of " + dependances.get(r).getClass().getSimpleName() + "'s success.");
                 result.invalidate();
             }else{
-                if (!r.checkAction(board, Game.getInstance().getGameState(), action, result))
+                if (!r.checkAction(board, state, action, result))
                     invalidateRules.add(r);
             }
         }
 
         return result.isValid();
     }
-
 }

@@ -64,7 +64,7 @@ public class Game {
     }
 
     public Board getBoardManager(){
-        return gameState.getBoard();
+        return gameState.getBoardManager();
     }
 
     public IGameState getGameState(){
@@ -81,7 +81,7 @@ public class Game {
     }
 
     private boolean isObstacle(int x, int y, EPlayer player){
-        Board board = gameState.getBoard();
+        Board board = gameState.getBoardManager();
         if(!board.isValidCoordinate(x, y))
             return true;
         EUnitData u;
@@ -105,7 +105,7 @@ public class Game {
         y += dir.getY();
         int dist = 1;
         while(!isObstacle(x, y, player) && (rangeMax < 0 || dist <= rangeMax)){
-            gameState.getBoard().setInCommunication(player, x, y, true);
+            gameState.getBoardManager().setInCommunication(player, x, y, true);
             EUnitData u;
             try {
                 u = gameState.getBoard().getUnitType(x, y);
@@ -129,7 +129,7 @@ public class Game {
     }
 
     private void computeCommunication(){
-        Board board = gameState.getBoard();
+        Board board = gameState.getBoardManager();
         int w = board.getWidth();
         int h = board.getHeight();
 
@@ -159,7 +159,7 @@ public class Game {
 
     private GameResponse handleGameAction(UIAction cmd) {
         GameState actualGameState = this.gameState.clone(); // copy of the GameState & Board before attempting the action
-        Board board = gameState.getBoard();
+        Board board = gameState.getBoardManager();
         try {
             GameAction action = cmd.getGameAction(gameState.getActualPlayer());
             RuleResult res = RuleChecker.getInstance().checkAction(board, gameState, action);
