@@ -15,17 +15,6 @@ public class AttackRules extends MasterRule {
 
     private AttackRules() {
         //TODO: Put here the sub-rules (atomic) you need to check.
-        //rules = new RuleList();
-        /*rules.add(CheckPlayerTurn.class);
-        rules.add(CheckPlayerMovesLeft.class);
-        rules.add(CheckCommunication.class);
-        rules.add(CheckOnBoard.class);
-        rules.add(CheckIsUnit.class);
-        //rules.add(CheckIsPriorityUnit.class);
-        rules.add(CheckUnitMP.class);
-        rules.add(CheckIsEmptyPath.class);*/
-
-        // TODO
         addRule(CheckPlayerTurn.class);
         addRule(CheckOnBoard.class);
         addRule(CheckCommunication.class);
@@ -65,13 +54,15 @@ public class AttackRules extends MasterRule {
         int yT = action.getTargetCoordinates().getY();
 
         int val = 0;
-        // TODO : Don't check everywhere, only in 8 directions
         // TODO : Apply the Charge
         for (int y = 0 ; y < h ; y++) {
             for (int x = 0 ; x < w ; x++) {
                 if (board.isUnit(x, y) && (board.getUnitPlayer(x, y) == board.getUnitPlayer(xS, yS))) {
                     EUnitData unit = board.getUnitType(x, y);
-                    if (unit.getFightRange() >= board.getDistance(x, y, xT, yT) && unit.isCanAttack()) {
+
+                    // Check in 8 directions : i0 == i1 OR j0 == j1 OR i0+j0 == i1+j1 OR i0-j0 == i1-j1
+                    if (unit.isCanAttack() && unit.getFightRange() >= board.getDistance(x, y, xT, yT)
+                            && ( (x == xT) || (y == yT) || (x + y == xT + yT) || (x - y == xT - yT) )) {
                         val += unit.getAtkValue();
                     }
                 }
@@ -89,12 +80,15 @@ public class AttackRules extends MasterRule {
         int yT = action.getTargetCoordinates().getY();
 
         int val = 0;
-        // TODO : Don't check everywhere, only in 8 directions
         for (int y = 0 ; y < h ; y++) {
             for (int x = 0 ; x < w ; x++) {
-                if (board.isUnit(x, y) && (board.getUnitPlayer(x, y) == board.getUnitPlayer(xS, yS))) {
+                if (board.isUnit(x, y) && (board.getUnitPlayer(x, y) == board.getUnitPlayer(xS, yS))
+                        && (board.isInCommunication(board.getUnitPlayer(x, y), x, y))) {
                     EUnitData unit = board.getUnitType(x, y);
-                    if (unit.getFightRange() >= board.getDistance(x, y, xT, yT) && unit.isCanAttack()) {
+
+                    // Check in 8 directions : i0 == i1 OR j0 == j1 OR i0+j0 == i1+j1 OR i0-j0 == i1-j1
+                    if (unit.isCanAttack() && (unit.getFightRange() >= board.getDistance(x, y, xT, yT))
+                            && ( (x == xT) || (y == yT) || (x + y == xT + yT) || (x - y == xT - yT) )) {
                         val += unit.getDefValue();
 
                         if (unit.isGetBonusDef()
