@@ -1,6 +1,7 @@
 import game.EPlayer;
 import game.Game;
 import game.board.Board;
+import game.board.Building;
 import game.board.Unit;
 import game.gameMaster.GameState;
 import ruleEngine.entity.EBuildingData;
@@ -30,12 +31,20 @@ public class Start {
         u.setPosition(0, 0);
         gameState.addUnit(u);
 
+        Building b = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH);
+        b.setPosition(0, 7);
         board.setBuilding(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH, 0, 7);
-        gameState.addBuilding(EPlayer.PLAYER_NORTH, EBuildingData.ARSENAL);
+        gameState.addBuilding(b);
+
+        b = new Building(EBuildingData.FORTRESS, EPlayer.PLAYER_NORTH);
+        b.setPosition(10, 10);
         board.setBuilding(EBuildingData.FORTRESS, EPlayer.PLAYER_NORTH, 10, 10);
-        gameState.addBuilding(EPlayer.PLAYER_NORTH, EBuildingData.FORTRESS);
+        gameState.addBuilding(b);
+
+        b = new Building(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH);
+        b.setPosition(1, 1);
         board.setBuilding(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH, 1, 1);
-        gameState.addBuilding(EPlayer.PLAYER_NORTH, EBuildingData.MOUNTAIN);
+        gameState.addBuilding(b);
 
         guiThread.start();
 

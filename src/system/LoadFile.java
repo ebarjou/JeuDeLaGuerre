@@ -3,6 +3,7 @@ package system;
 import game.EPlayer;
 import game.Game;
 import game.board.Board;
+import game.board.Building;
 import game.board.Unit;
 import game.gameMaster.GameState;
 import ruleEngine.entity.EBuildingData;
@@ -73,7 +74,9 @@ public class LoadFile {
             int y = Integer.parseInt(tokens[2]) - 1;
             boolean destroy = Boolean.parseBoolean(tokens[3]);
             EPlayer p = EPlayer.values()[ Integer.parseInt(tokens[4]) - 1];
-            gameState.addBuilding(p, e);
+            Building building = new Building(e, p);
+            building.setPosition(x, y);
+            gameState.addBuilding(building);
             board.setBuilding(e, p, x, y);
         }
         //Add units

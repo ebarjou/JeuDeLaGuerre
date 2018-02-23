@@ -35,7 +35,7 @@ public class MoveRules extends MasterRule {
         } catch (NullPointerException ignored){}
 
         state.setUnitHasMoved(src);
-        state.updateUnitPosition(board.getUnitPlayer(src.getX(), src.getY()), src, target);
+        state.updateUnitPosition(src, target);
         state.removeOneAction();
         state.getBoardManager().moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
 

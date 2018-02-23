@@ -2,11 +2,13 @@ package game.gameMaster;
 
 import game.EPlayer;
 import game.board.Board;
+import game.board.Building;
 import game.board.IBoard;
 import game.board.Unit;
 import ruleEngine.Coordinates;
 import ruleEngine.entity.EBuildingData;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +18,9 @@ public class GameState implements IGameState, Cloneable {
     // TODO: Maybe need this kind of enum to know in which phase we are (INIT / GAME / END ??)
     //private EStateGame actualPhase;
     private EPlayer actualPlayer;
-    private List<Unit> unitsPlayerNorth;
-    private List<Unit> unitsPlayerSouth;
-    private List<EBuildingData> buildingPlayerNorth; // Maybe create a Building class
-    private List<EBuildingData> buildingPlayerSouth; //   like the Unit class ... ?
-    private List<Unit> priorityUnitsNorth; //units needed to be move
-    private List<Unit> priorityUnitsSouth;
+    private List<Unit> allUnits;
+    private List<Building> allBuildings; // Maybe create a Building class
+    private List<Unit> priorityUnits; //units needed to be move
     private Unit lastUnitMoved;
     private Board board;
     private int actionLeft;
@@ -29,90 +28,58 @@ public class GameState implements IGameState, Cloneable {
     public GameState(int w, int h) {
         board = new Board(w, h);
         lastUnitMoved = null;
+        allUnits      = new ArrayList<>();
+        allBuildings  = new ArrayList<>();
+        priorityUnits = new ArrayList<>();
 
-        unitsPlayerNorth = new ArrayList<>();
-        unitsPlayerSouth = new ArrayList<>();
-
-        buildingPlayerNorth = new ArrayList<>();
-        buildingPlayerSouth = new ArrayList<>();
-
-        priorityUnitsNorth = new ArrayList<>();
-        priorityUnitsSouth = new ArrayList<>();
-        actionLeft = 5;
-
+        actionLeft   = 5;
         actualPlayer = EPlayer.PLAYER_NORTH;
     }
 
     public GameState(Board board) {
-        this.board = board;
+        this.board    = board;
         lastUnitMoved = null;
+        allUnits      = new ArrayList<>();
+        allBuildings  = new ArrayList<>();
+        priorityUnits = new ArrayList<>();
 
-        unitsPlayerNorth = new ArrayList<>();
-        unitsPlayerSouth = new ArrayList<>();
-
-        buildingPlayerNorth = new ArrayList<>();
-        buildingPlayerSouth = new ArrayList<>();
-
-        priorityUnitsNorth = new ArrayList<>();
-        priorityUnitsSouth = new ArrayList<>();
-        actionLeft = 5;
-
+        actionLeft   = 5;
         actualPlayer = EPlayer.PLAYER_NORTH;
     }
 
-    public void addBuilding(EPlayer player, EBuildingData building) {
-        if (player == EPlayer.PLAYER_NORTH) {
-            buildingPlayerNorth.add(building);
-        } else {
-            buildingPlayerSouth.add(building);
-        }
+    public void addBuilding(Building building) {
+        allBuildings.add(building); //get a copy of this ?
     }
 
     public void addUnit(Unit unit) {
-        if (unit.getPlayer() == EPlayer.PLAYER_NORTH) {
-            unitsPlayerNorth.add(unit);
-        } else {
-            unitsPlayerSouth.add(unit);
-        }
+        allUnits.add(unit); //get a copy of this ?
     }
 
     public void addPriorityUnit(Unit unit) {
-        if(unit.getPlayer() == EPlayer.PLAYER_NORTH)
-            priorityUnitsNorth.add(unit);
-        else
-            priorityUnitsSouth.add(unit);
+        priorityUnits.add(unit);
     }
 
     //Need to be sure of the remove of arraylist ..
     //Remove a priority coords to the actual player
     public void removePriorityUnit(Coordinates coords) {
-        List<Unit> priority;
         Unit targetUnit = null;
-        if (actualPlayer == EPlayer.PLAYER_NORTH)
-            priority = priorityUnitsNorth;
-        else
-            priority = priorityUnitsSouth;
-
-        for (Unit unit : priority) {
+        for (Unit unit : priorityUnits) {
             if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
                 targetUnit = unit;
                 break;
             }
         }
-        priority.remove(targetUnit);
+        //TODO: If trying to remove a unit not in priority units... ?
+        if(targetUnit == null)
+            return;
+        priorityUnits.remove(targetUnit);
     }
 
     public boolean isUnitHasPriority(Coordinates coords) {
-        List<Unit> priority;
-        if (actualPlayer == EPlayer.PLAYER_NORTH)
-            priority = priorityUnitsNorth;
-        else
-            priority = priorityUnitsSouth;
-
-        if(priority.isEmpty())
+        if(priorityUnits.isEmpty())
             return true;
 
-        for (Unit unit : priority)
+        for (Unit unit : priorityUnits)
             if (unit.getX() == coords.getX() && unit.getY() == coords.getY())
                 return true;
         return false;
@@ -127,12 +94,11 @@ public class GameState implements IGameState, Cloneable {
     }
 
     public void switchPlayer() {
-        List<Unit> units = unitsPlayerSouth;
-        if(actualPlayer == EPlayer.PLAYER_NORTH)
-            units = unitsPlayerNorth;
-        for(Unit unit : units) {
-            unit.setCanAttack(true);
-            unit.setCanMove(true);
+        for(Unit unit : allUnits) {
+            if(unit.getPlayer() == actualPlayer) {
+                unit.setCanAttack(true);
+                unit.setCanMove(true);
+            }
         }
         actualPlayer = EPlayer.values()[(actualPlayer.ordinal() + 1) % EPlayer.values().length];
         actionLeft = MAX_ACTION;
@@ -153,12 +119,9 @@ public class GameState implements IGameState, Cloneable {
     }
 
     public void removeAll() {
-        unitsPlayerNorth = new ArrayList<>();
-        unitsPlayerSouth = new ArrayList<>();
-        buildingPlayerNorth = new ArrayList<>();
-        buildingPlayerSouth = new ArrayList<>();
-        priorityUnitsNorth = new ArrayList<>();
-        priorityUnitsSouth = new ArrayList<>();
+        allUnits = new ArrayList<>();
+        allBuildings = new ArrayList<>();
+        priorityUnits = new ArrayList<>();
         lastUnitMoved = null;
     }
 
@@ -172,35 +135,25 @@ public class GameState implements IGameState, Cloneable {
 
     public void setBoard(Board board){this.board = board;}
 
-    public void updateUnitPosition(EPlayer player, Coordinates src, Coordinates target){
-        List<Unit> units;
-        if(player == EPlayer.PLAYER_NORTH)
-            units = unitsPlayerNorth;
-        else
-            units = unitsPlayerSouth;
-        for(Unit u : units){
+    public void updateUnitPosition(Coordinates src, Coordinates target){
+        for(Unit u : allUnits){
             if(u.getX() == src.getX() && u.getY() == src.getY()){
                 u.setPosition(target.getX(), target.getY());
             }
         }
     }
 
-    private void setUnitHasMovedBis(List<Unit> units, Coordinates coords){
-        for(Unit unit : units) {
+    public void setUnitHasMoved(Coordinates coords){
+        for(Unit unit : allUnits) {
             if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
                 unit.setCanMove(false);
                 try {
                     lastUnitMoved.setCanAttack(false);
-                } catch (NullPointerException e){}
+                } catch (NullPointerException ignored){}
                 lastUnitMoved = unit;
                 return;
             }
         }
-    }
-
-    public void setUnitHasMoved(Coordinates coords){
-        setUnitHasMovedBis(unitsPlayerNorth, coords);
-        setUnitHasMovedBis(unitsPlayerSouth, coords);
     }
 /*
     public Unit getUnit(Coordinates coords){
@@ -221,21 +174,25 @@ public class GameState implements IGameState, Cloneable {
     }
 
     public boolean isUnitCanMove(Coordinates coords){
-        for(Unit unit : unitsPlayerNorth)
-            if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
-                if(unit.getCanMove())
-                    return true;
-        for(Unit unit : unitsPlayerSouth)
+        for(Unit unit : allUnits)
             if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
                 if(unit.getCanMove())
                     return true;
         return false;
     }
 
-    private List cloneArrays(List<Unit> array){
+    private List cloneUnits(List<Unit> array){
         List<Unit> newArray = new ArrayList<>();
         for(Unit unit : array){
             newArray.add(unit.clone());
+        }
+        return newArray;
+    }
+
+    private List cloneBuilding(List<Building> array){
+        List<Building> newArray = new ArrayList<>();
+        for(Building building : array){
+            newArray.add(building.clone());
         }
         return newArray;
     }
@@ -249,12 +206,9 @@ public class GameState implements IGameState, Cloneable {
             e.printStackTrace();
         }
         assert o != null;
-        ((GameState) o).unitsPlayerNorth = cloneArrays(unitsPlayerNorth);
-        ((GameState) o).unitsPlayerSouth = cloneArrays(unitsPlayerSouth);
-        ((GameState) o).priorityUnitsNorth = cloneArrays(priorityUnitsNorth);
-        ((GameState) o).priorityUnitsSouth = cloneArrays(priorityUnitsSouth);
-        ((GameState) o).buildingPlayerNorth = new ArrayList<>(buildingPlayerNorth);
-        ((GameState) o).buildingPlayerSouth = new ArrayList<>(buildingPlayerSouth);
+        ((GameState) o).allUnits = cloneUnits(allUnits);
+        ((GameState) o).priorityUnits = cloneUnits(priorityUnits);
+        ((GameState) o).allBuildings = cloneBuilding(allBuildings);
         ((GameState) o).lastUnitMoved = null;
         ((GameState) o).board = board.clone();
         return (GameState) o;

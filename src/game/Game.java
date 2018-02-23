@@ -21,8 +21,6 @@ import static ui.commands.GameToUserCall.*;
 
 public class Game {
     private static Game instance = null;
-    //private Board board;
-    //private GameMaster gameMaster;
     private GameState gameState;
     private Stack<GameState> historyGameState;
     private Player player1;
@@ -136,7 +134,7 @@ public class Game {
         board.clearCommunication();
         board.clearMarked();
         System.out.println(board.toString());
-
+        //for(Building b : gameState.getBuildings){}
         for(int x = 0; x < w; x++){
             for(int y = 0; y < h; y++){
                 EBuildingData building;
