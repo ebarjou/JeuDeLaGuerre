@@ -14,7 +14,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LoadFile {
-    private Board board;
     private GameState gameState;
 
     //TODO: Need exception on convertBuilding and convertUnit
@@ -54,7 +53,6 @@ public class LoadFile {
         int h = Integer.parseInt(tokens[1]);
 
         gameState = new GameState(w, h);
-        board = gameState.getBoardManager();
         gameState.removeAll();
 
         // set player
@@ -72,12 +70,12 @@ public class LoadFile {
             EBuildingData e = convertBuilding(tokens[0]);
             int x = Integer.parseInt(tokens[1]) - 1;
             int y = Integer.parseInt(tokens[2]) - 1;
-            boolean destroy = Boolean.parseBoolean(tokens[3]);
+            boolean isBroken = Boolean.parseBoolean(tokens[3]);
             EPlayer p = EPlayer.values()[ Integer.parseInt(tokens[4]) - 1];
             Building building = new Building(e, p);
             building.setPosition(x, y);
+            building.setBroken(isBroken);
             gameState.addBuilding(building);
-            board.setBuilding(e, p, x, y);
         }
         //Add units
         while ((line = br.readLine()) != null) {
@@ -94,7 +92,6 @@ public class LoadFile {
             unit.setPosition(x, y);
 
             gameState.addUnit(unit);
-            board.setUnit(u, p, x, y);
             tokens = line.split(";");
         }
         br.close();

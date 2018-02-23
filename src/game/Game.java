@@ -120,7 +120,6 @@ public class Game {
                 for(EDirection d : EDirection.values())
                     createCom(x, y, d, player, rangeUnit);
             }
-            //board.setMarked(x, y, true);
             x += dir.getX();
             y += dir.getY();
             dist++;
@@ -134,7 +133,7 @@ public class Game {
         List<Building> allBuildings = gameState.getAllBuildings();
 
         for(Building building : allBuildings) {
-            if (building.getBuildingData() == EBuildingData.ARSENAL) {
+            if (building.getBuildingData() == EBuildingData.ARSENAL && !building.isBroken()) {
                 int x = building.getX();
                 int y = building.getY();
                 board.setInCommunication(board.getBuildingPlayer(x, y), x, y, true);
@@ -186,15 +185,14 @@ public class Game {
                 break;
             }
             case REVERT: {
-                //board.revert();
-                //gameMaster.revert();
                 if(!historyGameState.isEmpty())
                     this.gameState = historyGameState.pop();
                 return new GameResponse(VALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
             }
             case END_TURN: {
                 System.out.println("END TURN");
-                //board.clearHistory();
+                //Clear History ?
+                historyGameState.push(gameState.clone());
                 gameState.switchPlayer();
                 return new GameResponse(VALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
             }

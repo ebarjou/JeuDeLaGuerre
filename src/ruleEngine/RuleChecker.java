@@ -36,7 +36,7 @@ public class RuleChecker {
                 throw new IncorrectGameActionException("Unhandled GameAction type.");
         }
 
-        mr.checkAction(board, Game.getInstance().getGameState(), action, result);
+        mr.checkAction(board, gameState, action, result);
 
         if (result.isValid())
             mr.applyResult(board, gameState, action, result);

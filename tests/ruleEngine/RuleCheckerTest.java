@@ -26,11 +26,9 @@ public class RuleCheckerTest {
     public void checkActionMoveTest() {
         Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
         unit.setPosition(0, 0);
-        unit.setCanMove(true);
         gameState.addUnit(unit);
 
         Board board = gameState.getBoardManager();
-        board.setUnit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH, 0, 0);
         board.setInCommunication(EPlayer.PLAYER_NORTH, 0, 0, true);
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);

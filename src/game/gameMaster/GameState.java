@@ -49,10 +49,12 @@ public class GameState implements IGameState, Cloneable {
 
     public void addBuilding(Building building) {
         allBuildings.add(building); //get a copy of this ?
+        board.setBuilding(building.getBuildingData(), building.getPlayer(), building.getX(), building.getY());
     }
 
     public void addUnit(Unit unit) {
         allUnits.add(unit); //get a copy of this ?
+        board.setUnit(unit.getUnitData(), unit.getPlayer(), unit.getX(), unit.getY());
     }
 
     public void addPriorityUnit(Unit unit) {
@@ -122,6 +124,7 @@ public class GameState implements IGameState, Cloneable {
         allUnits = new ArrayList<>();
         allBuildings = new ArrayList<>();
         priorityUnits = new ArrayList<>();
+        board = new Board(board.getWidth(), board.getHeight()); // Sure ?
         lastUnitMoved = null;
     }
 
@@ -133,7 +136,7 @@ public class GameState implements IGameState, Cloneable {
         return board;
     }
 
-    public void setBoard(Board board){this.board = board;}
+    //public void setBoard(Board board){this.board = board;}
 
     public void updateUnitPosition(Coordinates src, Coordinates target){
         for(Unit u : allUnits){
