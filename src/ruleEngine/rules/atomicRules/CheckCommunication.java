@@ -1,7 +1,6 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.IBoard;
-import game.gameMaster.GameState;
 import game.gameMaster.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
@@ -20,13 +19,11 @@ public class CheckCommunication implements IRule {
                 return true;
             }
 
-            result.addMessage(this, "This unit is not in communication, you can't use it");
-            result.invalidate();
-            return false;
-        } catch (NullPointerException e){
-            result.addMessage(this, "This unit is not in communication, you can't use it");
-            result.invalidate();
-            return false;
+        } catch (NullPointerException ignored){
         }
+
+        result.addMessage(this, "This unit is not in communication, you can't use it");
+        result.invalidate();
+        return false;
     }
 }

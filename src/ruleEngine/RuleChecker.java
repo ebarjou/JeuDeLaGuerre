@@ -1,21 +1,21 @@
 package ruleEngine;
 
-import game.Game;
 import game.board.Board;
-import game.board.IBoard;
 import game.gameMaster.GameState;
-import game.gameMaster.IGameState;
 import ruleEngine.exceptions.IncorrectGameActionException;
-import ruleEngine.rules.MasterRule;
-import ruleEngine.rules.MoveRules;
+import ruleEngine.rules.masterRules.CommRules;
+import ruleEngine.rules.masterRules.MasterRule;
+import ruleEngine.rules.masterRules.MoveRules;
 
 public class RuleChecker {
     private static RuleChecker instance;
 
     private MasterRule moveRuleMaster;
+    private MasterRule commRuleMaster;
 
     private RuleChecker() {
         moveRuleMaster = MoveRules.getInstance();
+        commRuleMaster = CommRules.getInstance();
     }
 
     public static RuleChecker getInstance() {
@@ -23,6 +23,10 @@ public class RuleChecker {
             instance = new RuleChecker();
 
         return instance;
+    }
+
+    public void computeCommunications(Board board, GameState gameState){
+        commRuleMaster.applyResult(board, gameState, null, null);
     }
 
     public RuleResult checkAction(Board board, GameState gameState, GameAction action) throws IncorrectGameActionException {

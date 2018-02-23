@@ -7,7 +7,6 @@ import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
 
-//Est ce que cette unité peut bouger
 public class CheckCanMoveUnit implements IRule{
     @Override
     public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
@@ -18,6 +17,7 @@ public class CheckCanMoveUnit implements IRule{
             result.addMessage(this, "This unit has already moved.");
             return false;
         }
+
         return true;
     }
 }

@@ -132,7 +132,7 @@ public class GameState implements IGameState, Cloneable {
         return board;
     }
 
-    public Board getBoardManager(){
+    public Board getMutableBoard(){
         return board;
     }
 

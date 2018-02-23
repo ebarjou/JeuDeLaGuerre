@@ -28,7 +28,7 @@ public class RuleCheckerTest {
         unit.setPosition(0, 0);
         gameState.addUnit(unit);
 
-        Board board = gameState.getBoardManager();
+        Board board = gameState.getMutableBoard();
         board.setInCommunication(EPlayer.PLAYER_NORTH, 0, 0, true);
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
@@ -51,7 +51,7 @@ public class RuleCheckerTest {
 
     @Test
     public void checkActionInvalidTest() {
-        Board board = gameState.getBoardManager();
+        Board board = gameState.getMutableBoard();
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.NONE);
         try {
             rulechecker.checkAction(board, gameState, gameAction);

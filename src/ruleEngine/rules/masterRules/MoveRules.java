@@ -1,10 +1,9 @@
-package ruleEngine.rules;
+package ruleEngine.rules.masterRules;
 
 import game.board.Board;
 import game.gameMaster.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
 import ruleEngine.RuleResult;
 import ruleEngine.rules.atomicRules.*;
 
@@ -37,7 +36,7 @@ public class MoveRules extends MasterRule {
         state.setUnitHasMoved(src);
         state.updateUnitPosition(src, target);
         state.removeOneAction();
-        state.getBoardManager().moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
+        state.getMutableBoard().moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
 
     }
 

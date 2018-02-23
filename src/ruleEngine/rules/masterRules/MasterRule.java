@@ -1,4 +1,4 @@
-package ruleEngine.rules;
+package ruleEngine.rules.masterRules;
 
 import game.Game;
 import game.board.Board;
@@ -8,6 +8,8 @@ import game.gameMaster.IGameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.RuleList;
+import ruleEngine.rules.RuleManager;
 
 import java.util.HashMap;
 import java.util.LinkedList;

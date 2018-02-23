@@ -3,19 +3,15 @@ package game;
 import game.board.*;
 import game.gameMaster.GameState;
 import game.gameMaster.IGameState;
-import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
 import system.LoadFile;
 import ui.GameResponse;
 import player.Player;
 import ui.UIAction;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Stack;
 
 import static ui.commands.GameToUserCall.*;
@@ -43,7 +39,7 @@ public class Game {
     }
 
     public void start(){
-        computeCommunication();
+        RuleChecker.getInstance().computeCommunications(gameState.getMutableBoard(), gameState);
         while(true){
             Player player = getPlayer();
             UIAction action = player.getCommand();
@@ -62,10 +58,6 @@ public class Game {
         return gameState.getBoard();
     }
 
-    public Board getBoardManager(){
-        return gameState.getBoardManager();
-    }
-
     public IGameState getGameState(){
         return gameState;
     }
@@ -76,85 +68,19 @@ public class Game {
 
     public void reinit(GameState gameState){
         this.gameState = gameState;
-        computeCommunication();
-    }
-
-    private boolean isObstacle(int x, int y, EPlayer player){
-        Board board = gameState.getBoardManager();
-        if(!board.isValidCoordinate(x, y))
-            return true;
-        EUnitData u;
-        EBuildingData b;
-        try {
-            u = board.getUnitType(x, y);
-        } catch(NullPointerException e) {
-            u = null;
-        }
-        try {
-            b = board.getBuildingType(x, y);
-        } catch(NullPointerException e) {
-            b = null;
-        }
-        return (b != null && b == EBuildingData.MOUNTAIN)
-                || (u != null && board.getUnitPlayer(x, y) != player && !u.isRelayCommunication());
-    }
-
-    private void createCom(int x, int y, EDirection dir, EPlayer player, int rangeMax){
-        x += dir.getX();
-        y += dir.getY();
-        int dist = 1;
-        while(!isObstacle(x, y, player) && (rangeMax < 0 || dist <= rangeMax)){
-            gameState.getBoardManager().setInCommunication(player, x, y, true);
-            EUnitData u;
-            try {
-                u = gameState.getBoard().getUnitType(x, y);
-            } catch(NullPointerException e) {
-                u = null;
-            }
-            if(u != null && gameState.getBoard().getUnitPlayer(x, y) == player && !gameState.getBoard().isMarked(x, y)){
-                gameState.getBoard().setMarked(x, y, true);
-                int rangeUnit = 1;
-                if(u.isRelayCommunication())
-                    rangeUnit = -1;
-
-                for(EDirection d : EDirection.values())
-                    createCom(x, y, d, player, rangeUnit);
-            }
-            x += dir.getX();
-            y += dir.getY();
-            dist++;
-        }
-    }
-
-    private void computeCommunication(){
-        Board board = gameState.getBoardManager();
-        board.clearCommunication();
-        board.clearMarked();
-        List<Building> allBuildings = gameState.getAllBuildings();
-
-        for(Building building : allBuildings) {
-            if (building.getBuildingData() == EBuildingData.ARSENAL && !building.isBroken()) {
-                int x = building.getX();
-                int y = building.getY();
-                board.setInCommunication(board.getBuildingPlayer(x, y), x, y, true);
-                board.setMarked(x, y, true);
-                board.cellToString(x, y);
-                for (EDirection direction : EDirection.values())
-                    createCom(x, y, direction, board.getBuildingPlayer(x, y), -1);
-            }
-        }
+        RuleChecker.getInstance().computeCommunications(gameState.getMutableBoard(), gameState);
     }
 
     private GameResponse handleGameAction(UIAction cmd) {
         GameState actualGameState = this.gameState.clone(); // copy of the GameState & Board before attempting the action
-        Board board = gameState.getBoardManager();
+        Board board = gameState.getMutableBoard();
         try {
             GameAction action = cmd.getGameAction(gameState.getActualPlayer());
             RuleResult res = RuleChecker.getInstance().checkAction(board, gameState, action);
             if (res.isValid()) {
                 historyGameState.push(actualGameState);
                 //Communication
-                computeCommunication();
+                RuleChecker.getInstance().computeCommunications(gameState.getMutableBoard(), gameState);
                 return new GameResponse(VALID, null, board, gameState.getActualPlayer());
             } else {
                 return new GameResponse(INVALID, res.getLogMessage(), board, gameState.getActualPlayer());
@@ -175,7 +101,7 @@ public class Game {
                 LoadFile lf = new LoadFile();
                 try {
                     lf.loadFile(cmd.getText());
-                    computeCommunication();
+                    RuleChecker.getInstance().computeCommunications(gameState.getMutableBoard(), gameState);
                 } catch (IOException e) {
                     return new GameResponse(INVALID, e.getMessage(), gameState.getBoard(), gameState.getActualPlayer());
                 }

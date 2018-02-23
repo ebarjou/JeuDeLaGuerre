@@ -1,11 +1,10 @@
-package ruleEngine.rules;
+package ruleEngine.rules.masterRules;
 
 import game.board.Board;
 import game.board.EDirection;
 import game.board.IBoard;
 import game.board.Unit;
 import game.gameMaster.GameState;
-import game.gameMaster.IGameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
@@ -14,7 +13,7 @@ import ruleEngine.rules.atomicRules.*;
 
 public class AttackRules extends MasterRule {
 
-    private static IRule instance;
+    private static MasterRule instance;
 
     private AttackRules() {
         //TODO: Put here the sub-rules (atomic) you need to check.
@@ -27,7 +26,7 @@ public class AttackRules extends MasterRule {
         // TODO : Vérifier que le déplacement en question n'était pas une "action prioritaire"
     }
 
-    public static IRule getInstance() {
+    public static MasterRule getInstance() {
         if (instance == null)
             instance = new AttackRules();
 

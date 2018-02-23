@@ -20,8 +20,10 @@ public class CheckIsAllyUnit implements IRule {
                 result.invalidate();
                 return false;
             }
+
             return true;
         }
+
         result.addMessage(this, "There is no unit at (" + x + ";" + y + ")");
         result.invalidate();
         return false;
