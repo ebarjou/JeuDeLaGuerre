@@ -15,6 +15,7 @@ import player.Player;
 import ui.UIAction;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Stack;
 
 import static ui.commands.GameToUserCall.*;
@@ -128,29 +129,19 @@ public class Game {
 
     private void computeCommunication(){
         Board board = gameState.getBoardManager();
-        int w = board.getWidth();
-        int h = board.getHeight();
-
         board.clearCommunication();
         board.clearMarked();
-        System.out.println(board.toString());
-        //for(Building b : gameState.getBuildings){}
-        for(int x = 0; x < w; x++){
-            for(int y = 0; y < h; y++){
-                EBuildingData building;
-                try {
-                    building = board.getBuildingType(x, y);
-                } catch(NullPointerException e) {
-                    building = null;
-                }
+        List<Building> allBuildings = gameState.getAllBuildings();
 
-                if(building == EBuildingData.ARSENAL) {
-                    board.setInCommunication(board.getBuildingPlayer(x, y), x, y, true);
-                    board.setMarked(x, y, true);
-                    board.cellToString(x, y);
-                    for (EDirection direction : EDirection.values())
-                        createCom(x, y, direction, board.getBuildingPlayer(x, y), -1);
-                }
+        for(Building building : allBuildings) {
+            if (building.getBuildingData() == EBuildingData.ARSENAL) {
+                int x = building.getX();
+                int y = building.getY();
+                board.setInCommunication(board.getBuildingPlayer(x, y), x, y, true);
+                board.setMarked(x, y, true);
+                board.cellToString(x, y);
+                for (EDirection direction : EDirection.values())
+                    createCom(x, y, direction, board.getBuildingPlayer(x, y), -1);
             }
         }
     }

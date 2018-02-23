@@ -155,16 +155,18 @@ public class GameState implements IGameState, Cloneable {
             }
         }
     }
-/*
-    public Unit getUnit(Coordinates coords){
-        for(Unit u : unitsPlayerSouth)
-            if(u.getX() == coords.getX() && u.getY() == coords.getY())
-                return u;
-        for(Unit u : unitsPlayerNorth)
-            if(u.getX() == coords.getX() && u.getY() == coords.getY())
-                return u;
-        throw new NullPointerException();
-    }*/
+
+    public List<Unit> getAllUnits(){
+        return cloneUnits(allUnits);
+    }
+
+    public List<Building> getAllBuildings(){
+        return cloneBuilding(allBuildings);
+    }
+
+    public List<Unit> getPriorityUnits(){
+        return cloneUnits(priorityUnits);
+    }
 
     public Unit getLastUnitMoved(){
         if(lastUnitMoved == null){
@@ -181,7 +183,7 @@ public class GameState implements IGameState, Cloneable {
         return false;
     }
 
-    private List cloneUnits(List<Unit> array){
+    private List<Unit> cloneUnits(List<Unit> array){
         List<Unit> newArray = new ArrayList<>();
         for(Unit unit : array){
             newArray.add(unit.clone());
@@ -189,7 +191,7 @@ public class GameState implements IGameState, Cloneable {
         return newArray;
     }
 
-    private List cloneBuilding(List<Building> array){
+    private List<Building> cloneBuilding(List<Building> array){
         List<Building> newArray = new ArrayList<>();
         for(Building building : array){
             newArray.add(building.clone());
