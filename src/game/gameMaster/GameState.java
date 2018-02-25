@@ -228,6 +228,8 @@ public class GameState implements IGameState, Cloneable {
         ((GameState) o).priorityUnits = cloneUnits(priorityUnits);
         ((GameState) o).allBuildings = cloneBuilding(allBuildings);
         ((GameState) o).lastUnitMoved = null;
+        if(lastUnitMoved != null)
+            ((GameState) o).lastUnitMoved = lastUnitMoved.clone();
         ((GameState) o).board = board.clone();
         return (GameState) o;
     }

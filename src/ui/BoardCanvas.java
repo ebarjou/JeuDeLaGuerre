@@ -97,7 +97,7 @@ class BoardCanvas extends Canvas {
         g.save();
         //TODO: Change color density here
         int comColorHigh = 255;
-        int comColorLow = 220;
+        int comColorLow = 200;
         if (board.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && board.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
             //g.setStroke(Color.ORANGERED);
             //g.setLineWidth(COMM_STROKE_SIZE * 1.5);
