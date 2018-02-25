@@ -114,14 +114,14 @@ public class Game {
                 if(!historyGameState.isEmpty())
                     this.gameState = historyGameState.pop();
                 return new GameResponse(VALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
-            }
+            }/*
             case END_TURN: {
-                System.out.println("END TURN");
+                //System.out.println("END TURN");
                 //Clear History ?
                 historyGameState.push(gameState.clone());
                 gameState.switchPlayer();
                 return new GameResponse(VALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
-            }
+            }*/
             case CMD_ERROR: {
                 return new GameResponse(INVALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
             }

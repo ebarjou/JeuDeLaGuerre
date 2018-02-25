@@ -28,6 +28,11 @@ public class Start {
         u.setPosition(0, 0);
         gameState.addUnit(u);
 
+        u = new Unit(EUnitData.RELAY_HORSE, EPlayer.PLAYER_SOUTH);
+        u.setPosition(5, 5);
+        gameState.addUnit(u);
+        gameState.addPriorityUnit(u.clone());
+
         Building b = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH);
         b.setPosition(0, 7);
         gameState.addBuilding(b);

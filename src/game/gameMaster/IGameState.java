@@ -12,6 +12,7 @@ public interface IGameState {
     boolean isUnitHasPriority(Coordinates coords);
     boolean isUnitCanMove(Coordinates coords);
     boolean isUnitCanAttack(Coordinates coords);
+    boolean isPriorityUnitPlayer(EPlayer player);
     Unit getLastUnitMoved();
     IBoard getBoard();
     GameState clone();

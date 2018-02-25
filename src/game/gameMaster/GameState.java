@@ -81,10 +81,16 @@ public class GameState implements IGameState, Cloneable {
         if(priorityUnits.isEmpty())
             return true;
 
-        for (Unit unit : priorityUnits)
-            if (unit.getX() == coords.getX() && unit.getY() == coords.getY())
+        boolean isUnitActualPlayer = false;
+        for (Unit unit : priorityUnits) {
+            if(unit.getPlayer() == actualPlayer)
+                isUnitActualPlayer = true;
+            if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
                 return true;
-        return false;
+            }
+        }
+
+        return !isUnitActualPlayer;
     }
 
     public void setActualPlayer(EPlayer player) {
@@ -197,6 +203,15 @@ public class GameState implements IGameState, Cloneable {
             if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
                 if(unit.getCanAttack())
                     return true;
+        return false;
+    }
+
+    // one of units of player 'Player' has priority ?
+    @Override
+    public boolean isPriorityUnitPlayer(EPlayer player) {
+        for(Unit unit : priorityUnits)
+            if(unit.getPlayer() == player)
+                return true;
         return false;
     }
 

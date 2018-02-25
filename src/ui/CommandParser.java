@@ -84,7 +84,8 @@ public class CommandParser {
 
     @Command
     public void end() {
-        result.setCommand(END_TURN);
+        result.setCommand(GAME_ACTION);
+        result.setGameAction(EGameActionType.END_TURN);
         return;
     }
 
