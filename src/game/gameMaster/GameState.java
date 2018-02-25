@@ -109,6 +109,7 @@ public class GameState implements IGameState, Cloneable {
         }
         actualPlayer = EPlayer.values()[(actualPlayer.ordinal() + 1) % EPlayer.values().length];
         actionLeft = MAX_ACTION;
+        lastUnitMoved = null;
     }
 
     public int getActionLeft() {

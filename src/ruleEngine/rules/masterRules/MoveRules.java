@@ -1,11 +1,14 @@
 package ruleEngine.rules.masterRules;
 
 import game.board.Board;
+import game.board.Unit;
 import game.gameMaster.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import ruleEngine.rules.atomicRules.*;
+
+import java.util.List;
 
 public class MoveRules extends MasterRule {
 
@@ -29,6 +32,11 @@ public class MoveRules extends MasterRule {
         Coordinates src = action.getSourceCoordinates();
         Coordinates target = action.getTargetCoordinates();
         state.removePriorityUnit(src);
+        List<Unit> list = state.getAllUnits();
+        for(Unit u : list){
+            if(u.getX() == src.getX() && u.getY() == src.getY())
+                System.out.println(u.toString());
+        }
         try {
             state.getLastUnitMoved().setCanAttack(false);
         } catch (NullPointerException ignored){}

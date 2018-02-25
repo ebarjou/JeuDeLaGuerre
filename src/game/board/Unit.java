@@ -64,4 +64,9 @@ public class Unit implements Cloneable {
         }
         return (Unit) o;
     }
+
+    public String toString(){
+        return "Type " + unit + " ; player = " + player + " ; pos (" + x + ";" + y +")\nCan attack : " + canAttack
+                + "\nCan move : " + canMove + "\n";
+    }
 }
