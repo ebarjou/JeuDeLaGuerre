@@ -40,17 +40,34 @@ public class AttackRules extends MasterRule {
     public void applyResult(Board board, GameState state, GameAction action, RuleResult result) {
         int xT = action.getTargetCoordinates().getX();
         int yT = action.getTargetCoordinates().getY();
-        int fightVal = getAttackValue(board, action) - getDefenseValue(board, action);
 
-        if (fightVal == 1) {
+        int atkVal = getAttackValue(board, action);
+        int defVal = getDefenseValue(board, action);
+        int fightVal = atkVal - defVal;
+        String fightValMessage = " Attack:" + atkVal + " Defense:" + defVal;
+
+        // TODO : Check around the attacked unit. If the unit can't retreat
+        // (is surrounded), then it dies.
+        boolean isSurrounded = false;
+
+        if ( (fightVal > 1) || ((fightVal == 1) && isSurrounded) ) {
+            // change board (death)
+            state.getMutableBoard().delUnit(xT, yT);
+            result.addMessage(this, "The unit at position (" + xT + ", " + yT +
+                    ") died :" + fightValMessage + ".");
+        }
+        else if (fightVal == 1) {
             // change state (retreat)
             Unit unit = new Unit(board.getUnitType(xT, yT), board.getUnitPlayer(xT, yT));
             unit.setPosition(xT, yT);
             state.addPriorityUnit(unit);
+            result.addMessage(this, "The unit at position (" + xT + ", " + yT +
+                    ") will have to move in " + board.getUnitPlayer(xT, yT) +
+                    "'s next turn :" + fightValMessage + ".");
         }
-        else if (fightVal > 1) {
-            // change board (death)
-            state.getMutableBoard().delUnit(xT, yT);
+        else {
+            result.addMessage(this, "The unit at position (" + xT + ", " + yT +
+                    ") has been attacked, but nothing happened :" + fightValMessage + ".");
         }
         state.getLastUnitMoved().setCanAttack(false);
     }

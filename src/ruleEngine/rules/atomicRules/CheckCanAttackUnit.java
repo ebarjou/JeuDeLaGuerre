@@ -11,10 +11,10 @@ public class CheckCanAttackUnit implements IRule{
     @Override
     public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
-        boolean canMove = state.isUnitCanAttack(src);
-        if(!canMove){
+        boolean canAttack = state.isUnitCanAttack(src);
+        if(!canAttack){
             result.invalidate();
-            result.addMessage(this, "This unit has already moved.");
+            result.addMessage(this, "This unit has already attacked.");
             return false;
         }
 
