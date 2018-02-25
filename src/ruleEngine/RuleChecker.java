@@ -3,6 +3,7 @@ package ruleEngine;
 import game.board.Board;
 import game.gameMaster.GameState;
 import ruleEngine.exceptions.IncorrectGameActionException;
+import ruleEngine.rules.masterRules.AttackRules;
 import ruleEngine.rules.masterRules.CommRules;
 import ruleEngine.rules.masterRules.MasterRule;
 import ruleEngine.rules.masterRules.MoveRules;
@@ -11,10 +12,12 @@ public class RuleChecker {
     private static RuleChecker instance;
 
     private MasterRule moveRuleMaster;
+    private MasterRule attackRuleMaster;
     private MasterRule commRuleMaster;
 
     private RuleChecker() {
         moveRuleMaster = MoveRules.getInstance();
+        attackRuleMaster = AttackRules.getInstance();
         commRuleMaster = CommRules.getInstance();
     }
 
@@ -35,6 +38,9 @@ public class RuleChecker {
         switch (action.getActionType()) {
             case MOVE:
                 mr = moveRuleMaster;
+                break;
+            case ATTACK:
+                mr = attackRuleMaster;
                 break;
             default:
                 throw new IncorrectGameActionException("Unhandled GameAction type.");

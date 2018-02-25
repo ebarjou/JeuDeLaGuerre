@@ -1,10 +1,12 @@
 package ruleEngine.rules.masterRules;
 
+import game.EPlayer;
 import game.board.Board;
 import game.board.EDirection;
 import game.board.IBoard;
 import game.board.Unit;
 import game.gameMaster.GameState;
+import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
@@ -14,6 +16,7 @@ import ruleEngine.rules.atomicRules.*;
 public class AttackRules extends MasterRule {
 
     private static MasterRule instance;
+    private static final int chargeVal = 7;
 
     private AttackRules() {
         //TODO: Put here the sub-rules (atomic) you need to check.
@@ -22,8 +25,8 @@ public class AttackRules extends MasterRule {
         addRule(CheckCommunication.class);
         addRule(CheckIsAllyUnit.class); // CheckSourceIsAllyUnit
         addRule(CheckIsEnemyUnit.class); // CheckTargetIsEnemyUnit
-        // TODO : Vérifier que la dernière action était un déplacement vers GameAction.source
-        // TODO : Vérifier que le déplacement en question n'était pas une "action prioritaire"
+        addRule(CheckLastMove.class);
+        addRule(CheckCanAttackUnit.class);
     }
 
     public static MasterRule getInstance() {
@@ -38,6 +41,7 @@ public class AttackRules extends MasterRule {
         int xT = action.getTargetCoordinates().getX();
         int yT = action.getTargetCoordinates().getY();
         int fightVal = getAttackValue(board, action) - getDefenseValue(board, action);
+
         if (fightVal == 1) {
             // change state (retreat)
             Unit unit = new Unit(board.getUnitType(xT, yT), board.getUnitPlayer(xT, yT));
@@ -46,30 +50,37 @@ public class AttackRules extends MasterRule {
         }
         else if (fightVal > 1) {
             // change board (death)
-            board.delUnit(xT, yT);
+            state.getMutableBoard().delUnit(xT, yT);
         }
+        state.getLastUnitMoved().setCanAttack(false);
     }
 
-    private int getFightValueRec(IBoard board, GameAction action, int x, int y, EDirection dir, boolean isAttack, boolean charge) {
+    private int caseDefVal(Board board, int x, int y) {
+        EUnitData unit = board.getUnitType(x, y);
+        if (unit.isGetBonusDef() && board.isBuilding(x, y)) {
+            return unit.getDefValue() + board.getBuildingType(x, y).getBonusDef();
+        }
+        return unit.getDefValue();
+    }
+
+    private int getFightValueRec(Board board, GameAction action, EPlayer player, int x, int y, EDirection dir, boolean isAttack, boolean charge) {
         x += dir.getX();
         y += dir.getY();
         if (!board.isValidCoordinate(x, y) || (board.isBuilding(x, y) && !board.getBuildingType(x, y).isAccessible())) {
             return 0;
         }
 
-        int xS = action.getSourceCoordinates().getX();
-        int yS = action.getSourceCoordinates().getY();
         int xT = action.getTargetCoordinates().getX();
         int yT = action.getTargetCoordinates().getY();
 
         int val = 0;
-        if (board.isUnit(x, y) && (board.getUnitPlayer(x, y) == board.getUnitPlayer(xS, yS))) {
+        if (board.isUnit(x, y) && (board.getUnitPlayer(x, y) == player)) {
             EUnitData unit = board.getUnitType(x, y);
 
             if (unit.getFightRange() >= board.getDistance(x, y, xT, yT)) {
                 if (isAttack && unit.isCanAttack()) {
                     if (unit.isCanCharge() && (charge || (board.getDistance(x, y, xT, yT) == 1))) {
-                        val += 7;
+                        val += chargeVal;
                         charge = true;
                     } else {
                         val += unit.getAtkValue();
@@ -77,35 +88,36 @@ public class AttackRules extends MasterRule {
                     }
                 }
                 else if (!isAttack) { // isDefense
-                    val += unit.getDefValue();
-                    if (unit.isGetBonusDef() && board.isBuilding(x, y)) {
-                        val += board.getBuildingType(x, y).getBonusDef();
-                    }
+                    val += caseDefVal(board, x, y);
                 }
             }
         }
-        return val + getFightValueRec(board, action, x, y, dir, isAttack, charge);
+        return val + getFightValueRec(board, action, player, x, y, dir, isAttack, charge);
     }
 
-    private int getAttackValue(IBoard board, GameAction action) {
-        int xT = action.getTargetCoordinates().getX();
-        int yT = action.getTargetCoordinates().getY();
+    private int getAttackValue(Board board, GameAction action) {
+        Coordinates src = action.getSourceCoordinates();
+        Coordinates dst = action.getTargetCoordinates();
+        EPlayer player = board.getUnitPlayer(src.getX(), src.getY());
 
         int val = 0;
         for (EDirection dir : EDirection.values()) {
-            val += getFightValueRec(board, action, xT, yT, dir, true, false);
+            val += getFightValueRec(board, action, player, dst.getX(), dst.getY(), dir, true, false);
         }
         return val;
     }
 
-    private int getDefenseValue(IBoard board, GameAction action) {
+    private int getDefenseValue(Board board, GameAction action) {
         int xT = action.getTargetCoordinates().getX();
         int yT = action.getTargetCoordinates().getY();
+        EPlayer player = board.getUnitPlayer(xT, yT);
 
         int val = 0;
+        val += caseDefVal(board, xT, yT);
         for (EDirection dir : EDirection.values()) {
-            val += getFightValueRec(board, action, xT, yT, dir, false, false);
+            val += getFightValueRec(board, action, player, xT, yT, dir, false, false);
         }
+
         return val;
     }
 }

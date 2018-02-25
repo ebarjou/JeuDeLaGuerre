@@ -97,9 +97,14 @@ public class GameState implements IGameState, Cloneable {
 
     public void switchPlayer() {
         for(Unit unit : allUnits) {
+            unit.setCanMove(true);
+            unit.setCanAttack(true);
             if(unit.getPlayer() == actualPlayer) {
-                unit.setCanAttack(true);
-                unit.setCanMove(true);
+                for (Unit pUnit : priorityUnits) {
+                    if (unit.getX() == pUnit.getX() && unit.getY() == pUnit.getY()) {
+                        unit.setCanAttack(false);
+                    }
+                }
             }
         }
         actualPlayer = EPlayer.values()[(actualPlayer.ordinal() + 1) % EPlayer.values().length];
@@ -182,6 +187,14 @@ public class GameState implements IGameState, Cloneable {
         for(Unit unit : allUnits)
             if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
                 if(unit.getCanMove())
+                    return true;
+        return false;
+    }
+
+    public boolean isUnitCanAttack(Coordinates coords){
+        for(Unit unit : allUnits)
+            if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
+                if(unit.getCanAttack())
                     return true;
         return false;
     }

@@ -11,6 +11,7 @@ public interface IGameState {
     int getActionLeft();
     boolean isUnitHasPriority(Coordinates coords);
     boolean isUnitCanMove(Coordinates coords);
+    boolean isUnitCanAttack(Coordinates coords);
     Unit getLastUnitMoved();
     IBoard getBoard();
     GameState clone();

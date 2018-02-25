@@ -61,6 +61,22 @@ public class CommandParser {
     }
 
     @Command
+    public void attack(String c1, String c2) {
+        try {
+            int[] parsed_c1 = parseCoords(c1);
+            int[] parsed_c2 = parseCoords(c2);
+
+            result.setCommand(GAME_ACTION);
+            result.setGameAction(EGameActionType.ATTACK);
+            result.getGameAction().setSourceCoordinates(parsed_c1[0], parsed_c1[1]);
+            result.getGameAction().setTargetCoordinates(parsed_c2[0], parsed_c2[1]);
+        } catch (Exception e) {
+            result.setCommand(CMD_ERROR);
+            result.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Command
     public void revert() {
         result.setCommand(REVERT);
         return;
