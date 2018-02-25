@@ -25,8 +25,8 @@ public class AttackRules extends MasterRule {
         addRule(CheckCommunication.class);
         addRule(CheckIsAllyUnit.class); // CheckSourceIsAllyUnit
         addRule(CheckIsEnemyUnit.class); // CheckTargetIsEnemyUnit
-        //addRule(CheckLastMove.class);
-        //addRule(CheckCanAttackUnit.class);
+        addRule(CheckLastMove.class);
+        addRule(CheckCanAttackUnit.class);
     }
 
     public static MasterRule getInstance() {
