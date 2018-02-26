@@ -105,19 +105,17 @@ public class AttackRules extends MasterRule {
 
             int dist = board.getDistance(x, y, xT, yT);
 
-            if (unit.getFightRange() >= dist) {
-                if (isAttack && unit.isCanAttack()) {
-                    if (unit.isCanCharge() && (charge || (dist == 1))) {
-                        val += chargeVal;
-                        charge = true;
-                    } else {
-                        val += unit.getAtkValue();
-                        charge = false;
-                    }
+            if (isAttack && unit.isCanAttack()) {
+                if (unit.isCanCharge() && (charge || (dist == 1))) {
+                    val += chargeVal;
+                    charge = true;
+                } else if (unit.getFightRange() >= dist) {
+                    val += unit.getAtkValue();
+                    charge = false;
                 }
-                else if (!isAttack) { // isDefense
-                    val += caseDefVal(board, x, y);
-                }
+            }
+            else if (!isAttack && (unit.getFightRange() >= dist)) { // isDefense
+                val += caseDefVal(board, x, y);
             }
         }
         return val + getFightValueRec(board, action, player, x, y, dir, isAttack, charge);
