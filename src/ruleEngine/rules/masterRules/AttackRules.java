@@ -19,14 +19,15 @@ public class AttackRules extends MasterRule {
     private static final int chargeVal = 7;
 
     private AttackRules() {
-        //TODO: Put here the sub-rules (atomic) you need to check.
         addRule(CheckPlayerTurn.class);
         addRule(CheckOnBoard.class);
         addRule(CheckCommunication.class);
         addRule(CheckIsAllyUnit.class); // CheckSourceIsAllyUnit
         addRule(CheckIsEnemyUnit.class); // CheckTargetIsEnemyUnit
+        addRule(CheckUnitRange.class);
         addRule(CheckLastMove.class);
         addRule(CheckCanAttackUnit.class);
+        // TODO : add CheckIsEmptyAttackPath
     }
 
     public static MasterRule getInstance() {
@@ -46,9 +47,16 @@ public class AttackRules extends MasterRule {
         int fightVal = atkVal - defVal;
         String fightValMessage = " Attack:" + atkVal + " Defense:" + defVal;
 
-        // TODO : Check around the attacked unit. If the unit can't retreat
-        // (is surrounded), then it dies.
-        boolean isSurrounded = false;
+        boolean isSurrounded = true;
+        for (EDirection dir : EDirection.values()) {
+            int xDir = xT + dir.getX();
+            int yDir = yT + dir.getY();
+            if (board.isValidCoordinate(xDir, yDir) && !board.isUnit(xDir, yDir) &&
+                    ( !board.isBuilding(xDir, yDir) || board.getBuildingType(xDir, yDir).isAccessible() ) ) {
+                isSurrounded = false;
+                break;
+            }
+        }
 
         if ( (fightVal > 1) || ((fightVal == 1) && isSurrounded) ) {
             // change board (death)
@@ -91,12 +99,15 @@ public class AttackRules extends MasterRule {
         int yT = action.getTargetCoordinates().getY();
 
         int val = 0;
-        if (board.isUnit(x, y) && (board.getUnitPlayer(x, y) == player)) {
+        if (board.isUnit(x, y) && (board.getUnitPlayer(x, y) == player) &&
+                (board.isInCommunication(player, x, y))) {
             EUnitData unit = board.getUnitType(x, y);
 
-            if (unit.getFightRange() >= board.getDistance(x, y, xT, yT)) {
+            int dist = board.getDistance(x, y, xT, yT);
+
+            if (unit.getFightRange() >= dist) {
                 if (isAttack && unit.isCanAttack()) {
-                    if (unit.isCanCharge() && (charge || (board.getDistance(x, y, xT, yT) == 1))) {
+                    if (unit.isCanCharge() && (charge || (dist == 1))) {
                         val += chargeVal;
                         charge = true;
                     } else {
@@ -130,7 +141,9 @@ public class AttackRules extends MasterRule {
         EPlayer player = board.getUnitPlayer(xT, yT);
 
         int val = 0;
-        val += caseDefVal(board, xT, yT);
+        if (board.isInCommunication(player, xT, yT)) {
+            val += caseDefVal(board, xT, yT);
+        }
         for (EDirection dir : EDirection.values()) {
             val += getFightValueRec(board, action, player, xT, yT, dir, false, false);
         }
