@@ -77,8 +77,10 @@ public class LoadFile {
             building.setBroken(isBroken);
             gameState.addBuilding(building);
         }
+
         //Add units
-        while ((line = br.readLine()) != null) {
+        while (line != null) {
+            tokens = line.split(";");
             EUnitData u = convertUnit(tokens[0]);
             int x = Integer.parseInt(tokens[1]) - 1;
             int y = Integer.parseInt(tokens[2]) - 1;
@@ -92,7 +94,7 @@ public class LoadFile {
             unit.setPosition(x, y);
 
             gameState.addUnit(unit);
-            tokens = line.split(";");
+            line = br.readLine();
         }
         br.close();
 
