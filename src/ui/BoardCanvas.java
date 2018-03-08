@@ -263,9 +263,12 @@ class BoardCanvas extends Canvas {
         try{
 
             Image i = new Image("file:res/" + name + ".png");
+            if (i.getHeight() == 0) //TODO: Find a better handling
+                throw new IllegalArgumentException();
             g.drawImage(i, pos_x, pos_y, size, size);
         } catch (IllegalArgumentException e){
-            g.fillText(name, pos_x, pos_y);
+            g.setFill(Color.PURPLE);
+            g.fillText(name, pos_x + size/2, pos_y + size/2);
         }
     }
 }
