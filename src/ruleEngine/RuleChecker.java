@@ -6,25 +6,16 @@ import ruleEngine.exceptions.IncorrectGameActionException;
 import ruleEngine.rules.masterRules.*;
 
 public class RuleChecker {
-    private static RuleChecker instance;
-
     private MasterRule moveRuleMaster;
     private MasterRule attackRuleMaster;
     private MasterRule commRuleMaster;
     private MasterRule endRuleMaster;
 
-    private RuleChecker() {
-        moveRuleMaster = MoveRules.getInstance();
-        attackRuleMaster = AttackRules.getInstance();
-        commRuleMaster = CommRules.getInstance();
-        endRuleMaster = EndRules.getInstance();
-    }
-
-    public static RuleChecker getInstance() {
-        if (instance == null)
-            instance = new RuleChecker();
-
-        return instance;
+    public RuleChecker() {
+        moveRuleMaster = new MoveRules();
+        attackRuleMaster = new AttackRules();
+        commRuleMaster = new CommRules();
+        endRuleMaster = new EndRules();
     }
 
     public void computeCommunications(Board board, GameState gameState){

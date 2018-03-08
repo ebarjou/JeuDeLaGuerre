@@ -22,6 +22,7 @@ public class Game {
     private Stack<GameState> historyGameState;
     private Player player1;
     private Player player2;
+    private RuleChecker ruleChecker;
 
     public static Game getInstance(){
         return instance;
@@ -36,10 +37,12 @@ public class Game {
         this.player1 = player1;
         this.player2 = player2;
         historyGameState = new Stack<>();
+
+        ruleChecker = new RuleChecker();
     }
 
     public void start(){
-        RuleChecker.getInstance().computeCommunications(gameState.getMutableBoard(), gameState);
+        ruleChecker.computeCommunications(gameState.getMutableBoard(), gameState);
         while(true){
             Player player = getPlayer();
             UIAction action = player.getCommand();
@@ -68,7 +71,7 @@ public class Game {
 
     public void reinit(GameState gameState){
         this.gameState = gameState;
-        RuleChecker.getInstance().computeCommunications(gameState.getMutableBoard(), gameState);
+        ruleChecker.computeCommunications(gameState.getMutableBoard(), gameState);
     }
 
     private GameResponse handleGameAction(UIAction cmd) {
@@ -76,11 +79,11 @@ public class Game {
         Board board = gameState.getMutableBoard();
         try {
             GameAction action = cmd.getGameAction(gameState.getActualPlayer());
-            RuleResult res = RuleChecker.getInstance().checkAction(board, gameState, action);
+            RuleResult res = ruleChecker.checkAction(board, gameState, action);
             if (res.isValid()) {
                 historyGameState.push(actualGameState);
                 //Communication
-                RuleChecker.getInstance().computeCommunications(gameState.getMutableBoard(), gameState);
+                ruleChecker.computeCommunications(gameState.getMutableBoard(), gameState);
                 return new GameResponse(VALID, null, board, gameState.getActualPlayer());
             } else {
                 return new GameResponse(INVALID, res.getLogMessage(), board, gameState.getActualPlayer());
@@ -101,7 +104,7 @@ public class Game {
                 LoadFile lf = new LoadFile();
                 try {
                     lf.loadFile(cmd.getText());
-                    RuleChecker.getInstance().computeCommunications(gameState.getMutableBoard(), gameState);
+                    ruleChecker.computeCommunications(gameState.getMutableBoard(), gameState);
                 } catch (IOException e) {
                     return new GameResponse(INVALID, e.getMessage(), gameState.getBoard(), gameState.getActualPlayer());
                 }

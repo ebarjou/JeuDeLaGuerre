@@ -15,26 +15,18 @@ import ruleEngine.rules.atomicRules.*;
 
 public class AttackRules extends MasterRule {
 
-    private static MasterRule instance;
     private static final int chargeVal = 7;
 
-    private AttackRules() {
-        addRule(CheckPlayerTurn.class);
-        addRule(CheckOnBoard.class);
-        addRule(CheckCommunication.class);
-        addRule(CheckIsAllyUnit.class); // CheckSourceIsAllyUnit
-        addRule(CheckIsEnemyUnit.class); // CheckTargetIsEnemyUnit
-        addRule(CheckUnitRange.class);
-        addRule(CheckLastMove.class);
-        addRule(CheckCanAttackUnit.class);
+    public AttackRules() {
+        addRule(new CheckPlayerTurn());
+        addRule(new CheckOnBoard());
+        addRule(new CheckCommunication());
+        addRule(new CheckIsAllyUnit()); // CheckSourceIsAllyUnit
+        addRule(new CheckIsEnemyUnit()); // CheckTargetIsEnemyUnit
+        addRule(new CheckUnitRange());
+        addRule(new CheckLastMove());
+        addRule(new CheckCanAttackUnit());
         // TODO : add CheckIsEmptyAttackPath
-    }
-
-    public static MasterRule getInstance() {
-        if (instance == null)
-            instance = new AttackRules();
-
-        return instance;
     }
 
     @Override

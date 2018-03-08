@@ -18,7 +18,7 @@ public class RuleCheckerTest {
 
     @Before
     public void setUp(){
-        rulechecker = RuleChecker.getInstance();
+        rulechecker = new RuleChecker();
         gameState = new GameState(25, 20);
     }
 

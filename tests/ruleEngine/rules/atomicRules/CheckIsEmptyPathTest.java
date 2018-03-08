@@ -14,7 +14,7 @@ public class CheckIsEmptyPathTest {
 
     private GameAction gameAction;
     private Board master;
-    RuleChecker moveRules;
+    private RuleChecker ruleChecker;
 
     //TODO: Tests should be better ...
     @Before
@@ -33,7 +33,7 @@ public class CheckIsEmptyPathTest {
         gameAction.setSourceCoordinates(0, 0);
         gameAction.setTargetCoordinates(2, 2);
 
-        moveRules = RuleChecker.getInstance();
+        ruleChecker = new RuleChecker();
     }
 /*
     @Test

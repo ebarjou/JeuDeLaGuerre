@@ -12,19 +12,18 @@ import java.util.List;
 
 public class MoveRules extends MasterRule {
 
-    private static MasterRule instance;
-
-    private MoveRules() {
+    public MoveRules() {
         //TODO: Put here the sub-rules (atomic) you need to check.
-        addRule(CheckPlayerTurn.class);
-        addRule(CheckPlayerMovesLeft.class);
-        addRule(CheckCommunication.class);
-        addRule(CheckOnBoard.class);
-        addRule(CheckIsAllyUnit.class);
-        addRule(CheckIsPriorityUnit.class);
-        addRule(CheckCanMoveUnit.class);
-        addDependantRule(CheckUnitMP.class, CheckIsAllyUnit.class);
-        addRule(CheckIsEmptyPath.class);
+        addRule(new CheckPlayerTurn());
+        addRule(new CheckPlayerMovesLeft());
+        addRule(new CheckCommunication());
+        addRule(new CheckOnBoard());
+        addRule(new CheckIsAllyUnit());
+        addRule(new CheckIsPriorityUnit());
+        addRule(new CheckCanMoveUnit());
+        addRule(new CheckUnitMP());
+        addDependence(new CheckUnitMP(), new CheckIsAllyUnit());
+        addRule(new CheckIsEmptyPath());
     }
 
     @Override
@@ -46,12 +45,5 @@ public class MoveRules extends MasterRule {
         state.removeOneAction();
         state.getMutableBoard().moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
 
-    }
-
-    public static MasterRule getInstance() {
-        if (instance == null)
-            instance = new MoveRules();
-
-        return instance;
     }
 }

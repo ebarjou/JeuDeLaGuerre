@@ -15,17 +15,7 @@ import java.util.List;
 
 public class CommRules extends MasterRule {
 
-    private static MasterRule instance;
-
-    private CommRules(){
-
-    }
-
-    public static MasterRule getInstance() {
-        if (instance == null)
-            instance = new CommRules();
-
-        return instance;
+    public CommRules(){
     }
 
     @Override

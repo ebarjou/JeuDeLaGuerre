@@ -7,30 +7,26 @@ import game.gameMaster.IGameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import ruleEngine.rules.RuleList;
-import ruleEngine.rules.RuleManager;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class MasterRule implements IRule {
-    private RuleList rules;
-    private Map<IRule, IRule> dependances;
+    private List<IRule> rules;
+    private Map<IRule, Set<IRule>> dependencies;
 
     MasterRule(){
-        rules = new RuleList();
-        dependances = new HashMap<>();
+        rules = new LinkedList<>();
+        dependencies = new HashMap<>();
     }
 
-    void addRule(Class<? extends IRule> rule){
+    void addRule(IRule rule){
         rules.add(rule);
     }
 
-    void addDependantRule(Class<? extends IRule> rule, Class<? extends IRule> dependance){
-        addRule(rule);
-        dependances.put(RuleManager.getInstance().getRule(rule), RuleManager.getInstance().getRule(dependance));
+    void addDependence(IRule rule, IRule... dependence){
+        if (!dependencies.containsKey(rule))
+            dependencies.put(rule, new HashSet<>());
+        Collections.addAll(dependencies.get(rule), dependence);
     }
 
     abstract public void applyResult(Board board, GameState state, GameAction action, RuleResult result);
@@ -39,8 +35,16 @@ public abstract class MasterRule implements IRule {
     public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
         List<IRule> invalidateRules = new LinkedList<>();
         for (IRule r : rules){
-            if (dependances.containsKey(r) && invalidateRules.contains(dependances.get(r))){
-                result.addMessage(this, r.getClass().getSimpleName() + " is not checked because it is dependant of " + dependances.get(r).getClass().getSimpleName() + "'s success.");
+            Set<IRule> irs = new HashSet<>(invalidateRules);
+            if (dependencies.containsKey(r))
+                irs.retainAll(dependencies.get(r));
+            if (irs.size() > 0){
+                StringBuilder sb = new StringBuilder();
+                for(IRule dep : irs)
+                    sb.append(dep.getClass().getSimpleName()).append(", ");
+
+                sb.delete(sb.toString().length() - 3, sb.toString().length() - 1);
+                result.addMessage(this, r.getClass().getSimpleName() + " is not checked because it is dependant of " + sb.toString() + "'s success.");
                 result.invalidate();
             }else{
                 if (!r.checkAction(board, state, action, result))

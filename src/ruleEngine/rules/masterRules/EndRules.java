@@ -8,17 +8,8 @@ import ruleEngine.rules.atomicRules.CheckNoPriorityUnitAlly;
 
 public class EndRules extends MasterRule {
 
-    private static MasterRule instance;
-
-    private EndRules(){
-        addRule(CheckNoPriorityUnitAlly.class);
-    }
-
-    public static MasterRule getInstance() {
-        if (instance == null)
-            instance = new EndRules();
-
-        return instance;
+    public EndRules(){
+        addRule(new CheckNoPriorityUnitAlly());
     }
 
     @Override
