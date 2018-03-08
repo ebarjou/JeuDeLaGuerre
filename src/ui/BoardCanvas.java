@@ -5,6 +5,7 @@ import game.board.IBoard;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -16,6 +17,10 @@ class BoardCanvas extends Canvas {
     private int indicesWidth;
     private int indicesHeight;
     private GraphicsContext g;
+    private static final Color NORTH_COLOR_STRONG = Color.rgb(100, 100, 255);
+    private static final Color NORTH_COLOR_LIGHT = Color.rgb(200, 200, 255);
+    private static final Color SOUTH_COLOR_STRONG = Color.rgb(255, 100, 100);
+    private static final Color SOUTH_COLOR_LIGHT = Color.rgb(255, 200, 200);
 
     BoardCanvas(int w, int h, int indicesW, int indicesH) {
         super(w + indicesW, h + indicesH);
@@ -96,8 +101,6 @@ class BoardCanvas extends Canvas {
     private void drawCellBackground(IBoard board, int x, int y, int pos_x, int pos_y, int size) {
         g.save();
         //TODO: Change color density here
-        int comColorHigh = 255;
-        int comColorLow = 200;
         if (board.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && board.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
             //g.setStroke(Color.ORANGERED);
             //g.setLineWidth(COMM_STROKE_SIZE * 1.5);
@@ -105,19 +108,19 @@ class BoardCanvas extends Canvas {
             //g.setStroke(Color.CORNFLOWERBLUE);
             //g.setLineWidth(COMM_STROKE_SIZE);
             //g.setFill(Color.rgb(comColorHigh, comColorLow + comColorLowModifier, comColorHigh));
-            g.setFill(Color.rgb(comColorHigh, comColorLow, comColorLow));
+            g.setFill(SOUTH_COLOR_LIGHT);
             g.fillRect(pos_x, pos_y, size, size);
-            g.setFill(Color.rgb(comColorLow, comColorLow, comColorHigh));
+            g.setFill(NORTH_COLOR_LIGHT);
             g.fillPolygon(new double[] {pos_x, pos_x + size, pos_x}, new double[] {pos_y, pos_y, pos_y + size}, 3);
         } else if (board.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
             //g.setStroke(Color.CORNFLOWERBLUE);
             //g.setLineWidth(COMM_STROKE_SIZE);
-            g.setFill(Color.rgb(comColorLow, comColorLow, comColorHigh));
+            g.setFill(NORTH_COLOR_LIGHT);
             g.fillRect(pos_x, pos_y, size, size);
         } else if (board.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
             //g.setStroke(Color.ORANGERED);
             //g.setLineWidth(COMM_STROKE_SIZE);
-            g.setFill(Color.rgb(comColorHigh, comColorLow, comColorLow));
+            g.setFill(SOUTH_COLOR_LIGHT);
             g.fillRect(pos_x, pos_y, size, size);
         }
         //if (board.isInCommunication(EPlayer.PLAYER_NORTH, x, y) || board.isInCommunication(EPlayer.PLAYER_SOUTH, x, y))
@@ -131,11 +134,7 @@ class BoardCanvas extends Canvas {
         g.setTextAlign(TextAlignment.CENTER);
         g.setTextBaseline(VPos.CENTER);
         g.setLineWidth(size / 2);
-        try {
-            g.fillText("" + board.getUnitType(x, y).getID(), pos_x + size / 3, pos_y + size / 3, size);
-        } catch (NullPointerException e) {
 
-        }
         try {
             switch (board.getBuildingType(x, y)) {
                 case MOUNTAIN:
@@ -155,10 +154,10 @@ class BoardCanvas extends Canvas {
                     switch (board.getBuildingPlayer(x, y)) {
                         //TODO: Proper color managed values here
                         case PLAYER_NORTH:
-                            drawDebordStyleArsenal(pos_x, pos_y, size, Color.rgb(100, 100, 255));
+                            drawDebordStyleArsenal(pos_x, pos_y, size, NORTH_COLOR_STRONG);
                             break;
                         case PLAYER_SOUTH:
-                            drawDebordStyleArsenal(pos_x, pos_y, size, Color.rgb(255, 100, 100));
+                            drawDebordStyleArsenal(pos_x, pos_y, size, SOUTH_COLOR_STRONG);
                             break;
                     }
                     break;
@@ -168,6 +167,13 @@ class BoardCanvas extends Canvas {
                     g.fillText("" + board.getBuildingType(x, y).getID(), pos_x + 2 * size / 3, pos_y + 2 * size / 3, size);
                     break;
             }
+        } catch (NullPointerException e) {
+
+        }
+
+        try {
+            //g.fillText("" + board.getUnitType(x, y).getID(), pos_x + size / 3, pos_y + size / 3, size);
+            drawUnit(board.getUnitType(x, y).getID(), board.getUnitPlayer(x, y), pos_x, pos_y, size);
         } catch (NullPointerException e) {
 
         }
@@ -229,7 +235,37 @@ class BoardCanvas extends Canvas {
         g.strokeLine(pos_x, pos_y + size, pos_x + size, pos_y + size);
         g.strokeLine(pos_x + size, pos_y, pos_x + size, pos_y + size);
 
+        g.strokeLine(pos_x + size / 5, pos_y + size/5, pos_x + size *0.8, pos_y + size/5);
+        g.strokeLine(pos_x + size/5, pos_y + size/5, pos_x + size/5, pos_y + size * 0.8);
+        g.strokeLine(pos_x + size/5, pos_y + size * 0.8, pos_x + size * 0.8, pos_y + size * 0.8);
+        g.strokeLine(pos_x + size * 0.8, pos_y + size/5, pos_x + size * 0.8, pos_y + size * 0.8);
+
         g.strokeLine(pos_x + size / 2 - dashSize/2, pos_y + size / 2, pos_x + size / 2 + dashSize/2, pos_y + size / 2);
         g.strokeLine(pos_x + size / 2, pos_y + size / 2 - dashSize/2, pos_x + size / 2, pos_y + size / 2 + dashSize/2);
+    }
+
+    private void drawUnit(String unitID, EPlayer player, int pos_x, int pos_y, int size){
+        StringBuilder b = new StringBuilder();
+        switch (player) {
+            case PLAYER_NORTH:
+                b.append("n");
+                break;
+            case PLAYER_SOUTH:
+                b.append("s");
+                break;
+        }
+
+        b.append(unitID);
+        drawSpriteFromPath(b.toString(), pos_x, pos_y, size);
+    }
+
+    private void drawSpriteFromPath(String name, int pos_x, int pos_y, int size){
+        try{
+
+            Image i = new Image("file:res/" + name + ".png");
+            g.drawImage(i, pos_x, pos_y, size, size);
+        } catch (IllegalArgumentException e){
+            g.fillText(name, pos_x, pos_y);
+        }
     }
 }
