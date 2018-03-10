@@ -1,9 +1,0 @@
-<ivy-module version="2.0">
-	<info organisation="com" module="JeuDeLaGuerre"/>
-	<dependencies>
-    	<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
-		<dependency org="org.mockito" name="mockito-all" rev="1.10.19"/>
-		<!-- https://mvnrepository.com/artifact/com.googlecode.clichemaven/cliche -->
-		<dependency org="com.googlecode.clichemaven" name="cliche" rev="110413"/>
-	</dependencies>
-</ivy-module>

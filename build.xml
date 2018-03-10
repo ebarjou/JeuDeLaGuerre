@@ -1,4 +1,4 @@
-<project name="JeuDeLaGuerre" basedir="." default="main" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="JeuDeLaGuerre" basedir="." default="main">
 	<property name="src.dir"     value="src"/>
 
     <property name="build.dir"   value="build"/>
@@ -19,13 +19,9 @@
         <delete dir="${lib.dir}"/>		
     </target>
 
-    <target name="compile" depends="resolve">
+    <target name="compile">
         <mkdir dir="${classes.dir}"/>
         <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
-    </target>
-
-	<target name="resolve" description="--> retrieve dependencies with ivy">
-        <ivy:retrieve />
     </target>
 
     <target name="jar" depends="compile">
