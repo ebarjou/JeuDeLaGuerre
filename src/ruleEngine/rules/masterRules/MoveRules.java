@@ -36,9 +36,6 @@ public class MoveRules extends MasterRule {
             if(u.getX() == src.getX() && u.getY() == src.getY())
                 System.out.println(u.toString());
         }
-        try {
-            state.getLastUnitMoved().setCanAttack(false);
-        } catch (NullPointerException ignored){}
 
         state.setUnitHasMoved(src);
         state.updateUnitPosition(src, target);

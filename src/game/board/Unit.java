@@ -7,14 +7,13 @@ import ruleEngine.entity.EUnitData;
 public class Unit implements Cloneable {
     private EUnitData unit;
     private EPlayer player;
-    private boolean canMove, canAttack;
+    private boolean canMove;
     private int x, y;
 
     public Unit(EUnitData unit, EPlayer player) {
         this.unit = unit;
         this.player = player;
         canMove = true;
-        canAttack = true;
     }
 
     public void setPosition(int x, int y){
@@ -34,16 +33,8 @@ public class Unit implements Cloneable {
         return canMove;
     }
 
-    public boolean getCanAttack(){
-        return canAttack;
-    }
-
     public void setCanMove(boolean canMove){
         this.canMove = canMove;
-    }
-
-    public void setCanAttack(boolean canAttack){
-        this.canAttack = canAttack;
     }
 
     public EUnitData getUnitData() {
@@ -66,7 +57,6 @@ public class Unit implements Cloneable {
     }
 
     public String toString(){
-        return "Type " + unit + " ; player = " + player + " ; pos (" + x + ";" + y +")\nCan attack : " + canAttack
-                + "\nCan move : " + canMove + "\n";
+        return "Type " + unit + " ; player = " + player + " ; pos (" + x + ";" + y +")\nCan move : " + canMove + "\n";
     }
 }

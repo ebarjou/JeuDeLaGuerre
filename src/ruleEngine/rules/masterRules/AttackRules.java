@@ -23,10 +23,13 @@ public class AttackRules extends MasterRule {
         addRule(new CheckCommunication());
         addRule(new CheckIsAllyUnit()); // CheckSourceIsAllyUnit
         addRule(new CheckIsEnemyUnit()); // CheckTargetIsEnemyUnit
+        addRule(new CheckAreAligned());
         addRule(new CheckUnitRange());
+        addDependence(new CheckUnitRange(), new CheckAreAligned());
         addRule(new CheckLastMove());
         addRule(new CheckCanAttackUnit());
-        // TODO : add CheckIsEmptyAttackPath
+        addRule(new CheckIsEmptyAttackPath());
+        addDependence(new CheckIsEmptyAttackPath(), new CheckUnitRange());
     }
 
     @Override
@@ -34,8 +37,8 @@ public class AttackRules extends MasterRule {
         int xT = action.getTargetCoordinates().getX();
         int yT = action.getTargetCoordinates().getY();
 
-        int atkVal = getAttackValue(board, action);
-        int defVal = getDefenseValue(board, action);
+        int atkVal = getAttackValue(board, state, action);
+        int defVal = getDefenseValue(board, state, action);
         int fightVal = atkVal - defVal;
         String fightValMessage = " Attack:" + atkVal + " Defense:" + defVal;
 
@@ -69,7 +72,8 @@ public class AttackRules extends MasterRule {
             result.addMessage(this, "The unit at position (" + xT + ", " + yT +
                     ") has been attacked, but nothing happened :" + fightValMessage + ".");
         }
-        state.getLastUnitMoved().setCanAttack(false);
+        Coordinates src = action.getTargetCoordinates();
+        state.setUnitHasAttacked(src);
     }
 
     private int caseDefVal(Board board, int x, int y) {
@@ -80,7 +84,7 @@ public class AttackRules extends MasterRule {
         return unit.getDefValue();
     }
 
-    private int getFightValueRec(Board board, GameAction action, EPlayer player, int x, int y, EDirection dir, boolean isAttack, boolean charge) {
+    private int getFightValueRec(Board board, GameState state, GameAction action, EPlayer player, int x, int y, EDirection dir, boolean isAttack, boolean charge) {
         x += dir.getX();
         y += dir.getY();
         if (!board.isValidCoordinate(x, y) || (board.isBuilding(x, y) && !board.getBuildingType(x, y).isAccessible())) {
@@ -90,42 +94,54 @@ public class AttackRules extends MasterRule {
         int xT = action.getTargetCoordinates().getX();
         int yT = action.getTargetCoordinates().getY();
 
-        int val = 0;
         if (board.isUnit(x, y) && (board.getUnitPlayer(x, y) == player) &&
                 (board.isInCommunication(player, x, y))) {
             EUnitData unit = board.getUnitType(x, y);
 
             int dist = board.getDistance(x, y, xT, yT);
 
-            if (isAttack && unit.isCanAttack()) {
-                if (unit.isCanCharge() && (charge || (dist == 1))) {
-                    val += chargeVal;
-                    charge = true;
+            if (isAttack && unit.isCanAttack() && (state.isUnitCanAttack(new Coordinates(x, y)))) {
+                if (charge && unit.isCanCharge()) {
+                    return chargeVal + getFightValueRec(board, state, action, player, x, y, dir, true, true);
                 } else if (unit.getFightRange() >= dist) {
-                    val += unit.getAtkValue();
-                    charge = false;
+                    return unit.getAtkValue() + getFightValueRec(board, state, action, player, x, y, dir, true, false);
                 }
             }
             else if (!isAttack && (unit.getFightRange() >= dist)) { // isDefense
-                val += caseDefVal(board, x, y);
+                return caseDefVal(board, x, y) + getFightValueRec(board, state, action, player, x, y, dir, false, false);
             }
         }
-        return val + getFightValueRec(board, action, player, x, y, dir, isAttack, charge);
+        return getFightValueRec(board, state, action, player, x, y, dir, isAttack, false);
     }
 
-    private int getAttackValue(Board board, GameAction action) {
+    private int getAttackValue(Board board, GameState state, GameAction action) {
         Coordinates src = action.getSourceCoordinates();
         Coordinates dst = action.getTargetCoordinates();
         EPlayer player = board.getUnitPlayer(src.getX(), src.getY());
 
+        boolean charge = board.isUnit(src.getX(), src.getY())
+            && ( board.getUnitType(src.getX(), src.getY()).isCanCharge() );
+        int chargeX = 0;
+        int chargeY = 0;
+        if (charge) {
+            chargeX = src.getX() - dst.getX();
+            chargeY = src.getY() - dst.getY();
+            if (chargeX != 0)   chargeX = chargeX / Math.abs(chargeX); // 1 or -1
+            if (chargeY != 0)   chargeY = chargeY / Math.abs(chargeY); // 1 or -1
+        }
+
         int val = 0;
         for (EDirection dir : EDirection.values()) {
-            val += getFightValueRec(board, action, player, dst.getX(), dst.getY(), dir, true, false);
+            if ( charge && (chargeX == dir.getX()) && (chargeY == dir.getY()) )
+                val += getFightValueRec(board, state, action, player, dst.getX(), dst.getY(), dir, true, true);
+            else {
+                val += getFightValueRec(board, state, action, player, dst.getX(), dst.getY(), dir, true, false);
+            }
         }
         return val;
     }
 
-    private int getDefenseValue(Board board, GameAction action) {
+    private int getDefenseValue(Board board, GameState state, GameAction action) {
         int xT = action.getTargetCoordinates().getX();
         int yT = action.getTargetCoordinates().getY();
         EPlayer player = board.getUnitPlayer(xT, yT);
@@ -135,7 +151,7 @@ public class AttackRules extends MasterRule {
             val += caseDefVal(board, xT, yT);
         }
         for (EDirection dir : EDirection.values()) {
-            val += getFightValueRec(board, action, player, xT, yT, dir, false, false);
+            val += getFightValueRec(board, state, action, player, xT, yT, dir, false, false);
         }
 
         return val;

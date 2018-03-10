@@ -14,7 +14,7 @@ public class CheckCanAttackUnit implements IRule{
         boolean canAttack = state.isUnitCanAttack(src);
         if(!canAttack){
             result.invalidate();
-            result.addMessage(this, "This unit has already attacked.");
+            result.addMessage(this, "This unit can't attack this turn.");
             return false;
         }
 

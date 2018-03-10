@@ -21,6 +21,7 @@ public class GameState implements IGameState, Cloneable {
     private List<Unit> allUnits;
     private List<Building> allBuildings; // Maybe create a Building class
     private List<Unit> priorityUnits; //units needed to be move
+    private List<Unit> cantAttackUnits; //units which can't attack for this turn
     private Unit lastUnitMoved;
     private Board board;
     private int actionLeft;
@@ -31,6 +32,7 @@ public class GameState implements IGameState, Cloneable {
         allUnits      = new ArrayList<>();
         allBuildings  = new ArrayList<>();
         priorityUnits = new ArrayList<>();
+        cantAttackUnits = new ArrayList<>();
 
         actionLeft   = 5;
         actualPlayer = EPlayer.PLAYER_NORTH;
@@ -42,6 +44,7 @@ public class GameState implements IGameState, Cloneable {
         allUnits      = new ArrayList<>();
         allBuildings  = new ArrayList<>();
         priorityUnits = new ArrayList<>();
+        cantAttackUnits = new ArrayList<>();
 
         actionLeft   = 5;
         actualPlayer = EPlayer.PLAYER_NORTH;
@@ -102,18 +105,18 @@ public class GameState implements IGameState, Cloneable {
     }
 
     public void switchPlayer() {
+        actualPlayer = EPlayer.values()[(actualPlayer.ordinal() + 1) % EPlayer.values().length];
+        cantAttackUnits.clear();
         for(Unit unit : allUnits) {
             unit.setCanMove(true);
-            unit.setCanAttack(true);
             if(unit.getPlayer() == actualPlayer) {
                 for (Unit pUnit : priorityUnits) {
                     if (unit.getX() == pUnit.getX() && unit.getY() == pUnit.getY()) {
-                        unit.setCanAttack(false);
+                        cantAttackUnits.add(unit);
                     }
                 }
             }
         }
-        actualPlayer = EPlayer.values()[(actualPlayer.ordinal() + 1) % EPlayer.values().length];
         actionLeft = MAX_ACTION;
         lastUnitMoved = null;
     }
@@ -136,6 +139,7 @@ public class GameState implements IGameState, Cloneable {
         allUnits = new ArrayList<>();
         allBuildings = new ArrayList<>();
         priorityUnits = new ArrayList<>();
+        cantAttackUnits = new ArrayList<>();
         board = new Board(board.getWidth(), board.getHeight()); // Sure ?
         lastUnitMoved = null;
     }
@@ -162,10 +166,16 @@ public class GameState implements IGameState, Cloneable {
         for(Unit unit : allUnits) {
             if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
                 unit.setCanMove(false);
-                try {
-                    lastUnitMoved.setCanAttack(false);
-                } catch (NullPointerException ignored){}
                 lastUnitMoved = unit;
+                return;
+            }
+        }
+    }
+
+    public void setUnitHasAttacked(Coordinates coords) {
+        for(Unit unit : allUnits) {
+            if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
+                lastUnitMoved = null;
                 return;
             }
         }
@@ -199,11 +209,10 @@ public class GameState implements IGameState, Cloneable {
     }
 
     public boolean isUnitCanAttack(Coordinates coords){
-        for(Unit unit : allUnits)
+        for(Unit unit : cantAttackUnits)
             if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
-                if(unit.getCanAttack())
-                    return true;
-        return false;
+                return false;
+        return true;
     }
 
     // one of units of player 'Player' has priority ?
@@ -242,6 +251,7 @@ public class GameState implements IGameState, Cloneable {
         assert o != null;
         ((GameState) o).allUnits = cloneUnits(allUnits);
         ((GameState) o).priorityUnits = cloneUnits(priorityUnits);
+        ((GameState) o).cantAttackUnits = cloneUnits(cantAttackUnits);
         ((GameState) o).allBuildings = cloneBuilding(allBuildings);
         ((GameState) o).lastUnitMoved = null;
         if(lastUnitMoved != null)
