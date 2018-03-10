@@ -2,10 +2,13 @@ package ruleEngine;
 
 import game.EPlayer;
 import game.board.Board;
+import game.board.Building;
 import game.board.Unit;
 import game.gameMaster.GameState;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.exceptions.IncorrectGameActionException;
 
@@ -20,16 +23,24 @@ public class RuleCheckerTest {
     public void setUp(){
         rulechecker = new RuleChecker();
         gameState = new GameState(25, 20);
+
+        Building building = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH);
+        building.setPosition(10, 10);
+        gameState.addBuilding(building);
+        building = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_SOUTH);
+        building.setPosition(0, 10);
+        gameState.addBuilding(building);
     }
 
     @Test
     public void checkActionMoveTest() {
+
         Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
         unit.setPosition(0, 0);
         gameState.addUnit(unit);
 
         Board board = gameState.getMutableBoard();
-        board.setInCommunication(EPlayer.PLAYER_NORTH, 0, 0, true);
+        rulechecker.computeCommunications(board, gameState);
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
         gameAction.setSourceCoordinates(0, 0);
@@ -44,7 +55,70 @@ public class RuleCheckerTest {
         } catch (IncorrectGameActionException e) {
             assertTrue("Action MOVE unrecognized by RuleChecker.checkAction().", false);
         }
-        System.out.println(result.getLogMessage());
+        assertTrue(result.getLogMessage().equals(expectedMessage));
+        assertTrue(result.isValid());
+    }
+
+    @Test
+    public void checkActionAttackTest() {
+
+        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        unit.setPosition(0, 0);
+        gameState.addUnit(unit);
+        unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
+        unit.setPosition(0, 2);
+        gameState.addUnit(unit);
+
+        Board board = gameState.getMutableBoard();
+        rulechecker.computeCommunications(board, gameState);
+
+        GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
+        gameAction.setSourceCoordinates(0, 0);
+        gameAction.setTargetCoordinates(1, 1);
+        try {
+            rulechecker.checkAction(board, gameState, gameAction);
+        } catch (IncorrectGameActionException e) {
+            assertTrue("Can't check action ATTACK because action MOVE failed beforehand.", false);
+        }
+        gameAction.setActionType(EGameActionType.ATTACK);
+        gameAction.setSourceCoordinates(1, 1);
+        gameAction.setTargetCoordinates(0, 2);
+
+        RuleResult result = new RuleResult();
+        result.invalidate();
+        String expectedMessage = "AttackRules : The unit at position ("
+                + gameAction.getTargetCoordinates().getX() + ", "
+                + gameAction.getTargetCoordinates().getY()
+                + ") has been attacked, but nothing happened : "
+                + "Attack:4 Defense:6.\n";
+
+        try {
+            result = rulechecker.checkAction(board, gameState, gameAction);
+        } catch (IncorrectGameActionException e) {
+            assertTrue("Action ATTACK unrecognized by RuleChecker.checkAction().", false);
+        }
+        assertTrue(result.getLogMessage().equals(expectedMessage));
+        assertTrue(result.isValid());
+    }
+
+    @Test
+    public void checkActionEndTurnTest() {
+
+        GameAction gameAction = Mockito.mock(GameAction.class);
+        Mockito.when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_SOUTH);
+        Mockito.when(gameAction.getActionType()).thenReturn(EGameActionType.END_TURN);
+
+        Board board = Mockito.mock(Board.class);
+
+        RuleResult result = new RuleResult();
+        result.invalidate();
+        String expectedMessage = "";
+
+        try {
+            result = rulechecker.checkAction(board, gameState, gameAction);
+        } catch (IncorrectGameActionException e) {
+            assertTrue("Action END_TURN unrecognized by RuleChecker.checkAction().", false);
+        }
         assertTrue(result.getLogMessage().equals(expectedMessage));
         assertTrue(result.isValid());
     }
