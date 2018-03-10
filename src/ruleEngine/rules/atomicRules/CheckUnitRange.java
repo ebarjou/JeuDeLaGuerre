@@ -2,11 +2,41 @@ package ruleEngine.rules.atomicRules;
 
 import game.board.IBoard;
 import game.gameMaster.IGameState;
+import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
+import ruleEngine.entity.EUnitData;
 
 public class CheckUnitRange implements IRule {
+
+    private boolean isAlignedCharge(IBoard board, IGameState state, GameAction action) {
+        Coordinates src = action.getSourceCoordinates();
+        Coordinates dst = action.getTargetCoordinates();
+
+        int dirX = dst.getX() - src.getX();
+        int dirY = dst.getY() - src.getY();
+        int diffX = Math.abs(dirX);
+        int diffY = Math.abs(dirY);
+        if (( diffX != diffY ) && (dirX != 0) && (dirY != 0))   return false;
+
+        if (diffX != 0) dirX = dirX / diffX; // 1 or -1
+        if (diffY != 0) dirY = dirY / diffY; // 1 or -1
+
+        int x = src.getX();
+        int y = src.getY();
+        while (x != dst.getX() || y != dst.getY()) {
+            if ( !board.isUnit(x, y)
+                    || !board.getUnitType(x, y).isCanCharge()
+                    || !(board.getUnitPlayer(x, y) == action.getPlayer())
+                    || !state.isUnitCanAttack(new Coordinates(x, y)) ) {
+                return false;
+            }
+            x += dirX;
+            y += dirY;
+        }
+        return true;
+    }
 
     @Override
     public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
@@ -19,7 +49,7 @@ public class CheckUnitRange implements IRule {
             int range = board.getUnitType(x, y).getFightRange();
             int dist = board.getDistance(x, y, x2, y2);
 
-            if (dist > range) {
+            if (dist > range && !isAlignedCharge(board, state, action)) {
                 result.addMessage(this,
                         "Not enough range to attack, the unit has a range of "
                                 + range + ", and you need a range of " + dist + ".");
