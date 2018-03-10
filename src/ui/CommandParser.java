@@ -12,14 +12,25 @@ public class CommandParser {
         result = new UIAction(CMD_ERROR, null);
     }
 
+    /**
+     * @return the UIAction generated from the last Cliche parsing.
+     */
     UIAction getResult() {
         return result;
     }
 
+    /**
+     * Clear the previous result of Cliche parse.
+     */
     void clearResult() {
         result.setCommand(CMD_ERROR);
     }
 
+    /**
+     * @param c String containing letters then numbers
+     * @return  int[], [0] being the convertion from b26 to b10 of the letters, and [1] the number from the string.
+     * @throws Exception if the string was not correct.
+     */
     private int[] parseCoords(String c) throws Exception {
         int[] coords = new int[2];
         c = c.toLowerCase();
@@ -31,6 +42,11 @@ public class CommandParser {
         return coords;
     }
 
+    /**
+     * @param s a String that contain only letters
+     * @return the convertion in base 10 of thoses letters.
+     * Case where there is something else than letters is not handled.
+     */
     private int getIntFromLetters(String s) {
         s = s.toLowerCase();
         int res = 0;

@@ -58,6 +58,10 @@ public class TermGUI extends Application {
         processResponse(player.getResponse());
     }
 
+
+    /**
+     * Create the GUI layout, should not be called outside of start method.
+     */
     private void createScene() {
         Group root = new Group();
         scene = new Scene(root, WINDOW_WIDTH + BOARD_INDICES_SIZE, WINDOW_HEIGHT + COMMAND_PANEL_HEIGHT + BOARD_INDICES_SIZE, Color.LIGHTGREY);
@@ -85,6 +89,11 @@ public class TermGUI extends Application {
         root.getChildren().add(layout);
     }
 
+
+    /**
+     * @param cmd the command that need to be parsed
+     * @return the corresponding UIAction, with CMD_ERROR type if cmd was not a correct command.
+     */
     UIAction parseCommand(String cmd) {
         if (cmd == null) return new UIAction(EXIT, null);
         UIAction result;
@@ -98,6 +107,11 @@ public class TermGUI extends Application {
         return result;
     }
 
+    /**
+     * @param cmd the command that need to be processed
+     * Call parseCommand to get a valid UIAction and send it to the current Player.
+     * Then, wait for the response and process it.
+     */
     private void processCommand(String cmd) {
         parser.clearResult();
         UIAction action = this.parseCommand(cmd);
@@ -112,6 +126,10 @@ public class TermGUI extends Application {
         processResponse(player.getResponse());
     }
 
+    /**
+     * @param response the GameResponse that need to be processed
+     * Process the response and refresh the UI accordingly.
+     */
     private void processResponse(GameResponse response) {
         switch (response.getResponse()) {
             case VALID: {

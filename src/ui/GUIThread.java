@@ -9,6 +9,9 @@ public class GUIThread extends Thread {
         super();
     }
 
+    /**
+     * Start the TermGUI JavaFX application in this GUIThread
+     */
     public void run() {
         Application.launch(TermGUI.class);
     }
