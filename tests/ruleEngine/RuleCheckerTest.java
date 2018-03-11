@@ -103,7 +103,7 @@ public class RuleCheckerTest {
     public void checkActionEndTurnTest() {
 
         GameAction gameAction = Mockito.mock(GameAction.class);
-        Mockito.when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_SOUTH);
+        Mockito.when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         Mockito.when(gameAction.getActionType()).thenReturn(EGameActionType.END_TURN);
 
         Board board = Mockito.mock(Board.class);
