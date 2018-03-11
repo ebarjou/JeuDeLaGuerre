@@ -1,9 +1,71 @@
 package ui;
 
+import game.EPlayer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import ruleEngine.entity.EBuildingData;
+import ruleEngine.entity.EUnitData;
 
-public class BuildingDrawer {
+public class BoardDrawer {
+    private static final Color NORTH_COLOR_STRONG = Color.rgb(100, 100, 255);
+    private static final Color SOUTH_COLOR_STRONG = Color.rgb(255, 100, 100);
+
+    static void drawUnit(GraphicsContext g, EUnitData unitID, EPlayer player, int pos_x, int pos_y, int size){
+        StringBuilder b = new StringBuilder();
+        switch (player) {
+            case PLAYER_NORTH:
+                b.append("n");
+                break;
+            case PLAYER_SOUTH:
+                b.append("s");
+                break;
+        }
+
+        b.append(unitID.getID());
+        drawSpriteFromPath(g, b.toString(), pos_x, pos_y, size);
+    }
+
+    static void drawBuilding(GraphicsContext g, EBuildingData buildingID, EPlayer player, int pos_x, int pos_y, int size, int margin){
+        switch (buildingID) {
+            case MOUNTAIN:
+                g.setFill(Color.SANDYBROWN);
+                g.fillRect(pos_x, pos_y, size, size);
+                break;
+            case PASS:
+                BoardDrawer.drawDebordStylePass(g, pos_x, pos_y, size, margin);
+                break;
+            case FORTRESS:
+                BoardDrawer.drawDebordStyleFort(g, pos_x, pos_y, size);
+                break;
+            case ARSENAL:
+                switch (player) {
+                    case PLAYER_NORTH:
+                        BoardDrawer.drawDebordStyleArsenal(g, pos_x, pos_y, size, NORTH_COLOR_STRONG);
+                        break;
+                    case PLAYER_SOUTH:
+                        BoardDrawer.drawDebordStyleArsenal(g, pos_x, pos_y, size, SOUTH_COLOR_STRONG);
+                        break;
+                }
+                break;
+            default:
+                g.setFill(Color.PURPLE);
+                g.fillText("" +buildingID.getID(), pos_x + 2 * size / 3, pos_y + 2 * size / 3, size);
+                break;
+        }
+    }
+
+    static void drawSpriteFromPath(GraphicsContext g, String name, int pos_x, int pos_y, int size){
+        try{
+            Image i = new Image("file:res/" + name + ".png");
+            if (i.getHeight() == 0) //TODO: Find a better handling
+                throw new IllegalArgumentException();
+            g.drawImage(i, pos_x, pos_y, size, size);
+        } catch (IllegalArgumentException e){
+            g.setFill(Color.PURPLE);
+            g.fillText(name, pos_x + size/2, pos_y + size/2);
+        }
+    }
 
     static void drawDebordStyleFort(GraphicsContext g, int pos_x, int pos_y, int size) {
         g.setStroke(Color.BLACK);

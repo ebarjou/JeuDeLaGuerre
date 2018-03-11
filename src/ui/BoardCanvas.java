@@ -2,18 +2,20 @@ package ui;
 
 import game.EPlayer;
 import game.board.IBoard;
+import javafx.event.EventHandler;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 class BoardCanvas extends Canvas {
-    private static final Color NORTH_COLOR_STRONG = Color.rgb(100, 100, 255);
+
     private static final Color NORTH_COLOR_LIGHT = Color.rgb(200, 200, 255);
-    private static final Color SOUTH_COLOR_STRONG = Color.rgb(255, 100, 100);
     private static final Color SOUTH_COLOR_LIGHT = Color.rgb(255, 200, 200);
     private static final int FONT_SIZE = 14;
     private static final int MARGIN = 1;
@@ -22,18 +24,22 @@ class BoardCanvas extends Canvas {
     private int indicesWidth;
     private int indicesHeight;
     private GraphicsContext g;
+    private int caseSize;
 
 
-    BoardCanvas(int w, int h, int indicesW, int indicesH) {
+    BoardCanvas(int w, int h, int indicesW, int indicesH, TextField textField) {
         super(w + indicesW, h + indicesH);
         indicesWidth = indicesW;
         indicesHeight = indicesH;
+        caseSize = 0;
 
         g = this.getGraphicsContext2D();
         g.setLineWidth(2);
         g.setFont(new Font(FONT_SIZE));
         g.setTextAlign(TextAlignment.CENTER);
         g.setTextBaseline(VPos.CENTER);
+
+        this.setOnMouseClicked(new ClickHandler(textField));
 
         draw(null);
     }
@@ -48,7 +54,7 @@ class BoardCanvas extends Canvas {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         if (board != null) {
-            int caseSize = (int) (getWidth() / (board.getWidth()));
+            caseSize = (int) (getWidth() / (board.getWidth()));
 
             //Display letters and numbers around the board
             printCasesHIndex(board, 35, indicesHeight / 2, caseSize);
@@ -82,25 +88,6 @@ class BoardCanvas extends Canvas {
 
     }
 
-    private void printCasesHIndex(IBoard board, int offsetx, int offsety, int caseSize) {
-        g.save();
-        g.setFill(Color.BLACK);
-        for (int i = 0; i < board.getWidth(); ++i) {
-            g.fillText("" + (i + 1), offsetx + i * caseSize, offsety, 20);
-        }
-        g.restore();
-    }
-
-    private void printCasesVIndex(IBoard board, int offsetx, int offsety, int caseSize) {
-        g.save();
-        g.setFill(Color.BLACK);
-        for (int j = 0; j < board.getHeight(); ++j) {
-            String s = getLettersFromInt(j);
-            g.fillText(s, offsetx, offsety + j * caseSize, 20);
-        }
-        g.restore();
-    }
-
     private void drawCellBackground(IBoard board, int x, int y, int pos_x, int pos_y, int size) {
         g.save();
         g.setFill(Color.IVORY);
@@ -128,77 +115,48 @@ class BoardCanvas extends Canvas {
         g.setLineWidth(size / 2);
 
         try {
-            switch (board.getBuildingType(x, y)) {
-                case MOUNTAIN:
-                    g.setFill(Color.SANDYBROWN);
-                    g.fillRect(pos_x, pos_y, size, size);
-                    break;
-                case PASS:
-                    BuildingDrawer.drawDebordStylePass(g, pos_x, pos_y, size, MARGIN);
-                    break;
-                case FORTRESS:
-                    BuildingDrawer.drawDebordStyleFort(g, pos_x, pos_y, size);
-                    break;
-                case ARSENAL:
-                    switch (board.getBuildingPlayer(x, y)) {
-                        case PLAYER_NORTH:
-                            BuildingDrawer.drawDebordStyleArsenal(g, pos_x, pos_y, size, NORTH_COLOR_STRONG);
-                            break;
-                        case PLAYER_SOUTH:
-                            BuildingDrawer.drawDebordStyleArsenal(g, pos_x, pos_y, size, SOUTH_COLOR_STRONG);
-                            break;
-                    }
-                    break;
-                default:
-                    g.setFill(Color.PURPLE);
-                    g.fillText("" + board.getBuildingType(x, y).getID(), pos_x + 2 * size / 3, pos_y + 2 * size / 3, size);
-                    break;
-            }
+            BoardDrawer.drawBuilding(g, board.getBuildingType(x, y), board.getBuildingPlayer(x, y), pos_x, pos_y, size, MARGIN);
         } catch (NullPointerException e) {}
 
         try {
-            drawUnit(board.getUnitType(x, y).getID(), board.getUnitPlayer(x, y), pos_x, pos_y, size);
+            BoardDrawer.drawUnit(g, board.getUnitType(x, y), board.getUnitPlayer(x, y), pos_x, pos_y, size);
         } catch (NullPointerException e) {}
         g.restore();
     }
 
-    private void drawUnit(String unitID, EPlayer player, int pos_x, int pos_y, int size){
-        StringBuilder b = new StringBuilder();
-        switch (player) {
-            case PLAYER_NORTH:
-                b.append("n");
-                break;
-            case PLAYER_SOUTH:
-                b.append("s");
-                break;
+    private void printCasesHIndex(IBoard board, int offsetx, int offsety, int caseSize) {
+        g.save();
+        g.setFill(Color.BLACK);
+        for (int i = 0; i < board.getWidth(); ++i) {
+            g.fillText("" + (i + 1), offsetx + i * caseSize, offsety, 20);
         }
-
-        b.append(unitID);
-        drawSpriteFromPath(b.toString(), pos_x, pos_y, size);
+        g.restore();
     }
 
-    private void drawSpriteFromPath(String name, int pos_x, int pos_y, int size){
-        try{
-            Image i = new Image("file:res/" + name + ".png");
-            if (i.getHeight() == 0) //TODO: Find a better handling
-                throw new IllegalArgumentException();
-            g.drawImage(i, pos_x, pos_y, size, size);
-        } catch (IllegalArgumentException e){
-            g.setFill(Color.PURPLE);
-            g.fillText(name, pos_x + size/2, pos_y + size/2);
+    private void printCasesVIndex(IBoard board, int offsetx, int offsety, int caseSize) {
+        g.save();
+        g.setFill(Color.BLACK);
+        for (int j = 0; j < board.getHeight(); ++j) {
+            String s = IntLetterConverter.getLettersFromInt(j);
+            g.fillText(s, offsetx, offsety + j * caseSize, 20);
         }
+        g.restore();
     }
 
-    private String getLettersFromInt(int n) {
-        String res = "";
-        int base = 26;
-        while (n >= 0) {
-            int val = n % base;
-            char c = 'A';
-            c += val;
-            res = c + res;
-            n = n / base - 1;
+    private class ClickHandler implements EventHandler<MouseEvent> {
+        TextField textField;
+
+        public ClickHandler(TextField textField){
+            this.textField = textField;
         }
-        return res;
+
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            if(caseSize <= 0 || textField == null) return;
+            int col = (int)((mouseEvent.getX()-indicesWidth)/caseSize);
+            int row = (int)((mouseEvent.getY()-indicesHeight)/caseSize);
+
+            textField.setText(textField.getText() + " " + IntLetterConverter.getLettersFromInt(row) + (col+1));
+        }
     }
 }

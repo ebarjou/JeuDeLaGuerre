@@ -66,8 +66,6 @@ public class TermGUI extends Application {
         Group root = new Group();
         scene = new Scene(root, WINDOW_WIDTH + BOARD_INDICES_SIZE, WINDOW_HEIGHT + COMMAND_PANEL_HEIGHT + BOARD_INDICES_SIZE, Color.LIGHTGREY);
 
-        canvas = new BoardCanvas(WINDOW_WIDTH, WINDOW_HEIGHT, BOARD_INDICES_SIZE, BOARD_INDICES_SIZE);
-
         textField = new TextField("Enter command here");
         textField.setOnKeyPressed(new CommandEvent());
         textField.setPrefWidth(WINDOW_WIDTH);
@@ -75,6 +73,8 @@ public class TermGUI extends Application {
 
         labelPlayerTurn = new Label(Game.getInstance().getGameState().getActualPlayer().name());
         labelPlayerTurn.setPrefHeight(COMMAND_PANEL_HEIGHT);
+
+        canvas = new BoardCanvas(WINDOW_WIDTH, WINDOW_HEIGHT, BOARD_INDICES_SIZE, BOARD_INDICES_SIZE, textField);
 
         HBox layoutCommand = new HBox();
         layoutCommand.setAlignment(Pos.CENTER_LEFT);

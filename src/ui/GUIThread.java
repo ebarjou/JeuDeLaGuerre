@@ -14,6 +14,7 @@ public class GUIThread extends Thread {
      */
     public void run() {
         Application.launch(TermGUI.class);
+        System.exit(0);
     }
 
 }
