@@ -38,7 +38,7 @@ public class CommandParser {
             throw new Exception("Invalid coordinate argument : Must be letters followed by a number.");
         String c_splitted[] = c.split("(?<=\\D)(?=\\d)");
         coords[0] = Integer.parseInt(c_splitted[1]) - 1;
-        coords[1] = IntLetterConverter.getIntFromLetters(c_splitted[0]) - 1;
+        coords[1] = IntLetterConverter.getIntFromLetters(c_splitted[0]);
         return coords;
     }
 

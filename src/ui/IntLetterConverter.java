@@ -17,7 +17,7 @@ public class IntLetterConverter {
             res += (Math.pow(base, stage) * ((c - 'a') + 1));
             stage++;
         }
-        return res;
+        return res - 1;
     }
 
     static String getLettersFromInt(int n) {

@@ -1,8 +1,13 @@
 package ui;
 
+import game.Game;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import player.GUIPlayer;
 import ui.commands.UserToGameCall;
 
 import java.util.ArrayList;
@@ -25,7 +30,17 @@ public class TermGUITest {
         C8("move a3 aag", false),
         C9("move 123 f6", false),
         C10("MoVe c4 g8", false),
-        C11("revert", false);
+        C11("revert", false),
+        C12("load presets/debord.txt", true),
+        C13("revert", true),
+        C14("revert fvds", false),
+        C15("attack", false),
+        C16("attack a0 a1", true),
+        C17("attack A12 g8", true),
+        C18("attack 2k g8", false),
+        C19("end", true),
+        C20("exit", true)
+        ;
 
         COMMANDS(String cmd, boolean isValid){
             this.cmd = cmd;
@@ -40,6 +55,30 @@ public class TermGUITest {
         term = new TermGUI();
         term.init();
         test_fail = new ArrayList<>();
+    }
+
+    @Test
+    public void appInit() {
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                new JFXPanel(); // Initializes the JavaFx Platform
+                Platform.runLater(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        new TermGUI().start(new Stage());
+                    }
+                });
+            }
+        });
+        thread.start();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ignore) {
+        }
     }
 
     @Test
