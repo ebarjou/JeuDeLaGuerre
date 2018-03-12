@@ -12,7 +12,7 @@ public class CheckIsPriorityUnit implements IRule {
     public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
         if (state.isUnitHasPriority(action.getSourceCoordinates()))
             return true;
-        result.addMessage(this, "Other unit need to be moved first.");
+        result.addMessage(this, "There are other units that need to be moved first.");
         result.invalidate();
         return false;
     }

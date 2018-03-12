@@ -27,7 +27,7 @@ public class CheckPlayerTurnTest {
     }
 
     @Test
-    public void checkActionValidTurnMocking() {
+    public void checkActionMocking() {
         CheckPlayerTurn rule = new CheckPlayerTurn();
         Mockito.when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         Mockito.when(gameState.getActualPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
@@ -37,15 +37,11 @@ public class CheckPlayerTurnTest {
         assertTrue(rule.checkAction(board, gameState, gameAction, result));
         assertTrue(result.getLogMessage().equals(expectedMessage));
         assertTrue(result.isValid());
-    }
 
-    @Test
-    public void checkActionInvalidTurnMocking() {
-        CheckPlayerTurn rule = new CheckPlayerTurn();
         Mockito.when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         Mockito.when(gameState.getActualPlayer()).thenReturn(EPlayer.PLAYER_SOUTH);
         result = new RuleResult();
-        String expectedMessage = "CheckPlayerTurn : This is not player PLAYER_NORTH's turn.\n";
+        expectedMessage = "CheckPlayerTurn : This is not player PLAYER_NORTH's turn.\n";
 
         assertFalse(rule.checkAction(board, gameState, gameAction, result));
         assertTrue(result.getLogMessage().equals(expectedMessage));

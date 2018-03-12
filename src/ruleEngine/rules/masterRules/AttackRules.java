@@ -3,12 +3,10 @@ package ruleEngine.rules.masterRules;
 import game.EPlayer;
 import game.board.Board;
 import game.board.EDirection;
-import game.board.IBoard;
 import game.board.Unit;
 import game.gameMaster.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.rules.atomicRules.*;
@@ -20,7 +18,7 @@ public class AttackRules extends MasterRule {
     public AttackRules() {
         addRule(new CheckPlayerTurn());
         addRule(new CheckOnBoard());
-        addRule(new CheckCommunication());
+        addRule(new CheckAbilityToMove());
         addRule(new CheckIsAllyUnit()); // CheckSourceIsAllyUnit
         addRule(new CheckIsEnemyUnit()); // CheckTargetIsEnemyUnit
         addRule(new CheckAreAligned());

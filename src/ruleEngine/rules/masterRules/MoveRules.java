@@ -16,7 +16,7 @@ public class MoveRules extends MasterRule {
         //TODO: Put here the sub-rules (atomic) you need to check.
         addRule(new CheckPlayerTurn());
         addRule(new CheckPlayerMovesLeft());
-        addRule(new CheckCommunication());
+        addRule(new CheckAbilityToMove());
         addRule(new CheckOnBoard());
         addRule(new CheckIsAllyUnit());
         addRule(new CheckIsPriorityUnit());

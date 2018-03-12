@@ -12,7 +12,7 @@ public class CheckNoPriorityUnitAlly implements IRule {
         if(!state.isPriorityUnitPlayer(state.getActualPlayer()))
             return true;
         result.invalidate();
-        result.addMessage(this, "You have at least one priority unit.");
+        result.addMessage(this, "There is at least one priority unit.");
         return false;
     }
 }

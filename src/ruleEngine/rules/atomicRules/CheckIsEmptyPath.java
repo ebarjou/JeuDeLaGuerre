@@ -40,7 +40,7 @@ public class CheckIsEmptyPath implements IRule {
             map[length / 2][length / 2].isMarked = true;
             map[length / 2][length / 2].dist = 0;
             Vertex actual = map[length / 2][length / 2];
-            queue.add(actual);
+            queue.add(actual);  //throw
 
             while (!queue.isEmpty()) {
                 actual = queue.remove(0);
@@ -48,6 +48,7 @@ public class CheckIsEmptyPath implements IRule {
                     for (int j = actual.j - 1; j <= actual.j + 1; j++) {
                         //Don't add the neighbours with invalid coords or those we have already added
                         if (i < 0 || j < 0 || i >= length || j >= length)
+                        //TODO: Is this line really necessary ? We already bound both i and j in the for loop
                             continue;
 
                         int x = map[i][j].x;
@@ -70,14 +71,15 @@ public class CheckIsEmptyPath implements IRule {
                         if (x == target.getX() && y == target.getY() && neigh.dist <= MP)
                             return true;
 
-                        queue.add(neigh);
+                        queue.add(neigh);   //throw
                     }
                 }
             }
-            result.addMessage(this, "There is no path found using " + MP + " movement points");
+            result.addMessage(this, "There is no path found using " + MP + " movement points.");
             result.invalidate();
             return false;
         } catch (NullPointerException e){
+            //TODO : Isn't this part impossible to reach ?
             result.addMessage(this, "There is no path found");
             result.invalidate();
             return false;

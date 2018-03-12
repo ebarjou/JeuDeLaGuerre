@@ -16,13 +16,15 @@ public class CheckLastMove implements IRule{
         try {
             lastMove = state.getLastUnitMoved();
         } catch (NullPointerException e) {
+            //TODO: stage.getLastUnitMoved() does not throw any exception
             result.invalidate();
             result.addMessage(this, "No unit has been moved yet.");
             return false;
         }
+
         if ((lastMove.getX() != src.getX()) || (lastMove.getY() != src.getY())) {
             result.invalidate();
-            result.addMessage(this, "This unit is not the last one moved.");
+            result.addMessage(this, "Unit is not the last one moved.");
             return false;
         }
 

@@ -16,12 +16,13 @@ public class CheckIsEnemyUnit implements IRule {
 
         if (board.isUnit(x, y)) {
             if (state.getActualPlayer() == board.getUnitPlayer(x, y)) {
-                result.addMessage(this, "This unit is yours, not an enemy's");
+                result.addMessage(this, "Targeted unit is not an enemy.");
                 result.invalidate();
                 return false;
             }
             return true;
         }
+        //TODO: Code repetition here, use rule dependencies instead (-> CheckIsAllyUnit)
         result.addMessage(this, "There is no unit at (" + x + ";" + y + ")");
         result.invalidate();
         return false;

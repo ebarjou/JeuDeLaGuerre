@@ -8,7 +8,7 @@ import ruleEngine.IRule;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 
-public class CheckCommunication implements IRule {
+public class CheckAbilityToMove implements IRule {
 
     @Override
     public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
@@ -22,7 +22,7 @@ public class CheckCommunication implements IRule {
         } catch (NullPointerException ignored){
         }
 
-        result.addMessage(this, "This unit is not in communication, you can't use it");
+        result.addMessage(this, "This unit is not in communication and cannot be used.");
         result.invalidate();
         return false;
     }
