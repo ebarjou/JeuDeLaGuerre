@@ -8,7 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
+import ruleEngine.entity.EUnitData;
 
+import java.net.NoRouteToHostException;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -32,15 +35,22 @@ public class CheckNoPriorityUnitAllyTest {
     public void checkActionMocking() {
         CheckNoPriorityUnitAlly rule = new CheckNoPriorityUnitAlly();
         when(iGameState.getActualPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
-        //when(isPlayerHasPriorityUnits(iGameState.getPriorityUnits(), EPlayer.PLAYER_NORTH)).thenReturn(false);
+        List<Unit> l = new LinkedList<>();
+        when(iGameState.getPriorityUnits()).thenReturn(l);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
-        when(iGameState.getActualPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
-        //when(isPlayerHasPriorityUnits(iGameState.getPriorityUnits(), EPlayer.PLAYER_NORTH)).thenReturn(true);
+        ruleResult = new RuleResult();
+        Unit u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
+        l.add(u);
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertTrue(ruleResult.isValid());
+
+        String expectedMessage = "CheckNoPriorityUnitAlly : There is at least one priority unit.\n";
+        u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        l.add(u);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
-        String expectedMessage = "CheckNoPriorityUnitAlly : There is at least one priority unit.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
 

@@ -1,5 +1,6 @@
 package ruleEngine.rules.atomicRules;
 
+import game.EPlayer;
 import game.board.IBoard;
 import game.board.Unit;
 import game.gameState.IGameState;
@@ -8,7 +9,9 @@ import org.junit.Test;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
+import ruleEngine.entity.EUnitData;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -34,10 +37,15 @@ public class CheckCanAttackUnitTest {
     public void checkActionMocking() {
         CheckCanAttackUnit rule = new CheckCanAttackUnit();
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
-        //when(isUnitCanAttack(iGameState.getCantAttackUnits(), any(Coordinates.class))).thenReturn(true);
+        List<Unit> l = new LinkedList<>();
+        Unit u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        u.setPosition(2, 2);
+        l.add(u);
+        when(iGameState.getCantAttackUnits()).thenReturn(l);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
-        //when(isUnitCanAttack(iGameState.getCantAttackUnits(), any(Coordinates.class))).thenReturn(false);
+
+        u.setPosition(1, 1);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         String expectedMessage = "CheckCanAttackUnit : This unit can't attack this turn.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
