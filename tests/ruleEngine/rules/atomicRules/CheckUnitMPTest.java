@@ -42,7 +42,7 @@ public class CheckUnitMPTest {
 
         rule = new CheckUnitMP();
 
-        gameState = Mockito.mock(GameState.class);
+        gameState = new GameState(25, 20);
         gameState.addUnit(infantry);
         gameState.addUnit(cavalry);
     }
@@ -56,8 +56,6 @@ public class CheckUnitMPTest {
         String expectedMessage = "";
 
         boolean valid = rule.checkAction(gameState, gameAction, result);
-        System.out.println("CheckActionValidMP  " + result.getLogMessage());
-        System.out.println(expectedMessage);
 
         assertTrue(valid);
         assertTrue(result.getLogMessage().equals(expectedMessage));
@@ -71,9 +69,14 @@ public class CheckUnitMPTest {
 
         RuleResult result = new RuleResult();
         //There is no unit at 0,0 so it should return this message.
-        String expectedMessage = "CheckUnitMP : Not enough movement point\n";
+        String expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP";
+
 
         assertFalse(rule.checkAction(gameState, gameAction, result));
+
+        System.out.println(result.getLogMessage());
+        //System.out.println(gameState.toString());
+
         assertTrue(result.getLogMessage().contains(expectedMessage));
         assertFalse(result.isValid());
     }
