@@ -1,16 +1,16 @@
 package ui;
 
 import game.EPlayer;
-import game.board.IBoard;
+import game.gameState.GameState;
 import ui.commands.GameToUserCall;
 
 public class GameResponse {
     private GameToUserCall response;
     private String message;
-    private IBoard board;
+    private GameState board;
     private EPlayer player;
 
-    public GameResponse(GameToUserCall response, String message, IBoard board, EPlayer player) {
+    public GameResponse(GameToUserCall response, String message, GameState board, EPlayer player) {
         this.response = response;
         this.message = message;
         this.board = board;
@@ -37,7 +37,7 @@ public class GameResponse {
         return player;
     }
 
-    public IBoard getBoard() {
+    public GameState getBoard() {
         return board;
     }
 }

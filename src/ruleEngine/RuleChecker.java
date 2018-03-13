@@ -1,7 +1,7 @@
 package ruleEngine;
 
 import game.board.Board;
-import game.gameMaster.GameState;
+import game.gameState.GameState;
 import ruleEngine.exceptions.IncorrectGameActionException;
 import ruleEngine.rules.masterRules.*;
 

@@ -1,8 +1,8 @@
 package game;
 
 import game.board.*;
-import game.gameMaster.GameState;
-import game.gameMaster.IGameState;
+import game.gameState.GameState;
+import game.gameState.IGameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;

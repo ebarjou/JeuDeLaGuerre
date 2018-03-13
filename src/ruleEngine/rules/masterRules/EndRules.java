@@ -1,7 +1,7 @@
 package ruleEngine.rules.masterRules;
 
 import game.board.Board;
-import game.gameMaster.GameState;
+import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import ruleEngine.rules.atomicRules.CheckNoPriorityUnitAlly;

@@ -1,12 +1,11 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.IBoard;
-import game.gameMaster.IGameState;
+import game.gameState.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EUnitData;
 
 public class CheckUnitRange implements IRule {
 

@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import game.gameMaster.GameState;
+import game.gameState.GameState;
 
 import static org.junit.Assert.*;
 

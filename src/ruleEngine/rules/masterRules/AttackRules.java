@@ -4,7 +4,7 @@ import game.EPlayer;
 import game.board.Board;
 import game.board.EDirection;
 import game.board.Unit;
-import game.gameMaster.GameState;
+import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;

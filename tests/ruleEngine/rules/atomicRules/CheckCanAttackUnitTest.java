@@ -1,13 +1,10 @@
 package ruleEngine.rules.atomicRules;
 
-import game.EPlayer;
 import game.board.IBoard;
-import game.gameMaster.GameState;
-import game.gameMaster.IGameState;
+import game.gameState.IGameState;
 import org.junit.Before;
 import org.junit.Test;
 import ruleEngine.Coordinates;
-import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import static org.mockito.Mockito.*;

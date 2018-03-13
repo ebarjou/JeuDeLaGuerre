@@ -1,15 +1,13 @@
 package ruleEngine.rules.atomicRules;
 
-import game.EPlayer;
-import game.board.Board;
 import game.board.IBoard;
-import game.gameMaster.IGameState;
+import game.gameState.IGameState;
 import org.junit.Before;
 import org.junit.Test;
 import ruleEngine.*;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
-import ruleEngine.exceptions.IncorrectGameActionException;
+
 import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;

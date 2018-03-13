@@ -66,6 +66,7 @@ public class Board implements IBoard{
         return buildings[getOffset(x, y)] != 0;
     }
 
+    //GS do this
     public void setBuilding(EBuildingData building, EPlayer player, int x, int y) {
         buildings[getOffset(x, y)] = setItemPlayer(player, setItemType(building, (short) 0));
     }
@@ -85,6 +86,7 @@ public class Board implements IBoard{
         return units[getOffset(x, y)] != 0;
     }
 
+    //GS do this
     public void setUnit(EUnitData unit, EPlayer player, int x, int y) {
         if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
         units[getOffset(x, y)] = setItemPlayer(player, setItemType(unit, (short) 0));
@@ -147,7 +149,7 @@ public class Board implements IBoard{
         return Math.max(diffX, diffY);
     }
 
-    public String cellToString(int x, int y){
+    private String cellToString(int x, int y){
         String res = "";
         EUnitData u;
         EBuildingData b;

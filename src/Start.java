@@ -1,9 +1,8 @@
 import game.EPlayer;
 import game.Game;
-import game.board.Board;
 import game.board.Building;
 import game.board.Unit;
-import game.gameMaster.GameState;
+import game.gameState.GameState;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import player.GUIPlayer;

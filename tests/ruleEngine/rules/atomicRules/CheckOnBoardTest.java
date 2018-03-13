@@ -1,7 +1,7 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.IBoard;
-import game.gameMaster.IGameState;
+import game.gameState.IGameState;
 import org.junit.Before;
 import org.junit.Test;
 import ruleEngine.Coordinates;

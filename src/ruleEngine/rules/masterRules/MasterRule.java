@@ -2,8 +2,8 @@ package ruleEngine.rules.masterRules;
 
 import game.board.Board;
 import game.board.IBoard;
-import game.gameMaster.GameState;
-import game.gameMaster.IGameState;
+import game.gameState.GameState;
+import game.gameState.IGameState;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;

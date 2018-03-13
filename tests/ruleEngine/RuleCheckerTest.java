@@ -4,7 +4,7 @@ import game.EPlayer;
 import game.board.Board;
 import game.board.Building;
 import game.board.Unit;
-import game.gameMaster.GameState;
+import game.gameState.GameState;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
