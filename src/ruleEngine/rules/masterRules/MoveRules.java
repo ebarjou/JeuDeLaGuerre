@@ -22,7 +22,7 @@ public class MoveRules extends MasterRule {
         addRule(new CheckIsPriorityUnit());
         addRule(new CheckCanMoveUnit());
         addRule(new CheckUnitMP());
-        addDependence(new CheckUnitMP(), new CheckIsAllyUnit());
+        addDependence(new CheckUnitMP(), new CheckIsAllyUnit(), true);
         addRule(new CheckIsEmptyPath());
     }
 

@@ -26,11 +26,11 @@ public class AttackRules extends MasterRule {
         addRule(new CheckIsEnemyUnit()); // CheckTargetIsEnemyUnit
         addRule(new CheckAreAligned());
         addRule(new CheckUnitRange());
-        addDependence(new CheckUnitRange(), new CheckAreAligned());
+        addDependence(new CheckUnitRange(), new CheckAreAligned(), true);
         addRule(new CheckLastMove());
         addRule(new CheckCanAttackUnit());
         addRule(new CheckIsEmptyAttackPath());
-        addDependence(new CheckIsEmptyAttackPath(), new CheckUnitRange());
+        addDependence(new CheckIsEmptyAttackPath(), new CheckUnitRange(), true);
     }
 
     @Override

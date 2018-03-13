@@ -1,16 +1,15 @@
 package ruleEngine.rules.atomicRules;
 
-import game.board.IBoard;
 import game.board.Unit;
 import game.gameState.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
+import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
 import java.util.List;
 
-public class CheckCanMoveUnit implements IRule{
+public class CheckCanMoveUnit extends Rule {
     @Override
     public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();

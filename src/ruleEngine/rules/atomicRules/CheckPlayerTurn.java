@@ -1,12 +1,11 @@
 package ruleEngine.rules.atomicRules;
 
-import game.board.IBoard;
 import game.gameState.IGameState;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
+import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
-public class CheckPlayerTurn implements IRule {
+public class CheckPlayerTurn extends Rule {
 
     @Override
     public boolean checkAction(IGameState state, GameAction action, RuleResult result) {

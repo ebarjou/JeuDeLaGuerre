@@ -1,14 +1,13 @@
 package ruleEngine.rules.atomicRules;
 
-import game.board.IBoard;
 import game.gameState.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
+import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 
-public class CheckAbilityToMove implements IRule {
+public class CheckAbilityToMove extends Rule {
 
     @Override
     public boolean checkAction(IGameState state, GameAction action, RuleResult result) {

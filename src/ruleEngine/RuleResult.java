@@ -21,7 +21,7 @@ public class RuleResult {
         return logMessage.toString();
     }
 
-    public void addMessage(IRule caster, String message) {
+    public void addMessage(Rule caster, String message) {
         logMessage.append(caster.getClass().getSimpleName()).append(" : ").append(message).append("\n");
     }
 }

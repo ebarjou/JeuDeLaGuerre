@@ -27,6 +27,8 @@ public class CheckNoPriorityUnitAllyTest {
     public void setUp() throws Exception {
         iBoard = mock(IBoard.class);
         iGameState = mock(IGameState.class);
+
+
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
     }

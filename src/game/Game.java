@@ -84,6 +84,7 @@ public class Game {
                 return new GameResponse(INVALID, res.getLogMessage(),gameState, gameState.getActualPlayer());
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return new GameResponse(GAME_ERROR, null, gameState, gameState.getActualPlayer());
         }
     }

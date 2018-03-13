@@ -2,10 +2,10 @@ package ruleEngine.rules.atomicRules;
 
 import game.gameState.IGameState;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
+import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
-public class CheckIsAllyUnit implements IRule {
+public class CheckIsAllyUnit extends Rule {
 
     @Override
     public boolean checkAction(IGameState state, GameAction action, RuleResult result) {

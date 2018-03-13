@@ -1,16 +1,15 @@
 package ruleEngine.rules.atomicRules;
 
-import game.board.IBoard;
 import game.board.Unit;
 import game.gameState.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
+import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
 import java.util.List;
 
-public class CheckCanAttackUnit implements IRule{
+public class CheckCanAttackUnit extends Rule {
 
     private boolean isUnitCanAttack(List<Unit> cantAttackUnits, Coordinates coords){
         for(Unit unit : cantAttackUnits)

@@ -1,16 +1,15 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.IBoard;
 import game.board.Unit;
 import game.gameState.IGameState;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
+import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
 import java.util.List;
 
-public class CheckNoPriorityUnitAlly implements IRule {
+public class CheckNoPriorityUnitAlly extends Rule {
 
     private boolean isPlayerHasPriorityUnits(List<Unit> priorityUnits, EPlayer player) {
         for(Unit unit : priorityUnits)

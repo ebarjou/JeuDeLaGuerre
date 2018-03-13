@@ -1,54 +1,56 @@
 package ruleEngine.rules.masterRules;
 
-import game.board.Board;
-import game.board.IBoard;
 import game.gameState.GameState;
 import game.gameState.IGameState;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
+import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
 import java.util.*;
 
-public abstract class MasterRule implements IRule {
-    private List<IRule> rules;
-    private Map<IRule, Set<IRule>> dependencies;
+public abstract class MasterRule extends Rule {
+    private List<Rule> rules;
+    private List<Dependency> dependencies;
 
     MasterRule(){
         rules = new LinkedList<>();
-        dependencies = new HashMap<>();
+        dependencies = new LinkedList<>();
     }
 
-    void addRule(IRule rule){
+    void addRule(Rule rule){
         rules.add(rule);
     }
 
-    void addDependence(IRule rule, IRule... dependence){
-        if (!dependencies.containsKey(rule))
-            dependencies.put(rule, new HashSet<>());
-        Collections.addAll(dependencies.get(rule), dependence);
+    void addDependence(Rule rule, Rule dependency, boolean expectedState){
+        dependencies.add(new Dependency(rule, dependency, expectedState));
     }
 
     abstract public void applyResult(GameState state, GameAction action, RuleResult result);
 
     @Override
     public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
-        List<IRule> invalidateRules = new LinkedList<>();
-        for (IRule r : rules){
-            Set<IRule> irs = new HashSet<>(invalidateRules);
-            if (dependencies.containsKey(r))
-                irs.retainAll(dependencies.get(r));
+        Map<Rule, Boolean> ruleState = new HashMap<>();
+        for (Rule r : rules){
+            List<Dependency> deps = new LinkedList<>();
+            for(Dependency d : dependencies)
+                if (d.getClient().equals(r))
+                    deps.add(d);
+
+            List<Rule> irs = new LinkedList<>();
+            for(Dependency d : deps)
+                if (!ruleState.containsKey(d.getDependency()) || ruleState.get(d.getDependency()) != d.getExpectedState())
+                    irs.add(d.getDependency());
+
             if (irs.size() > 0){
                 StringBuilder sb = new StringBuilder();
-                for(IRule dep : irs)
-                    sb.append(dep.getClass().getSimpleName()).append(", ");
+                for(Rule dep : irs)
+                    sb.append(dep.getClass().getSimpleName()).append("(").append("), ");        //Add expected value later
 
                 sb.delete(sb.toString().length() - 3, sb.toString().length() - 1);
-                result.addMessage(this, r.getClass().getSimpleName() + " is not checked because it is dependant of " + sb.toString() + "'s success.");
+                result.addMessage(this, r.getClass().getSimpleName() + " is not checked because it is dependant of " + sb.toString() + "'s outcome.");
                 result.invalidate();
             }else{
-                if (!r.checkAction(state, action, result))
-                    invalidateRules.add(r);
+                ruleState.put(r, r.checkAction(state, action, result));
             }
         }
 

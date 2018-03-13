@@ -1,16 +1,15 @@
 package ruleEngine.rules.atomicRules;
 
-import game.board.IBoard;
 import game.board.Unit;
 import game.gameState.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
+import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
 import java.util.List;
 
-public class CheckUnitRange implements IRule {
+public class CheckUnitRange extends Rule {
 
     private boolean isAlignedCharge(IGameState state, GameAction action) {
         Coordinates src = action.getSourceCoordinates();

@@ -1,16 +1,15 @@
 package ruleEngine.rules.atomicRules;
 
-import game.board.IBoard;
 import game.gameState.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
+import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class CheckIsEmptyPath implements IRule {
+public class CheckIsEmptyPath extends Rule {
 
     private int length;
 

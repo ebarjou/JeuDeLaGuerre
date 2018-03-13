@@ -1,17 +1,16 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.IBoard;
 import game.board.Unit;
 import game.gameState.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.IRule;
+import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
 import java.util.List;
 
-public class CheckIsPriorityUnit implements IRule {
+public class CheckIsPriorityUnit extends Rule {
     @Override
     public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         if (isUnitHasPriority(state, action.getPlayer(), action.getSourceCoordinates()))
