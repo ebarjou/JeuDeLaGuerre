@@ -36,18 +36,22 @@ public abstract class MasterRule extends Rule {
                 if (d.getClient().equals(r))
                     deps.add(d);
 
-            List<Rule> irs = new LinkedList<>();
+            List<Dependency> irs = new LinkedList<>();
             for(Dependency d : deps)
                 if (!ruleState.containsKey(d.getDependency()) || ruleState.get(d.getDependency()) != d.getExpectedState())
-                    irs.add(d.getDependency());
+                    irs.add(d);
 
             if (irs.size() > 0){
                 StringBuilder sb = new StringBuilder();
-                for(Rule dep : irs)
-                    sb.append(dep.getClass().getSimpleName()).append("(").append("), ");        //Add expected value later
+                for(Dependency dep : irs)
+                    sb.append("\t- " + dep.getDependency().getClass().getSimpleName())
+                            .append(" : expected ")
+                            .append((dep.getExpectedState() ? "Valid" : "Invalid"))
+                            .append(" but ")
+                            .append((!ruleState.containsKey(dep.getDependency()) ? "was not checked" : "got " + (dep.getExpectedState() ? "Invalid" : "Valid") + " instead"))
+                            .append(".\n");
 
-                sb.delete(sb.toString().length() - 3, sb.toString().length() - 1);
-                result.addMessage(this, r.getClass().getSimpleName() + " is not checked because it is dependant of " + sb.toString() + "'s outcome.");
+                result.addMessage(this, r.getClass().getSimpleName() + " is not checked because it is dependant of the following rule(s) : \n" + sb.toString());
                 result.invalidate();
             }else{
                 ruleState.put(r, r.checkAction(state, action, result));
