@@ -31,27 +31,27 @@ public class CheckIsEmptyAttackPathTest {
         CheckIsEmptyAttackPath rule = new CheckIsEmptyAttackPath();
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(1, 5));
-        when(iBoard.isBuilding(anyInt(), anyInt())).thenReturn(false);
+        when(iGameState.isBuilding(anyInt(), anyInt())).thenReturn(false);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
-        when(iBoard.isBuilding(1, 3)).thenReturn(true);
-        when(iBoard.getBuildingType(1, 3)).thenReturn(EBuildingData.PASS);
+        when(iGameState.isBuilding(1, 3)).thenReturn(true);
+        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingData.PASS);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
-        when(iBoard.isBuilding(1, 3)).thenReturn(true);
-        when(iBoard.getBuildingType(1, 3)).thenReturn(EBuildingData.ARSENAL);
+        when(iGameState.isBuilding(1, 3)).thenReturn(true);
+        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingData.ARSENAL);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
-        when(iBoard.isBuilding(1, 3)).thenReturn(true);
-        when(iBoard.getBuildingType(1, 3)).thenReturn(EBuildingData.FORTRESS);
+        when(iGameState.isBuilding(1, 3)).thenReturn(true);
+        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingData.FORTRESS);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
-        when(iBoard.isBuilding(1, 3)).thenReturn(true);
-        when(iBoard.getBuildingType(1, 3)).thenReturn(EBuildingData.MOUNTAIN);
+        when(iGameState.isBuilding(1, 3)).thenReturn(true);
+        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingData.MOUNTAIN);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckIsEmptyAttackPath : This unit cannot attack here because there is an obstacle.\n";

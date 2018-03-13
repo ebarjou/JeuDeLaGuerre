@@ -30,13 +30,13 @@ public class CheckIsEnemyUnitTest {
     public void checkActionMocking() {
         CheckIsEnemyUnit rule = new CheckIsEnemyUnit();
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(1, 1));
-        when(iBoard.isUnit(1, 1)).thenReturn(true);
+        when(iGameState.isUnit(1, 1)).thenReturn(true);
         when(iGameState.getActualPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
-        when(iBoard.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_SOUTH);
+        when(iGameState.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_SOUTH);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
-        when(iBoard.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_NORTH);
+        when(iGameState.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_NORTH);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckIsEnemyUnit : Targeted unit is not an enemy.\n";

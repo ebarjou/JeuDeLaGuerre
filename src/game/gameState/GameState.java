@@ -79,6 +79,10 @@ public class GameState implements IGameState, Cloneable {
         priorityUnits.remove(targetUnit);
     }
 
+    public void setLastUnitMoved(Unit unit){
+        this.lastUnitMoved = unit;
+    }
+
     public void setActualPlayer(EPlayer player) {
         actualPlayer = player;
     }
@@ -118,6 +122,16 @@ public class GameState implements IGameState, Cloneable {
             actionLeft = 0;
     }
 
+    public void setUnitHasMoved(Coordinates coords){
+        for(Unit unit : allUnits) {
+            if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
+                unit.setCanMove(false);
+                lastUnitMoved = unit;
+                return;
+            }
+        }
+    }
+
     public void removeAll() {
         allUnits = new ArrayList<>();
         allBuildings = new ArrayList<>();
@@ -139,6 +153,8 @@ public class GameState implements IGameState, Cloneable {
     public List<Unit> getPriorityUnits(){
         return priorityUnits;
     }
+
+    public List<Unit> getCantAttackUnits(){ return cantAttackUnits;}
 
     public Unit getLastUnitMoved(){
         if(lastUnitMoved == null){
@@ -278,6 +294,11 @@ public class GameState implements IGameState, Cloneable {
         ((GameState) o).board = board.clone();
         return (GameState) o;
     }
+
+    public String toString(){
+        return board.toString();
+    }
+
     /*
         public IBoard getBoard(){
         return board;
@@ -320,15 +341,7 @@ public class GameState implements IGameState, Cloneable {
         }
     }
 
-    public void setUnitHasMoved(Coordinates coords){
-        for(Unit unit : allUnits) {
-            if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
-                unit.setCanMove(false);
-                lastUnitMoved = unit;
-                return;
-            }
-        }
-    }
+
 
     public void setUnitHasAttacked(Coordinates coords) {
         for(Unit unit : allUnits) {

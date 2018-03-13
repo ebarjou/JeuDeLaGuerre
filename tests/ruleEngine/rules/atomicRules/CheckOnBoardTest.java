@@ -30,8 +30,8 @@ public class CheckOnBoardTest {
         CheckOnBoard rule = new CheckOnBoard();
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(2, 2));
-        when(iBoard.isValidCoordinate(anyInt(), anyInt())).thenReturn(true);
-        when(iBoard.isValidCoordinate(99, 99)).thenReturn(false);
+        when(iGameState.isValidCoordinate(anyInt(), anyInt())).thenReturn(true);
+        when(iGameState.isValidCoordinate(99, 99)).thenReturn(false);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 

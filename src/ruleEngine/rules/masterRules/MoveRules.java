@@ -38,9 +38,8 @@ public class MoveRules extends MasterRule {
         }
 
         state.setUnitHasMoved(src);
-        state.updateUnitPosition(src, target);
+        //state.updateUnitPosition(src, target);
         state.removeOneAction();
         state.moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
-
     }
 }

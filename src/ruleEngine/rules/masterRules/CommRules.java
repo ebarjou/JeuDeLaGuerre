@@ -33,7 +33,6 @@ public class CommRules extends MasterRule {
                 int y = building.getY();
                 gameState.setInCommunication(gameState.getBuildingPlayer(x, y), x, y, true);
                 gameState.setMarked(x, y, true);
-                gameState.cellToString(x, y);
                 for (EDirection direction : EDirection.values())
                     createCom(gameState, x, y, direction, gameState.getBuildingPlayer(x, y), -1);
             }

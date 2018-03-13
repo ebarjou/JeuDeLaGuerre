@@ -31,13 +31,13 @@ public class CheckIsAllyUnitTest {
     public void checkActionMocking() {
         CheckIsAllyUnit rule = new CheckIsAllyUnit();
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
-        when(iBoard.isUnit(1, 1)).thenReturn(true);
+        when(iGameState.isUnit(1, 1)).thenReturn(true);
         when(iGameState.getActualPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
-        when(iBoard.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_NORTH);
+        when(iGameState.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_NORTH);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
-        when(iBoard.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_SOUTH);
+        when(iGameState.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_SOUTH);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckIsAllyUnit : This unit is not owned by PLAYER_NORTH.\n";
@@ -45,7 +45,7 @@ public class CheckIsAllyUnitTest {
 
         //TODO: To move on future CheckIsUnitTest
         ruleResult = new RuleResult();
-        when(iBoard.isUnit(1, 1)).thenReturn(false);
+        when(iGameState.isUnit(1, 1)).thenReturn(false);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         expectedMessage = "CheckIsAllyUnit : There is no unit at (1, 1).\n";

@@ -26,6 +26,7 @@ public interface IGameState {
     void removeAll();
     List<Unit> getAllUnits();
     List<Unit> getPriorityUnits();
+    List<Unit> getCantAttackUnits();
     List<Building> getAllBuildings();
     int getWidth();
     int getHeight();
@@ -44,6 +45,9 @@ public interface IGameState {
     void clearMarked();
     void moveUnit(int x, int y, int x2, int y2);
     int getDistance(int x, int y, int x2, int y2);
+    void setUnitHasMoved(Coordinates coords);
+    void setLastUnitMoved(Unit u);
+    String toString();
 
 
 

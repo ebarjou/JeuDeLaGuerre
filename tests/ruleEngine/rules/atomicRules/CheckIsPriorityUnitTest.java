@@ -29,16 +29,14 @@ public class CheckIsPriorityUnitTest {
     public void checkActionMocking() {
         CheckIsPriorityUnit rule = new CheckIsPriorityUnit();
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
-        when(iGameState.isUnitHasPriority(any(Coordinates.class))).thenReturn(true);
+        //when(iGameState.isUnitHasPriority(any(Coordinates.class))).thenReturn(true);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
-        when(iGameState.isUnitHasPriority(any(Coordinates.class))).thenReturn(false);
+        //when(iGameState.isUnitHasPriority(any(Coordinates.class))).thenReturn(false);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckIsPriorityUnit : There are other units that need to be moved first.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
-
-
     }
 }

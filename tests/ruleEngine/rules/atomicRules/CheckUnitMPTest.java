@@ -2,6 +2,7 @@ package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
 import game.board.Board;
+import game.board.Unit;
 import game.gameState.GameState;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,12 +23,17 @@ public class CheckUnitMPTest {
 
     @Before
     public void setUp(){
-        board = new Board(25, 20);
+        //board = new Board(25, 20);
 
         // MovementValue = 1
-        board.setUnit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH,0, 0);
+        Unit infantry = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        infantry.setPosition(0, 0);
+        //board.setUnit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH,0, 0);
         // MovementValue = 2
-        board.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH,5, 5);
+        Unit cavalry = new Unit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH);
+        cavalry.setPosition(5, 5);
+        //board.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH,5, 5);*/
+
 
         gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
 
@@ -37,17 +43,23 @@ public class CheckUnitMPTest {
         rule = new CheckUnitMP();
 
         gameState = Mockito.mock(GameState.class);
+        gameState.addUnit(infantry);
+        gameState.addUnit(cavalry);
     }
 
     @Test
     public void checkActionValidMP() {
         gameAction.setSourceCoordinates(5, 5);
-        gameAction.setTargetCoordinates(3, 7);
+        gameAction.setTargetCoordinates(7, 7);
 
         RuleResult result = new RuleResult();
         String expectedMessage = "";
 
-        assertTrue(rule.checkAction(gameState, gameAction, result));
+        boolean valid = rule.checkAction(gameState, gameAction, result);
+        System.out.println("CheckActionValidMP  " + result.getLogMessage());
+        System.out.println(expectedMessage);
+
+        assertTrue(valid);
         assertTrue(result.getLogMessage().equals(expectedMessage));
         assertTrue(result.isValid());
     }
@@ -58,11 +70,11 @@ public class CheckUnitMPTest {
         gameAction.setTargetCoordinates(2, 2);
 
         RuleResult result = new RuleResult();
-        String expectedMessage = "CheckUnitMP : Not enough movement point, the unit has "
-                + "1 MP, and you need 2 MP\n";
+        //There is no unit at 0,0 so it should return this message.
+        String expectedMessage = "CheckUnitMP : Not enough movement point\n";
 
         assertFalse(rule.checkAction(gameState, gameAction, result));
-        assertTrue(result.getLogMessage().equals(expectedMessage));
+        assertTrue(result.getLogMessage().contains(expectedMessage));
         assertFalse(result.isValid());
     }
 }

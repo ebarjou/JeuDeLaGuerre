@@ -1,17 +1,28 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.IBoard;
+import game.board.Unit;
 import game.gameState.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
 
+import java.util.List;
+
 public class CheckCanAttackUnit implements IRule{
+
+    private boolean isUnitCanAttack(List<Unit> cantAttackUnits, Coordinates coords){
+        for(Unit unit : cantAttackUnits)
+            if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
+                return false;
+        return true;
+    }
+
     @Override
     public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
-        boolean canAttack = state.isUnitCanAttack(src);
+        boolean canAttack = isUnitCanAttack(state.getCantAttackUnits(), src);
         if(!canAttack){
             result.invalidate();
             result.addMessage(this, "This unit can't attack this turn.");

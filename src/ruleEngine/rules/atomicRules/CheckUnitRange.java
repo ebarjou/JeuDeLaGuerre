@@ -1,11 +1,14 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.IBoard;
+import game.board.Unit;
 import game.gameState.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.IRule;
 import ruleEngine.RuleResult;
+
+import java.util.List;
 
 public class CheckUnitRange implements IRule {
 
@@ -28,7 +31,7 @@ public class CheckUnitRange implements IRule {
             if ( !state.isUnit(x, y)
                     || !state.getUnitType(x, y).isCanCharge()
                     || !(state.getUnitPlayer(x, y) == action.getPlayer())
-                    || !state.isUnitCanAttack(new Coordinates(x, y)) ) {
+                    || !isUnitCanAttack(state, new Coordinates(x, y)) ) {
                 return false;
             }
             x += dirX;
@@ -61,5 +64,14 @@ public class CheckUnitRange implements IRule {
             result.invalidate();
             return false;
         }
+    }
+
+
+    private boolean isUnitCanAttack(IGameState state, Coordinates coords){
+        List<Unit> cantAttackUnits = state.getCantAttackUnits();
+        for(Unit unit : cantAttackUnits)
+            if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
+                return false;
+        return true;
     }
 }

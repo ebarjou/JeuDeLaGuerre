@@ -12,6 +12,8 @@ import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.rules.atomicRules.*;
 
+import java.util.List;
+
 public class AttackRules extends MasterRule {
 
     private static final int chargeVal = 7;
@@ -72,7 +74,7 @@ public class AttackRules extends MasterRule {
                     ") has been attacked, but nothing happened :" + fightValMessage + ".");
         }
         Coordinates src = action.getTargetCoordinates();
-        state.setUnitHasAttacked(src);
+        setUnitHasAttacked(state, src);
     }
 
     private int caseDefVal(IGameState state, int x, int y) {
@@ -99,7 +101,7 @@ public class AttackRules extends MasterRule {
 
             int dist = state.getDistance(x, y, xT, yT);
 
-            if (isAttack && unit.isCanAttack() && (state.isUnitCanAttack(new Coordinates(x, y)))) {
+            if (isAttack && unit.isCanAttack() && (isUnitCanAttack(state, new Coordinates(x, y)))) {
                 if (charge && unit.isCanCharge()) {
                     return chargeVal + getFightValueRec(state, action, player, x, y, dir, true, true);
                 } else if (unit.getFightRange() >= dist) {
@@ -154,5 +156,23 @@ public class AttackRules extends MasterRule {
         }
 
         return val;
+    }
+
+    private void setUnitHasAttacked(IGameState state, Coordinates src){
+        List<Unit> allUnits = state.getAllUnits();
+        for(Unit unit : allUnits) {
+            if (unit.getX() == src.getX() && unit.getY() == src.getY()) {
+                state.setLastUnitMoved(null);
+                return;
+            }
+        }
+    }
+
+    private boolean isUnitCanAttack(IGameState state, Coordinates coords){
+        List<Unit> cantAttackUnits = state.getCantAttackUnits();
+        for(Unit unit : cantAttackUnits)
+            if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
+                return false;
+        return true;
     }
 }
