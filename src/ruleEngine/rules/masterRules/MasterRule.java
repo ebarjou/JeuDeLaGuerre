@@ -29,10 +29,10 @@ public abstract class MasterRule implements IRule {
         Collections.addAll(dependencies.get(rule), dependence);
     }
 
-    abstract public void applyResult(Board board, GameState state, GameAction action, RuleResult result);
+    abstract public void applyResult(GameState state, GameAction action, RuleResult result);
 
     @Override
-    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         List<IRule> invalidateRules = new LinkedList<>();
         for (IRule r : rules){
             Set<IRule> irs = new HashSet<>(invalidateRules);
@@ -47,7 +47,7 @@ public abstract class MasterRule implements IRule {
                 result.addMessage(this, r.getClass().getSimpleName() + " is not checked because it is dependant of " + sb.toString() + "'s success.");
                 result.invalidate();
             }else{
-                if (!r.checkAction(board, state, action, result))
+                if (!r.checkAction(state, action, result))
                     invalidateRules.add(r);
             }
         }

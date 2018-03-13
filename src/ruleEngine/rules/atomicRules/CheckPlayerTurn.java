@@ -9,7 +9,7 @@ import ruleEngine.RuleResult;
 public class CheckPlayerTurn implements IRule {
 
     @Override
-    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         if (action.getPlayer() != state.getActualPlayer()) {
             result.invalidate();
             //TODO: Access player's name through EPlayer enum ?

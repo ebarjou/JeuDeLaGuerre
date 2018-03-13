@@ -42,10 +42,10 @@ public class CheckIsEmptyPathTest {
         when(iBoard.isBuilding(2, 1)).thenReturn(true);
         when(iBoard.getBuildingType(2, 0)).thenReturn(EBuildingData.PASS);
         when(iBoard.getBuildingType(2, 1)).thenReturn(EBuildingData.MOUNTAIN);
-        assertTrue(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
 
         when(iBoard.isValidCoordinate(anyInt(), anyInt())).thenReturn(false);
-        assertFalse(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
@@ -53,7 +53,7 @@ public class CheckIsEmptyPathTest {
         ruleResult = new RuleResult();
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(15, 15));
         when(iBoard.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
-        assertFalse(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         expectedMessage = "CheckIsEmptyPath : There is no path found using 1 movement points.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));

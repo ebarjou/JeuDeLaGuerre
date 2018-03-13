@@ -11,11 +11,11 @@ import ruleEngine.entity.EUnitData;
 public class CheckAbilityToMove implements IRule {
 
     @Override
-    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
         try {
-            EUnitData unitData = board.getUnitType(src.getX(), src.getY());
-            if (unitData.isRelayCommunication() || board.isInCommunication(action.getPlayer(), src.getX(), src.getY())) {
+            EUnitData unitData = state.getUnitType(src.getX(), src.getY());
+            if (unitData.isRelayCommunication() || state.isInCommunication(action.getPlayer(), src.getX(), src.getY())) {
                 return true;
             }
 

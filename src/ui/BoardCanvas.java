@@ -2,6 +2,7 @@ package ui;
 
 import game.EPlayer;
 import game.board.IBoard;
+import game.gameState.IGameState;
 import javafx.event.EventHandler;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
@@ -45,29 +46,29 @@ class BoardCanvas extends Canvas {
     }
 
     /**
-     * @param board Board to be displayed
+     * @param gameState Board to be displayed
      * Refresh the canvas according to the given Board.
      */
-    void draw(IBoard board) {
+    void draw(IGameState gameState) {
         g.setFill(Color.LIGHTGREY);
         //Fill background
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        if (board != null) {
-            caseSize = (int) (getWidth() / (board.getWidth()));
+        if (gameState != null) {
+            caseSize = (int) (getWidth() / (gameState.getWidth()));
 
             //Display letters and numbers around the board
-            printCasesHIndex(board, 35, indicesHeight / 2, caseSize);
-            printCasesVIndex(board, indicesWidth / 2, 35, caseSize);
+            printCasesHIndex(gameState, 35, indicesHeight / 2, caseSize);
+            printCasesVIndex(gameState, indicesWidth / 2, 35, caseSize);
 
             //draw board background
             g.setFill(Color.BLACK);
             g.fillRect(indicesWidth, indicesHeight, getWidth()-indicesWidth,  getHeight()-indicesHeight);
 
             //draw individual cell background
-            for (int j = 0; j < board.getHeight(); ++j) {
-                for (int i = 0; i < board.getWidth(); ++i) {
-                    drawCellBackground(board, i, j,
+            for (int j = 0; j < gameState.getHeight(); ++j) {
+                for (int i = 0; i < gameState.getWidth(); ++i) {
+                    drawCellBackground(gameState, i, j,
                             MARGIN + i * caseSize + indicesWidth,
                             MARGIN + j * caseSize + indicesHeight,
                             caseSize - MARGIN * 2);
@@ -75,39 +76,39 @@ class BoardCanvas extends Canvas {
             }
 
             //draw individual cell items
-            for (int j = 0; j < board.getHeight(); ++j) {
-                for (int i = 0; i < board.getWidth(); ++i) {
+            for (int j = 0; j < gameState.getHeight(); ++j) {
+                for (int i = 0; i < gameState.getWidth(); ++i) {
                     int x = MARGIN + i * caseSize + indicesWidth, y = MARGIN + j * caseSize + indicesHeight, size = caseSize - MARGIN * 2;
-                    drawCellItem(board, i, j, x, y, size);
+                    drawCellItem(gameState, i, j, x, y, size);
                 }
             }
 
             g.setStroke(Color.ORANGERED);
-            g.strokeLine(0 + indicesWidth, (board.getHeight() / 2) * caseSize + indicesHeight, board.getWidth() * caseSize + indicesWidth, board.getHeight() * caseSize / 2 + indicesHeight);
+            g.strokeLine(0 + indicesWidth, (gameState.getHeight() / 2) * caseSize + indicesHeight, gameState.getWidth() * caseSize + indicesWidth, gameState.getHeight() * caseSize / 2 + indicesHeight);
         }
 
     }
 
-    private void drawCellBackground(IBoard board, int x, int y, int pos_x, int pos_y, int size) {
+    private void drawCellBackground(IGameState gameState, int x, int y, int pos_x, int pos_y, int size) {
         g.save();
         g.setFill(Color.IVORY);
         g.fillRect(pos_x, pos_y, size, size);
-        if (board.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && board.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
+        if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
             g.setFill(SOUTH_COLOR_LIGHT);
             g.fillRect(pos_x, pos_y, size, size);
             g.setFill(NORTH_COLOR_LIGHT);
             g.fillPolygon(new double[] {pos_x, pos_x + size, pos_x}, new double[] {pos_y, pos_y, pos_y + size}, 3);
-        } else if (board.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
+        } else if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
             g.setFill(NORTH_COLOR_LIGHT);
             g.fillRect(pos_x, pos_y, size, size);
-        } else if (board.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
+        } else if (gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
             g.setFill(SOUTH_COLOR_LIGHT);
             g.fillRect(pos_x, pos_y, size, size);
         }
         g.restore();
     }
 
-    private void drawCellItem(IBoard board, int x, int y, int pos_x, int pos_y, int size) {
+    private void drawCellItem(IGameState gameState, int x, int y, int pos_x, int pos_y, int size) {
         g.save();
         g.setFill(Color.DARKBLUE);
         g.setTextAlign(TextAlignment.CENTER);
@@ -115,28 +116,28 @@ class BoardCanvas extends Canvas {
         g.setLineWidth(size / 2);
 
         try {
-            BoardDrawer.drawBuilding(g, board.getBuildingType(x, y), board.getBuildingPlayer(x, y), pos_x, pos_y, size, MARGIN);
+            BoardDrawer.drawBuilding(g, gameState.getBuildingType(x, y), gameState.getBuildingPlayer(x, y), pos_x, pos_y, size, MARGIN);
         } catch (NullPointerException e) {}
 
         try {
-            BoardDrawer.drawUnit(g, board.getUnitType(x, y), board.getUnitPlayer(x, y), pos_x, pos_y, size);
+            BoardDrawer.drawUnit(g, gameState.getUnitType(x, y), gameState.getUnitPlayer(x, y), pos_x, pos_y, size);
         } catch (NullPointerException e) {}
         g.restore();
     }
 
-    private void printCasesHIndex(IBoard board, int offsetx, int offsety, int caseSize) {
+    private void printCasesHIndex(IGameState gameState, int offsetx, int offsety, int caseSize) {
         g.save();
         g.setFill(Color.BLACK);
-        for (int i = 0; i < board.getWidth(); ++i) {
+        for (int i = 0; i < gameState.getWidth(); ++i) {
             g.fillText("" + (i + 1), offsetx + i * caseSize, offsety, 20);
         }
         g.restore();
     }
 
-    private void printCasesVIndex(IBoard board, int offsetx, int offsety, int caseSize) {
+    private void printCasesVIndex(IGameState gameState, int offsetx, int offsety, int caseSize) {
         g.save();
         g.setFill(Color.BLACK);
-        for (int j = 0; j < board.getHeight(); ++j) {
+        for (int j = 0; j < gameState.getHeight(); ++j) {
             String s = IntLetterConverter.getLettersFromInt(j);
             g.fillText(s, offsetx, offsety + j * caseSize, 20);
         }

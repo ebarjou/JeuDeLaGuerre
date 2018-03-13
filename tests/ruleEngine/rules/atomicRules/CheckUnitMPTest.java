@@ -47,7 +47,7 @@ public class CheckUnitMPTest {
         RuleResult result = new RuleResult();
         String expectedMessage = "";
 
-        assertTrue(rule.checkAction(board, null, gameAction, result));
+        assertTrue(rule.checkAction(gameState, gameAction, result));
         assertTrue(result.getLogMessage().equals(expectedMessage));
         assertTrue(result.isValid());
     }
@@ -61,7 +61,7 @@ public class CheckUnitMPTest {
         String expectedMessage = "CheckUnitMP : Not enough movement point, the unit has "
                 + "1 MP, and you need 2 MP\n";
 
-        assertFalse(rule.checkAction(board, null, gameAction, result));
+        assertFalse(rule.checkAction(gameState, gameAction, result));
         assertTrue(result.getLogMessage().equals(expectedMessage));
         assertFalse(result.isValid());
     }

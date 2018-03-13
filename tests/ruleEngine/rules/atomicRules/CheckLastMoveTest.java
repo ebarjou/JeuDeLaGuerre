@@ -34,11 +34,11 @@ public class CheckLastMoveTest {
         when(iGameState.getLastUnitMoved()).thenReturn(unit);
         when(unit.getX()).thenReturn(1);
         when(unit.getY()).thenReturn(1);
-        assertTrue(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
         when(unit.getX()).thenReturn(2);
-        assertFalse(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckLastMove : Unit is not the last one moved.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
@@ -46,7 +46,7 @@ public class CheckLastMoveTest {
         ruleResult = new RuleResult();
         when(unit.getX()).thenReturn(1);
         when(unit.getY()).thenReturn(2);
-        assertFalse(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         expectedMessage = "CheckLastMove : Unit is not the last one moved.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));

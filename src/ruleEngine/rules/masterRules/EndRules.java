@@ -13,7 +13,7 @@ public class EndRules extends MasterRule {
     }
 
     @Override
-    public void applyResult(Board board, GameState state, GameAction action, RuleResult result) {
+    public void applyResult(GameState state, GameAction action, RuleResult result) {
         state.switchPlayer();
     }
 }

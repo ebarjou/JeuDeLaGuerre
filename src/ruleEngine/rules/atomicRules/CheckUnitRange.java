@@ -9,7 +9,7 @@ import ruleEngine.RuleResult;
 
 public class CheckUnitRange implements IRule {
 
-    private boolean isAlignedCharge(IBoard board, IGameState state, GameAction action) {
+    private boolean isAlignedCharge(IGameState state, GameAction action) {
         Coordinates src = action.getSourceCoordinates();
         Coordinates dst = action.getTargetCoordinates();
 
@@ -25,9 +25,9 @@ public class CheckUnitRange implements IRule {
         int x = src.getX();
         int y = src.getY();
         while (x != dst.getX() || y != dst.getY()) {
-            if ( !board.isUnit(x, y)
-                    || !board.getUnitType(x, y).isCanCharge()
-                    || !(board.getUnitPlayer(x, y) == action.getPlayer())
+            if ( !state.isUnit(x, y)
+                    || !state.getUnitType(x, y).isCanCharge()
+                    || !(state.getUnitPlayer(x, y) == action.getPlayer())
                     || !state.isUnitCanAttack(new Coordinates(x, y)) ) {
                 return false;
             }
@@ -38,17 +38,17 @@ public class CheckUnitRange implements IRule {
     }
 
     @Override
-    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         try {
             int x = action.getSourceCoordinates().getX();
             int y = action.getSourceCoordinates().getY();
             int x2 = action.getTargetCoordinates().getX();
             int y2 = action.getTargetCoordinates().getY();
 
-            int range = board.getUnitType(x, y).getFightRange();
-            int dist = board.getDistance(x, y, x2, y2);
+            int range = state.getUnitType(x, y).getFightRange();
+            int dist = state.getDistance(x, y, x2, y2);
 
-            if (dist > range && !isAlignedCharge(board, state, action)) {
+            if (dist > range && !isAlignedCharge(state, action)) {
                 result.addMessage(this,
                         "Not enough range to attack, the unit has a range of "
                                 + range + ", and you need a range of " + dist + ".");

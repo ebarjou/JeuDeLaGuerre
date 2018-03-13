@@ -34,7 +34,7 @@ public class CheckPlayerTurnTest {
         result = new RuleResult();
         String expectedMessage = "";
 
-        assertTrue(rule.checkAction(board, gameState, gameAction, result));
+        assertTrue(rule.checkAction(gameState, gameAction, result));
         assertTrue(result.getLogMessage().equals(expectedMessage));
         assertTrue(result.isValid());
 
@@ -43,7 +43,7 @@ public class CheckPlayerTurnTest {
         result = new RuleResult();
         expectedMessage = "CheckPlayerTurn : This is not player PLAYER_NORTH's turn.\n";
 
-        assertFalse(rule.checkAction(board, gameState, gameAction, result));
+        assertFalse(rule.checkAction(gameState, gameAction, result));
         assertTrue(result.getLogMessage().equals(expectedMessage));
         assertFalse(result.isValid());
     }

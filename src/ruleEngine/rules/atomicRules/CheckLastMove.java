@@ -10,7 +10,7 @@ import ruleEngine.RuleResult;
 
 public class CheckLastMove implements IRule{
     @Override
-    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
         Unit lastMove;
         try {

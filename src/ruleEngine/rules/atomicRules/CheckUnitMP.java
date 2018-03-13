@@ -9,15 +9,15 @@ import ruleEngine.RuleResult;
 public class CheckUnitMP implements IRule {
 
     @Override
-    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         try {
             int x = action.getSourceCoordinates().getX();
             int y = action.getSourceCoordinates().getY();
             int x2 = action.getTargetCoordinates().getX();
             int y2 = action.getTargetCoordinates().getY();
 
-            int MP = board.getUnitType(x, y).getMovementValue();
-            int dist = board.getDistance(x, y, x2, y2);
+            int MP = state.getUnitType(x, y).getMovementValue();
+            int dist = state.getDistance(x, y, x2, y2);
 
             if (dist > MP) {
                 result.addMessage(this,

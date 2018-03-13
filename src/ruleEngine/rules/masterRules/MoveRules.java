@@ -27,7 +27,7 @@ public class MoveRules extends MasterRule {
     }
 
     @Override
-    public void applyResult(Board board, GameState state, GameAction action, RuleResult result) {
+    public void applyResult(GameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
         Coordinates target = action.getTargetCoordinates();
         state.removePriorityUnit(src);
@@ -40,7 +40,7 @@ public class MoveRules extends MasterRule {
         state.setUnitHasMoved(src);
         state.updateUnitPosition(src, target);
         state.removeOneAction();
-        state.getMutableBoard().moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
+        state.moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
 
     }
 }

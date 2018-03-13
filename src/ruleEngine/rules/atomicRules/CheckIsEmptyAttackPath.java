@@ -10,7 +10,7 @@ import ruleEngine.RuleResult;
 public class CheckIsEmptyAttackPath implements IRule {
 
     @Override
-    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
         Coordinates dst = action.getTargetCoordinates();
 
@@ -22,8 +22,8 @@ public class CheckIsEmptyAttackPath implements IRule {
         int x = src.getX();
         int y = src.getY();
         while (x != dst.getX() || y != dst.getY()) {
-            if ( board.isBuilding(x, y)
-                    && !board.getBuildingType(x, y).isAccessible() ) {
+            if ( state.isBuilding(x, y)
+                    && !state.getBuildingType(x, y).isAccessible() ) {
                 result.addMessage(this,
                         "This unit cannot attack here because there is an obstacle.");
                 result.invalidate();

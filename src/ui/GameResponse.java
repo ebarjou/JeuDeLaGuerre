@@ -10,10 +10,10 @@ public class GameResponse {
     private GameState board;
     private EPlayer player;
 
-    public GameResponse(GameToUserCall response, String message, GameState board, EPlayer player) {
+    public GameResponse(GameToUserCall response, String message, GameState gameState, EPlayer player) {
         this.response = response;
         this.message = message;
-        this.board = board;
+        this.board = gameState;
         this.player = player;
     }
 

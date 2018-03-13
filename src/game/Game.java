@@ -42,7 +42,7 @@ public class Game {
     }
 
     public void start(){
-        ruleChecker.computeCommunications(gameState.getMutableBoard(), gameState);
+        ruleChecker.computeCommunications(gameState);
         while(true){
             Player player = getPlayer();
             UIAction action = player.getCommand();
@@ -57,10 +57,6 @@ public class Game {
         return player2;
     }
 
-    public IBoard getBoard(){
-        return gameState.getBoard();
-    }
-
     public IGameState getGameState(){
         return gameState;
     }
@@ -71,30 +67,29 @@ public class Game {
 
     public void reinit(GameState gameState){
         this.gameState = gameState;
-        ruleChecker.computeCommunications(gameState.getMutableBoard(), gameState);
+        ruleChecker.computeCommunications(gameState);
     }
 
     private GameResponse handleGameAction(UIAction cmd) {
         GameState actualGameState = this.gameState.clone(); // copy of the GameState & Board before attempting the action
-        Board board = gameState.getMutableBoard();
         try {
             GameAction action = cmd.getGameAction(gameState.getActualPlayer());
-            RuleResult res = ruleChecker.checkAction(board, gameState, action);
+            RuleResult res = ruleChecker.checkAction(gameState, action);
             if (res.isValid()) {
                 historyGameState.push(actualGameState);
                 //Communication
-                ruleChecker.computeCommunications(gameState.getMutableBoard(), gameState);
-                return new GameResponse(VALID, null, board, gameState.getActualPlayer());
+                ruleChecker.computeCommunications(gameState);
+                return new GameResponse(VALID, null, gameState, gameState.getActualPlayer());
             } else {
-                return new GameResponse(INVALID, res.getLogMessage(), board, gameState.getActualPlayer());
+                return new GameResponse(INVALID, res.getLogMessage(),gameState, gameState.getActualPlayer());
             }
         } catch (Exception e) {
-            return new GameResponse(GAME_ERROR, null, board, gameState.getActualPlayer());
+            return new GameResponse(GAME_ERROR, null, gameState, gameState.getActualPlayer());
         }
     }
 
     public GameResponse processCommand(UIAction cmd) {
-        if(cmd == null)  new GameResponse(GAME_ERROR, "Error : null call.", gameState.getBoard(), gameState.getActualPlayer());
+        if(cmd == null)  new GameResponse(GAME_ERROR, "Error : null call.", gameState, gameState.getActualPlayer());
         switch (cmd.getCommand()) {
             case EXIT: {
                 System.exit(0);
@@ -104,11 +99,11 @@ public class Game {
                 LoadFile lf = new LoadFile();
                 try {
                     lf.loadFile(cmd.getText());
-                    ruleChecker.computeCommunications(gameState.getMutableBoard(), gameState);
+                    ruleChecker.computeCommunications(gameState);
                 } catch (IOException e) {
-                    return new GameResponse(INVALID, e.getMessage(), gameState.getBoard(), gameState.getActualPlayer());
+                    return new GameResponse(INVALID, e.getMessage(), gameState, gameState.getActualPlayer());
                 }
-                return new GameResponse(VALID, null, gameState.getBoard(), gameState.getActualPlayer());
+                return new GameResponse(VALID, null, gameState, gameState.getActualPlayer());
             }
             case SAVE: {
                 break;
@@ -116,7 +111,7 @@ public class Game {
             case REVERT: {
                 if(!historyGameState.isEmpty())
                     this.gameState = historyGameState.pop();
-                return new GameResponse(VALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
+                return new GameResponse(VALID, cmd.getErrorMessage(), gameState, gameState.getActualPlayer());
             }/*
             case END_TURN: {
                 //System.out.println("END TURN");
@@ -126,7 +121,7 @@ public class Game {
                 return new GameResponse(VALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
             }*/
             case CMD_ERROR: {
-                return new GameResponse(INVALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
+                return new GameResponse(INVALID, cmd.getErrorMessage(), gameState, gameState.getActualPlayer());
             }
             case GAME_ACTION: {
                 return handleGameAction(cmd);
@@ -135,6 +130,6 @@ public class Game {
                 break;
             }
         }
-        return new GameResponse(GAME_ERROR, "Error : Unimplemented call.", gameState.getBoard(), gameState.getActualPlayer());
+        return new GameResponse(GAME_ERROR, "Error : Unimplemented call.", gameState, gameState.getActualPlayer());
     }
 }

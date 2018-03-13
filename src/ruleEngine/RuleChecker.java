@@ -18,11 +18,11 @@ public class RuleChecker {
         endRuleMaster = new EndRules();
     }
 
-    public void computeCommunications(Board board, GameState gameState){
-        commRuleMaster.applyResult(board, gameState, null, null);
+    public void computeCommunications(GameState gameState){
+        commRuleMaster.applyResult(gameState, null, null);
     }
 
-    public RuleResult checkAction(Board board, GameState gameState, GameAction action) throws IncorrectGameActionException {
+    public RuleResult checkAction(GameState gameState, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
         MasterRule mr = null;
         switch (action.getActionType()) {
@@ -39,10 +39,10 @@ public class RuleChecker {
                 throw new IncorrectGameActionException("Unhandled GameAction type.");
         }
 
-        mr.checkAction(board, gameState, action, result);
+        mr.checkAction(gameState, action, result);
 
         if (result.isValid())
-            mr.applyResult(board, gameState, action, result);
+            mr.applyResult(gameState, action, result);
 
         return result;
     }

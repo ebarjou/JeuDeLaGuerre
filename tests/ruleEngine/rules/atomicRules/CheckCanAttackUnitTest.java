@@ -15,26 +15,26 @@ public class CheckCanAttackUnitTest {
 
     private IBoard iBoard;
     private IGameState iGameState;
-    private GameAction action;
+    private GameAction gameAction;
     private RuleResult ruleResult;
 
     @Before
     public void setUp() throws Exception {
         iBoard = mock(IBoard.class);
         iGameState = mock(IGameState.class);
-        action = mock(GameAction.class);
+        gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
     }
 
     @Test
     public void checkActionMocking() {
         CheckCanAttackUnit rule = new CheckCanAttackUnit();
-        when(action.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
+        when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
         when(iGameState.isUnitCanAttack(any(Coordinates.class))).thenReturn(true);
-        assertTrue(rule.checkAction(iBoard, iGameState, action, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
         when(iGameState.isUnitCanAttack(any(Coordinates.class))).thenReturn(false);
-        assertFalse(rule.checkAction(iBoard, iGameState, action, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         String expectedMessage = "CheckCanAttackUnit : This unit can't attack this turn.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
         assertFalse(ruleResult.isValid());

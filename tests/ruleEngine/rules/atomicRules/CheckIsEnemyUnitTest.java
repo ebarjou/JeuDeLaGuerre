@@ -33,11 +33,11 @@ public class CheckIsEnemyUnitTest {
         when(iBoard.isUnit(1, 1)).thenReturn(true);
         when(iGameState.getActualPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         when(iBoard.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_SOUTH);
-        assertTrue(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
         when(iBoard.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_NORTH);
-        assertFalse(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckIsEnemyUnit : Targeted unit is not an enemy.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));

@@ -35,31 +35,31 @@ public class CheckAbilityToMoveTest {
         when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         when(iBoard.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
         when(iBoard.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(true);
-        assertTrue(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
 
         when(iBoard.getUnitType(1, 1)).thenReturn(EUnitData.RELAY);
         when(iBoard.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(true);
-        assertTrue(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
         when(iBoard.getUnitType(1, 1)).thenReturn(EUnitData.RELAY_HORSE);
         when(iBoard.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(true);
-        assertTrue(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
         when(iBoard.getUnitType(1, 1)).thenReturn(EUnitData.RELAY);
         when(iBoard.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
-        assertTrue(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
         when(iBoard.getUnitType(1, 1)).thenReturn(EUnitData.RELAY_HORSE);
         when(iBoard.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
-        assertTrue(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
         when(iBoard.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
         when(iBoard.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
-        assertFalse(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         String expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
         assertFalse(ruleResult.isValid());
@@ -67,7 +67,7 @@ public class CheckAbilityToMoveTest {
         //TODO : Wrong behavior
         ruleResult = new RuleResult();
         when(iBoard.getUnitType(1, 1)).thenThrow(new NullPointerException());
-        assertFalse(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
         assertFalse(ruleResult.isValid());

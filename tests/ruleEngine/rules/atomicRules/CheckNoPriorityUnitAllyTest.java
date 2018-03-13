@@ -30,12 +30,12 @@ public class CheckNoPriorityUnitAllyTest {
         CheckNoPriorityUnitAlly rule = new CheckNoPriorityUnitAlly();
         when(iGameState.getActualPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         when(iGameState.isPriorityUnitPlayer(EPlayer.PLAYER_NORTH)).thenReturn(false);
-        assertTrue(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
         when(iGameState.getActualPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         when(iGameState.isPriorityUnitPlayer(EPlayer.PLAYER_NORTH)).thenReturn(true);
-        assertFalse(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckNoPriorityUnitAlly : There is at least one priority unit.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));

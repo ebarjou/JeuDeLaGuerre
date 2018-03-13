@@ -26,11 +26,11 @@ public class CheckIsEmptyPath implements IRule {
     }
 
     @Override
-    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
         Coordinates target = action.getTargetCoordinates();
         try {
-            int MP = board.getUnitType(src.getX(), src.getY()).getMovementValue();
+            int MP = state.getUnitType(src.getX(), src.getY()).getMovementValue();
 
             assert MP != 0;
 
@@ -54,13 +54,13 @@ public class CheckIsEmptyPath implements IRule {
                         int x = map[i][j].x;
                         int y = map[i][j].y;
 
-                        if (!board.isValidCoordinate(x, y) || map[i][j].isMarked)
+                        if (!state.isValidCoordinate(x, y) || map[i][j].isMarked)
                             continue;
                         //A cell containing a unit isn't valid to find the path
-                        if (board.isUnit(x, y))
+                        if (state.isUnit(x, y))
                             continue;
                         //If there is building and it's a mountain, we can't add it
-                        if (board.isBuilding(x, y) && !board.getBuildingType(x, y).isAccessible())
+                        if (state.isBuilding(x, y) && !state.getBuildingType(x, y).isAccessible())
                             continue;
 
                         //Just create the valid neighbour, with dist + 1

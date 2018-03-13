@@ -9,7 +9,7 @@ import ruleEngine.RuleResult;
 
 public class CheckCanMoveUnit implements IRule{
     @Override
-    public boolean checkAction(IBoard board, IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
         boolean canMove = state.isUnitCanMove(src);
         if(!canMove){

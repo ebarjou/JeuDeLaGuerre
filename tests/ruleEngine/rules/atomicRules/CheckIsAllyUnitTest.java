@@ -34,11 +34,11 @@ public class CheckIsAllyUnitTest {
         when(iBoard.isUnit(1, 1)).thenReturn(true);
         when(iGameState.getActualPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         when(iBoard.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_NORTH);
-        assertTrue(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
         when(iBoard.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_SOUTH);
-        assertFalse(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckIsAllyUnit : This unit is not owned by PLAYER_NORTH.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
@@ -46,7 +46,7 @@ public class CheckIsAllyUnitTest {
         //TODO: To move on future CheckIsUnitTest
         ruleResult = new RuleResult();
         when(iBoard.isUnit(1, 1)).thenReturn(false);
-        assertFalse(rule.checkAction(iBoard, iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         expectedMessage = "CheckIsAllyUnit : There is no unit at (1, 1).\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
