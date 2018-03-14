@@ -18,10 +18,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import player.Player;
+import ruleEngine.EGameActionType;
 
-import static ui.commands.UserToGameCall.CMD_ERROR;
-import static ui.commands.UserToGameCall.EXIT;
-import static ui.commands.UserToGameCall.REFRESH;
+import static ui.commands.UserToGameCall.*;
 
 public class TermGUI extends Application {
     private static final int WINDOW_WIDTH = 800;
@@ -54,7 +53,9 @@ public class TermGUI extends Application {
         primaryStage.show();
 
         Player player = Game.getInstance().getPlayer();
-        player.setCommand(new UIAction(REFRESH, null));
+        UIAction startAction = new UIAction(LOAD, EGameActionType.COMMUNICATION);
+        startAction.setText("presets/debord.txt");
+        player.setCommand(startAction);
         processResponse(player.getResponse());
     }
 

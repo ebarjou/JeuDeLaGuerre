@@ -17,7 +17,7 @@ public class Start {
 
         Game.init(p1, p2);
 
-        GameState gameState = Game.getInstance().getGameStateManager();
+        /*GameState gameState = Game.getInstance().getGameStateManager();
 
         Unit u = new Unit(EUnitData.RELAY_HORSE, EPlayer.PLAYER_SOUTH);
         u.setPosition(10, 10);
@@ -61,7 +61,7 @@ public class Start {
         u = new Unit(EUnitData.ARTILLERY_HORSE, EPlayer.PLAYER_SOUTH);
         u.setPosition(2, 2);
         gameState.addUnit(u);
-        gameState.addPriorityUnit(u);
+        gameState.addPriorityUnit(u);*/
 
         guiThread.start();
 
