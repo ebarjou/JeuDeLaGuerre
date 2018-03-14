@@ -26,12 +26,13 @@ public class CheckIsPriorityUnit extends Rule {
         if(priorityUnits.isEmpty())
             return true;
 
+        boolean isNoUnitPlayer = true;
         for (Unit unit : priorityUnits) {
-            if (unit.getPlayer() == player && unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
+            if (unit.getPlayer() == player && unit.getX() == coords.getX() && unit.getY() == coords.getY())
                 return true;
-            }
+            if (unit.getPlayer() == state.getActualPlayer())
+                isNoUnitPlayer = false;
         }
-
-        return false;
+        return isNoUnitPlayer;
     }
 }

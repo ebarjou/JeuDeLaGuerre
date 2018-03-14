@@ -5,10 +5,10 @@ public enum EGameActionType {
     ATTACK,
     CHARGE,
     PROPOSE_DRAW,
-    SET(),
-    END_TURN(),
-    SURRENDER(),
+    SET,
+    END_TURN,
+    SURRENDER,
+    COMMUNICATION,
     NONE,
     //REVERT,
-
 }

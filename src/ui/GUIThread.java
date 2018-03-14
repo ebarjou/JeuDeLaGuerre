@@ -17,8 +17,4 @@ public class GUIThread extends Thread {
         System.exit(0);
     }
 
-    public void exit(){
-        this.stop();
-    }
-
 }

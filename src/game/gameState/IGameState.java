@@ -49,8 +49,6 @@ public interface IGameState {
     void setLastUnitMoved(Unit u);
     String toString();
 
-
-
     /*
     boolean isUnitHasPriority(Coordinates coords);
     boolean isUnitCanMove(Coordinates coords);

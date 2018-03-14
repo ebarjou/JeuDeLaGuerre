@@ -24,7 +24,7 @@ public class Start {
         gameState.addUnit(u);
 
         u = new Unit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH);
-        u.setPosition(0, 0);
+        u.setPosition(0, 2);
         gameState.addUnit(u);
 
         u = new Unit(EUnitData.RELAY_HORSE, EPlayer.PLAYER_SOUTH);
@@ -43,6 +43,25 @@ public class Start {
         b = new Building(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH);
         b.setPosition(1, 1);
         gameState.addBuilding(b);
+
+        gameState.addPriorityUnit(u);
+
+        b = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_SOUTH);
+        b.setPosition(5, 5);
+        gameState.addBuilding(b);
+
+        u = new Unit(EUnitData.ARTILLERY_HORSE, EPlayer.PLAYER_SOUTH);
+        u.setPosition(4, 4);
+        gameState.addUnit(u);
+
+        u = new Unit(EUnitData.ARTILLERY_HORSE, EPlayer.PLAYER_SOUTH);
+        u.setPosition(2, 4);
+        gameState.addUnit(u);
+
+        u = new Unit(EUnitData.ARTILLERY_HORSE, EPlayer.PLAYER_SOUTH);
+        u.setPosition(2, 2);
+        gameState.addUnit(u);
+        gameState.addPriorityUnit(u);
 
         guiThread.start();
 

@@ -18,7 +18,7 @@ public class RuleChecker {
         endRuleMaster = new EndRules();
     }
 
-    public void computeCommunications(GameState gameState){
+    private void computeCommunications(GameState gameState){
         commRuleMaster.applyResult(gameState, null, null);
     }
 
@@ -35,14 +35,19 @@ public class RuleChecker {
             case END_TURN:
                 mr = endRuleMaster;
                 break;
+            case COMMUNICATION:
+                computeCommunications(gameState);
+                return result;
             default:
                 throw new IncorrectGameActionException("Unhandled GameAction type.");
         }
 
         mr.checkAction(gameState, action, result);
 
-        if (result.isValid())
+        if (result.isValid()) {
             mr.applyResult(gameState, action, result);
+            computeCommunications(gameState);
+        }
 
         return result;
     }

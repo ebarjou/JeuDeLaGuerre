@@ -91,6 +91,7 @@ public class CommandParser {
     public void load(String path) {
         result.setCommand(LOAD);
         result.setText(path);
+        result.setGameAction(EGameActionType.COMMUNICATION);
     }
 
     @Command

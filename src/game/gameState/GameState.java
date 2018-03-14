@@ -104,6 +104,7 @@ public class GameState implements IGameState, Cloneable {
                 }
             }
         }
+
         actionLeft = MAX_ACTION;
         lastUnitMoved = null;
     }
@@ -247,12 +248,24 @@ public class GameState implements IGameState, Cloneable {
 
     public void moveUnit(int srcX, int srcY, int tgtX, int tgtY){
         board.moveUnit(srcX, srcY, tgtX, tgtY);
+
+        Unit tmp = null;
+        for(Unit u : priorityUnits){
+            if(u.getX() == srcX && u.getY() == srcY){
+                tmp = u;
+                break;
+            }
+        }
+        if(tmp != null)
+            priorityUnits.remove(tmp);
+
         for(Unit u : allUnits){
             if(u.getX() == srcX && u.getY() == srcY){
                 u.setPosition(tgtX, tgtY);
                 break;
             }
         }
+
     }
 
     public int getDistance(int x, int y, int x2, int y2){

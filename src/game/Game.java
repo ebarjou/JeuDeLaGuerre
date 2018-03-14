@@ -3,9 +3,11 @@ package game;
 import game.board.*;
 import game.gameState.GameState;
 import game.gameState.IGameState;
+import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
+import ruleEngine.exceptions.IncorrectGameActionException;
 import system.LoadFile;
 import ui.GameResponse;
 import player.Player;
@@ -42,7 +44,10 @@ public class Game {
     }
 
     public void start(){
-        ruleChecker.computeCommunications(gameState);
+        try {
+            ruleChecker.checkAction(gameState, new GameAction(EPlayer.values()[0], EGameActionType.COMMUNICATION));
+        } catch (ExceptionInInitializerError|IncorrectGameActionException ignore) {}
+
         while(true){
             Player player = getPlayer();
             UIAction action = player.getCommand();
@@ -67,7 +72,6 @@ public class Game {
 
     public void reinit(GameState gameState){
         this.gameState = gameState;
-        ruleChecker.computeCommunications(gameState);
     }
 
     private GameResponse handleGameAction(UIAction cmd) {
@@ -78,7 +82,7 @@ public class Game {
             if (res.isValid()) {
                 historyGameState.push(actualGameState);
                 //Communication
-                ruleChecker.computeCommunications(gameState);
+                //ruleChecker.computeCommunications(gameState);
                 return new GameResponse(VALID, null, gameState, gameState.getActualPlayer());
             } else {
                 return new GameResponse(INVALID, res.getLogMessage(),gameState, gameState.getActualPlayer());
@@ -100,11 +104,10 @@ public class Game {
                 LoadFile lf = new LoadFile();
                 try {
                     lf.loadFile(cmd.getText());
-                    ruleChecker.computeCommunications(gameState);
+                    return handleGameAction(cmd);
                 } catch (IOException e) {
                     return new GameResponse(INVALID, e.getMessage(), gameState, gameState.getActualPlayer());
                 }
-                return new GameResponse(VALID, null, gameState, gameState.getActualPlayer());
             }
             case SAVE: {
                 break;
@@ -113,14 +116,7 @@ public class Game {
                 if(!historyGameState.isEmpty())
                     this.gameState = historyGameState.pop();
                 return new GameResponse(VALID, cmd.getErrorMessage(), gameState, gameState.getActualPlayer());
-            }/*
-            case END_TURN: {
-                //System.out.println("END TURN");
-                //Clear History ?
-                historyGameState.push(gameState.clone());
-                gameState.switchPlayer();
-                return new GameResponse(VALID, cmd.getErrorMessage(), gameState.getBoard(), gameState.getActualPlayer());
-            }*/
+            }
             case CMD_ERROR: {
                 return new GameResponse(INVALID, cmd.getErrorMessage(), gameState, gameState.getActualPlayer());
             }

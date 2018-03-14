@@ -39,7 +39,7 @@ public class RuleCheckerTest {
         unit.setPosition(0, 0);
         gameState.addUnit(unit);
 
-        rulechecker.computeCommunications(gameState);
+        //rulechecker.computeCommunications(gameState);
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
         gameAction.setSourceCoordinates(0, 0);
@@ -68,7 +68,7 @@ public class RuleCheckerTest {
         unit.setPosition(0, 2);
         gameState.addUnit(unit);
 
-        rulechecker.computeCommunications(gameState);
+        //rulechecker.computeCommunications(gameState);
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
         gameAction.setSourceCoordinates(0, 0);
