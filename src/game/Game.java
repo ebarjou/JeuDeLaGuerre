@@ -44,9 +44,7 @@ public class Game {
     }
 
     public void start(){
-        try {
-            ruleChecker.checkAction(gameState, new GameAction(EPlayer.values()[0], EGameActionType.COMMUNICATION));
-        } catch (ExceptionInInitializerError|IncorrectGameActionException ignore) {}
+        handleGameAction(new GameAction(EPlayer.values()[0], EGameActionType.COMMUNICATION));
 
         while(true){
             Player player = getPlayer();
@@ -75,10 +73,9 @@ public class Game {
         this.historyGameState = new Stack<>();
     }
 
-    private GameResponse handleGameAction(UIAction cmd) {
+    private GameResponse handleGameAction(GameAction action) {
         GameState actualGameState = this.gameState.clone(); // copy of the GameState & Board before attempting the action
         try {
-            GameAction action = cmd.getGameAction(gameState.getActualPlayer());
             RuleResult res = ruleChecker.checkAction(gameState, action);
             if (res.isValid()) {
                 historyGameState.push(actualGameState);
@@ -105,7 +102,7 @@ public class Game {
                 LoadFile lf = new LoadFile();
                 try {
                     lf.loadFile(cmd.getText());
-                    GameResponse gameResponse = handleGameAction(cmd);
+                    GameResponse gameResponse = handleGameAction(cmd.getGameAction(gameState.getActualPlayer()));
                     historyGameState = new Stack<>();
                     return gameResponse;
                 } catch (IOException e) {
@@ -130,7 +127,7 @@ public class Game {
                 return new GameResponse(INVALID, cmd.getErrorMessage(), gameState, gameState.getActualPlayer());
             }
             case GAME_ACTION: {
-                return handleGameAction(cmd);
+                return handleGameAction(cmd.getGameAction(gameState.getActualPlayer()));
             }
             case LIST_UNIT: {
                 break;
