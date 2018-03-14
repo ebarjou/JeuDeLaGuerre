@@ -72,6 +72,7 @@ public class Game {
 
     public void reinit(GameState gameState){
         this.gameState = gameState;
+        this.historyGameState = new Stack<>();
     }
 
     private GameResponse handleGameAction(UIAction cmd) {
@@ -104,12 +105,20 @@ public class Game {
                 LoadFile lf = new LoadFile();
                 try {
                     lf.loadFile(cmd.getText());
-                    return handleGameAction(cmd);
+                    GameResponse gameResponse = handleGameAction(cmd);
+                    historyGameState = new Stack<>();
+                    return gameResponse;
                 } catch (IOException e) {
                     return new GameResponse(INVALID, e.getMessage(), gameState, gameState.getActualPlayer());
                 }
             }
             case SAVE: {
+                LoadFile lf = new LoadFile();
+                try{
+                    lf.save(cmd.getText(), gameState);
+                } catch (IOException e) {
+                    return new GameResponse(INVALID, e.getMessage(), gameState, gameState.getActualPlayer());
+                }
                 break;
             }
             case REVERT: {

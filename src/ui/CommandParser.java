@@ -95,6 +95,12 @@ public class CommandParser {
     }
 
     @Command
+    public void save(String path){
+        result.setCommand(SAVE);
+        result.setText(path);
+    }
+
+    @Command
     public void exit() {
         result.setCommand(EXIT);
     }

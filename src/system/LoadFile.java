@@ -8,15 +8,45 @@ import game.gameState.GameState;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
 
 public class LoadFile {
     private GameState gameState;
 
     //TODO: Need exception on convertBuilding and convertUnit
     public LoadFile() {
+    }
+
+    public void save(String filename, GameState gs) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
+        bw.write(gs.getWidth() + ";" + gs.getHeight() + "\n");
+        bw.write((gs.getActualPlayer().ordinal() + 1) + ";" + gs.getActionLeft() + "\n");
+
+        List<Building> buildings = gs.getAllBuildings();
+        for(Building b : buildings){
+            bw.write(b.getBuildingData().getID() + ";"
+                    + (b.getX() + 1) + ";" + (b.getY() + 1) + ";"
+                    + false + ";"
+                    + (b.getPlayer().ordinal() + 1) + "\n");
+        }
+
+        List<Unit> allUnits = gs.getAllUnits();
+        for(Unit u : allUnits){
+            bw.write(u.getUnitData().getID() + ";"
+                        + (u.getX() + 1) + ";" + (u.getY() + 1) + ";"
+                        + (u.getPlayer().ordinal() + 1) + "\n");
+        }
+
+        allUnits = gs.getPriorityUnits();
+        for(Unit u : allUnits){
+            bw.write(u.getUnitData().getID() + ";"
+                    + (u.getX() + 1) + ";" + (u.getY() + 1) + ";"
+                    + (u.getPlayer().ordinal() + 1) + "\n");
+        }
+
+        bw.close();
+
     }
 
     private EBuildingData convertBuilding(String s) {
@@ -58,7 +88,7 @@ public class LoadFile {
         line = br.readLine();
         tokens = line.split(";");
         int player = Integer.parseInt(tokens[0]);
-        gameState.setActualPlayer(EPlayer.values()[player]);
+        gameState.setActualPlayer(EPlayer.values()[player - 1]);
         gameState.setActionLeft(Integer.parseInt(tokens[1]));
 
         //Add buildings
