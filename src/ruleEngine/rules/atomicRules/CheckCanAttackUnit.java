@@ -16,6 +16,7 @@ public class CheckCanAttackUnit extends Rule {
         for(Unit unit : cantAttackUnits)
             if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
                 return false;
+
         return true;
     }
 

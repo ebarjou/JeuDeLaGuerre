@@ -4,6 +4,7 @@ import game.EPlayer;
 import game.board.Board;
 import game.board.Building;
 import game.board.Unit;
+import org.mockito.internal.matchers.Null;
 import ruleEngine.Coordinates;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
@@ -157,7 +158,7 @@ public class GameState implements IGameState, Cloneable {
 
     public List<Unit> getCantAttackUnits(){ return cantAttackUnits;}
 
-    public Unit getLastUnitMoved(){
+    public Unit getLastUnitMoved() throws NullPointerException{
         if(lastUnitMoved == null){
             throw new NullPointerException();
         }
