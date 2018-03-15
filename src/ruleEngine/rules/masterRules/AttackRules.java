@@ -56,12 +56,14 @@ public class AttackRules extends MasterRule {
 
         if ( (fightVal > 1) || ((fightVal == 1) && isSurrounded) ) {
             // change board (death)
+            addCantAttack(action.getSourceCoordinates(), state);
             state.removeUnit(xT, yT);
             result.addMessage(this, "The unit at position (" + xT + ", " + yT +
                     ") died :" + fightValMessage + ".");
         }
         else if (fightVal == 1) {
             // change state (retreat)
+            addCantAttack(action.getSourceCoordinates(), state);
             Unit unit = new Unit(state.getUnitType(xT, yT), state.getUnitPlayer(xT, yT));
             unit.setPosition(xT, yT);
             state.addPriorityUnit(unit);
@@ -174,5 +176,12 @@ public class AttackRules extends MasterRule {
             if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
                 return false;
         return true;
+    }
+
+    private void addCantAttack(Coordinates src, GameState state){
+        Unit cantAttack = new Unit(state.getUnitType(src.getX(), src.getY()),
+                state.getUnitPlayer(src.getX(), src.getY()));
+        cantAttack.setPosition(src.getX(), src.getY());
+        state.getCantAttackUnits().add(cantAttack);
     }
 }

@@ -34,11 +34,6 @@ public class MoveRules extends MasterRule {
         Coordinates src = action.getSourceCoordinates();
         Coordinates target = action.getTargetCoordinates();
         state.removePriorityUnit(src);
-        List<Unit> list = state.getAllUnits();
-        for(Unit u : list){
-            if(u.getX() == src.getX() && u.getY() == src.getY())
-                System.out.println(u.toString());
-        }
 
         state.setUnitHasMoved(src);
         //state.updateUnitPosition(src, target);

@@ -11,7 +11,8 @@ import java.util.List;
 
 public class CheckCanAttackUnit extends Rule {
 
-    private boolean isUnitCanAttack(List<Unit> cantAttackUnits, Coordinates coords){
+    private boolean isUnitCanAttack(IGameState state, Coordinates coords){
+        List<Unit> cantAttackUnits = state.getCantAttackUnits();
         for(Unit unit : cantAttackUnits)
             if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
                 return false;
@@ -21,7 +22,7 @@ public class CheckCanAttackUnit extends Rule {
     @Override
     public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
-        boolean canAttack = isUnitCanAttack(state.getCantAttackUnits(), src);
+        boolean canAttack = isUnitCanAttack(state, src);
         if(!canAttack){
             result.invalidate();
             result.addMessage(this, "This unit can't attack this turn.");
