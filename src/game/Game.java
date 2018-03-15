@@ -81,7 +81,7 @@ public class Game {
                 historyGameState.push(actualGameState);
                 //Communication
                 //ruleChecker.computeCommunications(gameState);
-                return new GameResponse(VALID, null, gameState, gameState.getActualPlayer());
+                return new GameResponse(VALID, res.getLogMessage(), gameState, gameState.getActualPlayer());
             } else {
                 return new GameResponse(INVALID, res.getLogMessage(),gameState, gameState.getActualPlayer());
             }

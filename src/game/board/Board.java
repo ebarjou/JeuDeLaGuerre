@@ -97,6 +97,11 @@ public class Board implements IBoard{
         units[getOffset(x, y)] = 0;
     }
 
+    public void delBuilding(int x, int y){
+        if(!isValidCoordinate(x, y)) throw new NullPointerException("Invalid coordinates");
+        buildings[getOffset(x, y)] = 0;
+    }
+
     public EUnitData getUnitType(int x, int y) {
         if(!isUnit(x,y))
             throw new NullPointerException("Not an unit.");

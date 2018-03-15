@@ -1,11 +1,13 @@
 package ruleEngine.rules.masterRules;
 
 import game.board.Board;
+import game.board.Building;
 import game.board.Unit;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
+import ruleEngine.entity.EBuildingData;
 import ruleEngine.rules.atomicRules.*;
 
 import java.util.List;
@@ -42,5 +44,19 @@ public class MoveRules extends MasterRule {
         //state.updateUnitPosition(src, target);
         state.removeOneAction();
         state.moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
+
+        List<Building> buildings = state.getAllBuildings();
+        Building remove = null;
+        for(Building building : buildings){
+            if(building.getPlayer() != action.getPlayer()
+                    && building.getBuildingData() == EBuildingData.ARSENAL
+                    && building.getX() == target.getX()
+                    && building.getY() == target.getY()){
+                remove = building;
+                break;
+            }
+        }
+        if(remove != null)
+            state.removeBuilding(remove);
     }
 }

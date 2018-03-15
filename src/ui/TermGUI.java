@@ -134,6 +134,7 @@ public class TermGUI extends Application {
     private void processResponse(GameResponse response) {
         switch (response.getResponse()) {
             case VALID: {
+                System.out.println(response.getMessage());
                 System.out.println("Valid !");
                 break;
             }

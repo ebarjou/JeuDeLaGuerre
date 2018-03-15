@@ -226,6 +226,11 @@ public class GameState implements IGameState, Cloneable {
             priorityUnits.remove(remove);
     }
 
+    public void removeBuilding(Building building){
+        board.delBuilding(building.getX(), building.getY());
+        allBuildings.remove(building);
+    }
+
     public EUnitData getUnitType(int x, int y){
         return board.getUnitType(x, y);
     }

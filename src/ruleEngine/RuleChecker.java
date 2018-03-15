@@ -10,12 +10,14 @@ public class RuleChecker {
     private MasterRule attackRuleMaster;
     private MasterRule commRuleMaster;
     private MasterRule endRuleMaster;
+    private MasterRule victoryRuleMaster;
 
     public RuleChecker() {
         moveRuleMaster = new MoveRules();
         attackRuleMaster = new AttackRules();
         commRuleMaster = new CommRules();
         endRuleMaster = new EndRules();
+        victoryRuleMaster = new VictoryRules();
     }
 
     private void computeCommunications(GameState gameState){
@@ -25,12 +27,15 @@ public class RuleChecker {
     public RuleResult checkAction(GameState gameState, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
         MasterRule mr = null;
+        boolean checkVictory = false;
         switch (action.getActionType()) {
             case MOVE:
                 mr = moveRuleMaster;
+                checkVictory = true;
                 break;
             case ATTACK:
                 mr = attackRuleMaster;
+                checkVictory = true;
                 break;
             case END_TURN:
                 mr = endRuleMaster;
@@ -47,6 +52,13 @@ public class RuleChecker {
         if (result.isValid()) {
             mr.applyResult(gameState, action, result);
             computeCommunications(gameState);
+            //Check victory if necessary
+            if(checkVictory) {
+                RuleResult victoryResult = new RuleResult();
+                victoryRuleMaster.checkAction(gameState, action, victoryResult);
+                if (!victoryResult.getLogMessage().isEmpty())
+                    result.addMessage(victoryRuleMaster, victoryResult.getLogMessage());
+            }
         }
 
         return result;
