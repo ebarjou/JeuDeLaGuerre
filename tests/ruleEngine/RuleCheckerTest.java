@@ -76,7 +76,7 @@ public class RuleCheckerTest {
             assertTrue("Can't check action MOVE because action COMMUNICATION failed beforehand.", false);
         }
 
-        gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
+        gameAction.setActionType(EGameActionType.MOVE);
         gameAction.setSourceCoordinates(0, 0);
         gameAction.setTargetCoordinates(1, 1);
         try {
@@ -84,6 +84,7 @@ public class RuleCheckerTest {
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check action ATTACK because action MOVE failed beforehand.", false);
         }
+
         gameAction.setActionType(EGameActionType.ATTACK);
         gameAction.setSourceCoordinates(1, 1);
         gameAction.setTargetCoordinates(0, 2);
@@ -112,8 +113,6 @@ public class RuleCheckerTest {
         Mockito.when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         Mockito.when(gameAction.getActionType()).thenReturn(EGameActionType.END_TURN);
 
-        Board board = Mockito.mock(Board.class);
-
         RuleResult result = new RuleResult();
         result.invalidate();
         String expectedMessage = "";
@@ -122,6 +121,74 @@ public class RuleCheckerTest {
             result = rulechecker.checkAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Action END_TURN unrecognized by RuleChecker.checkAction().", false);
+        }
+        assertTrue(result.isValid());
+        assertTrue(result.getLogMessage().equals(expectedMessage));
+    }
+
+    @Test
+    public void checkActionVictoryAfterMoveTest() {
+
+        GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
+        try {
+            rulechecker.checkAction(gameState, gameAction);
+        } catch (IncorrectGameActionException e) {
+            assertTrue("Can't check Victory because action COMMUNICATION failed beforehand.", false);
+        }
+
+        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        unit.setPosition(1, 10);
+        gameState.addUnit(unit);
+
+        gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
+        gameAction.setSourceCoordinates(1, 10);
+        gameAction.setTargetCoordinates(0, 10);
+
+        RuleResult result = new RuleResult();
+        String expectedMessage = "VictoryRules : CheckIsNoArsenalEnemy : PLAYER_NORTH winner !\n\n";
+        try {
+            result = rulechecker.checkAction(gameState, gameAction);
+        } catch (IncorrectGameActionException e) {
+            assertTrue("Can't check Victory because action MOVE failed beforehand.", false);
+        }
+        assertTrue(result.isValid());
+        assertTrue(result.getLogMessage().equals(expectedMessage));
+    }
+
+    @Test
+    public void checkActionVictoryAfterAttackTest() {
+
+        GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
+        try {
+            rulechecker.checkAction(gameState, gameAction);
+        } catch (IncorrectGameActionException e) {
+            assertTrue("Can't check Victory because action COMMUNICATION failed beforehand.", false);
+        }
+
+        gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
+        gameAction.setSourceCoordinates(0, 0);
+        gameAction.setTargetCoordinates(1, 1);
+        try {
+            rulechecker.checkAction(gameState, gameAction);
+        } catch (IncorrectGameActionException e) {
+            assertTrue("Can't check Victory because action MOVE failed beforehand.", false);
+        }
+
+        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        unit.setPosition(2, 0);
+        gameState.addUnit(unit);
+
+        gameAction.setActionType(EGameActionType.ATTACK);
+        gameAction.setSourceCoordinates(1, 1);
+        gameAction.setTargetCoordinates(0, 2);
+
+        RuleResult result = new RuleResult();
+        String expectedMessage = "AttackRules : The unit at position (0, 2) died : Attack:8 Defense:6.\n" +
+                "VictoryRules : CheckIsNoArsenalEnemy : PLAYER_NORTH winner !\n\n";
+        try {
+            result = rulechecker.checkAction(gameState, gameAction);
+        } catch (IncorrectGameActionException e) {
+            assertTrue("Can't check Victory because action ATTACK failed beforehand.", false);
         }
         assertTrue(result.isValid());
         assertTrue(result.getLogMessage().equals(expectedMessage));
