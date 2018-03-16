@@ -77,14 +77,12 @@ public class CommandParser {
     @Command
     public void revert() {
         result.setCommand(REVERT);
-        return;
     }
 
     @Command
     public void end() {
         result.setCommand(GAME_ACTION);
         result.setGameAction(EGameActionType.END_TURN);
-        return;
     }
 
     @Command

@@ -1,7 +1,6 @@
 package ruleEngine.rules.masterRules;
 
 import game.gameState.GameState;
-import game.gameState.IGameState;
 import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
@@ -28,7 +27,7 @@ public abstract class MasterRule extends Rule {
     abstract public void applyResult(GameState state, GameAction action, RuleResult result);
 
     @Override
-    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         Map<Rule, Boolean> ruleState = new HashMap<>();
         for (Rule r : rules){
             List<Dependency> deps = new LinkedList<>();

@@ -4,8 +4,6 @@ import game.EPlayer;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 
-import java.util.Arrays;
-
 public interface IBoard {
     int getWidth();
 

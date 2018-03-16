@@ -1,7 +1,7 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Unit;
-import game.gameState.IGameState;
+import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CheckIsNoEnemy extends Rule {
     @Override
-    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         List<Unit> units = state.getAllUnits();
         boolean isNoEnemy = true;
 

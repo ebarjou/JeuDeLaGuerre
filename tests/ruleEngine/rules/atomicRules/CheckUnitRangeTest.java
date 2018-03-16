@@ -2,9 +2,8 @@ package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
 import game.board.Unit;
-import game.gameState.IGameState;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.*;
 import ruleEngine.entity.EUnitData;
 
@@ -15,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 public class CheckUnitRangeTest {
 
-    private IGameState iGameState;
+    private GameState iGameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
     private CheckUnitRange rule;
@@ -28,7 +27,7 @@ public class CheckUnitRangeTest {
     @Test
     public void checkActionRangeMocking() {
         // Init
-        iGameState = mock(IGameState.class);
+        iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
         Unit unit = mock(Unit.class);

@@ -6,7 +6,7 @@ import game.board.Building;
 import game.board.Unit;
 import game.gameState.GameState;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Test;import game.gameState.GameState;
 import org.mockito.Mockito;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;

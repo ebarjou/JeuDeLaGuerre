@@ -5,5 +5,5 @@ public enum GameToUserCall {
     APPLIED(),
     VALID(),
     INVALID(),
-    REFRESH();
+    REFRESH()
 }

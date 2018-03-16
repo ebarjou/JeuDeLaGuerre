@@ -1,14 +1,12 @@
 package ui;
 
 import game.EPlayer;
-import game.board.IBoard;
-import game.gameState.IGameState;
+import game.gameState.GameState;
 import javafx.event.EventHandler;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -49,7 +47,7 @@ class BoardCanvas extends Canvas {
      * @param gameState Board to be displayed
      * Refresh the canvas according to the given Board.
      */
-    void draw(IGameState gameState) {
+    void draw(GameState gameState) {
         g.setFill(Color.LIGHTGREY);
         //Fill background
         g.fillRect(0, 0, getWidth(), getHeight());
@@ -84,12 +82,12 @@ class BoardCanvas extends Canvas {
             }
 
             g.setStroke(Color.ORANGERED);
-            g.strokeLine(0 + indicesWidth, (gameState.getHeight() / 2) * caseSize + indicesHeight, gameState.getWidth() * caseSize + indicesWidth, gameState.getHeight() * caseSize / 2 + indicesHeight);
+            g.strokeLine(indicesWidth, (gameState.getHeight() / 2) * caseSize + indicesHeight, gameState.getWidth() * caseSize + indicesWidth, gameState.getHeight() * caseSize / 2 + indicesHeight);
         }
 
     }
 
-    private void drawCellBackground(IGameState gameState, int x, int y, int pos_x, int pos_y, int size) {
+    private void drawCellBackground(GameState gameState, int x, int y, int pos_x, int pos_y, int size) {
         g.save();
         g.setFill(Color.IVORY);
         g.fillRect(pos_x, pos_y, size, size);
@@ -108,7 +106,7 @@ class BoardCanvas extends Canvas {
         g.restore();
     }
 
-    private void drawCellItem(IGameState gameState, int x, int y, int pos_x, int pos_y, int size) {
+    private void drawCellItem(GameState gameState, int x, int y, int pos_x, int pos_y, int size) {
         g.save();
         g.setFill(Color.DARKBLUE);
         g.setTextAlign(TextAlignment.CENTER);
@@ -125,7 +123,7 @@ class BoardCanvas extends Canvas {
         g.restore();
     }
 
-    private void printCasesHIndex(IGameState gameState, int offsetx, int offsety, int caseSize) {
+    private void printCasesHIndex(GameState gameState, int offsetx, int offsety, int caseSize) {
         g.save();
         g.setFill(Color.BLACK);
         for (int i = 0; i < gameState.getWidth(); ++i) {
@@ -134,7 +132,7 @@ class BoardCanvas extends Canvas {
         g.restore();
     }
 
-    private void printCasesVIndex(IGameState gameState, int offsetx, int offsety, int caseSize) {
+    private void printCasesVIndex(GameState gameState, int offsetx, int offsety, int caseSize) {
         g.save();
         g.setFill(Color.BLACK);
         for (int j = 0; j < gameState.getHeight(); ++j) {

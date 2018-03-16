@@ -2,7 +2,7 @@ package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
 import game.board.Unit;
-import game.gameState.IGameState;
+import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
@@ -19,7 +19,7 @@ public class CheckNoPriorityUnitAlly extends Rule {
     }
 
     @Override
-    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         if(!isPlayerHasPriorityUnits(state.getPriorityUnits(), state.getActualPlayer()))
             return true;
         result.invalidate();

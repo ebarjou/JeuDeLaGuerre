@@ -9,5 +9,5 @@ public enum UserToGameCall {
     REVERT(),
     END_TURN(),
     EXIT(),
-    REFRESH();
+    REFRESH()
 }

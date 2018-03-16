@@ -1,6 +1,6 @@
 package ruleEngine.rules.atomicRules;
 
-import game.gameState.IGameState;
+import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
@@ -8,7 +8,7 @@ import ruleEngine.RuleResult;
 public class CheckOnBoard extends Rule {
 
     @Override
-    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         if (!state.isValidCoordinate(action.getSourceCoordinates().getX(), action.getSourceCoordinates().getY())) {
             result.addMessage(this, "Source coordinates are beyond the board's edges.");
             result.invalidate();

@@ -1,13 +1,10 @@
 package game;
 
-import game.board.*;
 import game.gameState.GameState;
-import game.gameState.IGameState;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
-import ruleEngine.exceptions.IncorrectGameActionException;
 import system.LoadFile;
 import ui.GameResponse;
 import player.Player;
@@ -60,7 +57,7 @@ public class Game {
         return player2;
     }
 
-    public IGameState getGameState(){
+    public GameState getGameState(){
         return gameState;
     }
 

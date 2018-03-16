@@ -1,6 +1,6 @@
 package ruleEngine.rules.atomicRules;
 
-import game.gameState.IGameState;
+import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
@@ -8,7 +8,7 @@ import ruleEngine.RuleResult;
 public class CheckIsAllyUnit extends Rule {
 
     @Override
-    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         int x = action.getSourceCoordinates().getX();
         int y = action.getSourceCoordinates().getY();
 

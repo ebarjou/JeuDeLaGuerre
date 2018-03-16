@@ -3,9 +3,9 @@ package ruleEngine.rules.atomicRules;
 import game.EPlayer;
 import game.board.IBoard;
 import game.board.Unit;
-import game.gameState.IGameState;
+import game.gameState.GameState;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
@@ -21,14 +21,14 @@ import static org.junit.Assert.*;
 public class CheckCanAttackUnitTest {
 
     private IBoard iBoard;
-    private IGameState iGameState;
+    private GameState iGameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
 
     @Before
     public void setUp() throws Exception {
         iBoard = mock(IBoard.class);
-        iGameState = mock(IGameState.class);
+        iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
     }

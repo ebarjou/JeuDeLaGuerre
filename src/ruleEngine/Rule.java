@@ -1,10 +1,9 @@
 package ruleEngine;
 
-import game.board.IBoard;
-import game.gameState.IGameState;
+import game.gameState.GameState;
 
 public abstract class Rule {
-    public abstract boolean checkAction(IGameState state, GameAction action, RuleResult result);
+    public abstract boolean checkAction(GameState state, GameAction action, RuleResult result);
 
     @Override
     public boolean equals(Object obj) {

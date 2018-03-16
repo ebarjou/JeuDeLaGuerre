@@ -3,7 +3,7 @@ package ruleEngine.rules.atomicRules;
 import game.EPlayer;
 import game.board.Board;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Test;import game.gameState.GameState;
 import org.mockito.Mockito;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;

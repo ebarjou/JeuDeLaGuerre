@@ -4,7 +4,6 @@ import game.EPlayer;
 import game.board.Board;
 import game.board.Building;
 import game.board.Unit;
-import org.mockito.internal.matchers.Null;
 import ruleEngine.Coordinates;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
@@ -12,7 +11,7 @@ import ruleEngine.entity.EUnitData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameState implements IGameState, Cloneable {
+public class GameState implements Cloneable {
 
     private static final int MAX_ACTION = 5;
     // TODO: Maybe need this kind of enum to know in which phase we are (INIT / GAME / END ??)

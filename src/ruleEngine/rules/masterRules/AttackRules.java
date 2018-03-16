@@ -1,11 +1,9 @@
 package ruleEngine.rules.masterRules;
 
 import game.EPlayer;
-import game.board.Board;
 import game.board.EDirection;
 import game.board.Unit;
 import game.gameState.GameState;
-import game.gameState.IGameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
@@ -19,6 +17,7 @@ public class AttackRules extends MasterRule {
     private static final int chargeVal = 7;
 
     public AttackRules() {
+        //TODO: check if the unit can attack (relay can actually initiate the fight.
         addRule(new CheckPlayerTurn());
         addRule(new CheckOnBoard());
         addRule(new CheckAbilityToMove());
@@ -79,7 +78,7 @@ public class AttackRules extends MasterRule {
         setUnitHasAttacked(state, src);
     }
 
-    private int caseDefVal(IGameState state, int x, int y) {
+    private int caseDefVal(GameState state, int x, int y) {
         EUnitData unit = state.getUnitType(x, y);
         if (unit.isGetBonusDef() && state.isBuilding(x, y)) {
             return unit.getDefValue() + state.getBuildingType(x, y).getBonusDef();
@@ -87,7 +86,7 @@ public class AttackRules extends MasterRule {
         return unit.getDefValue();
     }
 
-    private int getFightValueRec(IGameState state, GameAction action, EPlayer player, int x, int y, EDirection dir, boolean isAttack, boolean charge) {
+    private int getFightValueRec(GameState state, GameAction action, EPlayer player, int x, int y, EDirection dir, boolean isAttack, boolean charge) {
         x += dir.getX();
         y += dir.getY();
         if (!state.isValidCoordinate(x, y) || (state.isBuilding(x, y) && !state.getBuildingType(x, y).isAccessible())) {
@@ -160,7 +159,7 @@ public class AttackRules extends MasterRule {
         return val;
     }
 
-    private void setUnitHasAttacked(IGameState state, Coordinates src){
+    private void setUnitHasAttacked(GameState state, Coordinates src){
         List<Unit> allUnits = state.getAllUnits();
         for(Unit unit : allUnits) {
             if (unit.getX() == src.getX() && unit.getY() == src.getY()) {
@@ -170,7 +169,7 @@ public class AttackRules extends MasterRule {
         }
     }
 
-    private boolean isUnitCanAttack(IGameState state, Coordinates coords){
+    private boolean isUnitCanAttack(GameState state, Coordinates coords){
         List<Unit> cantAttackUnits = state.getCantAttackUnits();
         for(Unit unit : cantAttackUnits)
             if(unit.getX() == coords.getX() && unit.getY() == coords.getY())

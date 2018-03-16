@@ -2,5 +2,5 @@ package game;
 
 public enum EPlayer {
     PLAYER_NORTH,
-    PLAYER_SOUTH;
+    PLAYER_SOUTH
 }

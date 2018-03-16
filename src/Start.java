@@ -1,10 +1,4 @@
-import game.EPlayer;
 import game.Game;
-import game.board.Building;
-import game.board.Unit;
-import game.gameState.GameState;
-import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
 import player.GUIPlayer;
 import ui.GUIThread;
 

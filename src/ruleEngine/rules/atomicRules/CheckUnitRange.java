@@ -1,7 +1,7 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Unit;
-import game.gameState.IGameState;
+import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.Rule;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CheckUnitRange extends Rule {
 
-    private boolean isAlignedCharge(IGameState state, GameAction action) {
+    private boolean isAlignedCharge(GameState state, GameAction action) {
         Coordinates src = action.getSourceCoordinates();
         Coordinates dst = action.getTargetCoordinates();
 
@@ -40,7 +40,7 @@ public class CheckUnitRange extends Rule {
     }
 
     @Override
-    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         try {
             int x = action.getSourceCoordinates().getX();
             int y = action.getSourceCoordinates().getY();
@@ -66,7 +66,7 @@ public class CheckUnitRange extends Rule {
     }
 
 
-    private boolean isUnitCanAttack(IGameState state, Coordinates coords){
+    private boolean isUnitCanAttack(GameState state, Coordinates coords){
         List<Unit> cantAttackUnits = state.getCantAttackUnits();
         for(Unit unit : cantAttackUnits)
             if(unit.getX() == coords.getX() && unit.getY() == coords.getY())

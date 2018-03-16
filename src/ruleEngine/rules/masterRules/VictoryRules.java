@@ -4,7 +4,6 @@ import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import ruleEngine.rules.atomicRules.CheckIsNoArsenalEnemy;
-import ruleEngine.rules.atomicRules.CheckIsNoEnemy;
 import ruleEngine.rules.atomicRules.CheckPlayerTurn;
 
 public class VictoryRules extends MasterRule{

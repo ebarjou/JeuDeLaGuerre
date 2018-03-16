@@ -1,6 +1,6 @@
 package ui;
 
-import org.junit.Test;
+import org.junit.Test;import game.gameState.GameState;
 
 import static org.junit.Assert.*;
 

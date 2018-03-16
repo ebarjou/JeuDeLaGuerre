@@ -3,14 +3,12 @@ package ruleEngine.rules.atomicRules;
 import game.EPlayer;
 import game.board.IBoard;
 import game.board.Unit;
-import game.gameState.IGameState;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 
-import java.net.NoRouteToHostException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,14 +17,14 @@ import static org.mockito.Mockito.*;
 
 public class CheckNoPriorityUnitAllyTest {
     private IBoard iBoard;
-    private IGameState iGameState;
+    private GameState iGameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
 
     @Before
     public void setUp() throws Exception {
         iBoard = mock(IBoard.class);
-        iGameState = mock(IGameState.class);
+        iGameState = mock(GameState.class);
 
 
         gameAction = mock(GameAction.class);

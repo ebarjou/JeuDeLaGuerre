@@ -12,7 +12,6 @@ import java.io.*;
 import java.util.List;
 
 public class LoadFile {
-    private GameState gameState;
 
     //TODO: Need exception on convertBuilding and convertUnit
     public LoadFile() {
@@ -81,7 +80,7 @@ public class LoadFile {
         int w = Integer.parseInt(tokens[0]);
         int h = Integer.parseInt(tokens[1]);
 
-        gameState = new GameState(w, h);
+        GameState gameState = new GameState(w, h);
         gameState.removeAll();
 
         // set player

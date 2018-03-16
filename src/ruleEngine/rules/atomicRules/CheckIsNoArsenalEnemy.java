@@ -2,7 +2,7 @@ package ruleEngine.rules.atomicRules;
 
 import game.board.Building;
 import game.board.Unit;
-import game.gameState.IGameState;
+import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class CheckIsNoArsenalEnemy extends Rule {
     @Override
-    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         boolean isNoArsenalEnemy = true;
         List<Building> buildings = state.getAllBuildings();
 

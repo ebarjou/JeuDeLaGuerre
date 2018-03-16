@@ -1,6 +1,5 @@
 package ruleEngine.rules.masterRules;
 
-import game.board.Board;
 import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;

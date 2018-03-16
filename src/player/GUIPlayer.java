@@ -38,7 +38,6 @@ public class GUIPlayer implements Player {
                 try {
                     wait_command.wait();
                 } catch (InterruptedException e) {
-                    continue;
                 }
             }
         }
@@ -65,7 +64,6 @@ public class GUIPlayer implements Player {
                 try {
                     wait_response.wait();
                 } catch (InterruptedException e) {
-                    continue;
                 }
             }
         }

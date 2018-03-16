@@ -1,7 +1,7 @@
 package game;
 
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Test;import game.gameState.GameState;import game.gameState.GameState;
 import org.mockito.Mockito;
 import player.GUIPlayer;
 import ruleEngine.EGameActionType;

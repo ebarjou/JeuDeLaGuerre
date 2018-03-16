@@ -2,9 +2,8 @@ package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
 import game.board.IBoard;
-import game.gameState.IGameState;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
@@ -17,7 +16,7 @@ import static org.junit.Assert.*;
 public class CheckAreAlignedTest {
 
     private IBoard iBoard;
-    private IGameState iGameState;
+    private GameState iGameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
 
@@ -25,7 +24,7 @@ public class CheckAreAlignedTest {
     public void setUp() throws Exception {
         ruleResult = new RuleResult();
         iBoard = mock(IBoard.class);
-        iGameState = mock(IGameState.class);
+        iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
     }
 

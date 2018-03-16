@@ -1,7 +1,6 @@
 package ruleEngine.rules.masterRules;
 
 import game.EPlayer;
-import game.board.Board;
 import game.board.Building;
 import game.board.EDirection;
 import game.gameState.GameState;

@@ -6,7 +6,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Test;import game.gameState.GameState;
 import player.GUIPlayer;
 import ui.commands.UserToGameCall;
 

@@ -1,9 +1,8 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.IBoard;
-import game.gameState.IGameState;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 
@@ -12,14 +11,14 @@ import static org.mockito.Mockito.*;
 
 public class CheckPlayerMovesLeftTest {
     private IBoard iBoard;
-    private IGameState iGameState;
+    private GameState iGameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
 
     @Before
     public void setUp() throws Exception {
         iBoard = mock(IBoard.class);
-        iGameState = mock(IGameState.class);
+        iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
     }

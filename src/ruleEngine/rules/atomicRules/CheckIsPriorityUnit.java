@@ -2,7 +2,7 @@ package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
 import game.board.Unit;
-import game.gameState.IGameState;
+import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.Rule;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class CheckIsPriorityUnit extends Rule {
     @Override
-    public boolean checkAction(IGameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         if (isUnitHasPriority(state, action.getPlayer(), action.getSourceCoordinates()))
             return true;
         result.addMessage(this, "There are other units that need to be moved first.");
@@ -20,7 +20,7 @@ public class CheckIsPriorityUnit extends Rule {
         return false;
     }
 
-    private boolean isUnitHasPriority(IGameState state, EPlayer player, Coordinates coords) {
+    private boolean isUnitHasPriority(GameState state, EPlayer player, Coordinates coords) {
         List<Unit> priorityUnits = state.getPriorityUnits();
 
         if(priorityUnits.isEmpty())
