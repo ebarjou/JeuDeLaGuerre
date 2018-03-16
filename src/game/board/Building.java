@@ -54,4 +54,8 @@ public class Building implements Cloneable {
         }
         return (Building) o;
     }
+
+    public String toString(){
+        return "Type " + building + " ; player = " + player + " ; pos (" + x + ";" + y +")\nIs broken : " + isBroken + "\n";
+    }
 }
