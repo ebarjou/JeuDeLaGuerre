@@ -23,6 +23,7 @@ public class AttackRules extends MasterRule {
         addRule(new CheckAbilityToMove());
         addRule(new CheckIsAllyUnit()); // CheckSourceIsAllyUnit
         addRule(new CheckIsEnemyUnit()); // CheckTargetIsEnemyUnit
+        addRule(new CheckIsAttackingUnit());
         addRule(new CheckAreAligned());
         addRule(new CheckUnitRange());
         addDependence(new CheckUnitRange(), new CheckAreAligned(), true);
