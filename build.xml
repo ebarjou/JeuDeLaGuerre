@@ -1,12 +1,12 @@
 <project name="JeuDeLaGuerre" basedir="." default="main">
 
-	<property name="src.dir"     value="src"/>
-    <property name="build.dir"   value="build"/>
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
-    <property name="jar.dir"     value="${build.dir}/jar"/>
-    <property name="main-class"  value="Start"/>
-	<property name="lib.dir"     value="lib"/>
-	<property name="test.dir"     value="tests"/>
+    <property name="jar.dir" value="${build.dir}/jar"/>
+    <property name="main-class" value="Start"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="test.dir" value="tests"/>
     <property name="build.test.dir" value="${build.dir}/tests"/>
     <property name="test.report.dir" value="${build.dir}/test-report"/>
 
@@ -20,15 +20,16 @@
     </path>
 
     <target name="clean">
-        <delete dir="${build.dir}"/>		
+        <delete dir="${build.dir}"/>
     </target>
 
     <target name="build">
         <mkdir dir="${classes.dir}"/>
         <mkdir dir="${build.test.dir}"/>
         <mkdir dir="${test.report.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
-        <javac srcdir="${test.dir}" destdir="${build.test.dir}" classpathref="test.classpath"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="false"/>
+        <javac srcdir="${test.dir}" destdir="${build.test.dir}" classpathref="test.classpath"
+               includeantruntime="false"/>
     </target>
 
     <target name="jar" depends="build">
@@ -46,24 +47,51 @@
                 <path refid="classpath"/>
                 <path location="${jar.dir}/${ant.project.name}.jar"/>
             </classpath>
-		</java>
+        </java>
     </target>
 
-    <target name="test" depends="build">
-		<junit printsummary="on" fork="true" haltonfailure="no">
-			<classpath>
-			    <path refid="test.classpath"/>
-			    <path location="${build.test.dir}"/>
-			</classpath>
+    <target name="test-run" depends="build">
+        <junit printsummary="on" fork="true" haltonfailure="no">
+            <classpath>
+                <path refid="test.classpath"/>
+                <path location="${build.test.dir}"/>
+            </classpath>
 
-			<formatter type="plain" />
+            <formatter type="xml"/>
             <batchtest todir="${test.report.dir}" skipNonTests="true">
-				<fileset dir="${test.dir}">
-					<include name="**/*Test.java" />
-				</fileset>
-			</batchtest>
-		</junit>
-	</target>
+                <fileset dir="${test.dir}">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+
+        </junit>
+        <junitreport todir="${build.dir}" tofile="TEST-Summary.xml">
+            <fileset dir="${test.report.dir}" includes="*.xml"/>
+            <report format="noframes" todir="${build.dir}"/>
+        </junitreport>
+
+    </target>
+
+    <target name="report-fix">
+        <replaceregexp file="${build.dir}/junit-noframes.html">
+            <regexp pattern="\.Failure \{.*\n.*\n.*\}"/>
+            <substitution expression=".Failure \\{
+    font-weight:bold; color:red;
+\\}
+.Pass, .TableRowColor\\{
+    color:green;
+\\}
+a, a:visited, a:hover, a:active \\{
+    color: inherit;
+  \\}"/>
+        </replaceregexp>
+        <replaceregexp file="${build.dir}/junit-noframes.html" flags="g">
+            <regexp pattern="class=&quot;&quot;>"/>
+            <substitution expression="class='Pass'>"/>
+        </replaceregexp>
+    </target>
+
+    <target name="test" depends="test-run, report-fix"/>
 
     <target name="main" depends="clean,run"/>
 
