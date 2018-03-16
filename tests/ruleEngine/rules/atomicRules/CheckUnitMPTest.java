@@ -72,11 +72,7 @@ public class CheckUnitMPTest {
         //There is no unit at 0,0 so it should return this message.
         String expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP";
 
-
         assertFalse(rule.checkAction(gameState, gameAction, result));
-
-        System.out.println(result.getLogMessage());
-        //System.out.println(gameState.toString());
 
         assertTrue(result.getLogMessage().contains(expectedMessage));
         assertFalse(result.isValid());

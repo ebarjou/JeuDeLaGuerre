@@ -30,18 +30,26 @@ public class RuleCheckerTest {
         building = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_SOUTH);
         building.setPosition(0, 10);
         gameState.addBuilding(building);
+
+        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        unit.setPosition(0, 0);
+        gameState.addUnit(unit);
+        unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
+        unit.setPosition(0, 2);
+        gameState.addUnit(unit);
     }
 
     @Test
     public void checkActionMoveTest() {
 
-        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
-        unit.setPosition(0, 0);
-        gameState.addUnit(unit);
+        GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
+        try {
+            rulechecker.checkAction(gameState, gameAction);
+        } catch (IncorrectGameActionException e) {
+            assertTrue("Can't check action MOVE because action COMMUNICATION failed beforehand.", false);
+        }
 
-        //rulechecker.computeCommunications(gameState);
-
-        GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
+        gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
         gameAction.setSourceCoordinates(0, 0);
         gameAction.setTargetCoordinates(1, 1);
 
@@ -54,23 +62,21 @@ public class RuleCheckerTest {
         } catch (IncorrectGameActionException e) {
             assertTrue("Action MOVE unrecognized by RuleChecker.checkAction().", false);
         }
-        assertTrue(result.getLogMessage().equals(expectedMessage));
         assertTrue(result.isValid());
+        assertTrue(result.getLogMessage().equals(expectedMessage));
     }
 
     @Test
     public void checkActionAttackTest() {
 
-        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
-        unit.setPosition(0, 0);
-        gameState.addUnit(unit);
-        unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
-        unit.setPosition(0, 2);
-        gameState.addUnit(unit);
+        GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
+        try {
+            rulechecker.checkAction(gameState, gameAction);
+        } catch (IncorrectGameActionException e) {
+            assertTrue("Can't check action MOVE because action COMMUNICATION failed beforehand.", false);
+        }
 
-        //rulechecker.computeCommunications(gameState);
-
-        GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
+        gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
         gameAction.setSourceCoordinates(0, 0);
         gameAction.setTargetCoordinates(1, 1);
         try {
@@ -95,8 +101,8 @@ public class RuleCheckerTest {
         } catch (IncorrectGameActionException e) {
             assertTrue("Action ATTACK unrecognized by RuleChecker.checkAction().", false);
         }
-        assertTrue(result.getLogMessage().equals(expectedMessage));
         assertTrue(result.isValid());
+        assertTrue(result.getLogMessage().equals(expectedMessage));
     }
 
     @Test
@@ -117,8 +123,8 @@ public class RuleCheckerTest {
         } catch (IncorrectGameActionException e) {
             assertTrue("Action END_TURN unrecognized by RuleChecker.checkAction().", false);
         }
-        assertTrue(result.getLogMessage().equals(expectedMessage));
         assertTrue(result.isValid());
+        assertTrue(result.getLogMessage().equals(expectedMessage));
     }
 
     @Test
