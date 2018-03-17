@@ -3,6 +3,7 @@ package ruleEngine.rules.masterRules;
 import game.EPlayer;
 import game.board.Building;
 import game.board.EDirection;
+import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
@@ -47,7 +48,7 @@ public class CommRules extends MasterRule {
             EUnitData u;
             try {
                 u = gameState.getUnitType(x, y);
-            } catch(NullPointerException e) {
+            } catch(IllegalBoardCallException e) {
                 u = null;
             }
             if(u != null && gameState.getUnitPlayer(x, y) == player && !gameState.isMarked(x, y)){
@@ -72,12 +73,12 @@ public class CommRules extends MasterRule {
         EBuildingData b;
         try {
             u = gameState.getUnitType(x, y);
-        } catch(NullPointerException e) {
+        } catch(IllegalBoardCallException e) {
             u = null;
         }
         try {
             b = gameState.getBuildingType(x, y);
-        } catch(NullPointerException e) {
+        } catch(IllegalBoardCallException e) {
             b = null;
         }
         return (b != null && b == EBuildingData.MOUNTAIN)

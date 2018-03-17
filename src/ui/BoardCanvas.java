@@ -1,6 +1,7 @@
 package ui;
 
 import game.EPlayer;
+import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import javafx.event.EventHandler;
 import javafx.geometry.VPos;
@@ -115,11 +116,11 @@ class BoardCanvas extends Canvas {
 
         try {
             BoardDrawer.drawBuilding(g, gameState.getBuildingType(x, y), gameState.getBuildingPlayer(x, y), pos_x, pos_y, size, MARGIN);
-        } catch (NullPointerException e) {}
+        } catch (IllegalBoardCallException e) {}
 
         try {
             BoardDrawer.drawUnit(g, gameState.getUnitType(x, y), gameState.getUnitPlayer(x, y), pos_x, pos_y, size);
-        } catch (NullPointerException e) {}
+        } catch (IllegalBoardCallException e) {}
         g.restore();
     }
 

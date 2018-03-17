@@ -1,6 +1,7 @@
 package game.board;
 
 import game.EPlayer;
+import game.board.exceptions.IllegalBoardCallException;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 
@@ -47,12 +48,12 @@ public class Board implements IBoard{
     }
 
     public boolean isInCommunication(EPlayer player, int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
+        if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         return (communication[getOffset(x, y)] & 1 << player.ordinal()) > 0;
     }
 
     public void setInCommunication(EPlayer player, int x, int y, boolean enable) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
+        if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         if (enable) communication[getOffset(x, y)] |= 1 << player.ordinal();
         else communication[getOffset(x, y)] &= ~(1 << player.ordinal());
     }
@@ -62,7 +63,7 @@ public class Board implements IBoard{
     }
 
     public boolean isBuilding(int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
+        if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         return buildings[getOffset(x, y)] != 0;
     }
 
@@ -72,44 +73,44 @@ public class Board implements IBoard{
     }
 
     public EBuildingData getBuildingType(int x, int y) {
-        if(!isBuilding(x,y)) throw new NullPointerException("Not a building.");
+        if(!isBuilding(x,y)) throw new IllegalBoardCallException("Not a building.");
         return getBuildingType(buildings[getOffset(x, y)]);
     }
 
     public EPlayer getBuildingPlayer(int x, int y) {
-        if(!isBuilding(x,y)) throw new NullPointerException("Not a building.");
+        if(!isBuilding(x,y)) throw new IllegalBoardCallException("Not a building.");
         return getPlayer(buildings[getOffset(x, y)]);
     }
 
     public boolean isUnit(int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
+        if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         return units[getOffset(x, y)] != 0;
     }
 
     //GS do this
     public void setUnit(EUnitData unit, EPlayer player, int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
+        if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         units[getOffset(x, y)] = setItemPlayer(player, setItemType(unit, (short) 0));
     }
 
     public void delUnit(int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
+        if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         units[getOffset(x, y)] = 0;
     }
 
     public void delBuilding(int x, int y){
-        if(!isValidCoordinate(x, y)) throw new NullPointerException("Invalid coordinates");
+        if(!isValidCoordinate(x, y)) throw new IllegalBoardCallException("Invalid coordinates");
         buildings[getOffset(x, y)] = 0;
     }
 
     public EUnitData getUnitType(int x, int y) {
         if(!isUnit(x,y))
-            throw new NullPointerException("Not an unit.");
+            throw new IllegalBoardCallException("Not an unit.");
         return getUnitType(units[getOffset(x, y)]);
     }
 
     public EPlayer getUnitPlayer(int x, int y) {
-        if(!isUnit(x,y)) throw new NullPointerException("Not an unit.");
+        if(!isUnit(x,y)) throw new IllegalBoardCallException("Not an unit.");
         return getPlayer(units[getOffset(x, y)]);
     }
 
@@ -118,12 +119,12 @@ public class Board implements IBoard{
     }
 
     public boolean isMarked(int x, int y) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
+        if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         return marked[getOffset(x, y)];
     }
 
     public void setMarked(int x, int y, boolean mark) {
-        if(!isValidCoordinate(x,y)) throw new NullPointerException("Invalid coordinates");
+        if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         marked[getOffset(x, y)] = mark;
     }
 
@@ -133,7 +134,7 @@ public class Board implements IBoard{
 
 
     public void moveUnit(int xs, int ys, int xd, int yd){
-        if(!isUnit(xs,ys) || isUnit(xd, yd)) throw new NullPointerException("Not an unit.");
+        if(!isUnit(xs,ys) || isUnit(xd, yd)) throw new IllegalBoardCallException("Not an unit.");
         units[getOffset(xd, yd)] = units[getOffset(xs, ys)];
         units[getOffset(xs, ys)] = 0;
     }
@@ -164,14 +165,14 @@ public class Board implements IBoard{
             u = this.getUnitType(x, y);
             pU = this.getUnitPlayer(x, y);
             res += u + " ; " + pU + "\n";
-        } catch (NullPointerException e){
+        } catch (IllegalBoardCallException e){
             u = null;
         }
         try {
             pB = this.getBuildingPlayer(x, y);
             b = this.getBuildingType(x, y);
             res += b + " ; " + pB + "\n";
-        } catch (NullPointerException e){
+        } catch (IllegalBoardCallException e){
             b = null;
         }
         if(res.isEmpty())

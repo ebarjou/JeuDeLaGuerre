@@ -1,6 +1,7 @@
 package game.board;
 
 import game.EPlayer;
+import game.board.exceptions.IllegalBoardCallException;
 import org.junit.Before;
 import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.entity.EBuildingData;
@@ -34,21 +35,21 @@ public class BoardTest {
         try{
             board.getUnitType(5, 5);
             assertTrue(false);
-        } catch(NullPointerException e){
+        } catch(IllegalBoardCallException e){
 
         }
 
         try{
             board.getBuildingPlayer(4, 5);
             assertTrue(false);
-        } catch(NullPointerException e){
+        } catch(IllegalBoardCallException e){
 
         }
 
         try{
             board.getBuildingType(45, 23);
             assertTrue(false);
-        } catch(NullPointerException e){
+        } catch(IllegalBoardCallException e){
 
         }
 
@@ -67,7 +68,7 @@ public class BoardTest {
         try{
             board.isInCommunication(EPlayer.PLAYER_SOUTH, -1, 6);
             assertTrue(false);
-        } catch(NullPointerException e){
+        } catch(IllegalBoardCallException e){
 
         }
 
