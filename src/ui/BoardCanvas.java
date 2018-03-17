@@ -1,5 +1,7 @@
 package ui;
 
+import analyse.EMetricsMapType;
+import analyse.MetricsModule;
 import game.EPlayer;
 import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
@@ -49,6 +51,7 @@ class BoardCanvas extends Canvas {
      * Refresh the canvas according to the given Board.
      */
     void draw(GameState gameState) {
+
         g.setFill(Color.LIGHTGREY);
         //Fill background
         g.fillRect(0, 0, getWidth(), getHeight());
@@ -84,6 +87,14 @@ class BoardCanvas extends Canvas {
 
             g.setStroke(Color.ORANGERED);
             g.strokeLine(indicesWidth, (gameState.getHeight() / 2) * caseSize + indicesHeight, gameState.getWidth() * caseSize + indicesWidth, gameState.getHeight() * caseSize / 2 + indicesHeight);
+
+            //metrics display (to be removed)
+            try {
+				double[][] stats = MetricsModule.getInfoMap(EMetricsMapType.ATTACK_MAP, gameState, EPlayer.PLAYER_NORTH);
+                printAttack(stats, caseSize);
+            }catch (Exception e){
+
+            }
         }
 
     }
@@ -141,6 +152,15 @@ class BoardCanvas extends Canvas {
             g.fillText(s, offsetx, offsety + j * caseSize, 20);
         }
         g.restore();
+    }
+
+    //quick implementation example
+    private void printAttack(double[][] map, int size){
+        for(int i = 0; i < map.length; ++i){
+            for (int j = 0; j < map[i].length; ++j){
+                g.fillText("" + (int)map[i][j], (i+1) * size, (j+1) * size);
+            }
+        }
     }
 
     private class ClickHandler implements EventHandler<MouseEvent> {
