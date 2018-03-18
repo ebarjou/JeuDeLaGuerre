@@ -125,6 +125,12 @@ public class BoardDrawer {
         g.strokeLine(pos_x + size/5, pos_y + size * 0.8, pos_x + size * 0.8, pos_y + size * 0.8);
         g.strokeLine(pos_x + size * 0.8, pos_y + size/5, pos_x + size * 0.8, pos_y + size * 0.8);
 
+
+        g.strokeLine(pos_x - size / 5, pos_y - size/5, pos_x + size *1.2, pos_y - size/5);
+        g.strokeLine(pos_x - size/5, pos_y - size/5, pos_x - size/5, pos_y + size * 1.2);
+        g.strokeLine(pos_x - size/5, pos_y + size * 1.2, pos_x + size * 1.2, pos_y + size * 1.2);
+        g.strokeLine(pos_x + size * 1.2, pos_y - size/5, pos_x + size * 1.2, pos_y + size * 1.2);
+
         g.strokeLine(pos_x + size / 2 - dashSize/2, pos_y + size / 2, pos_x + size / 2 + dashSize/2, pos_y + size / 2);
         g.strokeLine(pos_x + size / 2, pos_y + size / 2 - dashSize/2, pos_x + size / 2, pos_y + size / 2 + dashSize/2);
     }
