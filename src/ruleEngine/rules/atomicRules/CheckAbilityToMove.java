@@ -1,5 +1,6 @@
 package ruleEngine.rules.atomicRules;
 
+import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
@@ -25,7 +26,7 @@ public class CheckAbilityToMove extends Rule {
                 return true;
             }
 
-        } catch (NullPointerException ignored){
+        } catch (IllegalBoardCallException ignored){
         }
 
         result.addMessage(this, "This unit is not in communication and cannot be used.");
