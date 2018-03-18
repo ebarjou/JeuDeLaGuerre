@@ -7,7 +7,7 @@ public class IntLetterConverter {
      * @return the convertion in base 10 of thoses letters.
      * Case where there is something else than letters is not handled.
      */
-    static int getIntFromLetters(String s) {
+    public static int getIntFromLetters(String s) {
         s = s.toLowerCase();
         int res = 0;
         int base = 26;
@@ -20,7 +20,7 @@ public class IntLetterConverter {
         return res - 1;
     }
 
-    static String getLettersFromInt(int n) {
+    public static String getLettersFromInt(int n) {
         String res = "";
         int base = 26;
         while (n >= 0) {

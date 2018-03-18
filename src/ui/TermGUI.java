@@ -13,28 +13,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import player.Player;
 import ruleEngine.EGameActionType;
+import ui.UIElements.MainLayout;
 
 import static ui.commands.UserToGameCall.*;
 
 public class TermGUI extends Application {
-    private static final int WINDOW_WIDTH = 800;
-    private static final int WINDOW_HEIGHT = 640;
-    private static final int COMMAND_PANEL_HEIGHT = 28;
-    private static final int COMMAND_PANEL_MARGIN = 10;
-    private static final int BOARD_INDICES_SIZE = 20;
 
     private Shell shell;
     private Scene scene;
-    private BoardCanvas canvas;
-    private TextField textField;
     private CommandParser parser;
-    private Label labelPlayerTurn;
+    private MainLayout mainLayout;
 
     @Override
     public void init() throws Exception {
@@ -48,10 +41,12 @@ public class TermGUI extends Application {
         createScene();
         primaryStage.setTitle("JdlG");
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+        primaryStage.setMinWidth(MainLayout.CANVAS_WIDTH+MainLayout.INFOS_WIDTH+MainLayout.COORDINATES_BAR_WIDTH + 16);      /*      */
+        primaryStage.setMinHeight(MainLayout.CANVAS_HEIGHT+MainLayout.COMMAND_HEIGHT+MainLayout.COORDINATES_BAR_WIDTH + 40); /* JavaFx's stage size seems to contains window's edges */
         primaryStage.sizeToScene();
         primaryStage.show();
 
+        //Init the canvas with the Game's Board
         Player player = Game.getInstance().getPlayer();
         UIAction startAction = new UIAction(LOAD, EGameActionType.COMMUNICATION);
         startAction.setText("presets/debord.txt");
@@ -59,35 +54,20 @@ public class TermGUI extends Application {
         processResponse(player.getResponse());
     }
 
-
     /**
      * Create the GUI layout, should not be called outside of start method.
      */
     private void createScene() {
         Group root = new Group();
-        scene = new Scene(root, WINDOW_WIDTH + BOARD_INDICES_SIZE, WINDOW_HEIGHT + COMMAND_PANEL_HEIGHT + BOARD_INDICES_SIZE, Color.LIGHTGREY);
+        scene = new Scene(root, Color.WHITESMOKE);
 
-        textField = new TextField("Enter command here");
-        textField.setOnKeyPressed(new CommandEvent());
-        textField.setPrefWidth(WINDOW_WIDTH);
-        textField.setPrefHeight(COMMAND_PANEL_HEIGHT);
+        mainLayout = new MainLayout();
+        mainLayout.prefHeightProperty().bind(scene.heightProperty());
+        mainLayout.prefWidthProperty().bind(scene.widthProperty());
 
-        labelPlayerTurn = new Label(Game.getInstance().getGameState().getActualPlayer().name());
-        labelPlayerTurn.setPrefHeight(COMMAND_PANEL_HEIGHT);
+        mainLayout.setCommandHandler(new TermGUI.CommandEvent());
 
-        canvas = new BoardCanvas(WINDOW_WIDTH, WINDOW_HEIGHT, BOARD_INDICES_SIZE, BOARD_INDICES_SIZE, textField);
-
-        HBox layoutCommand = new HBox();
-        layoutCommand.setAlignment(Pos.CENTER_LEFT);
-        layoutCommand.setSpacing(COMMAND_PANEL_MARGIN);
-        layoutCommand.getChildren().add(labelPlayerTurn);
-        layoutCommand.getChildren().add(textField);
-
-        VBox layout = new VBox();
-        layout.getChildren().add(canvas);
-        layout.getChildren().add(layoutCommand);
-
-        root.getChildren().add(layout);
+        root.getChildren().add(mainLayout);
     }
 
 
@@ -153,16 +133,15 @@ public class TermGUI extends Application {
                 break;
             }
         }
-        labelPlayerTurn.setText(response.getPlayer().name());
-        canvas.draw(response.getBoard());
+        mainLayout.refresh(response.getBoard());
     }
 
     private class CommandEvent implements EventHandler<KeyEvent> {
         @Override
         public void handle(KeyEvent event) {
             if (event.getCode() == KeyCode.ENTER) {
-                processCommand(textField.getText());
-                textField.clear();
+                processCommand(mainLayout.getCommandText());
+                mainLayout.clearCommandText();
             }
         }
     }

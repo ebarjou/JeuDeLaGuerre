@@ -1,4 +1,4 @@
-package ui;
+package ui.UIElements;
 
 import game.EPlayer;
 import javafx.scene.canvas.GraphicsContext;

@@ -23,7 +23,6 @@ public class GameTest {
         GUIPlayer p2 = new GUIPlayer(Thread.currentThread(), null);
         game.init(p1, p2);
         game = Game.getInstance();
-
     }
 
     @Test
