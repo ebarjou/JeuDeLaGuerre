@@ -37,7 +37,7 @@ public class CheckOnBoardTest {
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(99, 99));
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
-        String expectedMessage = "CheckOnBoard : Target coordinates are beyond the board's edges.\n";
+        String expectedMessage = "CheckOnBoard : Target coordinates are beyond the board's boundaries.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
 
         ruleResult = new RuleResult();
@@ -45,7 +45,7 @@ public class CheckOnBoardTest {
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(99, 99));
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
-        expectedMessage = "CheckOnBoard : Source coordinates are beyond the board's edges.\n";
+        expectedMessage = "CheckOnBoard : Source coordinates are beyond the board's boundaries.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
 
     }
