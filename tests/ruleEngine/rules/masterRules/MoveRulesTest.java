@@ -29,13 +29,9 @@ public class MoveRulesTest {
     private RuleResult ruleResult;
     private RuleChecker rule;
     private String expectedMessage;
-//    private LoadFile lf;
-
-    //TODO: Find how to load files ?
 
     @Before
     public void setUp() {
-        //gameState = new GameState(25, 20);
         gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
         ruleResult = new RuleResult();
         rule = new RuleChecker();
@@ -54,16 +50,6 @@ public class MoveRulesTest {
 
         gameState = Game.getInstance().getGameState();
 
-        /*Building building = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH);
-        building.setPosition(0, 0);
-        gameState.addBuilding(building);
-        // Ensure the VictoryRules don't activate
-        building = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_SOUTH);
-        building.setPosition(24, 19);
-        gameState.addBuilding(building);
-        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
-        unit.setPosition(24, 19);
-        gameState.addUnit(unit);*/
         try {
             GameAction communication = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
             RuleResult r = rule.checkAction(gameState, communication);
