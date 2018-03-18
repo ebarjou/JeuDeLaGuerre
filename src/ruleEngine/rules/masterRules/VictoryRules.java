@@ -6,6 +6,9 @@ import ruleEngine.RuleResult;
 import ruleEngine.rules.atomicRules.CheckIsNoArsenalEnemy;
 import ruleEngine.rules.atomicRules.CheckPlayerTurn;
 
+/**
+ * Class testing if a game is ended by the destruction of all of a player units or arsenals.
+ */
 public class VictoryRules extends MasterRule{
     public VictoryRules(){
         addRule(new CheckPlayerTurn());

@@ -9,6 +9,12 @@ import ruleEngine.RuleResult;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Check if a move performed from a unit to its destination is clear from obstacles or other units.<br>
+ * Valid if the path is clear, invalid otherwise.
+ *
+ * @see ruleEngine.rules.masterRules.MoveRules
+ */
 public class CheckIsEmptyPath extends Rule {
 
     private int length;

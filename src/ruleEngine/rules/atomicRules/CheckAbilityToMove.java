@@ -7,6 +7,13 @@ import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 
+/**
+ * Check if a unit is supplied in communication or if is a Relay type unit.<br>
+ * Valid if it is, invalid if otherwise.
+ *
+ * @see EUnitData
+ * @see ruleEngine.rules.masterRules.CommRules
+ */
 public class CheckAbilityToMove extends Rule {
 
     @Override

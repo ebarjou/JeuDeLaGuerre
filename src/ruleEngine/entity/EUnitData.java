@@ -1,6 +1,8 @@
 package ruleEngine.entity;
 
-//TODO: Maybe use only this enum for the board instead of an enum with only names ..
+/**
+ * Enum used to represent every type of unit in the game, with their appropriates data.
+ */
 public enum EUnitData {
 	/*
 	Name			Label    Def   Range       canRelay         canCharge
@@ -39,38 +41,68 @@ public enum EUnitData {
 		this.canCharge = canCharge;
 	}
 
+	/**
+	 * @return A label identifying the unit.
+	 */
 	public String getID() {
 		return id;
 	}
 
+	/**
+	 * @return The individual attack power of the unit.
+	 */
 	public int getAtkValue() {
 		return atkValue;
 	}
 
+	/**
+	 * @return The individual defence power of the unit.
+	 */
 	public int getDefValue() {
 		return defValue;
 	}
 
+	/**
+	 * @return The range within the unit can move to.
+	 */
 	public int getMovementValue() {
 		return movementValue;
 	}
 
+	/**
+	 * @return The range within the unit can attack another unit.
+	 */
 	public int getFightRange() {
 		return fightRange;
 	}
 
+	/**
+	 * @return true if the unit benefits of a bonus of defence power when placed on some building, false otherwise.
+	 * @see EBuildingData
+	 */
 	public boolean isGetBonusDef() {
 		return getBonusDef;
 	}
 
+	/**
+	 * @return true if the unit generate communication axis on its own, false otherwise.
+	 * @see ruleEngine.rules.masterRules.CommRules
+	 */
 	public boolean isRelayCommunication() {
 		return relayCommunication;
 	}
 
+	/**
+	 * @return true if the unit is allowed to initiate attack, false otherwise.
+	 */
 	public boolean isCanAttack() {
 		return canAttack;
 	}
 
+	/**
+	 * @return true if the unit is allowed to initiate charges, a special attack.
+	 * @see ruleEngine.rules.masterRules.AttackRules
+	 */
 	public boolean isCanCharge() {
 		return canCharge;
 	}

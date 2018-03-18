@@ -9,6 +9,11 @@ import ruleEngine.RuleResult;
 
 import java.util.List;
 
+/**
+ * Check if an attack performed by a unit is within its range of action.<br>
+ * Valid if the target cell is within the range of the unit, invalid otherwise.
+ * @see ruleEngine.rules.masterRules.AttackRules
+ */
 public class CheckUnitRange extends Rule {
 
     private boolean isAlignedCharge(GameState state, GameAction action) {

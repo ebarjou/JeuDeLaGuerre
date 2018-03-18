@@ -6,6 +6,13 @@ import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
+/**
+ * Check if a unit is aligned with its target for an attack, this alignment is checked in the 8 directions from the
+ * source unit.<br>
+ * Valid if there's an alignment, invalid otherwise.
+ *
+ * @see ruleEngine.rules.masterRules.AttackRules
+ */
 public class CheckAreAligned extends Rule {
 
     @Override

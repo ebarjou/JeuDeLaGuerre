@@ -12,6 +12,10 @@ import ruleEngine.rules.atomicRules.*;
 
 import java.util.List;
 
+/**
+ * Class testing if a unit move is allowed according to its range of movement, the terrain and its communication supplying.
+ * Performs the move on the board if respected.
+ */
 public class MoveRules extends MasterRule {
 
     public MoveRules() {

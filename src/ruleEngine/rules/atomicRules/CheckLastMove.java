@@ -7,6 +7,12 @@ import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
+/**
+ * Check if the unit attacking is the last one moved by the player, as a delayed attack or static attack isn't allowed from
+ * our rule interpretation.<br>
+ * Valid if the attacking unit is the same that has performed a move this same turn, invalid otherwise.
+ * @see ruleEngine.rules.masterRules.AttackRules
+ */
 public class CheckLastMove extends Rule {
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {

@@ -5,6 +5,12 @@ import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
+/**
+ * Check if a unit is able to attack or not. With our rules interpretation, a unit is able to attack if and only if it already moved in the same turn.<br>
+ * Valid if the unit can attack, invalid otherwise.
+ *
+ * @see ruleEngine.rules.masterRules.AttackRules
+ */
 public class CheckIsAttackingUnit extends Rule {
 
     @Override

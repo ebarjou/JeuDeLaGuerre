@@ -5,6 +5,11 @@ import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
+/**
+ * Check if the player performing the action has at least one move remaining for this turn.<br>
+ * Valid if there is at least one move left, invalid otherwise.
+ * @see ruleEngine.rules.masterRules.MoveRules
+ */
 public class CheckPlayerMovesLeft extends Rule {
 
     @Override

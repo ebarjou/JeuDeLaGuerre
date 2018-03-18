@@ -5,6 +5,12 @@ import ruleEngine.GameAction;
 import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 
+/**
+ * Check if the targeted unit from an attack is an enemy one.<br>
+ * Valid if the targeted unit is an enemy, invalid otherwise.
+ *
+ * @see ruleEngine.rules.masterRules.AttackRules
+ */
 public class CheckIsEnemyUnit extends Rule {
 
     @Override

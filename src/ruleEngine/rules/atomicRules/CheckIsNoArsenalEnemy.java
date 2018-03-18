@@ -10,6 +10,16 @@ import ruleEngine.entity.EBuildingData;
 
 import java.util.List;
 
+/**
+ * Check if all of the adversary's arsenals are destroyed or not, leading to the end of a game.<br>
+ * Valid if there's no more enemy arsenals, invalid otherwise.<br><br>
+ * NOTE : Because of the incomplete implementation of the rule dependencies, all of the victory conditions are checked in
+ * this one, meaning this rule also checks if there is no more enemy units on the board, and the rule is valid if one of these
+ * condition is verified, and invalid if no one is.
+ *
+ * @see ruleEngine.rules.masterRules.VictoryRules
+ * @see CheckIsNoEnemy
+ */
 public class CheckIsNoArsenalEnemy extends Rule {
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {

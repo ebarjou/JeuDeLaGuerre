@@ -4,6 +4,12 @@ import game.gameState.GameState;
 import ruleEngine.exceptions.IncorrectGameActionException;
 import ruleEngine.rules.masterRules.*;
 
+/**
+ * Object acting as a hub for {@link game.Game} to check actions on the board. Should be instantiated once.
+ * @see Rule
+ * @see MasterRule
+ * @see RuleResult
+ */
 public class RuleChecker {
     private MasterRule moveRuleMaster;
     private MasterRule attackRuleMaster;
@@ -23,6 +29,13 @@ public class RuleChecker {
         commRuleMaster.applyResult(gameState, null, null);
     }
 
+    /**
+     * Check if a given action on a given stage of the game is allowed or not.
+     * @param gameState The stage of the game when the action is performed.
+     * @param action The action to check if allowed or not.
+     * @return RuleResult object containing information about the validity of the performed action.
+     * @throws IncorrectGameActionException The action is not recognized by the RuleChecker.
+     */
     public RuleResult checkAction(GameState gameState, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
         MasterRule mr = null;

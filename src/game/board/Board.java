@@ -105,12 +105,12 @@ public class Board implements IBoard{
 
     public EUnitData getUnitType(int x, int y) {
         if(!isUnit(x,y))
-            throw new IllegalBoardCallException("Not an unit.");
+            throw new IllegalBoardCallException("Not a unit.");
         return getUnitType(units[getOffset(x, y)]);
     }
 
     public EPlayer getUnitPlayer(int x, int y) {
-        if(!isUnit(x,y)) throw new IllegalBoardCallException("Not an unit.");
+        if(!isUnit(x,y)) throw new IllegalBoardCallException("Not a unit.");
         return getPlayer(units[getOffset(x, y)]);
     }
 
@@ -134,7 +134,7 @@ public class Board implements IBoard{
 
 
     public void moveUnit(int xs, int ys, int xd, int yd){
-        if(!isUnit(xs,ys) || isUnit(xd, yd)) throw new IllegalBoardCallException("Not an unit.");
+        if(!isUnit(xs,ys) || isUnit(xd, yd)) throw new IllegalBoardCallException("Not a unit.");
         units[getOffset(xd, yd)] = units[getOffset(xs, ys)];
         units[getOffset(xs, ys)] = 0;
     }
