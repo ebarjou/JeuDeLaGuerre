@@ -15,6 +15,7 @@ import ruleEngine.*;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.exceptions.IncorrectGameActionException;
+import system.BadFileFormatException;
 import system.LoadFile;
 import ui.GUIThread;
 
@@ -43,7 +44,7 @@ public class MoveRulesTest {
         LoadFile lf = new LoadFile();
         try {
             lf.loadFile("presets/moveRulesTestFile.txt");
-        } catch (IOException e) {
+        } catch (IOException | BadFileFormatException e) {
             assertTrue("Test class " + this.getClass().getSimpleName() +
                     " could not load the test file : Test interrupted.", false);
         }

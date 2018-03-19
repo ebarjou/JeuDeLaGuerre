@@ -5,6 +5,7 @@ import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
+import system.BadFileFormatException;
 import system.LoadFile;
 import ui.GameResponse;
 import player.Player;
@@ -103,6 +104,8 @@ public class Game {
                     return gameResponse;
                 } catch (IOException e) {
                     return new GameResponse(INVALID, e.getMessage(), gameState, gameState.getActualPlayer());
+                } catch (BadFileFormatException e){
+                    return new GameResponse(INVALID, e.toString(), gameState, gameState.getActualPlayer());
                 }
             }
             case SAVE: {

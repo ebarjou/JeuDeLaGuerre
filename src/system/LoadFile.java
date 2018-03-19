@@ -26,26 +26,47 @@ public class LoadFile {
         for(Building b : buildings){
             bw.write(b.getBuildingData().getID() + ";"
                     + (b.getX() + 1) + ";" + (b.getY() + 1) + ";"
-                    + false + ";"
                     + (b.getPlayer().ordinal() + 1) + "\n");
         }
 
         List<Unit> allUnits = gs.getAllUnits();
         for(Unit u : allUnits){
-            bw.write(u.getUnitData().getID() + ";"
-                        + (u.getX() + 1) + ";" + (u.getY() + 1) + ";"
-                        + (u.getPlayer().ordinal() + 1) + "\n");
+            bw.write(u.getUnitData().getID() + ";"                  // ID
+                        + (u.getX() + 1) + ";" + (u.getY() + 1) + ";"   // x; y
+                        + (hasToMove(u, gs)) + ";"                      // priority ?
+                        + u.getCanMove() + ";"                         // can Move (has not moved) ?
+                        + isLastMove(u, gs) + ";"                       // is lastMove ?
+                        + canAttack(u, gs) + ";"                        // can initiate attack this turn?
+                        + (u.getPlayer().ordinal() + 1) + "\n");        // player
         }
-
-        allUnits = gs.getPriorityUnits();
-        for(Unit u : allUnits){
-            bw.write(u.getUnitData().getID() + ";"
-                    + (u.getX() + 1) + ";" + (u.getY() + 1) + ";"
-                    + (u.getPlayer().ordinal() + 1) + "\n");
-        }
-
         bw.close();
+    }
 
+    private boolean hasToMove(Unit u, GameState gs){
+        List<Unit> priority = gs.getPriorityUnits();
+        for(Unit unit : priority)
+            if(u.getX() == unit.getX() && u.getY() == unit.getY())
+                return true;
+        return false;
+    }
+
+    private boolean isLastMove(Unit u, GameState gs){
+
+        Unit tmp;
+        try{
+            tmp = gs.getLastUnitMoved();
+        } catch (NullPointerException e){
+            return false;
+        }
+        return tmp.getX() == u.getX() && tmp.getY() == u.getY();
+    }
+
+    private boolean canAttack(Unit u, GameState gs){
+        List<Unit> cantAttackUnits = gs.getCantAttackUnits();
+        for(Unit unit : cantAttackUnits)
+            if(u.getX() == unit.getX() && u.getY() == unit.getY())
+                return false;
+        return true;
     }
 
     private EBuildingData convertBuilding(String s) {
@@ -54,7 +75,7 @@ public class LoadFile {
                 return e;
 
         System.out.println("Error");
-        return EBuildingData.ARSENAL;
+        return null;
     }
 
     private EUnitData convertUnit(String s) {
@@ -63,11 +84,11 @@ public class LoadFile {
                 return e;
 
         System.out.println("Error");
-        return EUnitData.INFANTRY;
+        return null;
     }
 
     //TODO: Add try catch and controls on type we should have
-    public void loadFile(String name) throws IOException {
+    public void loadFile(String name) throws IOException, BadFileFormatException {
         if (name == null || name.isEmpty())
             throw new IOException("Path is empty, can't load.");
         //board = new Board(25, 20);
@@ -93,39 +114,62 @@ public class LoadFile {
         //Add buildings
         while ((line = br.readLine()) != null) {
             tokens = line.split(";");
-            if (tokens.length == 4)
+            if(tokens.length > 4)
                 break;
-            EBuildingData e = convertBuilding(tokens[0]);
-            int x = Integer.parseInt(tokens[1]) - 1;
-            int y = Integer.parseInt(tokens[2]) - 1;
-            boolean isBroken = Boolean.parseBoolean(tokens[3]);
-            EPlayer p = EPlayer.values()[ Integer.parseInt(tokens[4]) - 1];
-            Building building = new Building(e, p);
+            EBuildingData buildingData;
+            int x, y;
+            EPlayer owner;
+            try {
+                buildingData = convertBuilding(tokens[0]);
+                x = Integer.parseInt(tokens[1]) - 1;
+                y = Integer.parseInt(tokens[2]) - 1;
+                owner = EPlayer.values()[Integer.parseInt(tokens[3]) - 1];
+            } catch(Exception e) {
+                br.close();
+                throw new BadFileFormatException();
+            }
+            Building building = new Building(buildingData, owner);
             building.setPosition(x, y);
-            building.setBroken(isBroken);
             gameState.addBuilding(building);
         }
 
         //Add units
         while (line != null) {
             tokens = line.split(";");
-            EUnitData u = convertUnit(tokens[0]);
-            int x = Integer.parseInt(tokens[1]) - 1;
-            int y = Integer.parseInt(tokens[2]) - 1;
-            /*
-            boolean hasToMove = Boolean.parseBoolean(tokens[3]);
-            boolean hasMoved = Boolean.parseBoolean(tokens[4]);
-            boolean hasAttacked = Boolean.parseBoolean(tokens[5]);
-            */
-            EPlayer p = Integer.parseInt(tokens[3]) == 1 ? EPlayer.PLAYER_NORTH : EPlayer.PLAYER_SOUTH;
-            Unit unit = new Unit(u, p);
+            EUnitData unitData;
+            int x, y;
+            boolean hasToMove, canMove, isLastMove, canAttack;
+            EPlayer owner;
+            try {
+                unitData = convertUnit(tokens[0]);
+                x = Integer.parseInt(tokens[1]) - 1;
+                y = Integer.parseInt(tokens[2]) - 1;
+                hasToMove = Boolean.parseBoolean(tokens[3]);
+                canMove = Boolean.parseBoolean(tokens[4]);
+                isLastMove = Boolean.parseBoolean(tokens[5]);
+                canAttack = Boolean.parseBoolean(tokens[6]);
+                owner = EPlayer.values()[Integer.parseInt(tokens[7]) - 1];
+            } catch(Exception e){
+                br.close();
+                throw new BadFileFormatException();
+            }
+
+            Unit unit = new Unit(unitData, owner);
             unit.setPosition(x, y);
+            unit.setCanMove(canMove);
+
+            if(hasToMove)
+                gameState.addPriorityUnit(unit);
+            else if(!canAttack)
+                gameState.getCantAttackUnits().add(unit);
+
+            if(isLastMove)
+                gameState.setLastUnitMoved(unit);
 
             gameState.addUnit(unit);
             line = br.readLine();
         }
         br.close();
-
         Game.getInstance().reinit(gameState);
     }
 }

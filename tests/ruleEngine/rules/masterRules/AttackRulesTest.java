@@ -15,6 +15,7 @@ import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.exceptions.IncorrectGameActionException;
+import system.BadFileFormatException;
 import system.LoadFile;
 import ui.GUIThread;
 
@@ -45,7 +46,7 @@ public class AttackRulesTest {
         LoadFile lf = new LoadFile();
         try {
             lf.loadFile("presets/attackRulesTestFile.txt");
-        } catch (IOException e) {
+        } catch (IOException|BadFileFormatException e) {
             assertTrue("Test class " + this.getClass().getSimpleName() +
                     " could not load the test file : Test interrupted.", false);
         }

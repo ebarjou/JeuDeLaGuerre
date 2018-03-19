@@ -30,7 +30,6 @@ public class InfosPane extends VBox {
         this.getChildren().add(new Label("\nLegend : "));
 
         for(EUnitData unit : EUnitData.values()){
-
             IconTitledPane tp = new IconTitledPane(unit.name(), unit);
             tp.setExpanded(false);
             this.getChildren().add(tp);
