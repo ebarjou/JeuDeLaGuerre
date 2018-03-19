@@ -1,4 +1,4 @@
-package ruleEngine.rules;
+package ruleEngine;
 
 import game.EPlayer;
 import game.Game;
@@ -74,8 +74,8 @@ public class DebordGameTest {
     }
 
     @Test
-    public void checkActionValidActions() {
-        generateListOfActions();
+    public void checkActionValidActions1() {
+        generateListOfActions1();
         int turn = 1;
         int actionNb = 0;
         for (GameAction ga : actions) {
@@ -109,7 +109,7 @@ public class DebordGameTest {
         actions.add(gameAction);
     }
 
-    private void generateListOfActions() {
+    private void generateListOfActions1() {
         EPlayer player;
 
         // Turn 1-North
@@ -164,6 +164,60 @@ public class DebordGameTest {
         addAction(player, EGameActionType.MOVE, 17, 'J', 16, 'I'); // A
         addAction(player, EGameActionType.MOVE, 19, 'L', 17, 'J'); // C
         addAction(player, EGameActionType.MOVE, 18, 'M', 17, 'O'); // C
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 4-North
+        player = EPlayer.PLAYER_NORTH;
+        addAction(player, EGameActionType.MOVE, 3, 'N', 3, 'P'); // C
+        addAction(player, EGameActionType.MOVE, 5, 'I', 7, 'G'); // C
+        addAction(player, EGameActionType.MOVE, 4, 'J', 6, 'H'); // C
+        addAction(player, EGameActionType.MOVE, 4, 'I', 5, 'G'); // C
+        addAction(player, EGameActionType.MOVE, 9, 'H', 9, 'G'); // I
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 4-South
+        player = EPlayer.PLAYER_SOUTH;
+        addAction(player, EGameActionType.MOVE, 15, 'H', 16, 'F'); // C
+        addAction(player, EGameActionType.MOVE, 14, 'I', 14, 'H'); // I
+        addAction(player, EGameActionType.MOVE, 16, 'I', 16, 'H'); // A
+        addAction(player, EGameActionType.MOVE, 17, 'J', 15, 'H'); // C
+        addAction(player, EGameActionType.MOVE, 14, 'K', 14, 'J'); // I
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 5-North
+        player = EPlayer.PLAYER_NORTH;
+        addAction(player, EGameActionType.MOVE, 3, 'P', 3, 'R'); // C
+        addAction(player, EGameActionType.MOVE, 11, 'F', 12, 'E'); // I
+        addAction(player, EGameActionType.MOVE, 10, 'F', 11, 'F'); // A
+        addAction(player, EGameActionType.MOVE, 8, 'F', 10, 'F'); // Ac
+        addAction(player, EGameActionType.MOVE, 7, 'G', 9, 'E'); // C
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 5-South
+        player = EPlayer.PLAYER_SOUTH;
+        addAction(player, EGameActionType.MOVE, 16, 'H', 15, 'G'); // A
+        addAction(player, EGameActionType.MOVE, 16, 'F', 17, 'D'); // C
+        addAction(player, EGameActionType.MOVE, 15, 'H', 16, 'F'); // C
+        addAction(player, EGameActionType.MOVE, 15, 'L', 15, 'J'); // Tc
+        addAction(player, EGameActionType.MOVE, 17, 'K', 16, 'J'); // I
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 6-North
+        player = EPlayer.PLAYER_NORTH;
+        addAction(player, EGameActionType.MOVE, 3, 'R', 3, 'T'); // C
+        addAction(player, EGameActionType.MOVE, 10, 'F', 12, 'F'); // Ac
+        addAction(player, EGameActionType.MOVE, 9, 'F', 10, 'F'); // I
+        addAction(player, EGameActionType.MOVE, 5, 'G', 7, 'F'); // C
+        addAction(player, EGameActionType.MOVE, 6, 'H', 8, 'G'); // C
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 6-South
+        player = EPlayer.PLAYER_SOUTH;
+        addAction(player, EGameActionType.MOVE, 16, 'F', 16, 'D'); // C
+        addAction(player, EGameActionType.MOVE, 16, 'J', 15, 'I'); // I
+        addAction(player, EGameActionType.MOVE, 15, 'J', 16, 'H'); // Tc
+        addAction(player, EGameActionType.MOVE, 15, 'G', 16, 'F'); // A
+        addAction(player, EGameActionType.MOVE, 18, 'L', 16, 'J'); // C
         addAction(player, EGameActionType.END_TURN);
     }
 }
