@@ -106,7 +106,7 @@ class BoardCanvas extends Canvas {
             }
 
             g.setStroke(Color.ORANGERED);
-            g.strokeLine(dx, dy + (gameState.getHeight() / 2) * caseSize, dx + gameState.getWidth() * caseSize, dy + gameState.getHeight() * caseSize / 2);
+            g.strokeLine(dx, dy + (gameState.getHeight() / 2) * caseSize, dx + gameState.getWidth() * caseSize, dy + (gameState.getHeight() * caseSize) / 2);
         }
     }
 
@@ -187,7 +187,9 @@ class BoardCanvas extends Canvas {
             if(caseSize <= 0 || textField == null) return;
             int col = (int)((mouseEvent.getX()-dx)/caseSize);
             int row = (int)((mouseEvent.getY()-dy)/caseSize);
-
+            if(col < 0 || col > gameState.getHeight() || row < 0 || row > gameState.getWidth())
+                return;
+            System.out.println("row : " + row + "; col : " + col);
             textField.setText(textField.getText() + " " + IntLetterConverter.getLettersFromInt(row) + (col+1));
         }
     }
