@@ -1,5 +1,6 @@
 package ui.UIElements;
 
+import game.EPlayer;
 import game.Game;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -21,6 +22,7 @@ public class CommandPane extends HBox{
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, null, null)));
 
         labelPlayerTurn = new Label(Game.getInstance().getGameState().getActualPlayer().name());
+        labelPlayerTurn.setTextFill(Game.getInstance().getGameState().getActualPlayer()==EPlayer.PLAYER_SOUTH?Color.ORANGERED:Color.BLUE);
         labelPlayerTurn.setPrefHeight(MainLayout.COMMAND_HEIGHT);
 
         labelActionLeft = new Label("Action left : " + Game.getInstance().getGameState().getActionLeft());
@@ -34,7 +36,8 @@ public class CommandPane extends HBox{
         this.getChildren().add(labelActionLeft);
     }
 
-    public void setPlayer(String player){
+    public void setPlayer(String player, Color color){
+        labelPlayerTurn.setTextFill(color);
         labelPlayerTurn.setText(player);
     }
 

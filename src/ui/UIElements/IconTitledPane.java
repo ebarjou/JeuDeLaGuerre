@@ -30,8 +30,6 @@ class IconTitledPane extends TitledPane {
         BoardDrawer.drawUnit(canvas.getGraphicsContext2D(), unit, EPlayer.PLAYER_NORTH, 0, 0, 32);
         setGraphic(canvas);
         setContentDisplay(ContentDisplay.LEFT);
-
-
     }
 
     public IconTitledPane(String titleText, EBuildingData building) {

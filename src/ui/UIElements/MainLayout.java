@@ -1,9 +1,16 @@
 package ui.UIElements;
 
+import analyse.EMetricsMapType;
+import game.EPlayer;
 import game.Game;
 import game.gameState.GameState;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -22,10 +29,18 @@ public class MainLayout extends BorderPane{
     private static final int COMMAND_PANEL_HEIGHT = 28;
     private static final int COMMAND_PANEL_MARGIN = 10;
 
-    private BoardCanvas canvas;
-    CommandPane commandPane;
-    InfosPane infosPane;
-    CanvasPane gamePane;
+    private final ComboBox metricsDisplay;
+    private final ObservableList<String> metricsList =
+            FXCollections.observableArrayList(
+                    "Communications",
+                    "Offensive map",
+                    "Defense map"
+            );
+
+    protected BoardCanvas canvas;
+    private CommandPane commandPane;
+    private InfosPane infosPane;
+    private CanvasPane gamePane;
     private TextField textField;
 
     public MainLayout(){
@@ -37,8 +52,11 @@ public class MainLayout extends BorderPane{
         canvas = new BoardCanvas(CANVAS_WIDTH + COORDINATES_BAR_WIDTH, CANVAS_HEIGHT + COORDINATES_BAR_WIDTH, COORDINATES_BAR_WIDTH, textField);
         textField.setPrefWidth(canvas.getWidth());
 
+        metricsDisplay = new ComboBox(metricsList);
+        metricsDisplay.valueProperty().addListener(new MetrixBoxEvent());
+
         commandPane = new CommandPane(textField);
-        infosPane = new InfosPane();
+        infosPane = new InfosPane(metricsDisplay);
         gamePane = new CanvasPane(CANVAS_WIDTH, CANVAS_HEIGHT, canvas);
 
         this.setBottom(commandPane);
@@ -48,7 +66,7 @@ public class MainLayout extends BorderPane{
 
     public void refresh(GameState board){
         canvas.draw(board);
-        commandPane.setPlayer(board.getActualPlayer().name());
+        commandPane.setPlayer(board.getActualPlayer().name(), board.getActualPlayer()== EPlayer.PLAYER_SOUTH?Color.ORANGERED:Color.BLUE);
         commandPane.setActionLeft(board.getActionLeft());
     }
 
@@ -66,6 +84,18 @@ public class MainLayout extends BorderPane{
 
     public void clearCommandText(){
         textField.clear();
+    }
+
+    private class MetrixBoxEvent implements ChangeListener<String>{
+        @Override
+        public void changed(ObservableValue<? extends String> ov, String t, String t1) {
+            if(t1.equals(metricsList.get(0))){
+                canvas.setMetricsMapType(null);
+            } else if(t1.equals(metricsList.get(1))){
+                canvas.setMetricsMapType(EMetricsMapType.ATTACK_MAP);
+            }
+            canvas.refresh();
+        }
     }
 
 }

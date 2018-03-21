@@ -13,19 +13,12 @@ import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 
 public class InfosPane extends VBox {
-    public InfosPane(){
+    public InfosPane(ComboBox metricsDisplay){
         this.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, null, null)));
         this.setMinWidth(MainLayout.INFOS_WIDTH);
 
-        ObservableList<String> options =
-                FXCollections.observableArrayList(
-                        "Communications",
-                        "Offensive map",
-                        "Defense map"
-                );
-        ComboBox comboBox = new ComboBox(options);
-        comboBox.getSelectionModel().selectFirst();
-        this.getChildren().add(comboBox);
+        metricsDisplay.getSelectionModel().selectFirst();
+        this.getChildren().add(metricsDisplay);
 
         this.getChildren().add(new Label("\nLegend : "));
 

@@ -1,5 +1,6 @@
 package ui.UIElements;
 
+import analyse.EMetricsMapType;
 import game.EPlayer;
 import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
@@ -28,9 +29,12 @@ class BoardCanvas extends Canvas {
     private GraphicsContext g;
     private int caseSize;
     private GameState gameState;
+    private EMetricsMapType metricsMapType;
+    private double[][] metrics;
 
     BoardCanvas(int w, int h, int coords_width, TextField textField) {
         super(w + coords_width, h + coords_width);
+        metricsMapType = null;
         caseSize = 0;
         this.coords_width = coords_width;
         this.board_height = (int)(getHeight() - coords_width);
@@ -63,6 +67,7 @@ class BoardCanvas extends Canvas {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         if (gameState != null) {
+            if(metricsMapType != null) this.metrics = metricsMapType.getMethod().compute(gameState, gameState.getActualPlayer());
             if(getWidth()/gameState.getWidth() > getHeight()/gameState.getHeight()){
                 caseSize = (int)Math.floor(board_height/(double)gameState.getHeight());
                 dx = (int)((getWidth()-(caseSize*gameState.getWidth()+coords_width))/2.0);
@@ -120,22 +125,36 @@ class BoardCanvas extends Canvas {
         draw(gameState);
     }
 
+    void refresh(){
+        draw(gameState);
+    }
+
     private void drawCellBackground(GameState gameState, int x, int y, int pos_x, int pos_y, int size) {
         g.save();
         g.setFill(Color.IVORY);
         g.fillRect(pos_x, pos_y, size, size);
-        if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
-            g.setFill(SOUTH_COLOR_LIGHT);
-            g.fillRect(pos_x, pos_y, size, size);
-            g.setFill(NORTH_COLOR_LIGHT);
-            g.fillPolygon(new double[] {pos_x, pos_x + size, pos_x}, new double[] {pos_y, pos_y, pos_y + size}, 3);
-        } else if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
-            g.setFill(NORTH_COLOR_LIGHT);
-            g.fillRect(pos_x, pos_y, size, size);
-        } else if (gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
-            g.setFill(SOUTH_COLOR_LIGHT);
-            g.fillRect(pos_x, pos_y, size, size);
+        if(metricsMapType != null){
+            switch (metricsMapType) {
+                case ATTACK_MAP:
+                    g.setFill(Color.rgb(255, 0, 0, Math.min(metrics[x][y] / 38.0, 1.0)));
+                    g.fillRect(pos_x, pos_y, size, size);
+                    break;
+            }
+        } else {
+            if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
+                g.setFill(SOUTH_COLOR_LIGHT);
+                g.fillRect(pos_x, pos_y, size, size);
+                g.setFill(NORTH_COLOR_LIGHT);
+                g.fillPolygon(new double[] {pos_x, pos_x + size, pos_x}, new double[] {pos_y, pos_y, pos_y + size}, 3);
+            } else if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
+                g.setFill(NORTH_COLOR_LIGHT);
+                g.fillRect(pos_x, pos_y, size, size);
+            } else if (gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
+                g.setFill(SOUTH_COLOR_LIGHT);
+                g.fillRect(pos_x, pos_y, size, size);
+            }
         }
+
         g.restore();
     }
 
@@ -193,5 +212,9 @@ class BoardCanvas extends Canvas {
             int row = (int)((mouseEvent.getY()-dy)/caseSize);
             textField.setText(textField.getText() + " " + IntLetterConverter.getLettersFromInt(row) + (col+1));
         }
+    }
+
+    public void setMetricsMapType(EMetricsMapType type){
+        this.metricsMapType = type;
     }
 }

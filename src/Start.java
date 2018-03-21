@@ -7,7 +7,7 @@ public class Start {
     public static void main(String[] arg) {
         GUIThread guiThread = new GUIThread();
 
-        GUIPlayer p2 = new GUIPlayer(Thread.currentThread(), guiThread);
+        BotPlayer p2 = new BotPlayer(Thread.currentThread(), guiThread);
         //GUIPlayer p2 = new GUIPlayer(Thread.currentThread(), guiThread);
         BotPlayer p1 = new BotPlayer(Thread.currentThread(), guiThread);
 
