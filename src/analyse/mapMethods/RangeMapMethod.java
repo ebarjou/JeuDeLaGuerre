@@ -3,12 +3,9 @@ package analyse.mapMethods;
 import analyse.EMetricsMoveType;
 import analyse.InfoModule;
 import analyse.MoveWrapper;
-import com.sun.corba.se.impl.protocol.InfoOnlyServantCacheLocalCRDImpl;
 import game.EPlayer;
-import game.board.Building;
 import game.board.Unit;
 import game.gameState.GameState;
-import org.junit.runner.Result;
 import ruleEngine.Coordinates;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
@@ -16,9 +13,7 @@ import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.exceptions.IncorrectGameActionException;
 
-import javax.sound.sampled.Line;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class RangeMapMethod implements IMetricsMapMethod {
 
