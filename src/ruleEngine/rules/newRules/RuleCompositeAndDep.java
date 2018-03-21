@@ -25,7 +25,7 @@ public class RuleCompositeAndDep extends AbsRuleComposite {
                     failedRule = rule;
             }else{
                 result.addMessage(rule.getRules(),
-                        "This rule is not checked because "
+                        "Those rules are not checked because "
                                     + failedRule.getClass().getSimpleName() + " has failed.");
             }
         }

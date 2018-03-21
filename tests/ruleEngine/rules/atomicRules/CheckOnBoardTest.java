@@ -38,6 +38,7 @@ public class CheckOnBoardTest {
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckOnBoard : Target coordinates are beyond the board's boundaries.\n";
+        System.out.println(ruleResult.getLogMessage());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
 
         ruleResult = new RuleResult();

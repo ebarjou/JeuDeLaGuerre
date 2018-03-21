@@ -24,13 +24,13 @@ public class RuleChecker {
         commRuleMaster = new CommRules();
         endRuleMaster = new EndRules();
         victoryRuleMaster = new VictoryRules();
-        /*
+/*
         System.out.println("MoveRule :\n" + moveRuleMaster.toString() + "\n");
         System.out.println("AttackRule :\n" + attackRuleMaster.toString() + "\n");
         System.out.println("EndRule :\n" + endRuleMaster.toString() + "\n");
         System.out.println("VictoryRule :\n" + victoryRuleMaster.toString() + "\n");
         System.out.println("CommunicationRule :\n" + commRuleMaster.toString() + "\n");
-        */
+*/
     }
 
     private void computeCommunications(GameState gameState){
@@ -77,7 +77,7 @@ public class RuleChecker {
                 RuleResult victoryResult = new RuleResult();
                 victoryRuleMaster.checkAction(gameState, action, victoryResult);
                 if (!victoryResult.getLogMessage().isEmpty())
-                    result.addMessage(victoryRuleMaster, victoryResult.getLogMessage());
+                    result.addMessage(victoryResult.getLogMessage());
             }
         }
 

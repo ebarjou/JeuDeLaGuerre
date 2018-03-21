@@ -30,4 +30,8 @@ public class RuleResult {
     public void addMessage(String casters, String message){
         logMessage.append(casters).append(" : ").append(message).append("\n");
     }
+
+    public void addMessage(String message){
+        logMessage.append(message).append("\n");
+    }
 }

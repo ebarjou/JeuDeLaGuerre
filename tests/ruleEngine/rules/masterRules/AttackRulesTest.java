@@ -102,6 +102,7 @@ public class AttackRulesTest {
             assertTrue("Action MOVE wasn't recognized by the RuleChecker.", false);
         }
         assertFalse(ruleResult.isValid());
+        System.out.println(expectedMessage + "\n" + ruleResult.getLogMessage() +"\n\n");
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
 
@@ -193,8 +194,8 @@ public class AttackRulesTest {
         unit.setPosition(9, 10);
         gameState.addPriorityUnit(unit);
 
-        expectedMessage = "CheckIsPriorityUnit : There are other units that need to be moved first.\n" +
-                "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
+        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
+                "CheckIsPriorityUnit : There are other units that need to be moved first.\n" +
                 "CheckIsEmptyPath : There is no path found using 1 movement points.\n";
         gameAction.setSourceCoordinates(0, 8);
         gameAction.setTargetCoordinates(0, 6);

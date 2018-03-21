@@ -26,7 +26,7 @@ public class VictoryRules extends RuleCompositeAnd {
         if(!tmpResult.isValid()){
             result.invalidate();
         } else {
-            result.addMessage("", action.getPlayer() + " winner !");
+            result.addMessage(this, action.getPlayer() + " winner !");
         }
         return validAction;
     }
