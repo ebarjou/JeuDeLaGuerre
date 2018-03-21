@@ -60,8 +60,12 @@ public class AttackMapMethod implements IMetricsMapMethod {
 		if (!b)
 			return false;
 
+		if(!state.isValidCoordinate(x, y))
+			return false;
+
 		if (state.isBuilding(x, y) && !state.getBuildingType(x, y).isAccessible())
 			return false;
+
 
 		map[x][y] += value;
 		return true;
