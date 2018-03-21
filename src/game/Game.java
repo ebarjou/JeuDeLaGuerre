@@ -74,7 +74,7 @@ public class Game {
     private GameResponse handleGameAction(GameAction action) {
         GameState actualGameState = this.gameState.clone(); // copy of the GameState & Board before attempting the action
         try {
-            RuleResult res = ruleChecker.checkAction(gameState, action);
+            RuleResult res = ruleChecker.checkAndApplyAction(gameState, action);
             if (res.isValid()) {
                 historyGameState.push(actualGameState);
                 //Communication

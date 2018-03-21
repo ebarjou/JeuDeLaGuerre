@@ -45,7 +45,7 @@ public class CheckIsPriorityUnitTest {
 
         //Covered by rule dependencies
         //l.add(u);
-        //assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
+        //assertTrue(rule.checkAndApplyAction(iGameState, gameAction, ruleResult));
         //assertTrue(ruleResult.isValid());
 
         u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);

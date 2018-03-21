@@ -23,7 +23,7 @@ public class RuleCompositeNot extends AbsRuleComposite {
             result.addMessage(rule.getRules(), "Expected false, but returned true.");
         }
         return !valid;
-        //return !rule.checkAction(state, action, result);
+        //return !rule.checkAndApplyAction(state, action, result);
     }
 
     @Override

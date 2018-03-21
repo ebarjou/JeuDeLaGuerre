@@ -1,12 +1,11 @@
 package ruleEngine;
 
 import game.EPlayer;
-import game.board.Board;
 import game.board.Building;
 import game.board.Unit;
 import game.gameState.GameState;
 import org.junit.Before;
-import org.junit.Test;import game.gameState.GameState;
+import org.junit.Test;
 import org.mockito.Mockito;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
@@ -44,7 +43,7 @@ public class RuleCheckerTest {
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
         try {
-            rulechecker.checkAction(gameState, gameAction);
+            rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check action MOVE because action COMMUNICATION failed beforehand.", false);
         }
@@ -58,9 +57,9 @@ public class RuleCheckerTest {
         String expectedMessage = "";
 
         try {
-            result = rulechecker.checkAction(gameState, gameAction);
+            result = rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
-            assertTrue("Action MOVE unrecognized by RuleChecker.checkAction().", false);
+            assertTrue("Action MOVE unrecognized by RuleChecker.checkAndApplyAction().", false);
         }
         assertTrue(result.isValid());
         assertTrue(result.getLogMessage().equals(expectedMessage));
@@ -71,7 +70,7 @@ public class RuleCheckerTest {
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
         try {
-            rulechecker.checkAction(gameState, gameAction);
+            rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check action MOVE because action COMMUNICATION failed beforehand.", false);
         }
@@ -80,7 +79,7 @@ public class RuleCheckerTest {
         gameAction.setSourceCoordinates(0, 0);
         gameAction.setTargetCoordinates(1, 1);
         try {
-            rulechecker.checkAction(gameState, gameAction);
+            rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check action ATTACK because action MOVE failed beforehand.", false);
         }
@@ -98,9 +97,9 @@ public class RuleCheckerTest {
                 + "Attack:4 Defense:6.\n";
 
         try {
-            result = rulechecker.checkAction(gameState, gameAction);
+            result = rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
-            assertTrue("Action ATTACK unrecognized by RuleChecker.checkAction().", false);
+            assertTrue("Action ATTACK unrecognized by RuleChecker.checkAndApplyAction().", false);
         }
         assertTrue(result.isValid());
         assertTrue(result.getLogMessage().equals(expectedMessage));
@@ -118,9 +117,9 @@ public class RuleCheckerTest {
         String expectedMessage = "";
 
         try {
-            result = rulechecker.checkAction(gameState, gameAction);
+            result = rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
-            assertTrue("Action END_TURN unrecognized by RuleChecker.checkAction().", false);
+            assertTrue("Action END_TURN unrecognized by RuleChecker.checkAndApplyAction().", false);
         }
         assertTrue(result.isValid());
         assertTrue(result.getLogMessage().equals(expectedMessage));
@@ -131,7 +130,7 @@ public class RuleCheckerTest {
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
         try {
-            rulechecker.checkAction(gameState, gameAction);
+            rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check Victory because action COMMUNICATION failed beforehand.", false);
         }
@@ -147,7 +146,7 @@ public class RuleCheckerTest {
         RuleResult result = new RuleResult();
         String expectedMessage = "VictoryRules : PLAYER_NORTH winner !\n\n";
         try {
-            result = rulechecker.checkAction(gameState, gameAction);
+            result = rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check Victory because action MOVE failed beforehand.", false);
         }
@@ -160,7 +159,7 @@ public class RuleCheckerTest {
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
         try {
-            rulechecker.checkAction(gameState, gameAction);
+            rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check Victory because action COMMUNICATION failed beforehand.", false);
         }
@@ -169,7 +168,7 @@ public class RuleCheckerTest {
         gameAction.setSourceCoordinates(0, 0);
         gameAction.setTargetCoordinates(1, 1);
         try {
-            rulechecker.checkAction(gameState, gameAction);
+            rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check Victory because action MOVE failed beforehand.", false);
         }
@@ -186,7 +185,7 @@ public class RuleCheckerTest {
         String expectedMessage = "AttackRules : The unit at position (0, 2) died : Attack:8 Defense:6.\n" +
                 "VictoryRules : PLAYER_NORTH winner !\n\n";
         try {
-            result = rulechecker.checkAction(gameState, gameAction);
+            result = rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check Victory because action ATTACK failed beforehand.", false);
         }
@@ -199,8 +198,8 @@ public class RuleCheckerTest {
     public void checkActionInvalidTest() {
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.NONE);
         try {
-            rulechecker.checkAction(gameState, gameAction);
-            assertTrue("Action NONE should not be recognized by RuleChecker.checkAction().", false);
+            rulechecker.checkAndApplyAction(gameState, gameAction);
+            assertTrue("Action NONE should not be recognized by RuleChecker.checkAndApplyAction().", false);
         } catch (IncorrectGameActionException e) {
             // Intended : Do nothing
         }

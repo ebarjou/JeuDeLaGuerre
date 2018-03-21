@@ -55,7 +55,7 @@ public class AttackRulesTest {
 
         try {
             GameAction communication = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
-            RuleResult r = rule.checkAction(gameState, communication);
+            RuleResult r = rule.checkAndApplyAction(gameState, communication);
             assertTrue("Can't check actions ATTACK because action COMMUNICATION failed beforehand.", r.isValid());
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check actions ATTACK because action COMMUNICATION failed beforehand.", false);
@@ -65,7 +65,7 @@ public class AttackRulesTest {
 
     private void checkActionValidMove(EUnitData unitData) {
         try {
-            ruleResult = rule.checkAction(gameState, gameAction);
+            ruleResult = rule.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Action MOVE wasn't recognized by the RuleChecker.", false);
         }
@@ -81,7 +81,7 @@ public class AttackRulesTest {
 
     private void checkActionValidAttack() {
         try {
-            ruleResult = rule.checkAction(gameState, gameAction);
+            ruleResult = rule.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Action ATTACK wasn't recognized by the RuleChecker.", false);
         }
@@ -97,7 +97,7 @@ public class AttackRulesTest {
 
     private void checkActionInvalidMove() {
         try {
-            ruleResult = rule.checkAction(gameState, gameAction);
+            ruleResult = rule.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Action MOVE wasn't recognized by the RuleChecker.", false);
         }

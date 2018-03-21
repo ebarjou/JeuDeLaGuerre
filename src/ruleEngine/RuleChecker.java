@@ -36,6 +36,25 @@ public class RuleChecker {
         commRuleMaster.applyResult(gameState, null, null);
     }
 
+    public boolean checkAction(GameState state, GameAction action) throws IncorrectGameActionException {
+        RuleResult result = new RuleResult();
+        IRule masterRule = null;
+        boolean checkVictory = false;
+        switch (action.getActionType()) {
+            case MOVE:
+                masterRule = moveRuleMaster;
+                checkVictory = true;
+                break;
+            case ATTACK:
+                masterRule = attackRuleMaster;
+                checkVictory = true;
+                break;
+            default:
+                throw new IncorrectGameActionException("Unhandled GameAction type.");
+        }
+        return masterRule.checkAction(state, action, result);
+    }
+
     /**
      * Check if a given action on a given stage of the game is allowed or not.
      * @param gameState The stage of the game when the action is performed.
@@ -43,7 +62,7 @@ public class RuleChecker {
      * @return RuleResult object containing information about the validity of the performed action.
      * @throws IncorrectGameActionException The action is not recognized by the RuleChecker.
      */
-    public RuleResult checkAction(GameState gameState, GameAction action) throws IncorrectGameActionException {
+    public RuleResult checkAndApplyAction(GameState gameState, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
         IRule mr = null;
         boolean checkVictory = false;
