@@ -145,7 +145,7 @@ public class MoveRulesTest {
     @Test
     public void checkActionInvalidMoveInfantry() {
         expectedMessage = "CheckIsAllyUnit : This unit is not owned by PLAYER_NORTH.\n" +
-                "CheckUnitMP, CheckIsInCommunication, CheckIsEmptyPath,  : Those rules are not checked because CheckIsAllyUnit has failed.\n";
+                "CheckIsInCommunication, CheckIsRelay, , CheckUnitMP, CheckIsEmptyPath,  : Those rules are not checked because CheckIsAllyUnit has failed.\n";
         gameAction.setSourceCoordinates(24, 19);
         gameAction.setTargetCoordinates(24, 17);
 
@@ -154,8 +154,10 @@ public class MoveRulesTest {
 
     @Test
     public void checkActionInvalidMoveCavalry() {
-        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 2 MP, and you need 3 MP\n" +
-                "CheckIsInCommunication : This unit is not in communication and cannot be used.\n" +
+        expectedMessage = "CheckIsInCommunication : This unit is not in your communication.\n" +
+                "CheckIsRelay : This unit is not a relay.\n" +
+                "\n" +
+                "CheckUnitMP : Not enough movement point, the unit has 2 MP, and you need 3 MP\n" +
                 "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
         gameAction.setSourceCoordinates(0, 19);
         gameAction.setTargetCoordinates(3, 16);
@@ -165,8 +167,10 @@ public class MoveRulesTest {
 
     @Test
     public void checkActionInvalidMoveArtillery() {
-        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
-                "CheckIsInCommunication : This unit is not in communication and cannot be used.\n" +
+        expectedMessage = "CheckIsInCommunication : This unit is not in your communication.\n" +
+                "CheckIsRelay : This unit is not a relay.\n" +
+                "\n" +
+                "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
                 "CheckIsEmptyPath : There is no path found using 1 movement points.\n";
         gameAction.setSourceCoordinates(1, 19);
         gameAction.setTargetCoordinates(1, 17);
@@ -176,7 +180,9 @@ public class MoveRulesTest {
 
     @Test
     public void checkActionInvalidMoveArtilleryHorse() {
-        expectedMessage = "CheckIsInCommunication : This unit is not in communication and cannot be used.\n" +
+        expectedMessage = "CheckIsInCommunication : This unit is not in your communication.\n" +
+                "CheckIsRelay : This unit is not a relay.\n" +
+                "\n" +
                 "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
         gameAction.setSourceCoordinates(2, 19);
         gameAction.setTargetCoordinates(0, 17);

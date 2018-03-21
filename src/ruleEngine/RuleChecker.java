@@ -7,8 +7,7 @@ import ruleEngine.rules.newRules.IRule;
 
 /**
  * Object acting as a hub for {@link game.Game} to check actions on the board. Should be instantiated once.
- * @see Rule
- * @see MasterRule
+ * @see IRule
  * @see RuleResult
  */
 public class RuleChecker {
@@ -25,7 +24,7 @@ public class RuleChecker {
         endRuleMaster = new EndRules();
         victoryRuleMaster = new VictoryRules();
 
-        System.out.println("MoveRule :\n" + moveRuleMaster.toString() + "\n");
+        /*System.out.println("MoveRule :\n" + moveRuleMaster.toString() + "\n");
         /*System.out.println("AttackRule :\n" + attackRuleMaster.toString() + "\n");
         System.out.println("EndRule :\n" + endRuleMaster.toString() + "\n");
         System.out.println("VictoryRule :\n" + victoryRuleMaster.toString() + "\n");

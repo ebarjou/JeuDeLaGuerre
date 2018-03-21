@@ -26,7 +26,7 @@ public class RuleCompositeOrDep extends AbsRuleComposite {
             }
         }
 
-        result.addMessage(this, tmpResult.getLogMessage());
+        result.addMessage(tmpResult.getLogMessage());
         result.invalidate();
         return valid;
     }
