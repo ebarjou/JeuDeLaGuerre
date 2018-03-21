@@ -52,7 +52,8 @@ public class RuleChecker {
             default:
                 throw new IncorrectGameActionException("Unhandled GameAction type.");
         }
-        return masterRule.checkAction(state, action, result);
+        boolean valid = masterRule.checkAction(state, action, result);
+        return result.isValid();
     }
 
     /**
