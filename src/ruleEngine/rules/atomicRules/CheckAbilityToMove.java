@@ -1,21 +1,13 @@
 package ruleEngine.rules.atomicRules;
 
-import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
+import ruleEngine.rules.newRules.IRule;
 
-/**
- * Check if a unit is supplied in communication or if is a Relay type unit.<br>
- * Valid if it is, invalid if otherwise.
- *
- * @see EUnitData
- * @see ruleEngine.rules.masterRules.CommRules
- */
-public class CheckAbilityToMove extends Rule {
+public class CheckAbilityToMove implements IRule {
 
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
@@ -26,11 +18,15 @@ public class CheckAbilityToMove extends Rule {
                 return true;
             }
 
-        } catch (IllegalBoardCallException ignored){
+        } catch (NullPointerException ignored){
         }
 
         result.addMessage(this, "This unit is not in communication and cannot be used.");
         result.invalidate();
         return false;
+    }
+
+    public String toString(){
+        return this.getClass().getSimpleName();
     }
 }

@@ -2,17 +2,16 @@ package ruleEngine.rules.atomicRules;
 
 import game.gameState.GameState;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
-/**
- * Check if a unit is owned by the player requesting the move.<br>
- * Valid if it's the same player, invalid otherwise.
- *
- * @see ruleEngine.rules.masterRules.MoveRules
- * @see ruleEngine.rules.masterRules.AttackRules
- */
-public class CheckIsAllyUnit extends Rule {
+public class CheckIsAllyUnit implements IRule {
+
+
+
+    public String toString(){
+        return this.getClass().getSimpleName();
+    }
 
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {

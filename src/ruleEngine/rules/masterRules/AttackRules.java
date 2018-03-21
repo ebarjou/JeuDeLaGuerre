@@ -9,41 +9,38 @@ import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.rules.atomicRules.*;
+import ruleEngine.rules.newRules.IRule;
+import ruleEngine.rules.newRules.RuleCompositeAnd;
+import ruleEngine.rules.newRules.RuleCompositeAndDep;
 
 import java.util.List;
 
-/**
- * Class testing if an attack action is allowed on the board or not. If successful, the outcome of the attack is computed
- * and can be displayed from the RuleResult.<br>
- * <br>
- * If the attackers power is lesser or equals to the defenders power, nothing happens.<br>
- * If the attackers power is larger of the defenders power by 1 point, the attacked unit must retreat first on the next turn
- * of the attacked player. This retreat must be performed on a adjacent case of the unit's current position. If there's no empty
- * case around the unit, the unit is removed from the game.<br>
- * If the attackers power is larger of the defenders power by 2 or more points, the attacked unit is removed from the game.
- */
-public class AttackRules extends MasterRule {
+public class AttackRules extends RuleCompositeAnd {
 
     private static final int chargeVal = 7;
 
     public AttackRules() {
         //TODO: check if the unit can attack (relay can actually initiate the fight.
-        addRule(new CheckPlayerTurn());
-        addRule(new CheckOnBoard());
-        addRule(new CheckAbilityToMove());
-        addRule(new CheckIsAllyUnit()); // CheckSourceIsAllyUnit
-        addRule(new CheckIsEnemyUnit()); // CheckTargetIsEnemyUnit
-        addRule(new CheckIsAttackingUnit());
-        addRule(new CheckAreAligned());
-        addRule(new CheckUnitRange());
-        addDependence(new CheckUnitRange(), new CheckAreAligned(), true);
-        addRule(new CheckLastMove());
-        addRule(new CheckCanAttackUnit());
-        addRule(new CheckIsEmptyAttackPath());
-        addDependence(new CheckIsEmptyAttackPath(), new CheckUnitRange(), true);
+        super.add(new CheckPlayerTurn());
+        IRule depAnd = new RuleCompositeAndDep();
+        depAnd.add(new CheckOnBoard());
+
+        IRule onBoardDep = new RuleCompositeAnd();
+        onBoardDep.add(new CheckAbilityToMove());
+        onBoardDep.add(new CheckIsAllyUnit());
+        onBoardDep.add(new CheckIsEnemyUnit());
+        onBoardDep.add(new CheckAreAligned());
+        onBoardDep.add(new CheckUnitRange());
+        onBoardDep.add(new CheckIsEmptyAttackPath());
+        onBoardDep.add(new CheckLastMove());
+        onBoardDep.add(new CheckCanAttackUnit());
+
+        depAnd.add(onBoardDep);
+
+        super.add(depAnd);
     }
 
-    @Override
+
     public void applyResult(GameState state, GameAction action, RuleResult result) {
         int xT = action.getTargetCoordinates().getX();
         int yT = action.getTargetCoordinates().getY();

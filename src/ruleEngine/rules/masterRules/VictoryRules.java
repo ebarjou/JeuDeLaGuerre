@@ -4,21 +4,33 @@ import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import ruleEngine.rules.atomicRules.CheckIsNoArsenalEnemy;
+import ruleEngine.rules.atomicRules.CheckIsNoEnemy;
 import ruleEngine.rules.atomicRules.CheckPlayerTurn;
+import ruleEngine.rules.newRules.IRule;
+import ruleEngine.rules.newRules.RuleCompositeAnd;
+import ruleEngine.rules.newRules.RuleCompositeOrDep;
 
-/**
- * Class testing if a game is ended by the destruction of all of a player units or arsenals.
- */
-public class VictoryRules extends MasterRule{
+public class VictoryRules extends RuleCompositeAnd {
     public VictoryRules(){
-        addRule(new CheckPlayerTurn());
+        super.add(new CheckPlayerTurn());
         //TODO: The next rule has the test of the commented rule
-        addRule(new CheckIsNoArsenalEnemy());
-        //addRule(new CheckIsNoEnemy());
+        IRule orDep = new RuleCompositeOrDep();
+        orDep.add(new CheckIsNoArsenalEnemy());
+        orDep.add(new CheckIsNoEnemy());
+        super.add(orDep);
     }
 
-    @Override
-    public void applyResult(GameState state, GameAction action, RuleResult result) {
+    public boolean checkAction(GameState state, GameAction action, RuleResult result){
+        RuleResult tmpResult = new RuleResult();
+        boolean validAction = super.checkAction(state, action, tmpResult);
+        if(!tmpResult.isValid()){
+            result.invalidate();
+        } else {
+            result.addMessage("", action.getPlayer() + " winner !");
+        }
+        return validAction;
+    }
 
+    public void applyResult(GameState state, GameAction action, RuleResult result) {
     }
 }

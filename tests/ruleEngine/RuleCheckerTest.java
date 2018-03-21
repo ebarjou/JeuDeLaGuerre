@@ -191,6 +191,7 @@ public class RuleCheckerTest {
             assertTrue("Can't check Victory because action ATTACK failed beforehand.", false);
         }
         assertTrue(result.isValid());
+        System.out.println(result.getLogMessage());
         assertTrue(result.getLogMessage().equals(expectedMessage));
     }
 

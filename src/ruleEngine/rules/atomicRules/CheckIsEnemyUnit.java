@@ -2,16 +2,10 @@ package ruleEngine.rules.atomicRules;
 
 import game.gameState.GameState;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
-/**
- * Check if the targeted unit from an attack is an enemy one.<br>
- * Valid if the targeted unit is an enemy, invalid otherwise.
- *
- * @see ruleEngine.rules.masterRules.AttackRules
- */
-public class CheckIsEnemyUnit extends Rule {
+public class CheckIsEnemyUnit implements IRule {
 
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
@@ -30,5 +24,11 @@ public class CheckIsEnemyUnit extends Rule {
         result.addMessage(this, "There is no unit at (" + x + ";" + y + ")");
         result.invalidate();
         return false;
+    }
+
+
+
+    public String toString(){
+        return this.getClass().getSimpleName();
     }
 }

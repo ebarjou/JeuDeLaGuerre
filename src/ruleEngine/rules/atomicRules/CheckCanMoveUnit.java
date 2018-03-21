@@ -4,18 +4,19 @@ import game.board.Unit;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
 import java.util.List;
 
-/**
- * Check if a unit can move or not. A unit may not be able to move if it has moved or attacked previously on the same turn.<br>
- * Valid if the unit can move, invalid otherwise.
- *
- * @see ruleEngine.rules.masterRules.MoveRules
- */
-public class CheckCanMoveUnit extends Rule {
+public class CheckCanMoveUnit implements IRule {
+
+
+
+    public String toString(){
+        return this.getClass().getSimpleName();
+    }
+
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();

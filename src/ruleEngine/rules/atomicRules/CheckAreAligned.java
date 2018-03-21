@@ -3,17 +3,10 @@ package ruleEngine.rules.atomicRules;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
-/**
- * Check if a unit is aligned with its target for an attack, this alignment is checked in the 8 directions from the
- * source unit.<br>
- * Valid if there's an alignment, invalid otherwise.
- *
- * @see ruleEngine.rules.masterRules.AttackRules
- */
-public class CheckAreAligned extends Rule {
+public class CheckAreAligned implements IRule {
 
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
@@ -30,5 +23,9 @@ public class CheckAreAligned extends Rule {
             return false;
         }
         return true;
+    }
+
+    public String toString(){
+        return this.getClass().getSimpleName();
     }
 }

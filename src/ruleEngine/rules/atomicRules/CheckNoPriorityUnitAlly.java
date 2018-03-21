@@ -4,17 +4,12 @@ import game.EPlayer;
 import game.board.Unit;
 import game.gameState.GameState;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
 import java.util.List;
 
-/**
- * Check if there's no unit that need to retreat before ending the turn.<br>
- * Valid if there is no units that need to retreat, invalid otherwise.
- * @see ruleEngine.rules.masterRules.EndRules
- */
-public class CheckNoPriorityUnitAlly extends Rule {
+public class CheckNoPriorityUnitAlly implements IRule {
 
     private boolean isPlayerHasPriorityUnits(List<Unit> priorityUnits, EPlayer player) {
         for(Unit unit : priorityUnits)
@@ -30,5 +25,11 @@ public class CheckNoPriorityUnitAlly extends Rule {
         result.invalidate();
         result.addMessage(this, "There is at least one priority unit.");
         return false;
+    }
+
+
+
+    public String toString(){
+        return this.getClass().getSimpleName();
     }
 }

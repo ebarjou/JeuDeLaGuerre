@@ -4,17 +4,12 @@ import game.board.Unit;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
 import java.util.List;
 
-/**
- * Check if an attack performed by a unit is within its range of action.<br>
- * Valid if the target cell is within the range of the unit, invalid otherwise.
- * @see ruleEngine.rules.masterRules.AttackRules
- */
-public class CheckUnitRange extends Rule {
+public class CheckUnitRange implements IRule {
 
     private boolean isAlignedCharge(GameState state, GameAction action) {
         Coordinates src = action.getSourceCoordinates();
@@ -77,5 +72,11 @@ public class CheckUnitRange extends Rule {
             if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
                 return false;
         return true;
+    }
+
+
+
+    public String toString(){
+        return this.getClass().getSimpleName();
     }
 }

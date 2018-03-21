@@ -2,15 +2,10 @@ package ruleEngine.rules.atomicRules;
 
 import game.gameState.GameState;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
-/**
- * Check if the player performing the action has at least one move remaining for this turn.<br>
- * Valid if there is at least one move left, invalid otherwise.
- * @see ruleEngine.rules.masterRules.MoveRules
- */
-public class CheckPlayerMovesLeft extends Rule {
+public class CheckPlayerMovesLeft implements IRule {
 
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
@@ -22,4 +17,11 @@ public class CheckPlayerMovesLeft extends Rule {
 
         return true;
     }
+
+
+
+    public String toString(){
+        return this.getClass().getSimpleName();
+    }
+
 }

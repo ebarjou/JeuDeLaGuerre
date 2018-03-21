@@ -1,25 +1,40 @@
 package ruleEngine.rules.masterRules;
 
 import game.board.Building;
-import game.board.Unit;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
 import ruleEngine.rules.atomicRules.*;
+import ruleEngine.rules.newRules.IRule;
+import ruleEngine.rules.newRules.RuleCompositeAnd;
+import ruleEngine.rules.newRules.RuleCompositeAndDep;
 
 import java.util.List;
 
-/**
- * Class testing if a unit move is allowed according to its range of movement, the terrain and its communication supplying.
- * Performs the move on the board if respected.
- */
-public class MoveRules extends MasterRule {
+public class MoveRules extends RuleCompositeAnd {
 
     public MoveRules() {
+        super();
         //TODO: Put here the sub-rules (atomic) you need to check.
+        super.add(new CheckPlayerTurn());
+        super.add(new CheckPlayerMovesLeft());
+        super.add(new CheckOnBoard());
+        super.add(new CheckAbilityToMove());//comm
+
+        IRule andDep = new RuleCompositeAndDep();
+        andDep.add(new CheckIsAllyUnit());
+        andDep.add(new CheckUnitMP());
+        super.add(andDep);
+        //super.add(new CheckUnitMP());
+        //super.add(new CheckIsAllyUnit());
+        ////addDependence(new CheckUnitMP(), new CheckIsAllyUnit(), true);
+
+        super.add(new CheckIsPriorityUnit());
+        super.add(new CheckCanMoveUnit());
+        super.add(new CheckIsEmptyPath());
+        /*
         addRule(new CheckPlayerTurn());
         addRule(new CheckPlayerMovesLeft());
         addRule(new CheckOnBoard());
@@ -31,9 +46,10 @@ public class MoveRules extends MasterRule {
         addRule(new CheckUnitMP());
         addDependence(new CheckUnitMP(), new CheckIsAllyUnit(), true);
         addRule(new CheckIsEmptyPath());
+        */
     }
 
-    @Override
+
     public void applyResult(GameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
         Coordinates target = action.getTargetCoordinates();
@@ -44,18 +60,18 @@ public class MoveRules extends MasterRule {
         state.removeOneAction();
         state.moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
 
-        EUnitData movingUnit = state.getUnitType(target.getX(), target.getY());
-        if (movingUnit.isCanAttack()) {
-            List<Building> buildings = state.getAllBuildings();
-            for (Building building : buildings) {
-                if (building.getPlayer() != action.getPlayer()
-                        && building.getBuildingData() == EBuildingData.ARSENAL
-                        && building.getX() == target.getX()
-                        && building.getY() == target.getY()) {
-                    state.removeBuilding(building);
-                    break;
-                }
+        List<Building> buildings = state.getAllBuildings();
+        Building remove = null;
+        for(Building building : buildings){
+            if(building.getPlayer() != action.getPlayer()
+                    && building.getBuildingData() == EBuildingData.ARSENAL
+                    && building.getX() == target.getX()
+                    && building.getY() == target.getY()){
+                remove = building;
+                break;
             }
         }
+        if(remove != null)
+            state.removeBuilding(remove);
     }
 }

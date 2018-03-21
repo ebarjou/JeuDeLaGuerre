@@ -3,6 +3,7 @@ package ruleEngine;
 import game.gameState.GameState;
 import ruleEngine.exceptions.IncorrectGameActionException;
 import ruleEngine.rules.masterRules.*;
+import ruleEngine.rules.newRules.IRule;
 
 /**
  * Object acting as a hub for {@link game.Game} to check actions on the board. Should be instantiated once.
@@ -11,11 +12,11 @@ import ruleEngine.rules.masterRules.*;
  * @see RuleResult
  */
 public class RuleChecker {
-    private MasterRule moveRuleMaster;
-    private MasterRule attackRuleMaster;
-    private MasterRule commRuleMaster;
-    private MasterRule endRuleMaster;
-    private MasterRule victoryRuleMaster;
+    private IRule moveRuleMaster;
+    private IRule attackRuleMaster;
+    private IRule commRuleMaster;
+    private IRule endRuleMaster;
+    private IRule victoryRuleMaster;
 
     public RuleChecker() {
         moveRuleMaster = new MoveRules();
@@ -23,6 +24,13 @@ public class RuleChecker {
         commRuleMaster = new CommRules();
         endRuleMaster = new EndRules();
         victoryRuleMaster = new VictoryRules();
+        /*
+        System.out.println("MoveRule :\n" + moveRuleMaster.toString() + "\n");
+        System.out.println("AttackRule :\n" + attackRuleMaster.toString() + "\n");
+        System.out.println("EndRule :\n" + endRuleMaster.toString() + "\n");
+        System.out.println("VictoryRule :\n" + victoryRuleMaster.toString() + "\n");
+        System.out.println("CommunicationRule :\n" + commRuleMaster.toString() + "\n");
+        */
     }
 
     private void computeCommunications(GameState gameState){
@@ -38,7 +46,7 @@ public class RuleChecker {
      */
     public RuleResult checkAction(GameState gameState, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
-        MasterRule mr = null;
+        IRule mr = null;
         boolean checkVictory = false;
         switch (action.getActionType()) {
             case MOVE:
