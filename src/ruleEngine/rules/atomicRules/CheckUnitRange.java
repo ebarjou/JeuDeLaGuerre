@@ -59,7 +59,7 @@ public class CheckUnitRange implements IRule {
                 return false;
             }
             return true;
-        } catch (IllegalBoardCallException e){
+        } catch (NullPointerException | IllegalBoardCallException e){
             result.addMessage(this, "Not enough range to attack.");
             result.invalidate();
             return false;
