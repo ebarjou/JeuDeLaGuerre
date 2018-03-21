@@ -1,13 +1,11 @@
-package analyse.metricsMethods;
+package analyse.mapMethods;
 
+import analyse.InfoModule;
 import game.EPlayer;
 import game.board.Unit;
 import game.gameState.GameState;
-import ruleEngine.rules.masterRules.AttackRules;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +15,7 @@ public class AttackMapMethod implements IMetricsMapMethod {
     public double[][] compute(GameState state, EPlayer player) {
     	//THIS METHOD IS INCORRECT, POSSIBLE MOVES ARE NOT CHECKED
         double[][] result = new double[state.getWidth()][state.getHeight()];
-        List<Unit> units = state.getAllUnits().stream().filter((unit -> unit.getPlayer().equals(player))).collect(Collectors.toList());
+        Collection<Unit> units = InfoModule.getAllUnitsFromPlayer(state, player);
         for(Unit u : units){
         	if (!isInCommunication(state, u))
         		continue;

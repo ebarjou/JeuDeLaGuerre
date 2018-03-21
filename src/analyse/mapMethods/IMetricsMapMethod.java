@@ -1,4 +1,4 @@
-package analyse.metricsMethods;
+package analyse.mapMethods;
 
 import game.EPlayer;
 import game.gameState.GameState;

@@ -1,11 +1,13 @@
 package analyse;
 
-import analyse.metricsMethods.IMetricsMapMethod;
-import analyse.metricsMethods.AttackMapMethod;
+import analyse.mapMethods.IMetricsMapMethod;
+import analyse.mapMethods.AttackMapMethod;
+import analyse.mapMethods.RangeMapMethod;
 
 public enum EMetricsMapType {
 
-    ATTACK_MAP(new AttackMapMethod());
+    ATTACK_MAP(new AttackMapMethod()),
+    RANGE_MAP(new RangeMapMethod());
 
 
     private IMetricsMapMethod method;

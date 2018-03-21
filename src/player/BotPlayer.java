@@ -1,5 +1,8 @@
 package player;
 
+import analyse.EMetricsMoveType;
+import analyse.InfoModule;
+import analyse.MoveWrapper;
 import game.EPlayer;
 import game.Game;
 import game.board.Unit;
@@ -14,6 +17,7 @@ import ui.UIAction;
 import ui.commands.UserToGameCall;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static ui.commands.UserToGameCall.LOAD;
@@ -38,27 +42,35 @@ public class BotPlayer implements Player {
     }
 
     private UIAction createCommand(){
-        GameState gameState = Game.getInstance().getGameState();
         List<GameAction> actionList = new ArrayList<>();
-        List<Unit> unitList = gameState.getAllUnits();
-        for(Unit unit : unitList){
-            for(int i = -unit.getUnitData().getMovementValue(); i <= unit.getUnitData().getMovementValue(); ++i ){
-                for(int j = -unit.getUnitData().getMovementValue(); j <= unit.getUnitData().getMovementValue(); ++j ) {
-                    //if (gameState.getUnitPlayer(unit.getX(), unit.getY()) == gameState.getActualPlayer()) {
-                    GameAction action = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
-                    action.setSourceCoordinates(unit.getX(), unit.getY());
-                    action.setTargetCoordinates(unit.getX() + i, unit.getY() + j);
-                    try {
-                        if (ruleChecker.checkAction(gameState, action)) {
-                            System.out.println("valid");
-                            actionList.add(action);
-                        }
-                        System.out.println(action.getSourceCoordinates().toString() + " -> " + action.getTargetCoordinates().toString());
-                    } catch (IncorrectGameActionException ignore) {
-                    }
-                    //}
-                }
-            }
+//        GameState gameState = Game.getInstance().getGameState();
+//        List<Unit> unitList = gameState.getAllUnits();
+//        for(Unit unit : unitList){
+//            for(int i = -unit.getUnitData().getMovementValue(); i <= unit.getUnitData().getMovementValue(); ++i ){
+//                for(int j = -unit.getUnitData().getMovementValue(); j <= unit.getUnitData().getMovementValue(); ++j ) {
+//                    //if (gameState.getUnitPlayer(unit.getX(), unit.getY()) == gameState.getActualPlayer()) {
+//                    GameAction action = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
+//                    action.setSourceCoordinates(unit.getX(), unit.getY());
+//                    action.setTargetCoordinates(unit.getX() + i, unit.getY() + j);
+//                    try {
+//                        if (ruleChecker.checkAction(gameState, action)) {
+//                            System.out.println("valid");
+//                            actionList.add(action);
+//                        }
+//                        System.out.println(action.getSourceCoordinates().toString() + " -> " + action.getTargetCoordinates().toString());
+//                    } catch (IncorrectGameActionException ignore) {
+//                    }
+//                    //}
+//                }
+//            }
+//        }
+        GameState state = Game.getInstance().getGameState();
+        Collection<MoveWrapper> moves = InfoModule.getAvailableMoves(EMetricsMoveType.ALL_AVAILABLE_MOVES, state, state.getActualPlayer());
+        for (MoveWrapper mw : moves){
+            GameAction ga = new GameAction(state.getActualPlayer(), EGameActionType.MOVE);
+            ga.setSourceCoordinates(mw.getSourceCoordinates().getX(), mw.getSourceCoordinates().getY());
+            ga.setTargetCoordinates(mw.getTargetCoordinates().getX(), mw.getTargetCoordinates().getY());
+            actionList.add(ga);
         }
         System.out.println("Possible move : " + actionList.size());
         if(actionList.size() == 0) return new UIAction(UserToGameCall.GAME_ACTION, new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.END_TURN));
