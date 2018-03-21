@@ -137,10 +137,16 @@ public class TermGUI extends Application {
     }
 
     private class CommandEvent implements EventHandler<KeyEvent> {
+        private boolean couldBeMove(String command){
+            return command.matches("[ ]*([a-zA-Z]+)([0-9]+)[ ]+([a-zA-Z]+)([0-9]+)[ ]*");
+        }
         @Override
         public void handle(KeyEvent event) {
             if (event.getCode() == KeyCode.ENTER) {
-                processCommand(mainLayout.getCommandText());
+                String command = mainLayout.getCommandText();
+                if(couldBeMove(command))
+                    command = "move " + command;
+                processCommand(command);
                 mainLayout.clearCommandText();
             }
         }
