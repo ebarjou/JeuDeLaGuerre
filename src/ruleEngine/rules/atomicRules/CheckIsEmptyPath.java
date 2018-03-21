@@ -1,5 +1,6 @@
 package ruleEngine.rules.atomicRules;
 
+import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
@@ -77,7 +78,7 @@ public class CheckIsEmptyPath implements IRule {
             result.addMessage(this, "There is no path found using " + MP + " movement points.");
             result.invalidate();
             return false;
-        } catch (NullPointerException e){
+        } catch (IllegalBoardCallException e){
             //TODO : Isn't this part impossible to reach ?
             result.addMessage(this, "There is no path found");
             result.invalidate();

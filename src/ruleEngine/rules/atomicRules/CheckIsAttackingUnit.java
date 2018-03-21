@@ -1,5 +1,6 @@
 package ruleEngine.rules.atomicRules;
 
+import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.Rule;
@@ -26,7 +27,7 @@ public class CheckIsAttackingUnit implements IRule {
                 return false;
             }
             return true;
-        } catch (NullPointerException e){
+        } catch (IllegalBoardCallException e){
             result.addMessage(this, "This unit is not suited to attack.");
             result.invalidate();
             return false;

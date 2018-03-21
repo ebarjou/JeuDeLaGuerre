@@ -8,9 +8,7 @@ import ruleEngine.RuleResult;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.rules.atomicRules.*;
-import ruleEngine.rules.newRules.IRule;
-import ruleEngine.rules.newRules.RuleCompositeAnd;
-import ruleEngine.rules.newRules.RuleCompositeAndDep;
+import ruleEngine.rules.newRules.*;
 
 import java.util.List;
 
@@ -32,7 +30,10 @@ public class MoveRules extends RuleCompositeAnd {
 
         IRule rulesDependentOfIsUnit = new RuleCompositeAnd();
         rulesDependentOfIsUnit.add(new CheckUnitMP());
-        rulesDependentOfIsUnit.add(new CheckAbilityToMove());
+        IRule orRuleCommunication = new RuleCompositeOrDep();
+        orRuleCommunication.add(new CheckIsInCommunication());
+        orRuleCommunication.add(new CheckIsRelay());
+        rulesDependentOfIsUnit.add(orRuleCommunication);
         rulesDependentOfIsUnit.add(new CheckIsEmptyPath());
 
         dependentIsUnit.add(rulesDependentOfIsUnit);

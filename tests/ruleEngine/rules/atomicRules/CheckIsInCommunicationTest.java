@@ -12,7 +12,7 @@ import ruleEngine.entity.EUnitData;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class CheckAbilityToMoveTest {
+public class CheckIsInCommunicationTest {
 
     private IBoard iBoard;
     private GameState iGameState;
@@ -29,7 +29,7 @@ public class CheckAbilityToMoveTest {
 
     @Test
     public void checkActionMocking() {
-        CheckAbilityToMove rule = new CheckAbilityToMove();
+        CheckIsInCommunication rule = new CheckIsInCommunication();
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
         when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
@@ -59,7 +59,7 @@ public class CheckAbilityToMoveTest {
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
-        String expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n";
+        String expectedMessage = "CheckIsInCommunication : This unit is not in communication and cannot be used.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
         assertFalse(ruleResult.isValid());
 
@@ -67,7 +67,7 @@ public class CheckAbilityToMoveTest {
         ruleResult = new RuleResult();
         when(iGameState.getUnitType(1, 1)).thenThrow(new NullPointerException());
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
-        expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n";
+        expectedMessage = "CheckIsInCommunication : This unit is not in communication and cannot be used.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
         assertFalse(ruleResult.isValid());
 

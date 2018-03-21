@@ -1,6 +1,7 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Unit;
+import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
@@ -58,7 +59,7 @@ public class CheckUnitRange implements IRule {
                 return false;
             }
             return true;
-        } catch (NullPointerException e){
+        } catch (IllegalBoardCallException e){
             result.addMessage(this, "Not enough range to attack.");
             result.invalidate();
             return false;

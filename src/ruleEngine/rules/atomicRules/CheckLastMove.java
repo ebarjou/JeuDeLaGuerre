@@ -1,6 +1,7 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Unit;
+import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
@@ -14,7 +15,7 @@ public class CheckLastMove implements IRule {
         Unit lastMove;
         try {
             lastMove = state.getLastUnitMoved();
-        } catch (NullPointerException e) {
+        } catch (IllegalBoardCallException e) {
             //TODO: stage.getLastUnitMoved() does not throw any exception
             result.invalidate();
             result.addMessage(this, "No unit has been moved yet.");

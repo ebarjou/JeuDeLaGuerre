@@ -26,7 +26,7 @@ public class AttackRules extends RuleCompositeAnd {
         depAnd.add(new CheckOnBoard());
 
         IRule onBoardDep = new RuleCompositeAnd();
-        onBoardDep.add(new CheckAbilityToMove());
+        onBoardDep.add(new CheckIsInCommunication());
         onBoardDep.add(new CheckIsAllyUnit());
         onBoardDep.add(new CheckIsEnemyUnit());
         onBoardDep.add(new CheckAreAligned());

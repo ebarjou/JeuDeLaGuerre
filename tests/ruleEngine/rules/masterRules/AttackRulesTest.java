@@ -144,7 +144,7 @@ public class AttackRulesTest {
 
     @Test
     public void checkActionInvalidAttackInfantry() {
-        expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n" +
+        expectedMessage = "CheckIsInCommunication : This unit is not in communication and cannot be used.\n" +
                 "CheckIsAllyUnit : This unit is not owned by PLAYER_NORTH.\n" +
                 "MoveRules : CheckUnitMP is not checked because it is dependant of the following rule(s) : \n" +
                 "\t- CheckIsAllyUnit : expected Valid but got Invalid instead.\n" +
@@ -158,7 +158,7 @@ public class AttackRulesTest {
 
     @Test
     public void checkActionInvalidAttackCavalry() {
-        expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n" +
+        expectedMessage = "CheckIsInCommunication : This unit is not in communication and cannot be used.\n" +
                 "CheckUnitMP : Not enough movement point, the unit has 2 MP, and you need 3 MP\n" +
                 "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
         gameAction.setSourceCoordinates(0, 19);
@@ -169,7 +169,7 @@ public class AttackRulesTest {
 
     @Test
     public void checkActionInvalidAttackArtillery() {
-        expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n" +
+        expectedMessage = "CheckIsInCommunication : This unit is not in communication and cannot be used.\n" +
                 "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
                 "CheckIsEmptyPath : There is no path found using 1 movement points.\n";
         gameAction.setSourceCoordinates(1, 19);
@@ -180,7 +180,7 @@ public class AttackRulesTest {
 
     @Test
     public void checkActionInvalidAttackArtilleryHorse() {
-        expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n" +
+        expectedMessage = "CheckIsInCommunication : This unit is not in communication and cannot be used.\n" +
                 "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
         gameAction.setSourceCoordinates(2, 19);
         gameAction.setTargetCoordinates(0, 17);
