@@ -4,6 +4,7 @@ import asg.cliche.CLIException;
 import asg.cliche.Shell;
 import asg.cliche.ShellFactory;
 import game.Game;
+import game.gameState.GameState;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -17,6 +18,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import player.GUIPlayer;
 import player.Player;
 import ruleEngine.EGameActionType;
 import ui.UIElements.MainLayout;
@@ -78,13 +80,13 @@ public class TermGUI extends Application {
      * @return the corresponding UIAction, with CMD_ERROR type if cmd was not a correct command.
      */
     UIAction parseCommand(String cmd) {
-        if (cmd == null) return new UIAction(EXIT, null);
+        if (cmd == null) return new UIAction(EXIT, EGameActionType.NONE);
         UIAction result;
         try {
             shell.processLine(cmd);
             result = parser.getResult();
         } catch (CLIException e) {
-            result = new UIAction(CMD_ERROR, null);
+            result = new UIAction(CMD_ERROR, EGameActionType.NONE);
             result.setErrorMessage(e.getMessage());
         }
         return result;

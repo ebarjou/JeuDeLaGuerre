@@ -7,7 +7,6 @@ public enum UserToGameCall {
     SAVE(),
     LOAD(),
     REVERT(),
-    END_TURN(),
     EXIT(),
     REFRESH()
 }

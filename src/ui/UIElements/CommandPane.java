@@ -39,6 +39,6 @@ public class CommandPane extends HBox{
     }
 
     public void setActionLeft(int n){
-        labelActionLeft.setText("Action left : " + Game.getInstance().getGameState().getActionLeft());
+        labelActionLeft.setText("Action left : " + n);
     }
 }

@@ -17,9 +17,15 @@ public class UIAction {
         this.text = null;
     }
 
-    UIAction(UserToGameCall command, EGameActionType action) {
+    public UIAction(UserToGameCall command, EGameActionType action) {
         this.command = command;
         this.gameAction = new GameAction(null, action);
+        this.text = null;
+    }
+
+    public UIAction(UserToGameCall command, GameAction action) {
+        this.command = command;
+        this.gameAction = action;
         this.text = null;
     }
 
@@ -35,7 +41,7 @@ public class UIAction {
         return text;
     }
 
-    void setText(String text) {
+    public void setText(String text) {
         this.text = text;
     }
 

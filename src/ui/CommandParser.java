@@ -9,7 +9,7 @@ public class CommandParser {
     private UIAction result;
 
     CommandParser() {
-        result = new UIAction(CMD_ERROR, null);
+        result = new UIAction(CMD_ERROR, EGameActionType.NONE);
     }
 
     /**

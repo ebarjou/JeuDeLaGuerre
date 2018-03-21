@@ -3,7 +3,6 @@ package ruleEngine.rules.atomicRules;
 import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
 import ruleEngine.rules.newRules.IRule;
 
