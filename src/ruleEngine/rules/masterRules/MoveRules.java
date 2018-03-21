@@ -29,11 +29,13 @@ public class MoveRules extends RuleCompositeAnd {
         dependentIsUnit.add(new CheckIsAllyUnit());
 
         IRule rulesDependentOfIsUnit = new RuleCompositeAnd();
-        rulesDependentOfIsUnit.add(new CheckUnitMP());
+
         IRule orRuleCommunication = new RuleCompositeOrDep();
         orRuleCommunication.add(new CheckIsInCommunication());
         orRuleCommunication.add(new CheckIsRelay());
         rulesDependentOfIsUnit.add(orRuleCommunication);
+
+        rulesDependentOfIsUnit.add(new CheckUnitMP());
         rulesDependentOfIsUnit.add(new CheckIsEmptyPath());
 
         dependentIsUnit.add(rulesDependentOfIsUnit);
