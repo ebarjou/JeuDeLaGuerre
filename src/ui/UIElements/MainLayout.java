@@ -31,10 +31,11 @@ public class MainLayout extends BorderPane{
     public MainLayout(){
         this.setMinHeight(CANVAS_HEIGHT + COMMAND_HEIGHT + COORDINATES_BAR_WIDTH);
         this.setMinWidth(CANVAS_WIDTH + INFOS_WIDTH + COORDINATES_BAR_WIDTH);
-        this.setBackground(new Background(new BackgroundFill(Color.CYAN, null, null)));
 
         textField = new TextField();
+        textField.setPrefWidth(Double.MAX_VALUE);
         canvas = new BoardCanvas(CANVAS_WIDTH + COORDINATES_BAR_WIDTH, CANVAS_HEIGHT + COORDINATES_BAR_WIDTH, COORDINATES_BAR_WIDTH, textField);
+        textField.setPrefWidth(canvas.getWidth());
 
         commandPane = new CommandPane(textField);
         infosPane = new InfosPane();
@@ -66,4 +67,5 @@ public class MainLayout extends BorderPane{
     public void clearCommandText(){
         textField.clear();
     }
+
 }

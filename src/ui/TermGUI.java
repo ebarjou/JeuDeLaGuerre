@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 import player.Player;
 import ruleEngine.EGameActionType;
 import ui.UIElements.MainLayout;
+import ui.UIElements.ResultAlert;
 
 import static ui.commands.UserToGameCall.*;
 
@@ -96,11 +98,11 @@ public class TermGUI extends Application {
     private void processCommand(String cmd) {
         parser.clearResult();
         UIAction action = this.parseCommand(cmd);
-        if (action.getCommand() == CMD_ERROR) {
+        /*if (action.getCommand() == CMD_ERROR) {
             if (action.getErrorMessage() != null) System.out.println(action.getErrorMessage());
             else System.out.println("Incorrect command.");
             return;
-        }
+        }*/
 
         Player player = Game.getInstance().getPlayer();
         player.setCommand(action);
@@ -115,12 +117,12 @@ public class TermGUI extends Application {
         switch (response.getResponse()) {
             case VALID: {
                 System.out.println(response.getMessage());
-                System.out.println("Valid !");
                 break;
             }
             case INVALID: {
-                if (response.getMessage() == null) System.out.println("Invalid !");
-                else System.out.println(response.getMessage());
+                if (response.getMessage() == null) ResultAlert.getInstance().setMessage("Invalid.");
+                else ResultAlert.getInstance().setMessage(response.getMessage());
+                ResultAlert.getInstance().show();
                 break;
             }
             case APPLIED: {

@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 public class CommandPane extends HBox{
-    private final int MARGIN = 5;
+    private final int MARGIN = 10;
     private TextField commandTextField;
     private Label labelPlayerTurn;
     private Label labelActionLeft;
@@ -19,7 +19,6 @@ public class CommandPane extends HBox{
     public CommandPane(TextField commandTextField){
         this.commandTextField = commandTextField;
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, null, null)));
-        commandTextField.setPrefWidth(MainLayout.CANVAS_WIDTH);
 
         labelPlayerTurn = new Label(Game.getInstance().getGameState().getActualPlayer().name());
         labelPlayerTurn.setPrefHeight(MainLayout.COMMAND_HEIGHT);
@@ -28,7 +27,7 @@ public class CommandPane extends HBox{
         labelActionLeft.setPrefHeight(MainLayout.COMMAND_HEIGHT);
 
         this.setMinHeight(MainLayout.COMMAND_HEIGHT);
-        this.setAlignment(Pos.CENTER_LEFT);
+        this.setAlignment(Pos.CENTER);
         this.setSpacing(MARGIN);
         this.getChildren().add(labelPlayerTurn);
         this.getChildren().add(commandTextField);
