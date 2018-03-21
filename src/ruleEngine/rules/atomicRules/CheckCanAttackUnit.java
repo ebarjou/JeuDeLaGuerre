@@ -4,18 +4,12 @@ import game.board.Unit;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
 import java.util.List;
 
-/**
- * Check if a unit is allowed to attack or not. A unit may not be able to attack if it has retreated previously.<br>
- * Valid if allowed to attack, invalid otherwise.
- *
- * @see ruleEngine.rules.masterRules.AttackRules
- */
-public class CheckCanAttackUnit extends Rule {
+public class CheckCanAttackUnit implements IRule {
 
     private boolean isUnitCanAttack(GameState state, Coordinates coords){
         List<Unit> cantAttackUnits = state.getCantAttackUnits();
@@ -37,5 +31,10 @@ public class CheckCanAttackUnit extends Rule {
         }
 
         return true;
+    }
+
+
+    public String toString(){
+        return this.getClass().getSimpleName();
     }
 }

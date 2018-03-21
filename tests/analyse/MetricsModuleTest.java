@@ -28,6 +28,7 @@ public class MetricsModuleTest {
         //dumb test lol
         GameState s = Game.getInstance().getGameState();
         double[][] result = MetricsModule.getInfoMap(EMetricsMapType.ATTACK_MAP, s, EPlayer.PLAYER_NORTH);
+        //TODO:Remove Printf useless in all project
         for (double[] y : result){
             for(double x : y)
                 System.out.print("[" + (int)x + "]");

@@ -3,16 +3,16 @@ package ruleEngine.rules.atomicRules;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
-/**
- * Check if an attack performed by a unit is able to reach its destination, meaning there is no obstacle between the unit and the targeted cell.<br>
- * Valid if the path is clear, invalid otherwise.
- *
- * @see ruleEngine.rules.masterRules.AttackRules
- */
-public class CheckIsEmptyAttackPath extends Rule {
+public class CheckIsEmptyAttackPath implements IRule {
+
+
+
+    public String toString(){
+        return this.getClass().getSimpleName();
+    }
 
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {

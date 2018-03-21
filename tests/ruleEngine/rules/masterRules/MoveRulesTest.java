@@ -84,6 +84,7 @@ public class MoveRulesTest {
             assertTrue("Action MOVE wasn't recognized by the RuleChecker.", false);
         }
         assertFalse(ruleResult.isValid());
+        System.out.println(expectedMessage +"\n" + ruleResult.getLogMessage() +"\n\n");
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
 
@@ -143,12 +144,8 @@ public class MoveRulesTest {
 
     @Test
     public void checkActionInvalidMoveInfantry() {
-        expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n" +
-                "CheckIsAllyUnit : This unit is not owned by PLAYER_NORTH.\n" +
-                "MoveRules : CheckUnitMP is not checked because it is dependant of the following rule(s) : \n" +
-                "\t- CheckIsAllyUnit : expected Valid but got Invalid instead.\n" +
-                "\n" +
-                "CheckIsEmptyPath : There is no path found using 1 movement points.\n";
+        expectedMessage = "CheckIsAllyUnit : This unit is not owned by PLAYER_NORTH.\n" +
+                "CheckUnitMP, CheckIsInCommunication, CheckIsEmptyPath,  : Those rules are not checked because CheckIsAllyUnit has failed.\n";
         gameAction.setSourceCoordinates(24, 19);
         gameAction.setTargetCoordinates(24, 17);
 
@@ -157,8 +154,8 @@ public class MoveRulesTest {
 
     @Test
     public void checkActionInvalidMoveCavalry() {
-        expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n" +
-                "CheckUnitMP : Not enough movement point, the unit has 2 MP, and you need 3 MP\n" +
+        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 2 MP, and you need 3 MP\n" +
+                "CheckIsInCommunication : This unit is not in communication and cannot be used.\n" +
                 "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
         gameAction.setSourceCoordinates(0, 19);
         gameAction.setTargetCoordinates(3, 16);
@@ -168,8 +165,8 @@ public class MoveRulesTest {
 
     @Test
     public void checkActionInvalidMoveArtillery() {
-        expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n" +
-                "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
+        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
+                "CheckIsInCommunication : This unit is not in communication and cannot be used.\n" +
                 "CheckIsEmptyPath : There is no path found using 1 movement points.\n";
         gameAction.setSourceCoordinates(1, 19);
         gameAction.setTargetCoordinates(1, 17);
@@ -179,7 +176,7 @@ public class MoveRulesTest {
 
     @Test
     public void checkActionInvalidMoveArtilleryHorse() {
-        expectedMessage = "CheckAbilityToMove : This unit is not in communication and cannot be used.\n" +
+        expectedMessage = "CheckIsInCommunication : This unit is not in communication and cannot be used.\n" +
                 "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
         gameAction.setSourceCoordinates(2, 19);
         gameAction.setTargetCoordinates(0, 17);
@@ -193,9 +190,9 @@ public class MoveRulesTest {
         unit.setPosition(9, 10);
         gameState.addPriorityUnit(unit);
 
-        expectedMessage = "CheckIsPriorityUnit : There are other units that need to be moved first.\n" +
-                "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
-                "CheckIsEmptyPath : There is no path found using 1 movement points.\n";
+        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
+                "CheckIsEmptyPath : There is no path found using 1 movement points.\n" +
+                "CheckIsPriorityUnit : There are other units that need to be moved first.\n";
         gameAction.setSourceCoordinates(0, 8);
         gameAction.setTargetCoordinates(0, 6);
 

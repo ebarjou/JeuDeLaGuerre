@@ -145,7 +145,7 @@ public class RuleCheckerTest {
         gameAction.setTargetCoordinates(0, 10);
 
         RuleResult result = new RuleResult();
-        String expectedMessage = "VictoryRules : CheckIsNoArsenalEnemy : PLAYER_NORTH winner !\n\n";
+        String expectedMessage = "VictoryRules : PLAYER_NORTH winner !\n\n";
         try {
             result = rulechecker.checkAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
@@ -184,13 +184,14 @@ public class RuleCheckerTest {
 
         RuleResult result = new RuleResult();
         String expectedMessage = "AttackRules : The unit at position (0, 2) died : Attack:8 Defense:6.\n" +
-                "VictoryRules : CheckIsNoArsenalEnemy : PLAYER_NORTH winner !\n\n";
+                "VictoryRules : PLAYER_NORTH winner !\n\n";
         try {
             result = rulechecker.checkAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
             assertTrue("Can't check Victory because action ATTACK failed beforehand.", false);
         }
         assertTrue(result.isValid());
+        System.out.println(result.getLogMessage());
         assertTrue(result.getLogMessage().equals(expectedMessage));
     }
 

@@ -2,16 +2,10 @@ package ruleEngine.rules.atomicRules;
 
 import game.gameState.GameState;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
-/**
- * Check if an action is performing within the board boundaries.<br>
- * Valid if the action is performing within the boundaries, invalid otherwise.
- * @see ruleEngine.rules.masterRules.MoveRules
- * @see ruleEngine.rules.masterRules.AttackRules
- */
-public class CheckOnBoard extends Rule {
+public class CheckOnBoard implements IRule {
 
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
@@ -26,5 +20,11 @@ public class CheckOnBoard extends Rule {
             return false;
         }
         return true;
+    }
+
+
+
+    public String toString(){
+        return this.getClass().getSimpleName();
     }
 }

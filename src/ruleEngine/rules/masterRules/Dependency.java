@@ -2,11 +2,6 @@ package ruleEngine.rules.masterRules;
 
 import ruleEngine.Rule;
 
-/**
- * Class used in the dependency system used in the MasterRule sub-classes. As mentioned there, should not be used because
- * of its incomplete implementation.
- */
-@Deprecated
 public class Dependency {
     private Rule client;
     private Rule dependency;

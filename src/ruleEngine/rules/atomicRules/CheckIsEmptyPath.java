@@ -4,19 +4,13 @@ import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
-import ruleEngine.Rule;
 import ruleEngine.RuleResult;
+import ruleEngine.rules.newRules.IRule;
 
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Check if a move performed from a unit to its destination is clear from obstacles or other units.<br>
- * Valid if the path is clear, invalid otherwise.
- *
- * @see ruleEngine.rules.masterRules.MoveRules
- */
-public class CheckIsEmptyPath extends Rule {
+public class CheckIsEmptyPath implements IRule {
 
     private int length;
 
@@ -90,6 +84,12 @@ public class CheckIsEmptyPath extends Rule {
             result.invalidate();
             return false;
         }
+    }
+
+
+
+    public String toString(){
+        return this.getClass().getSimpleName();
     }
 
     private class Vertex {
