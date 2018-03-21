@@ -6,14 +6,14 @@ package ruleEngine.entity;
 public enum EUnitData {
 	/*
 	Name			Label    Def   Range       canRelay         canCharge
-	 					 Atk	MP      FortDef         canAtk
+	 					 Atk	MP      FortDef         canAtk			  name
 	 */
-	INFANTRY(		"I"	, 4	, 6, 1, 2,  true,   false,  true,   false),
-	CAVALRY(		"C"	, 4	, 5, 2, 2,  false,  false,  true,   true),
-	ARTILLERY(		"A"	, 5	, 8, 1, 3,	true,   false,  true,   false),
-	ARTILLERY_HORSE("AC", 5	, 8, 2, 3,	true,   false,  true,   false),
-	RELAY(			"R"	, 0	, 1, 1, 2,	false,  true,   false,  false),
-	RELAY_HORSE(	"RC", 0	, 1, 2, 2,	false,  true,   false,  false);
+	INFANTRY(		"I"	, 4	, 6, 1, 2,  true,   false,  true,   false,	"Infantry"),
+	CAVALRY(		"C"	, 4	, 5, 2, 2,  false,  false,  true,   true, 	"Cavalry"),
+	ARTILLERY(		"A"	, 5	, 8, 1, 3,	true,   false,  true,   false,	"Artillery"),
+	ARTILLERY_HORSE("AC", 5	, 8, 2, 3,	true,   false,  true,   false,	"Mounted Artillery"),
+	RELAY(			"R"	, 0	, 1, 1, 2,	false,  true,   false,  false,	"Relay"),
+	RELAY_HORSE(	"RC", 0	, 1, 2, 2,	false,  true,   false,  false, 	"Mounted Relay");
 
 	private String id;
 	private int atkValue;
@@ -24,12 +24,13 @@ public enum EUnitData {
 	private boolean relayCommunication;
 	private boolean canAttack;
 	private boolean canCharge;
+	private String displayName;
 	//blockTransmission is true for all the units except relay...
 	//private boolean blockTransmissions;
 
 	EUnitData(String id, int atk, int def, int moveVal, int range,
 			  boolean bonusDef, boolean relayCom, boolean canAttack,
-			  boolean canCharge) {
+			  boolean canCharge, String displayName) {
 		this.id = id;
 		this.atkValue = atk;
 		this.defValue = def;
@@ -39,6 +40,7 @@ public enum EUnitData {
 		this.relayCommunication = relayCom;
 		this.canAttack = canAttack;
 		this.canCharge = canCharge;
+		this.displayName = displayName;
 	}
 
 	/**
@@ -105,5 +107,12 @@ public enum EUnitData {
 	 */
 	public boolean isCanCharge() {
 		return canCharge;
+	}
+
+	/**
+	 * @return The name of the unit to display for the end user.
+	 */
+	public String getDisplayName() {
+		return displayName;
 	}
 }

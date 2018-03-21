@@ -30,12 +30,12 @@ public class InfosPane extends VBox {
         this.getChildren().add(new Label("\nLegend : "));
 
         for(EUnitData unit : EUnitData.values()){
-            IconTitledPane tp = new IconTitledPane(unit.name(), unit);
+            IconTitledPane tp = new IconTitledPane(unit.getDisplayName(), unit);
             tp.setExpanded(false);
             this.getChildren().add(tp);
         }
         for(EBuildingData building : EBuildingData.values()){
-            IconTitledPane tp = new IconTitledPane(building.name(), building);
+            IconTitledPane tp = new IconTitledPane(building.getDisplayName(), building);
             tp.setExpanded(false);
             this.getChildren().add(tp);
         }

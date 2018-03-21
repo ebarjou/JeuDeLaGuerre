@@ -7,21 +7,23 @@ package ruleEngine.entity;
 public enum EBuildingData {
 	/*
 	name	label		BonusDef
-				isCrossable
+				isCrossable		name
 	 */
-    MOUNTAIN("M", 	false, 	0),
-    PASS	("CO", 	true, 	2),
-    FORTRESS("F", 	true, 	4),
-    ARSENAL	("AR", 	true, 	0);
+    MOUNTAIN("M", 	false, 	0,	"Mountain"),
+    PASS	("CO", 	true, 	2,	"Pass"),
+    FORTRESS("F", 	true, 	4,	"Fortress"),
+    ARSENAL	("AR", 	true, 	0,	"Arsenal");
 
-    private String id;
-    private boolean accessible; // the name was crossable before.. ?
-    private int bonusDef;
+	private String id;
+	private boolean accessible; // the name was crossable before.. ?
+	private int bonusDef;
+	private final String displayName;
 
-    EBuildingData(String id, boolean cross, int def) {
+    EBuildingData(String id, boolean cross, int def, String displayName) {
         this.id = id;
         this.accessible = cross;
         this.bonusDef = def;
+        this.displayName = displayName;
     }
 
 	/**
@@ -45,4 +47,11 @@ public enum EBuildingData {
     public int getBonusDef() {
         return bonusDef;
     }
+
+	/**
+	 * @return The unit name to display for the end user.
+	 */
+	public String getDisplayName() {
+		return displayName;
+	}
 }
