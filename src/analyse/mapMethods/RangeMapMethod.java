@@ -19,6 +19,12 @@ public class RangeMapMethod implements IMetricsMapMethod {
 
 	private Collection<Coordinates> sourceCoordinates;
 
+	private int deep;	//Number of moves to take in account
+
+	public  RangeMapMethod(int deep){
+		this.deep = deep;
+	}
+
 	@Override
 	public double[][] compute(GameState state, EPlayer player) {
 		double[][] result = new double[state.getWidth()][state.getHeight()];

@@ -34,7 +34,9 @@ public class MainLayout extends BorderPane{
             FXCollections.observableArrayList(
                     "Communications",
                     "Offensive map",
-                    "Defense map"
+                    "Defense map",
+                    "Danger map (1M)",
+                    "Danger map (Fast)"
             );
 
     protected BoardCanvas canvas;
@@ -93,7 +95,12 @@ public class MainLayout extends BorderPane{
                 canvas.setMetricsMapType(null);
             } else if(t1.equals(metricsList.get(1))){
                 canvas.setMetricsMapType(EMetricsMapType.ATTACK_MAP);
+            }else if (t1.equals(metricsList.get(3))){
+                canvas.setMetricsMapType(EMetricsMapType.RANGE_MAP_1M);
+            }else if (t1.equals(metricsList.get(4))){
+                canvas.setMetricsMapType(EMetricsMapType.RANGE_MAP_FAST);
             }
+
             canvas.refresh();
         }
     }

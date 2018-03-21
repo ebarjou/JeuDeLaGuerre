@@ -135,8 +135,17 @@ class BoardCanvas extends Canvas {
         g.fillRect(pos_x, pos_y, size, size);
         if(metricsMapType != null){
             switch (metricsMapType) {
+                //TODO: Put minimal color value
                 case ATTACK_MAP:
                     g.setFill(Color.rgb(255, 0, 0, Math.min(metrics[x][y] / 38.0, 1.0)));
+                    g.fillRect(pos_x, pos_y, size, size);
+                    break;
+                case RANGE_MAP_1M:
+                    g.setFill(Color.rgb(255, 0, 0, Math.min(metrics[x][y] / 40, 1.0)));
+                    g.fillRect(pos_x, pos_y, size, size);
+                    break;
+                case RANGE_MAP_FAST:
+                    g.setFill(Color.rgb(255, 0, 0, Math.min(metrics[x][y] / 17, 1.0)));
                     g.fillRect(pos_x, pos_y, size, size);
                     break;
             }
