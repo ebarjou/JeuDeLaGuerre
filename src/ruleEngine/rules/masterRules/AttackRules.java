@@ -22,22 +22,37 @@ public class AttackRules extends RuleCompositeAnd {
     public AttackRules() {
         //TODO: check if the unit can attack (relay can actually initiate the fight.
         super.add(new CheckPlayerTurn());
-        IRule depAnd = new RuleCompositeAndDep();
-        depAnd.add(new CheckOnBoard());
-
         IRule onBoardDep = new RuleCompositeAndDep();
-        onBoardDep.add(new CheckIsInCommunication());
-        onBoardDep.add(new CheckIsAllyUnit());
-        onBoardDep.add(new CheckIsEnemyUnit());
-        onBoardDep.add(new CheckAreAligned());
-        onBoardDep.add(new CheckUnitRange());
-        onBoardDep.add(new CheckIsEmptyAttackPath());
-        onBoardDep.add(new CheckLastMove());
-        onBoardDep.add(new CheckCanAttackUnit());
+        onBoardDep.add(new CheckOnBoard());
 
-        depAnd.add(onBoardDep);
+        IRule andRules = new RuleCompositeAnd();
 
-        super.add(depAnd);
+        IRule isAllyUnitDep = new RuleCompositeAndDep();
+        isAllyUnitDep.add(new CheckIsAllyUnit());
+        andRules.add(new CheckLastMove());
+        andRules.add(new CheckUnitRange());
+        andRules.add(new CheckCanAttackUnit());
+        isAllyUnitDep.add(andRules);
+
+        andRules = new RuleCompositeAnd();
+        andRules.add(isAllyUnitDep);
+        andRules.add(new CheckIsInCommunication());
+
+        IRule areAlignedDep = new RuleCompositeAndDep();
+        areAlignedDep.add(new CheckIsEnemyUnit());
+        areAlignedDep.add(new CheckAreAligned());
+        areAlignedDep.add(new CheckIsEmptyAttackPath());
+
+        andRules.add(areAlignedDep);
+        onBoardDep.add(andRules);
+        //IRule onBoardDep = new RuleCompositeAndDep();
+        //onBoardDep.add(new CheckIsInCommunication());
+        //onBoardDep.add(new CheckIsEnemyUnit());
+        //onBoardDep.add(new CheckAreAligned());
+        //onBoardDep.add(new CheckIsEmptyAttackPath());
+        //onBoardDep.add(onBoardDep);
+
+        super.add(onBoardDep);
     }
 
 

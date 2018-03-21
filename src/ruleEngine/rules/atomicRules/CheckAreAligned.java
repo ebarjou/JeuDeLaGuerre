@@ -16,6 +16,7 @@ public class CheckAreAligned implements IRule {
         int diffX = Math.abs(src.getX() - dst.getX());
         int diffY = Math.abs(src.getY() - dst.getY());
 
+
         if ( ( diffX != diffY ) && (diffX != 0) && (diffY != 0) ) {
             result.addMessage(this,
                     "The source is not aligned either horizontally, vertically or diagonally with the target.");

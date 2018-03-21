@@ -15,7 +15,7 @@ public class CheckLastMove implements IRule {
         Unit lastMove;
         try {
             lastMove = state.getLastUnitMoved();
-        } catch (IllegalBoardCallException e) {
+        } catch (NullPointerException e) {
             //TODO: stage.getLastUnitMoved() does not throw any exception
             result.invalidate();
             result.addMessage(this, "No unit has been moved yet.");
