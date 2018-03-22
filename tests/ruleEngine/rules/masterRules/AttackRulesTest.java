@@ -40,8 +40,8 @@ public class AttackRulesTest {
         rule = new RuleChecker();
 
         GUIThread guiThread = new GUIThread();
-        Player p1 = new GUIPlayer(Thread.currentThread(), guiThread);
-        Player p2 = new GUIPlayer(Thread.currentThread(), guiThread);
+        Player p1 = new GUIPlayer();
+        Player p2 = new GUIPlayer();
         Game.init(p1, p2);
         LoadFile lf = new LoadFile();
         try {

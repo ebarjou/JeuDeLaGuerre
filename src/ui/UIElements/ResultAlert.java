@@ -19,13 +19,13 @@ public class ResultAlert extends Alert {
     private ResultAlert(){
         super(AlertType.INFORMATION);
         setTitle("Invalid Action");
-        setHeaderText("This command is not valid.");
+        setHeaderText("An error occurred while processing this command");
 
 
         // Create expandable Exception.
 
 
-        Label label = new Label("The exception stacktrace was:");
+        Label label = new Label("Detailed error report : ");
 
         textArea = new TextArea();
         textArea.setEditable(false);

@@ -19,8 +19,8 @@ public class GameTest {
     private Game game;
     @Before
     public void setUp() throws Exception {
-        GUIPlayer p1 = new GUIPlayer(Thread.currentThread(), null);
-        GUIPlayer p2 = new GUIPlayer(Thread.currentThread(), null);
+        GUIPlayer p1 = new GUIPlayer();
+        GUIPlayer p2 = new GUIPlayer();
         game.init(p1, p2);
         game = Game.getInstance();
     }

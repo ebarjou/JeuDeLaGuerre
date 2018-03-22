@@ -115,7 +115,7 @@ public class TermGUI extends Application {
                 break;
             }
             case INVALID: {
-                if (response.getMessage() == null) ResultAlert.getInstance().setMessage("Invalid.");
+                if (response.getMessage() == null) ResultAlert.getInstance().setMessage("This is not a valid command.");
                 else ResultAlert.getInstance().setMessage(response.getMessage());
                 ResultAlert.getInstance().show();
                 break;
