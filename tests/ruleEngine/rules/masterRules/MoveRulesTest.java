@@ -162,7 +162,7 @@ public class MoveRulesTest {
     }
 
     @Test
-    public void checkActionRealMoveDestroyArsenal() {
+    public void checkActionRealCorrectDestroyedArsenal() {
         gameAction.setSourceCoordinates(23, 8);
         gameAction.setTargetCoordinates(23, 9);
 
@@ -183,8 +183,7 @@ public class MoveRulesTest {
     }
 
     @Test
-    public void checkActionRealMoveNotDestroyArsenal() {
-        expectedMessage = "";
+    public void checkActionRealCorrectNotDestroyedArsenal() {
         gameAction.setSourceCoordinates(23, 8);
         gameAction.setTargetCoordinates(24, 9);
 
