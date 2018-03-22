@@ -19,7 +19,7 @@ public class ResultAlert extends Alert {
     private ResultAlert(){
         super(AlertType.INFORMATION);
         setTitle("Invalid Action");
-        setHeaderText("This command in not valid.");
+        setHeaderText("This command is not valid.");
 
 
         // Create expandable Exception.
