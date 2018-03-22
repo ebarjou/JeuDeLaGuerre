@@ -31,4 +31,16 @@ public class RuleCompositeNot extends AbsRuleComposite {
         this.rule = rule;
     }
 
+
+    public String toString(){
+        if(this.rule == null){
+            return "";
+        }
+        StringBuilder str = new StringBuilder();
+        str.append("(NOT ");
+        str.append(this.rule.toString()).append(")");
+
+        return str.toString();
+    }
+
 }

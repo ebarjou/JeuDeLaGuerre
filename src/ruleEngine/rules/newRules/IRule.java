@@ -9,11 +9,7 @@ public interface IRule {
     String toString();
     default String getRules(){
       return toString();
-    };
-    default void applyResult(GameState state, GameAction action, RuleResult result){
-        return;
-    };
-    default void add(IRule r){
-        return;
-    };
+    }
+    default void applyResult(GameState state, GameAction action, RuleResult result){}
+    default void add(IRule r){}
 }
