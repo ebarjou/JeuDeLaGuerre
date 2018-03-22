@@ -1,66 +1,31 @@
 import game.Game;
 import player.BotPlayer;
 import player.GUIPlayer;
+import player.Player;
 import ui.GUIThread;
 
 public class Start {
     public static void main(String[] arg) {
         GUIThread guiThread = new GUIThread();
 
-        //BotPlayer p2 = new BotPlayer(Thread.currentThread(), guiThread);
-        GUIPlayer p2 = new GUIPlayer(Thread.currentThread(), guiThread);
-        BotPlayer p1 = new BotPlayer(Thread.currentThread(), guiThread);
+        Player p1 = new GUIPlayer(Thread.currentThread(), guiThread);
+        Player p2 = new GUIPlayer(Thread.currentThread(), guiThread);
+
+        if(arg.length > 0){
+            if(arg[0].equalsIgnoreCase("-bot1") || arg[0].equalsIgnoreCase("-bot"))
+                p1 = new BotPlayer(Thread.currentThread(), guiThread);
+            else if(arg[0].equalsIgnoreCase("-bot2")) {
+                p1 = new BotPlayer(Thread.currentThread(), guiThread);
+                p2 = new BotPlayer(Thread.currentThread(), guiThread);
+            }
+        } else {
+            System.out.println("You can replace player 2 by a bot using option -bot or -bot1\n" +
+                                "Or you can replace both players by bot using option -bot2");
+        }
 
         Game.init(p1, p2);
 
-        /*GameState gameState = Game.getInstance().getGameStateManager();
-
-        Unit u = new Unit(EUnitData.RELAY_HORSE, EPlayer.PLAYER_SOUTH);
-        u.setPosition(10, 10);
-        gameState.addUnit(u);
-
-        u = new Unit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH);
-        u.setPosition(0, 2);
-        gameState.addUnit(u);
-
-        u = new Unit(EUnitData.RELAY_HORSE, EPlayer.PLAYER_SOUTH);
-        u.setPosition(5, 5);
-        gameState.addUnit(u);
-        gameState.addPriorityUnit(u.clone());
-
-        Building b = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH);
-        b.setPosition(0, 7);
-        gameState.addBuilding(b);
-
-        b = new Building(EBuildingData.FORTRESS, EPlayer.PLAYER_NORTH);
-        b.setPosition(10, 10);
-        gameState.addBuilding(b);
-
-        b = new Building(EBuildingData.MOUNTAIN, EPlayer.PLAYER_NORTH);
-        b.setPosition(1, 1);
-        gameState.addBuilding(b);
-
-        gameState.addPriorityUnit(u);
-
-        b = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_SOUTH);
-        b.setPosition(5, 5);
-        gameState.addBuilding(b);
-
-        u = new Unit(EUnitData.ARTILLERY_HORSE, EPlayer.PLAYER_SOUTH);
-        u.setPosition(4, 4);
-        gameState.addUnit(u);
-
-        u = new Unit(EUnitData.ARTILLERY_HORSE, EPlayer.PLAYER_SOUTH);
-        u.setPosition(2, 4);
-        gameState.addUnit(u);
-
-        u = new Unit(EUnitData.ARTILLERY_HORSE, EPlayer.PLAYER_SOUTH);
-        u.setPosition(2, 2);
-        gameState.addUnit(u);
-        gameState.addPriorityUnit(u);*/
-
         guiThread.start();
-
         Game.getInstance().start();
     }
 }
