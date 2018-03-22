@@ -1,11 +1,10 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.IBoard;
 import game.board.Unit;
 import game.gameState.GameState;
 import org.junit.Before;
-import org.junit.Test;import game.gameState.GameState;
+import org.junit.Test;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
@@ -20,43 +19,40 @@ import static org.junit.Assert.*;
 
 public class CheckCanAttackUnitTest {
 
-    private IBoard iBoard;
     private GameState iGameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
+    private CheckCanAttackUnit rule;
+	private LinkedList<Unit> units;
+	private Unit testUnit;
+	private String expectedMessage;
 
-    @Before
+	@Before
     public void setUp() throws Exception {
-        iBoard = mock(IBoard.class);
         iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
+        rule = new CheckCanAttackUnit();
+		units = new LinkedList<>();
+		testUnit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+		units.add(testUnit);
+		when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
+		when(iGameState.getCantAttackUnits()).thenReturn(units);
+		expectedMessage = "CheckCanAttackUnit : This unit can't attack this turn.\n";
+	}
+
+    @Test
+    public void checkActionMockingCorrect() {
+        testUnit.setPosition(2, 2);
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertTrue(ruleResult.isValid());
     }
 
     @Test
-    public void checkActionMocking() {
-        CheckCanAttackUnit rule = new CheckCanAttackUnit();
-        when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
-        List<Unit> l = new LinkedList<>();
-        Unit u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
-        u.setPosition(2, 2);
-        l.add(u);
-        when(iGameState.getCantAttackUnits()).thenReturn(l);
-        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
-        assertTrue(ruleResult.isValid());
-
-        u.setPosition(1, 1);
+    public void checkActionMockingWrong() {
+        testUnit.setPosition(1, 1);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
-        String expectedMessage = "CheckCanAttackUnit : This unit can't attack this turn.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
         assertFalse(ruleResult.isValid());
     }
-
-    private boolean isUnitCanAttack(List<Unit> cantAttackUnits, Coordinates coords){
-        for(Unit unit : cantAttackUnits)
-            if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
-                return false;
-        return true;
-    }
-
 }

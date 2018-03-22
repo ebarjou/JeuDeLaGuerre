@@ -8,224 +8,169 @@ import game.gameState.GameState;
 import org.junit.Before;
 
 import org.junit.Test;
-import player.GUIPlayer;
 import player.Player;
 import ruleEngine.*;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.exceptions.IncorrectGameActionException;
-import system.BadFileFormatException;
 import system.LoadFile;
-import ui.GUIThread;
-
-import java.io.IOException;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
 
 public class MoveRulesTest {
 
     private GameState gameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
-    private RuleChecker rule;
     private String expectedMessage;
+    private MoveRules rule;
+	private RuleChecker ruleChecker;
 
-    @Before
-    public void setUp() {
+	@Before
+    public void setUp() throws Exception{
         gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
         ruleResult = new RuleResult();
-        rule = new RuleChecker();
+        rule = new MoveRules();
+        ruleChecker = new RuleChecker();
 
-        GUIThread guiThread = new GUIThread();
-        Player p1 = new GUIPlayer(Thread.currentThread(), guiThread);
-        Player p2 = new GUIPlayer(Thread.currentThread(), guiThread);
-        Game.init(p1, p2);
+        Player player = mock(Player.class);
+        Game.init(player, player);
         LoadFile lf = new LoadFile();
-        try {
-            lf.loadFile("presets/moveRulesTestFile.txt");
-        } catch (IOException | BadFileFormatException e) {
-            assertTrue("Test class " + this.getClass().getSimpleName() +
-                    " could not load the test file : Test interrupted.", false);
-        }
+        lf.loadFile("presets/moveRulesTestFile.txt");
 
         gameState = Game.getInstance().getGameState();
-
-        try {
-            GameAction communication = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
-            RuleResult r = rule.checkAndApplyAction(gameState, communication);
-            assertTrue("Can't check actions MOVE because action COMMUNICATION failed beforehand.", r.isValid());
-        } catch (IncorrectGameActionException e) {
-            assertTrue("Can't check actions MOVE because action COMMUNICATION failed beforehand.", false);
-        }
-
-    }
-
-    private void checkActionValidMove(EUnitData unitData) {
-        try {
-            ruleResult = rule.checkAndApplyAction(gameState, gameAction);
-        } catch (IncorrectGameActionException e) {
-            assertTrue("Action MOVE wasn't recognized by the RuleChecker.", false);
-        }
-        assertTrue(ruleResult.isValid());
-        assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
-
-        Unit movedUnit = gameState.getLastUnitMoved();
-        assertTrue(movedUnit.getX() == gameAction.getTargetCoordinates().getX());
-        assertTrue(movedUnit.getY() == gameAction.getTargetCoordinates().getY());
-        assertTrue(movedUnit.getPlayer() == gameState.getActualPlayer());
-        assertTrue(movedUnit.getUnitData() == unitData);
-    }
-
-    private void checkActionInvalidMove() {
-        try {
-            ruleResult = rule.checkAndApplyAction(gameState, gameAction);
-        } catch (IncorrectGameActionException e) {
-            assertTrue("Action MOVE wasn't recognized by the RuleChecker.", false);
-        }
-        assertFalse(ruleResult.isValid());
-        System.out.println(expectedMessage +"\n" + ruleResult.getLogMessage() +"\n\n");
-        assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
-    }
+		ruleChecker.checkAndApplyAction(gameState, new GameAction(EPlayer.values()[0], EGameActionType.COMMUNICATION));
+	}
 
     @Test
-    public void checkActionValidMoveInfantry() {
-        expectedMessage = "";
+    public void checkActionRealCorrectInfantry() {
         gameAction.setSourceCoordinates(9, 10);
         gameAction.setTargetCoordinates(10, 10);
 
-        checkActionValidMove(EUnitData.INFANTRY);
+        performAssertsCorrect(EUnitData.INFANTRY);
     }
 
     @Test
-    public void checkActionValidMoveCavalry() {
-        expectedMessage = "";
+    public void checkActionRealCorrectCavalry() {
         gameAction.setSourceCoordinates(9, 9);
         gameAction.setTargetCoordinates(11, 11);
 
-        checkActionValidMove(EUnitData.CAVALRY);
+        performAssertsCorrect(EUnitData.CAVALRY);
     }
 
     @Test
-    public void checkActionValidMoveArtillery() {
-        expectedMessage = "";
+    public void checkActionRealCorrectArtillery() {
         gameAction.setSourceCoordinates(9, 11);
         gameAction.setTargetCoordinates(10, 11);
 
-        checkActionValidMove(EUnitData.ARTILLERY);
+        performAssertsCorrect(EUnitData.ARTILLERY);
     }
 
     @Test
-    public void checkActionValidMoveArtilleryHorse() {
-        expectedMessage = "";
+    public void checkActionRealCorrectArtilleryHorse() {
         gameAction.setSourceCoordinates(9, 12);
         gameAction.setTargetCoordinates(11, 14);
 
-        checkActionValidMove(EUnitData.ARTILLERY_HORSE);
+        performAssertsCorrect(EUnitData.ARTILLERY_HORSE);
     }
 
     @Test
-    public void checkActionValidMoveRelay() {
-        expectedMessage = "";
+    public void checkActionRealCorrectRelay() {
         gameAction.setSourceCoordinates(0, 8);
         gameAction.setTargetCoordinates(0, 7);
 
-        checkActionValidMove(EUnitData.RELAY);
+        performAssertsCorrect(EUnitData.RELAY);
     }
 
     @Test
-    public void checkActionValidMoveRelayHorse() {
-        expectedMessage = "";
+    public void checkActionRealCorrectRelayHorse() {
         gameAction.setSourceCoordinates(3, 7);
         gameAction.setTargetCoordinates(3, 5);
 
-        checkActionValidMove(EUnitData.RELAY_HORSE);
+        performAssertsCorrect(EUnitData.RELAY_HORSE);
     }
 
     @Test
-    public void checkActionInvalidMoveInfantry() {
+    public void checkActionRealWrongInfantry() {
         expectedMessage = "CheckIsAllyUnit : This unit is not owned by PLAYER_NORTH.\n" +
                 "CheckIsInCommunication, CheckIsRelay, , CheckUnitMP, CheckIsEmptyPath,  : Those rules are not checked because CheckIsAllyUnit has failed.\n";
         gameAction.setSourceCoordinates(24, 19);
         gameAction.setTargetCoordinates(24, 17);
 
-        checkActionInvalidMove();
+        performAssertsWrong();
     }
 
     @Test
-    public void checkActionInvalidMoveCavalry() {
-        expectedMessage = "CheckIsInCommunication : This unit is not in your communication.\n" +
-                "CheckIsRelay : This unit is not a relay.\n" +
-                "\n" +
-                "CheckUnitMP : Not enough movement point, the unit has 2 MP, and you need 3 MP\n" +
-                "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
+    public void checkActionRealWrongCavalry() {
+        expectedMessage = "CheckIsInCommunication : This unit is not in the player communication.\n" +
+				"CheckIsRelay : This unit is not a relay.\n" +
+				"CheckUnitMP : Not enough movement point, the unit has 2 MP, and you need 3 MP.\n" +
+				"CheckIsEmptyPath : There is no path found using 2 movement points.\n";
         gameAction.setSourceCoordinates(0, 19);
         gameAction.setTargetCoordinates(3, 16);
 
-        checkActionInvalidMove();
+        performAssertsWrong();
     }
 
     @Test
-    public void checkActionInvalidMoveArtillery() {
-        expectedMessage = "CheckIsInCommunication : This unit is not in your communication.\n" +
+    public void checkActionRealWrongArtillery() {
+        expectedMessage = "CheckIsInCommunication : This unit is not in the player communication.\n" +
                 "CheckIsRelay : This unit is not a relay.\n" +
-                "\n" +
-                "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
+                "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP.\n" +
                 "CheckIsEmptyPath : There is no path found using 1 movement points.\n";
         gameAction.setSourceCoordinates(1, 19);
         gameAction.setTargetCoordinates(1, 17);
 
-        checkActionInvalidMove();
+        performAssertsWrong();
     }
 
     @Test
-    public void checkActionInvalidMoveArtilleryHorse() {
-        expectedMessage = "CheckIsInCommunication : This unit is not in your communication.\n" +
-                "CheckIsRelay : This unit is not a relay.\n" +
-                "\n" +
-                "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
+    public void checkActionRealWrongArtilleryHorse() {
+        expectedMessage = "CheckIsInCommunication : This unit is not in the player communication.\n" +
+				"CheckIsRelay : This unit is not a relay.\n" +
+				"CheckIsEmptyPath : There is no path found using 2 movement points.\n";
         gameAction.setSourceCoordinates(2, 19);
-        gameAction.setTargetCoordinates(0, 17);
+		gameAction.setTargetCoordinates(0, 17);
 
-        checkActionInvalidMove();
-    }
+		performAssertsWrong();
+	}
 
     @Test
-    public void checkActionInvalidMoveRelay() {
+    public void checkActionRealWrongRelay() {
         Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
         unit.setPosition(9, 10);
         gameState.addPriorityUnit(unit);
 
-        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP\n" +
-                "CheckIsEmptyPath : There is no path found using 1 movement points.\n" +
-                "CheckIsPriorityUnit : There are other units that need to be moved first.\n";
+        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP.\n" +
+				"CheckIsEmptyPath : There is no path found using 1 movement points.\n" +
+				"CheckIsPriorityUnit : There are other units that need to be moved first.\n";
         gameAction.setSourceCoordinates(0, 8);
         gameAction.setTargetCoordinates(0, 6);
 
-        checkActionInvalidMove();
+        performAssertsWrong();
     }
 
     @Test
-    public void checkActionInvalidMoveRelayHorse() {
-        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 2 MP, and you need 3 MP\n" +
+    public void checkActionRealWrongRelayHorse() {
+        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 2 MP, and you need 3 MP.\n" +
                 "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
         gameAction.setSourceCoordinates(3, 7);
         gameAction.setTargetCoordinates(3, 4);
 
-        checkActionInvalidMove();
+        performAssertsWrong();
     }
 
     @Test
-    public void checkActionMoveDestroyArsenal() {
-        expectedMessage = "";
+    public void checkActionRealMoveDestroyArsenal() {
         gameAction.setSourceCoordinates(23, 8);
         gameAction.setTargetCoordinates(23, 9);
 
-        checkActionValidMove(EUnitData.RELAY);
-
-        expectedMessage = "";
+        performAssertsCorrect(EUnitData.RELAY);
         gameAction.setSourceCoordinates(24, 8);
         gameAction.setTargetCoordinates(24, 9);
 
-        checkActionValidMove(EUnitData.INFANTRY);
+        performAssertsCorrect(EUnitData.INFANTRY);
 
         Building arsenal = null;
         for (Building b : gameState.getAllBuildings()) {
@@ -238,12 +183,12 @@ public class MoveRulesTest {
     }
 
     @Test
-    public void checkActionMoveNotDestroyArsenal() {
+    public void checkActionRealMoveNotDestroyArsenal() {
         expectedMessage = "";
         gameAction.setSourceCoordinates(23, 8);
         gameAction.setTargetCoordinates(24, 9);
 
-        checkActionValidMove(EUnitData.RELAY);
+        performAssertsCorrect(EUnitData.RELAY);
 
         Building arsenal = null;
         for (Building b : gameState.getAllBuildings()) {
@@ -254,4 +199,29 @@ public class MoveRulesTest {
         }
         assertTrue("Arsenal broken after being occupied by an inoffensive unit.", arsenal != null);
     }
+
+	private void performAssertsCorrect(EUnitData unitData) {
+		assertTrue(rule.checkAction(gameState, gameAction, ruleResult));
+		assertTrue(ruleResult.isValid());
+		rule.applyResult(gameState, gameAction, ruleResult);
+		try {
+			ruleChecker.checkAndApplyAction(gameState, new GameAction(EPlayer.values()[0], EGameActionType.COMMUNICATION));
+		} catch (IncorrectGameActionException e) {
+			assertTrue(false);
+		}
+		Unit movedUnit = gameState.getLastUnitMoved();
+		assertTrue(movedUnit.getX() == gameAction.getTargetCoordinates().getX());
+		assertTrue(movedUnit.getY() == gameAction.getTargetCoordinates().getY());
+		assertTrue(movedUnit.getPlayer() == gameState.getActualPlayer());
+		assertTrue(movedUnit.getUnitData() == unitData);
+	}
+
+	private void performAssertsWrong() {
+		assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
+		assertFalse(ruleResult.isValid());
+		if (!ruleResult.getLogMessage().equals(expectedMessage))
+			System.out.print(ruleResult.getLogMessage());
+		assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
+	}
+
 }

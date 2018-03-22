@@ -34,8 +34,8 @@ public class RuleCompositeOrDep extends AbsRuleComposite {
                 return true;
             }
         }
-
-        result.addMessage(tmpResult.getLogMessage());
+        int len = tmpResult.getLogMessage().length();
+        result.addMessage(tmpResult.getLogMessage().substring(0, len - (len > 2 ? 1 : 0)));
         result.invalidate();
         return valid;
     }

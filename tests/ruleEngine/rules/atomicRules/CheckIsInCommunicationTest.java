@@ -14,64 +14,70 @@ import static org.mockito.Mockito.*;
 
 public class CheckIsInCommunicationTest {
 
-    private IBoard iBoard;
     private GameState iGameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
+    private CheckIsInCommunication rule;
+    private String expectedMessage;
 
     @Before
     public void setUp() throws Exception {
-        iBoard = mock(IBoard.class);
         iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
+        rule = new CheckIsInCommunication();
+        when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
+        when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
+        expectedMessage = "CheckIsInCommunication : This unit is not in the player communication.\n";
     }
 
     @Test
-    public void checkActionMocking() {
-        CheckIsInCommunication rule = new CheckIsInCommunication();
-        when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
-        when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
+    public void checkActionMockingCorrectComm() {
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(true);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
+    }
 
+    @Test
+    public void checkActionMockingCorrectRelayAndComm() {
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.RELAY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(true);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
+    }
 
+    @Test
+    public void checkActionMockingCorrectRelayHorseAndComm() {
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.RELAY_HORSE);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(true);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
+    }
 
-
-        //TODO: Need to discuss about the 2 following tests ... Not sure if it's still pertinent
+    @Test
+    public void checkActionMockingWrongRelayOnly() {
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.RELAY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
-        assertTrue(!rule.checkAction(iGameState, gameAction, ruleResult));
-        assertTrue(!ruleResult.isValid());
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(ruleResult.isValid());
+        assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
+    }
 
+    @Test
+    public void checkActionMockingWrongRelayHorseOnly() {
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.RELAY_HORSE);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
-        assertTrue(!rule.checkAction(iGameState, gameAction, ruleResult));
-        assertTrue(!ruleResult.isValid());
+        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(ruleResult.isValid());
+        assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
+    }
 
+    @Test
+    public void checkActionMockingWrongNoComm() {
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
-        String expectedMessage = "CheckIsInCommunication : This unit is not in your communication.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
         assertFalse(ruleResult.isValid());
-
-        //TODO : Wrong behavior
-        ruleResult = new RuleResult();
-        when(iGameState.getUnitType(1, 1)).thenThrow(new NullPointerException());
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
-        expectedMessage = "CheckIsInCommunication : This unit is not in your communication.\n";
-        assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
-        assertFalse(ruleResult.isValid());
-
     }
 }

@@ -20,7 +20,7 @@ public class CheckIsInCommunication implements IRule {
         } catch (IllegalBoardCallException ignored){
         }
 
-        result.addMessage(this, "This unit is not in your communication.");
+        result.addMessage(this, "This unit is not in the player communication.");
         result.invalidate();
         return false;
     }

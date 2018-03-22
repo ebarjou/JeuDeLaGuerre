@@ -10,37 +10,45 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class CheckPlayerMovesLeftTest {
-    private IBoard iBoard;
     private GameState iGameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
+    private CheckPlayerMovesLeft rule;
+    private String expectedMessage;
 
     @Before
     public void setUp() throws Exception {
-        iBoard = mock(IBoard.class);
         iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
+        rule = new CheckPlayerMovesLeft();
+        expectedMessage = "CheckPlayerMovesLeft : This player has no action left this turn.\n";
     }
 
     @Test
-    public void checkActionMocking() {
-        CheckPlayerMovesLeft rule = new CheckPlayerMovesLeft();
+    public void checkActionMockingCorrect5M() {
         when(iGameState.getActionLeft()).thenReturn(5);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
+    }
 
+    @Test
+    public void checkActionMockingCorrect1M() {
         when(iGameState.getActionLeft()).thenReturn(1);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
+    }
 
+    @Test
+    public void checkActionMockingWrong0M() {
         when(iGameState.getActionLeft()).thenReturn(0);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
-        String expectedMessage = "CheckPlayerMovesLeft : This player has no action left this turn.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
+    }
 
-        ruleResult = new RuleResult();
+    @Test
+    public void checkActionMockingWrongNegativeValueM() {
         when(iGameState.getActionLeft()).thenReturn(-5);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());

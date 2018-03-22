@@ -27,13 +27,13 @@ public class CheckUnitMP implements IRule {
             if (dist > MP) {
                 result.addMessage(this,
                         "Not enough movement point, the unit has "
-                                + MP + " MP, and you need " + dist + " MP");
+                                + MP + " MP, and you need " + dist + " MP.");
                 result.invalidate();
                 return false;
             }
             return true;
         } catch (IllegalBoardCallException e){
-            result.addMessage(this, "Not enough movement point");
+            result.addMessage(this, "Not enough movement point.");
             result.invalidate();
             return false;
         }

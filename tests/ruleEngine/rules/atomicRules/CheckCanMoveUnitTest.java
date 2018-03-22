@@ -19,22 +19,33 @@ import static org.junit.Assert.*;
 
 public class CheckCanMoveUnitTest {
 
-    private IBoard iBoard;
     private GameState iGameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
+    private CheckCanMoveUnit rule;
 
     @Before
     public void setUp() throws Exception {
-        iBoard = mock(IBoard.class);
         iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
+        rule = new CheckCanMoveUnit();
     }
 
     @Test
-    public void checkActionMocking() {
-        CheckCanMoveUnit rule = new CheckCanMoveUnit();
+    public void checkActionMockingCorrect() {
+        when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
+        List<Unit> l = new LinkedList<>();
+        when(iGameState.getAllUnits()).thenReturn(l);
+        Unit u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        u.setPosition(1, 1);
+        l.add(u);
+        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertTrue(ruleResult.isValid());
+    }
+
+    @Test
+    public void checkActionMockingWrong() {
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
         List<Unit> l = new LinkedList<>();
         when(iGameState.getAllUnits()).thenReturn(l);
@@ -42,12 +53,5 @@ public class CheckCanMoveUnitTest {
         assertFalse(ruleResult.isValid());
         String expectedMessage = "CheckCanMoveUnit : This unit has already moved.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
-
-        ruleResult = new RuleResult();
-        Unit u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
-        u.setPosition(1, 1);
-        l.add(u);
-        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
-        assertTrue(ruleResult.isValid());
     }
 }

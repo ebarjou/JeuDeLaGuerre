@@ -19,74 +19,69 @@ import static org.mockito.Mockito.when;
 
 public class CheckIsAttackingUnitTest {
 
-    private GameAction gameAction;
-    private GameState gameState;
-    private CheckIsAttackingUnit rule;
+	private GameAction gameAction;
+	private GameState gameState;
+	private CheckIsAttackingUnit rule;
+	private RuleResult result;
+	private String expectedMessage;
 
-    @Before
-    public void setUp(){
-        gameState = mock(GameState.class);
-        gameAction = mock(GameAction.class);
-        rule = new CheckIsAttackingUnit();
-        when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(0, 0));
-    }
+	@Before
+	public void setUp() {
+		gameState = mock(GameState.class);
+		gameAction = mock(GameAction.class);
+		rule = new CheckIsAttackingUnit();
+		when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(0, 0));
+		result = new RuleResult();
+		expectedMessage = "CheckIsAttackingUnit : This unit is not suited to attack.\n";
+	}
 
-    @Test
-    public void checkActionValidAttackingMocking() {
-        // INFANTRY
-        when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.INFANTRY);
+	@Test
+	public void checkActionMockingValidInfantry() {
+		// INFANTRY
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.INFANTRY);
+		assertTrue(rule.checkAction(gameState, gameAction, result));
+		assertTrue(result.isValid());
+	}
 
-        RuleResult result = new RuleResult();
-        String expectedMessage = "";
+	@Test
+	public void checkActionMockingValidCavalry() {
+		// CAVALRY
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.CAVALRY);
+		assertTrue(rule.checkAction(gameState, gameAction, result));
+		assertTrue(result.isValid());
+	}
 
-        assertTrue(rule.checkAction(gameState, gameAction, result));
-        assertTrue(result.isValid());
-        assertTrue(result.getLogMessage().equals(expectedMessage));
+	@Test
+	public void checkActionMockingValidArtillery() {
+		// ARTILLERY
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.ARTILLERY);
+		assertTrue(rule.checkAction(gameState, gameAction, result));
+		assertTrue(result.isValid());
+	}
 
-        // CAVALRY
-        when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.CAVALRY);
-        result = new RuleResult(); expectedMessage = "";
+	@Test
+	public void checkActionMockingValidArtilleryHorse() {
+		// ARTILLERY_HORSE
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.ARTILLERY_HORSE);
+		assertTrue(rule.checkAction(gameState, gameAction, result));
+		assertTrue(result.isValid());
+	}
 
-        assertTrue(rule.checkAction(gameState, gameAction, result));
-        assertTrue(result.isValid());
-        assertTrue(result.getLogMessage().equals(expectedMessage));
+	@Test
+	public void checkActionMockingInvalidRelay() {
+		// RELAY
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.RELAY);
+		assertFalse(rule.checkAction(gameState, gameAction, result));
+		assertFalse(result.isValid());
+		assertTrue(result.getLogMessage().contains(expectedMessage));
+	}
 
-        // ARTILLERY
-        when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.ARTILLERY);
-        result = new RuleResult(); expectedMessage = "";
-
-        assertTrue(rule.checkAction(gameState, gameAction, result));
-        assertTrue(result.isValid());
-        assertTrue(result.getLogMessage().equals(expectedMessage));
-
-        // ARTILLERY_HORSE
-        when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.ARTILLERY_HORSE);
-        result = new RuleResult(); expectedMessage = "";
-
-        assertTrue(rule.checkAction(gameState, gameAction, result));
-        assertTrue(result.isValid());
-        assertTrue(result.getLogMessage().equals(expectedMessage));
-    }
-
-    @Test
-    public void checkActionInvalidAttackingMocking() {
-        // RELAY
-        when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.RELAY);
-
-        RuleResult result = new RuleResult();
-        String expectedMessage = "CheckIsAttackingUnit : This unit is not suited to attack.\n";
-
-        assertFalse(rule.checkAction(gameState, gameAction, result));
-        assertFalse(result.isValid());
-        assertTrue(result.getLogMessage().contains(expectedMessage));
-
-        // RELAY_HORSE
-        when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.RELAY_HORSE);
-
-        result = new RuleResult(); expectedMessage = "CheckIsAttackingUnit : This unit is not suited to attack.\n";
-
-        assertFalse(rule.checkAction(gameState, gameAction, result));
-        assertFalse(result.isValid());
-        assertTrue(result.getLogMessage().contains(expectedMessage));
-    }
+	@Test
+	public void checkActionMockingInvalidRelayHorse() {
+		// RELAY_HORSE
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.RELAY_HORSE);
+		assertFalse(rule.checkAction(gameState, gameAction, result));
+		assertFalse(result.isValid());
+		assertTrue(result.getLogMessage().contains(expectedMessage));
+	}
 }

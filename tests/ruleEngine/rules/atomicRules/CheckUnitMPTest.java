@@ -19,22 +19,20 @@ public class CheckUnitMPTest {
 
     private GameAction gameAction;
     private GameState gameState;
-    private Board board;
     private CheckUnitMP rule;
+    private RuleResult result;
+    private String expectedMessage;
 
     @Before
     public void setUp(){
-        //board = new Board(25, 20);
 
         // MovementValue = 1
         Unit infantry = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
         infantry.setPosition(0, 0);
-        //board.setUnit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH,0, 0);
+
         // MovementValue = 2
         Unit cavalry = new Unit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH);
         cavalry.setPosition(5, 5);
-        //board.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH,5, 5);*/
-
 
         gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);
 
@@ -46,35 +44,30 @@ public class CheckUnitMPTest {
         gameState = new GameState(25, 20);
         gameState.addUnit(infantry);
         gameState.addUnit(cavalry);
+        result = new RuleResult();
+        expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP.\n";
     }
 
     @Test
-    public void checkActionValidMP() {
+    public void checkActionRealCorrect() {
         gameAction.setSourceCoordinates(5, 5);
         gameAction.setTargetCoordinates(7, 7);
 
         RuleResult result = new RuleResult();
-        String expectedMessage = "";
 
-        boolean valid = rule.checkAction(gameState, gameAction, result);
-
-        assertTrue(valid);
-        assertTrue(result.getLogMessage().equals(expectedMessage));
+        assertTrue(rule.checkAction(gameState, gameAction, result));
         assertTrue(result.isValid());
     }
 
     @Test
-    public void checkActionInvalidMPMocking() {
+    public void checkActionRealWrong() {
         gameAction.setSourceCoordinates(0, 0);
         gameAction.setTargetCoordinates(2, 2);
 
-        RuleResult result = new RuleResult();
         //There is no unit at 0,0 so it should return this message.
-        String expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP";
 
         assertFalse(rule.checkAction(gameState, gameAction, result));
-
-        assertTrue(result.getLogMessage().contains(expectedMessage));
+        assertTrue(result.getLogMessage().equals(expectedMessage));
         assertFalse(result.isValid());
     }
 }
