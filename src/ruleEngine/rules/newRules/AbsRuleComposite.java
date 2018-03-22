@@ -8,13 +8,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- - * Object to be extended by super-set of atomic rules. Check the validity of all rules added by {@link AbsRuleComposite#add(IRule)} and allows
- - * the use of rule dependencies if those are not respected. It's recommended to use instead of checking atomic rules directly
- - * on the {@link ruleEngine.RuleChecker}.
- - * @see IRule
- - * @see RuleResult
- - * @see ruleEngine.RuleChecker
- - */
+ * Object to be extended by Composite of IRules. Check the validity of all rules added by {@link AbsRuleComposite#add(IRule)} and allows
+ * the use of rule dependencies if those are not respected. It's recommended to use instead of checking atomic rules directly
+ * on the {@link ruleEngine.RuleChecker}.
+ * @see IRule
+ * @see RuleResult
+ * @see ruleEngine.RuleChecker
+ */
 public abstract class AbsRuleComposite implements IRule{
 
     protected List<IRule> rules;

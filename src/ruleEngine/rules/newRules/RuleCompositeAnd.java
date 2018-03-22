@@ -4,6 +4,17 @@ import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 
+/**
+ * Composite to be extended by super-set of atomic rules. Check the validity of all rules added
+ * by {@link AbsRuleComposite#add(IRule)}. This composite represents the logical AND between
+ * all IRule in {@link AbsRuleComposite#rules}, it checks all the rules even if the result is
+ * invalidate by one of the rule because we want to have the maximum of log on why the action
+ * is incorrect. If you need the lazy AND, you must see {@link RuleCompositeAndDep}.
+ * @see AbsRuleComposite
+ * @see IRule
+ * @see RuleResult
+ * @see ruleEngine.RuleChecker
+*/
 public class RuleCompositeAnd extends AbsRuleComposite {
 
     public RuleCompositeAnd(){
