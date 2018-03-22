@@ -46,20 +46,22 @@ public class CheckIsInCommunicationTest {
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
 
+
+        //TODO: Need to discuss about the 2 following tests ... Not sure if it's still pertinent
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.RELAY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
-        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
-        assertTrue(ruleResult.isValid());
+        assertTrue(!rule.checkAction(iGameState, gameAction, ruleResult));
+        assertTrue(!ruleResult.isValid());
 
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.RELAY_HORSE);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
-        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
-        assertTrue(ruleResult.isValid());
+        assertTrue(!rule.checkAction(iGameState, gameAction, ruleResult));
+        assertTrue(!ruleResult.isValid());
 
         when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
-        String expectedMessage = "CheckIsInCommunication : This unit is not in communication and cannot be used.\n";
+        String expectedMessage = "CheckIsInCommunication : This unit is not in your communication.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
         assertFalse(ruleResult.isValid());
 
@@ -67,7 +69,7 @@ public class CheckIsInCommunicationTest {
         ruleResult = new RuleResult();
         when(iGameState.getUnitType(1, 1)).thenThrow(new NullPointerException());
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
-        expectedMessage = "CheckIsInCommunication : This unit is not in communication and cannot be used.\n";
+        expectedMessage = "CheckIsInCommunication : This unit is not in your communication.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
         assertFalse(ruleResult.isValid());
 

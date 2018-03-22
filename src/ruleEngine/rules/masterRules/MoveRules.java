@@ -12,11 +12,15 @@ import ruleEngine.rules.newRules.*;
 
 import java.util.List;
 
+/**
+ * Class testing if a unit move is allowed according to its range of movement, the terrain and its communication supplying.
+ * Performs the move on the board if respected.
+ */
 public class MoveRules extends RuleCompositeAnd {
 
     public MoveRules() {
         super();
-        //TODO: Put here the sub-rules (atomic) you need to check.
+
         super.add(new CheckPlayerTurn());
         super.add(new CheckPlayerMovesLeft());
 
@@ -54,7 +58,6 @@ public class MoveRules extends RuleCompositeAnd {
         state.removePriorityUnit(src);
 
         state.setUnitHasMoved(src);
-        //state.updateUnitPosition(src, target);
         state.removeOneAction();
         state.moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
 

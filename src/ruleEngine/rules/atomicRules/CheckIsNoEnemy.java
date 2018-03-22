@@ -8,6 +8,12 @@ import ruleEngine.rules.newRules.IRule;
 
 import java.util.List;
 
+/**
+ - * Check if there is no more enemy units on the board, leading to the end of the game.<br>
+ - * Valid if there is no more enemy units, invalid otherwise.<br><br>
+ - * @see ruleEngine.rules.masterRules.VictoryRules
+ - * @see CheckIsNoArsenalEnemy
+ - */
 public class CheckIsNoEnemy implements IRule {
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {

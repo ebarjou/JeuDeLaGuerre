@@ -9,6 +9,12 @@ import ruleEngine.rules.newRules.IRule;
 
 import java.util.List;
 
+/**
+* Check if a unit is allowed to attack or not. A unit may not be able to attack if it has retreated previously.<br>
+* Valid if allowed to attack, invalid otherwise.
+*
+* @see ruleEngine.rules.masterRules.AttackRules
+*/
 public class CheckCanAttackUnit implements IRule {
 
     private boolean isUnitCanAttack(GameState state, Coordinates coords){

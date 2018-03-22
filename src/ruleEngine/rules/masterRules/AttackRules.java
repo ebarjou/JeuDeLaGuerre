@@ -12,15 +12,27 @@ import ruleEngine.rules.atomicRules.*;
 import ruleEngine.rules.newRules.IRule;
 import ruleEngine.rules.newRules.RuleCompositeAnd;
 import ruleEngine.rules.newRules.RuleCompositeAndDep;
+import ruleEngine.rules.newRules.RuleCompositeNot;
 
 import java.util.List;
 
+
+/**
+ * Class testing if an attack action is allowed on the board or not. If successful, the outcome of the attack is computed
+ * and can be displayed from the RuleResult.<br>
+ * <br>
+ * If the attackers power is lesser or equals to the defenders power, nothing happens.<br>
+ * If the attackers power is larger of the defenders power by 1 point, the attacked unit must retreat first on the next turn
+ * of the attacked player. This retreat must be performed on a adjacent case of the unit's current position. If there's no empty
+ * case around the unit, the unit is removed from the game.<br>
+ * If the attackers power is larger of the defenders power by 2 or more points, the attacked unit is removed from the game.
+ */
 public class AttackRules extends RuleCompositeAnd {
 
     private static final int chargeVal = 7;
 
     public AttackRules() {
-        //TODO: check if the unit can attack (relay can actually initiate the fight.
+        //TODO: check if the unit can attack (relay can actually initiate the fight). Test if it's fixed
         super.add(new CheckPlayerTurn());
         IRule onBoardDep = new RuleCompositeAndDep();
         onBoardDep.add(new CheckOnBoard());
@@ -32,6 +44,11 @@ public class AttackRules extends RuleCompositeAnd {
         andRules.add(new CheckLastMove());
         andRules.add(new CheckUnitRange());
         andRules.add(new CheckCanAttackUnit());
+        // Adding the rule if not a relay
+        IRule notRelay = new RuleCompositeNot();
+        notRelay.add(new CheckIsRelay());
+        andRules.add(notRelay);
+        //----
         isAllyUnitDep.add(andRules);
 
         andRules = new RuleCompositeAnd();
@@ -45,12 +62,6 @@ public class AttackRules extends RuleCompositeAnd {
 
         andRules.add(areAlignedDep);
         onBoardDep.add(andRules);
-        //IRule onBoardDep = new RuleCompositeAndDep();
-        //onBoardDep.add(new CheckIsInCommunication());
-        //onBoardDep.add(new CheckIsEnemyUnit());
-        //onBoardDep.add(new CheckAreAligned());
-        //onBoardDep.add(new CheckIsEmptyAttackPath());
-        //onBoardDep.add(onBoardDep);
 
         super.add(onBoardDep);
     }

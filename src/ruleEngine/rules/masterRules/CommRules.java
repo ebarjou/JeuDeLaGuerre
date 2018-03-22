@@ -13,6 +13,10 @@ import ruleEngine.rules.newRules.RuleCompositeAnd;
 
 import java.util.List;
 
+/**
+ * Class not testing any rule but compute the communications on the map according to the terrain and unit types.
+ * Called by the RuleChecker by the {@code computeCommunications()} private method on the demand of the Game object.
+ */
 public class CommRules extends RuleCompositeAnd {
 
     public CommRules(){

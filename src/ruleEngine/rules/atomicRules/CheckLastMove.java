@@ -8,6 +8,12 @@ import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import ruleEngine.rules.newRules.IRule;
 
+/**
+ * Check if the unit attacking is the last one moved by the player, as a delayed attack or static attack isn't allowed from
+ * our rule interpretation.<br>
+ * Valid if the attacking unit is the same that has performed a move this same turn, invalid otherwise.
+ * @see ruleEngine.rules.masterRules.AttackRules
+ */
 public class CheckLastMove implements IRule {
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
@@ -16,7 +22,6 @@ public class CheckLastMove implements IRule {
         try {
             lastMove = state.getLastUnitMoved();
         } catch (NullPointerException e) {
-            //TODO: stage.getLastUnitMoved() does not throw any exception
             result.invalidate();
             result.addMessage(this, "No unit has been moved yet.");
             return false;
@@ -30,8 +35,6 @@ public class CheckLastMove implements IRule {
 
         return true;
     }
-
-
 
     public String toString(){
         return this.getClass().getSimpleName();

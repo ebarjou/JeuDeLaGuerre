@@ -5,6 +5,12 @@ import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
 import ruleEngine.rules.newRules.IRule;
 
+/**
+ * Check if an action is performing within the board boundaries.<br>
+ * Valid if the action is performing within the boundaries, invalid otherwise.
+ * @see ruleEngine.rules.masterRules.MoveRules
+ * @see ruleEngine.rules.masterRules.AttackRules
+ */
 public class CheckOnBoard implements IRule {
 
     @Override

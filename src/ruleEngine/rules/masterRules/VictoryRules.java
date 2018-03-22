@@ -10,10 +10,12 @@ import ruleEngine.rules.newRules.IRule;
 import ruleEngine.rules.newRules.RuleCompositeAnd;
 import ruleEngine.rules.newRules.RuleCompositeOrDep;
 
+/**
+ * Class testing if a game is ended by the destruction of all of a player units or arsenals.
+ */
 public class VictoryRules extends RuleCompositeAnd {
     public VictoryRules(){
         super.add(new CheckPlayerTurn());
-        //TODO: The next rule has the test of the commented rule
         IRule orDep = new RuleCompositeOrDep();
         orDep.add(new CheckIsNoArsenalEnemy());
         orDep.add(new CheckIsNoEnemy());

@@ -10,6 +10,11 @@ import ruleEngine.rules.newRules.IRule;
 
 import java.util.List;
 
+/**
+ * Check if a unit must retreat or not. If there is no units that need to retreat, the rule is valid.<br>
+ * Valid if the unit needs to retreat, or if there is no units that need to retreat, invalid otherwise.
+ * @see ruleEngine.rules.masterRules.MoveRules
+ */
 public class CheckIsPriorityUnit implements IRule {
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {

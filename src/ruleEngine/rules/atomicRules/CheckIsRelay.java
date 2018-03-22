@@ -8,6 +8,13 @@ import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.rules.newRules.IRule;
 
+/**
+ * Check if a unit is a Relay type unit.<br>
+ * Valid if it is, invalid if otherwise.
+ *
+ * @see EUnitData
+ * @see ruleEngine.rules.masterRules.CommRules
+ */
 public class CheckIsRelay implements IRule {
 
     @Override
