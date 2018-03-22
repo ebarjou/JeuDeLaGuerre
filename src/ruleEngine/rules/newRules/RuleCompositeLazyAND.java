@@ -6,17 +6,17 @@ import ruleEngine.RuleResult;
 
 /**
  * Composite to be extended by super-set of atomic rules. Check the validity of all rules added
- * by {@link AbsRuleComposite#add(IRule)}. This composite represents the logical lazy AND between
- * all IRule in {@link AbsRuleComposite#rules}, it checks all the rules while the result is valid
+ * by {@link RuleComposite#add(IRule)}. This composite represents the logical lazy AND between
+ * all IRule in {@link RuleComposite#rules}, it checks all the rules while the result is valid
  * and stop when a rule fail. The order in which you add IRule to rules is important.
- * @see AbsRuleComposite
+ * @see RuleComposite
  * @see IRule
  * @see RuleResult
  * @see ruleEngine.RuleChecker
  */
-public class RuleCompositeAndDep extends AbsRuleComposite {
+public class RuleCompositeLazyAND extends RuleComposite {
 
-    public RuleCompositeAndDep(){
+    public RuleCompositeLazyAND(){
         super();
     }
 

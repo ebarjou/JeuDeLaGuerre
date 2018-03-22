@@ -10,9 +10,9 @@ import ruleEngine.RuleResult;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.rules.atomicRules.*;
 import ruleEngine.rules.newRules.IRule;
-import ruleEngine.rules.newRules.RuleCompositeAnd;
-import ruleEngine.rules.newRules.RuleCompositeAndDep;
-import ruleEngine.rules.newRules.RuleCompositeNot;
+import ruleEngine.rules.newRules.RuleCompositeAND;
+import ruleEngine.rules.newRules.RuleCompositeLazyAND;
+import ruleEngine.rules.newRules.RuleCompositeNOT;
 
 import java.util.List;
 
@@ -27,35 +27,35 @@ import java.util.List;
  * case around the unit, the unit is removed from the game.<br>
  * If the attackers power is larger of the defenders power by 2 or more points, the attacked unit is removed from the game.
  */
-public class AttackRules extends RuleCompositeAnd {
+public class AttackRules extends RuleCompositeAND {
 
     private static final int chargeVal = 7;
 
     public AttackRules() {
         //TODO: check if the unit can attack (relay can actually initiate the fight). Test if it's fixed
         super.add(new CheckPlayerTurn());
-        IRule onBoardDep = new RuleCompositeAndDep();
+        IRule onBoardDep = new RuleCompositeLazyAND();
         onBoardDep.add(new CheckOnBoard());
 
-        IRule andRules = new RuleCompositeAnd();
+        IRule andRules = new RuleCompositeAND();
 
-        IRule isAllyUnitDep = new RuleCompositeAndDep();
+        IRule isAllyUnitDep = new RuleCompositeLazyAND();
         isAllyUnitDep.add(new CheckIsAllyUnit());
         andRules.add(new CheckLastMove());
         andRules.add(new CheckUnitRange());
         andRules.add(new CheckCanAttackUnit());
         // Adding the rule if not a relay
-        IRule notRelay = new RuleCompositeNot();
+        IRule notRelay = new RuleCompositeNOT();
         notRelay.add(new CheckIsRelay());
         andRules.add(notRelay);
         //----
         isAllyUnitDep.add(andRules);
 
-        andRules = new RuleCompositeAnd();
+        andRules = new RuleCompositeAND();
         andRules.add(isAllyUnitDep);
         andRules.add(new CheckIsInCommunication());
 
-        IRule areAlignedDep = new RuleCompositeAndDep();
+        IRule areAlignedDep = new RuleCompositeLazyAND();
         areAlignedDep.add(new CheckIsEnemyUnit());
         areAlignedDep.add(new CheckAreAligned());
         areAlignedDep.add(new CheckIsEmptyAttackPath());

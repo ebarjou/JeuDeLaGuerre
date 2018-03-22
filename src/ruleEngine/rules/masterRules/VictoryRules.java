@@ -7,16 +7,16 @@ import ruleEngine.rules.atomicRules.CheckIsNoArsenalEnemy;
 import ruleEngine.rules.atomicRules.CheckIsNoEnemy;
 import ruleEngine.rules.atomicRules.CheckPlayerTurn;
 import ruleEngine.rules.newRules.IRule;
-import ruleEngine.rules.newRules.RuleCompositeAnd;
-import ruleEngine.rules.newRules.RuleCompositeOrDep;
+import ruleEngine.rules.newRules.RuleCompositeAND;
+import ruleEngine.rules.newRules.RuleCompositeLazyOR;
 
 /**
  * Class testing if a game is ended by the destruction of all of a player units or arsenals.
  */
-public class VictoryRules extends RuleCompositeAnd {
+public class VictoryRules extends RuleCompositeAND {
     public VictoryRules(){
         super.add(new CheckPlayerTurn());
-        IRule orDep = new RuleCompositeOrDep();
+        IRule orDep = new RuleCompositeLazyOR();
         orDep.add(new CheckIsNoArsenalEnemy());
         orDep.add(new CheckIsNoEnemy());
         super.add(orDep);

@@ -8,18 +8,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Object to be extended by Composite of IRules. Check the validity of all rules added by {@link AbsRuleComposite#add(IRule)} and allows
+ * Object to be extended by Composite of IRules. Check the validity of all rules added by {@link RuleComposite#add(IRule)} and allows
  * the use of rule dependencies if those are not respected. It's recommended to use instead of checking atomic rules directly
  * on the {@link ruleEngine.RuleChecker}.
  * @see IRule
  * @see RuleResult
  * @see ruleEngine.RuleChecker
  */
-public abstract class AbsRuleComposite implements IRule{
+public abstract class RuleComposite implements IRule{
 
     protected List<IRule> rules;
 
-    public AbsRuleComposite(){
+    public RuleComposite(){
         rules = new LinkedList<>();
     }
 
@@ -47,7 +47,7 @@ public abstract class AbsRuleComposite implements IRule{
     }
 
     /**
-      * Add a rule to the master rule. It will be checked every time {@link AbsRuleComposite#checkAction(GameState, GameAction, RuleResult)} is called on the master rule.
+      * Add a rule to the master rule. It will be checked every time {@link RuleComposite#checkAction(GameState, GameAction, RuleResult)} is called on the master rule.
       * @param rule The atomic to check.
       */
     @Override

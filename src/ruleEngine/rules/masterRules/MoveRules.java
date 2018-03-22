@@ -16,7 +16,7 @@ import java.util.List;
  * Class testing if a unit move is allowed according to its range of movement, the terrain and its communication supplying.
  * Performs the move on the board if respected.
  */
-public class MoveRules extends RuleCompositeAnd {
+public class MoveRules extends RuleCompositeAND {
 
     public MoveRules() {
         super();
@@ -24,17 +24,17 @@ public class MoveRules extends RuleCompositeAnd {
         super.add(new CheckPlayerTurn());
         super.add(new CheckPlayerMovesLeft());
 
-        IRule dependentOnBoard = new RuleCompositeAndDep();
+        IRule dependentOnBoard = new RuleCompositeLazyAND();
         dependentOnBoard.add(new CheckOnBoard());
 
-        IRule rulesDependentOfOnBoard = new RuleCompositeAnd();
+        IRule rulesDependentOfOnBoard = new RuleCompositeAND();
 
-        IRule dependentIsUnit = new RuleCompositeAndDep();
+        IRule dependentIsUnit = new RuleCompositeLazyAND();
         dependentIsUnit.add(new CheckIsAllyUnit());
 
-        IRule rulesDependentOfIsUnit = new RuleCompositeAnd();
+        IRule rulesDependentOfIsUnit = new RuleCompositeAND();
 
-        IRule orRuleCommunication = new RuleCompositeOrDep();
+        IRule orRuleCommunication = new RuleCompositeLazyOR();
         orRuleCommunication.add(new CheckIsInCommunication());
         orRuleCommunication.add(new CheckIsRelay());
         rulesDependentOfIsUnit.add(orRuleCommunication);

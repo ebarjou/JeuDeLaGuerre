@@ -6,18 +6,18 @@ import ruleEngine.RuleResult;
 
 
 /**
- * Composite to be extended by super-set of atomic rules. Check the validity of the rule added by {@link RuleCompositeNot#add(IRule)}
+ * Composite to be extended by super-set of atomic rules. Check the validity of the rule added by {@link RuleCompositeNOT#add(IRule)}
  * This composite represents the logical NOT for its rule.It checks the result of the rule and
  * return the opposite boolean.
- * @see AbsRuleComposite
+ * @see RuleComposite
  * @see IRule
  * @see RuleResult
  * @see ruleEngine.RuleChecker
  */
-public class RuleCompositeNot extends AbsRuleComposite {
+public class RuleCompositeNOT extends RuleComposite {
     private IRule rule;
 
-    public RuleCompositeNot(){
+    public RuleCompositeNOT(){
         super();
         rule = null;
     }

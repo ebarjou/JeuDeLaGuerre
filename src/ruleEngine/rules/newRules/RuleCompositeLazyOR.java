@@ -6,17 +6,18 @@ import ruleEngine.RuleResult;
 
 /**
  * Composite to be extended by super-set of atomic rules. Check the validity of all rules added
- * by {@link AbsRuleComposite#add(IRule)}. This composite represents the logical OR between
- * all IRule in {@link AbsRuleComposite#rules}, it checks all the rules for the same reasons as
- * {@link RuleCompositeAnd}. If you need the lazy OR, you must check {@link RuleCompositeOr}.
- * @see AbsRuleComposite
+ * by {@link RuleComposite#add(IRule)}. This composite represents the logical OR between
+ * all IRule in {@link RuleComposite#rules}, it checks all the rules while the result is false,
+ * and stop when a result is valid. The order in which you add the rules is important.
+ * {@link RuleCompositeAND}.
+ * @see RuleComposite
  * @see IRule
  * @see RuleResult
  * @see ruleEngine.RuleChecker
  */
-public class RuleCompositeOr extends AbsRuleComposite {
+public class RuleCompositeLazyOR extends RuleComposite {
 
-    public RuleCompositeOr(){
+    public RuleCompositeLazyOR(){
         super();
     }
 
@@ -27,12 +28,15 @@ public class RuleCompositeOr extends AbsRuleComposite {
         boolean valid = false;
         RuleResult tmpResult = new RuleResult();
         for(IRule rule : rules){
-            valid = rule.checkAction(state, action, tmpResult) || valid;
+
+            valid = rule.checkAction(state, action, tmpResult);
+            if(valid) {
+                return true;
+            }
         }
-        if(!valid) {
-            result.invalidate();
-            result.addMessage(this, tmpResult.getLogMessage());
-        }
+        int len = tmpResult.getLogMessage().length();
+        result.addMessage(tmpResult.getLogMessage().substring(0, len - (len > 2 ? 1 : 0)));
+        result.invalidate();
         return valid;
     }
 
@@ -43,7 +47,7 @@ public class RuleCompositeOr extends AbsRuleComposite {
         StringBuilder str = new StringBuilder();
         str.append("(");
         for(int i = 0; i < rules.size() - 1; i++){
-            str.append(rules.get(i).toString()).append(" OR ");
+            str.append(rules.get(i).toString()).append(" ORdep ");
         }
         str.append(rules.get(rules.size()-1).toString()).append(")");
 
