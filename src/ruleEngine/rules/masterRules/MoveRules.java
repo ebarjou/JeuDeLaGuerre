@@ -29,8 +29,8 @@ public class MoveRules extends RuleCompositeAND {
 
         IRule rulesDependentOfOnBoard = new RuleCompositeAND();
 
-        IRule dependentIsUnit = new RuleCompositeLazyAND();
-        dependentIsUnit.add(new CheckIsAllyUnit());
+        IRule dependencyIsUnit = new RuleCompositeLazyAND();
+        dependencyIsUnit.add(new CheckIsAllyUnit());
 
         IRule rulesDependentOfIsUnit = new RuleCompositeAND();
 
@@ -41,11 +41,11 @@ public class MoveRules extends RuleCompositeAND {
 
         rulesDependentOfIsUnit.add(new CheckUnitMP());
         rulesDependentOfIsUnit.add(new CheckIsEmptyPath());
+        rulesDependentOfIsUnit.add(new CheckIsPriorityUnit());
+        rulesDependentOfIsUnit.add(new CheckCanMoveUnit());
 
-        dependentIsUnit.add(rulesDependentOfIsUnit);
-        rulesDependentOfOnBoard.add(dependentIsUnit);
-        rulesDependentOfOnBoard.add(new CheckIsPriorityUnit());
-        rulesDependentOfOnBoard.add(new CheckCanMoveUnit());
+        dependencyIsUnit.add(rulesDependentOfIsUnit);
+        rulesDependentOfOnBoard.add(dependencyIsUnit);
 
         dependentOnBoard.add(rulesDependentOfOnBoard);
         super.add(dependentOnBoard);

@@ -91,9 +91,8 @@ public class DebordGameTest {
     }
 
     private void addAction(EPlayer player, EGameActionType gameActionType, int srcX, char srcY, int targetX, char targetY) {
-        if (srcX < 1 || targetX < 1 ||
-                srcY < 'A' || srcY > 'Z' ||
-                targetY < 'A' || targetY > 'Z') {
+        if (srcX < 1 || srcY < 'A' || srcY > 'Z'
+            || targetX < 1 || targetY < 'A' || targetY > 'Z') {
             assertTrue("Illegal coordinates for action.", false);
         }
         int valSrcX = srcX - 1;
