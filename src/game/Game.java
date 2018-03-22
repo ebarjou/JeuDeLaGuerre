@@ -20,9 +20,9 @@ public class Game {
     private static Game instance = null;
     private GameState gameState;
     private Stack<GameState> historyGameState;
-    private Player player1;
-    private Player player2;
-    private RuleChecker ruleChecker;
+    private final Player player1;
+    private final Player player2;
+    private final RuleChecker ruleChecker;
 
     public static Game getInstance(){
         return instance;
@@ -90,6 +90,7 @@ public class Game {
 
     public GameResponse processCommand(UIAction cmd) {
         if(cmd == null)  new GameResponse(GAME_ERROR, "Error : null call.", gameState, gameState.getActualPlayer());
+        assert cmd != null;
         switch (cmd.getCommand()) {
             case EXIT: {
                 System.exit(0);

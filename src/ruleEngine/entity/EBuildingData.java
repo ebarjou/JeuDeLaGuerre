@@ -14,9 +14,9 @@ public enum EBuildingData {
     FORTRESS("F", 	true, 	4,	"Fortress"),
     ARSENAL	("AR", 	true, 	0,	"Arsenal");
 
-	private String id;
-	private boolean accessible; // the name was crossable before.. ?
-	private int bonusDef;
+	private final String id;
+	private final boolean accessible; // the name was crossable before.. ?
+	private final int bonusDef;
 	private final String displayName;
 
     EBuildingData(String id, boolean cross, int def, String displayName) {

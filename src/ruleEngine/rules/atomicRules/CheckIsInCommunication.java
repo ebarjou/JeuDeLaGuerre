@@ -5,7 +5,6 @@ import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EUnitData;
 import ruleEngine.rules.newRules.IRule;
 
 public class CheckIsInCommunication implements IRule {

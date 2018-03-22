@@ -4,8 +4,8 @@ import game.EPlayer;
 import ruleEngine.entity.EUnitData;
 
 public class Unit implements Cloneable {
-    private EUnitData unit;
-    private EPlayer player;
+    private final EUnitData unit;
+    private final EPlayer player;
     private boolean canMove;
     private int x, y;
 

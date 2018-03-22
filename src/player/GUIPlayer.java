@@ -37,7 +37,7 @@ public class GUIPlayer implements Player {
             while (action == null) {
                 try {
                     wait_command.wait();
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
                 }
             }
         }
@@ -63,7 +63,7 @@ public class GUIPlayer implements Player {
             while (response == null) {
                 try {
                     wait_response.wait();
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
                 }
             }
         }

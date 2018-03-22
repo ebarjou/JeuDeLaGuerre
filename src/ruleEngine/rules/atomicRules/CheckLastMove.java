@@ -1,7 +1,6 @@
 package ruleEngine.rules.atomicRules;
 
 import game.board.Unit;
-import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;

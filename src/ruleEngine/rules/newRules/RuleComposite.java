@@ -17,7 +17,7 @@ import java.util.List;
  */
 public abstract class RuleComposite implements IRule{
 
-    protected List<IRule> rules;
+    protected final List<IRule> rules;
 
     public RuleComposite(){
         rules = new LinkedList<>();

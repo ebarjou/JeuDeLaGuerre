@@ -7,7 +7,7 @@ import ui.commands.UserToGameCall;
 
 public class UIAction {
     private UserToGameCall command;
-    private GameAction gameAction;
+    private final GameAction gameAction;
     private String error_message;
     private String text;
 

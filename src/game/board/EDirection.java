@@ -11,7 +11,8 @@ public enum EDirection {
     UP_LEFT(-1, -1);
 
 
-    private int x, y;
+    private final int x;
+    private final int y;
     EDirection(int x, int y){
         this.x = x;
         this.y = y;

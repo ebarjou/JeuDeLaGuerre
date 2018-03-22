@@ -1,14 +1,10 @@
 package ui.UIElements;
 
 import game.EPlayer;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 

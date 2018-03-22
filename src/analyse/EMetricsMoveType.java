@@ -6,7 +6,7 @@ import analyse.moveMethods.IMetricsMoveMethod;
 public enum EMetricsMoveType {
 	ALL_AVAILABLE_MOVES(new AllAvailableMovesMethod());
 
-	private IMetricsMoveMethod method;
+	private final IMetricsMoveMethod method;
 
 	EMetricsMoveType(IMetricsMoveMethod method){
 		this.method = method;

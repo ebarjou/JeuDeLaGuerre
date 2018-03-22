@@ -8,7 +8,7 @@ public enum EPlayer {
 
     EPlayer(int val){
         this.val = val;
-    };
+    }
 
     public EPlayer other(){
         if (val == 0)

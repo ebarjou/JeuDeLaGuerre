@@ -4,8 +4,8 @@ import game.EPlayer;
 import ruleEngine.entity.EBuildingData;
 
 public class Building implements Cloneable {
-    private EBuildingData building;
-    private EPlayer player;
+    private final EBuildingData building;
+    private final EPlayer player;
     private boolean isBroken;
     private int x, y;
 

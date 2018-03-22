@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 
-public class BoardDrawer {
+class BoardDrawer {
     private static final Color NORTH_COLOR_STRONG = Color.rgb(100, 100, 255);
     private static final Color SOUTH_COLOR_STRONG = Color.rgb(255, 100, 100);
 
@@ -55,7 +55,7 @@ public class BoardDrawer {
         }
     }
 
-    static void drawSpriteFromPath(GraphicsContext g, String name, int pos_x, int pos_y, int size){
+    private static void drawSpriteFromPath(GraphicsContext g, String name, int pos_x, int pos_y, int size){
         try{
             Image i = new Image("file:res/" + name + ".png");
             if (i.getHeight() == 0) //TODO: Find a better handling
@@ -67,7 +67,7 @@ public class BoardDrawer {
         }
     }
 
-    static void drawDebordStyleFort(GraphicsContext g, int pos_x, int pos_y, int size) {
+    private static void drawDebordStyleFort(GraphicsContext g, int pos_x, int pos_y, int size) {
         g.setStroke(Color.BLACK);
         g.setLineWidth(2);
         double sizeSplits = size / 3;
@@ -84,7 +84,7 @@ public class BoardDrawer {
 
     }
 
-    static void drawDebordStylePass(GraphicsContext g, int pos_x, int pos_y, int size, int margin){
+    private static void drawDebordStylePass(GraphicsContext g, int pos_x, int pos_y, int size, int margin){
         g.setLineWidth(margin * 2);
         int caseStartOffset = margin;
         int caseEndOffset = size + margin;
@@ -110,7 +110,7 @@ public class BoardDrawer {
         }
     }
 
-    static void drawDebordStyleArsenal(GraphicsContext g, int pos_x, int pos_y, int size, Color color){
+    private static void drawDebordStyleArsenal(GraphicsContext g, int pos_x, int pos_y, int size, Color color){
         g.setStroke(color);
         g.setLineWidth(2);
         double dashSize = size / 3;

@@ -10,7 +10,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
-public class CommandPane extends HBox{
+class CommandPane extends HBox{
     private final int MARGIN = 10;
     private TextField commandTextField;
     private Label labelPlayerTurn;

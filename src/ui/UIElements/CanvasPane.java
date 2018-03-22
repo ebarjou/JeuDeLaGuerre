@@ -4,7 +4,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import ui.UIElements.BoardCanvas;
 
-public class CanvasPane extends Pane {
+class CanvasPane extends Pane {
     private final BoardCanvas canvas;
 
     public CanvasPane(double width, double height, BoardCanvas canvas) {

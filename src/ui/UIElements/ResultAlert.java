@@ -6,9 +6,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
 public class ResultAlert extends Alert {
     private static ResultAlert instance = null;
 
@@ -19,7 +16,7 @@ public class ResultAlert extends Alert {
         return instance;
     }
 
-    public ResultAlert(){
+    private ResultAlert(){
         super(AlertType.INFORMATION);
         setTitle("Invalid Action");
         setHeaderText("This command in not valid.");
@@ -50,14 +47,18 @@ public class ResultAlert extends Alert {
 
     public void setMessage(String message){
         String[] line = message.split("\n");
-        if(line.length == 0){
-            setContentText("An error occured.");
-        } else if(line.length == 1){
-            setContentText(line[0]);
-            textArea.setText(message);
-        } else {
-            setContentText(line[0]);
-            textArea.setText(message);
+        switch (line.length) {
+            case 0:
+                setContentText("An error occured.");
+                break;
+            case 1:
+                setContentText(line[0]);
+                textArea.setText(message);
+                break;
+            default:
+                setContentText(line[0]);
+                textArea.setText(message);
+                break;
         }
     }
 }

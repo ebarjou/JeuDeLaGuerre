@@ -6,8 +6,6 @@ import game.board.Unit;
 import game.gameState.GameState;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class AttackMapMethod implements IMetricsMapMethod {
 

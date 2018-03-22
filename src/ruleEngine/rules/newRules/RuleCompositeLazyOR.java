@@ -25,10 +25,9 @@ public class RuleCompositeLazyOR extends RuleComposite {
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         if(rules.isEmpty())
             return true;
-        boolean valid = false;
+        boolean valid;
         RuleResult tmpResult = new RuleResult();
         for(IRule rule : rules){
-
             valid = rule.checkAction(state, action, tmpResult);
             if(valid) {
                 return true;
@@ -37,7 +36,7 @@ public class RuleCompositeLazyOR extends RuleComposite {
         int len = tmpResult.getLogMessage().length();
         result.addMessage(tmpResult.getLogMessage().substring(0, len - (len > 2 ? 1 : 0)));
         result.invalidate();
-        return valid;
+        return false;
     }
 
     public String toString(){

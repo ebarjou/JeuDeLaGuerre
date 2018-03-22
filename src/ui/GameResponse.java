@@ -7,8 +7,8 @@ import ui.commands.GameToUserCall;
 public class GameResponse {
     private GameToUserCall response;
     private String message;
-    private GameState board;
-    private EPlayer player;
+    private final GameState board;
+    private final EPlayer player;
 
     public GameResponse(GameToUserCall response, String message, GameState gameState, EPlayer player) {
         this.response = response;

@@ -7,7 +7,7 @@ import ruleEngine.rules.newRules.IRule;
  */
 public class RuleResult {
     private boolean isValid;
-    private StringBuilder logMessage;
+    private final StringBuilder logMessage;
 
     public RuleResult() {
         isValid = true;

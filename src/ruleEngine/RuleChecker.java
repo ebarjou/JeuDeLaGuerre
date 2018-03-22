@@ -11,11 +11,11 @@ import ruleEngine.rules.newRules.IRule;
  * @see RuleResult
  */
 public class RuleChecker {
-    private IRule moveRuleMaster;
-    private IRule attackRuleMaster;
-    private IRule commRuleMaster;
-    private IRule endRuleMaster;
-    private IRule victoryRuleMaster;
+    private final IRule moveRuleMaster;
+    private final IRule attackRuleMaster;
+    private final IRule commRuleMaster;
+    private final IRule endRuleMaster;
+    private final IRule victoryRuleMaster;
 
     public RuleChecker() {
         moveRuleMaster = new MoveRules();
@@ -38,7 +38,7 @@ public class RuleChecker {
 
     public boolean checkAction(GameState state, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
-        IRule masterRule = null;
+        IRule masterRule;
         boolean checkVictory = false;
         switch (action.getActionType()) {
             case MOVE:
@@ -65,7 +65,7 @@ public class RuleChecker {
      */
     public RuleResult checkAndApplyAction(GameState gameState, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
-        IRule mr = null;
+        IRule mr;
         boolean checkVictory = false;
         switch (action.getActionType()) {
             case MOVE:

@@ -15,16 +15,16 @@ public enum EUnitData {
 	RELAY(			"R"	, 0	, 1, 1, 2,	false,  true,   false,  false,	"Relay"),
 	RELAY_HORSE(	"RC", 0	, 1, 2, 2,	false,  true,   false,  false, 	"Mounted Relay");
 
-	private String id;
-	private int atkValue;
-	private int defValue;
-	private int movementValue;
-	private int fightRange;
-	private boolean getBonusDef;
-	private boolean relayCommunication;
-	private boolean canAttack;
-	private boolean canCharge;
-	private String displayName;
+	private final String id;
+	private final int atkValue;
+	private final int defValue;
+	private final int movementValue;
+	private final int fightRange;
+	private final boolean getBonusDef;
+	private final boolean relayCommunication;
+	private final boolean canAttack;
+	private final boolean canCharge;
+	private final String displayName;
 	//blockTransmission is true for all the units except relay...
 	//private boolean blockTransmissions;
 

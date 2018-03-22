@@ -5,22 +5,17 @@ import analyse.InfoModule;
 import analyse.MoveWrapper;
 import game.EPlayer;
 import game.Game;
-import game.board.Unit;
 import game.gameState.GameState;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
-import ruleEngine.exceptions.IncorrectGameActionException;
 import ui.GameResponse;
-import ui.TermGUI;
 import ui.UIAction;
 import ui.commands.UserToGameCall;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import static ui.commands.UserToGameCall.LOAD;
 
 public class BotPlayer implements Player {
     private Thread gameThread;
@@ -102,7 +97,7 @@ public class BotPlayer implements Player {
             while (action == null) {
                 try {
                     wait_command.wait();
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
                 }
             }
         }
@@ -128,7 +123,7 @@ public class BotPlayer implements Player {
             while (response == null) {
                 try {
                     wait_response.wait();
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
                 }
             }
         }

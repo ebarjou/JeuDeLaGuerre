@@ -176,11 +176,11 @@ class BoardCanvas extends Canvas {
 
         try {
             BoardDrawer.drawBuilding(g, gameState.getBuildingType(x, y), gameState.getBuildingPlayer(x, y), pos_x, pos_y, size, MARGIN);
-        } catch (IllegalBoardCallException e) {}
+        } catch (IllegalBoardCallException ignored) {}
 
         try {
             BoardDrawer.drawUnit(g, gameState.getUnitType(x, y), gameState.getUnitPlayer(x, y), pos_x, pos_y, size);
-        } catch (IllegalBoardCallException e) {}
+        } catch (IllegalBoardCallException ignored) {}
         g.restore();
     }
 
@@ -206,7 +206,7 @@ class BoardCanvas extends Canvas {
     private class ClickHandler implements EventHandler<MouseEvent> {
         TextField textField;
 
-        public ClickHandler(TextField textField){
+        ClickHandler(TextField textField){
             this.textField = textField;
         }
 

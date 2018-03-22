@@ -140,11 +140,12 @@ public class Board implements IBoard{
     }
 
     /**
+     * Return the max distance between y,y2 and x,x2
      * @param x
      * @param y
      * @param x2
      * @param y2
-     * @return Return the distance in max between two coords
+     * @return the max distance between (y-y2) and (x-x2)
      */
     public int getDistance(int x, int y, int x2, int y2) {
         if (!isValidCoordinate(x, y) || !isValidCoordinate(x2, y2)) {
@@ -159,21 +160,19 @@ public class Board implements IBoard{
         String res = "";
         EUnitData u;
         EBuildingData b;
-        EPlayer pU = null;
-        EPlayer pB = null;
+        EPlayer pU;
+        EPlayer pB;
         try {
             u = this.getUnitType(x, y);
             pU = this.getUnitPlayer(x, y);
             res += u + " ; " + pU + "\n";
-        } catch (IllegalBoardCallException e){
-            u = null;
+        } catch (IllegalBoardCallException ignored){
         }
         try {
             pB = this.getBuildingPlayer(x, y);
             b = this.getBuildingType(x, y);
             res += b + " ; " + pB + "\n";
-        } catch (IllegalBoardCallException e){
-            b = null;
+        } catch (IllegalBoardCallException ignored){
         }
         if(res.isEmpty())
             return res;
@@ -184,7 +183,7 @@ public class Board implements IBoard{
 
     public String toString(){
         StringBuilder result = new StringBuilder();
-        result.append("Width = " + width + " ; Height = " + height + "\n");
+        result.append("Width = ").append(width).append(" ; Height = ").append(height).append("\n");
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
                 String str = cellToString(x, y);

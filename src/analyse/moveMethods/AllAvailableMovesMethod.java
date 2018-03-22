@@ -8,7 +8,6 @@ import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
-import ruleEngine.RuleChecker;
 import ruleEngine.exceptions.IncorrectGameActionException;
 
 import java.util.ArrayList;

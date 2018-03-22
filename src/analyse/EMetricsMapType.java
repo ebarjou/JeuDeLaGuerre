@@ -12,7 +12,7 @@ public enum EMetricsMapType {
     RANGE_MAP_FAST(new ImpreciseRangeMapMethod());
 
 
-    private IMetricsMapMethod method;
+    private final IMetricsMapMethod method;
 
     EMetricsMapType(IMetricsMapMethod metricMethod){
         this.method = metricMethod;

@@ -2,21 +2,17 @@ package ui.UIElements;
 
 import analyse.EMetricsMapType;
 import game.EPlayer;
-import game.Game;
 import game.gameState.GameState;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import ui.TermGUI;
 
 
 public class MainLayout extends BorderPane{
@@ -39,7 +35,7 @@ public class MainLayout extends BorderPane{
                     "Danger map (Fast)"
             );
 
-    protected BoardCanvas canvas;
+    private BoardCanvas canvas;
     private CommandPane commandPane;
     private InfosPane infosPane;
     private CanvasPane gamePane;

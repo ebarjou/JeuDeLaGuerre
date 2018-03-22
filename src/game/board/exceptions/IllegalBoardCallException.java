@@ -1,7 +1,7 @@
 package game.board.exceptions;
 
 public class IllegalBoardCallException extends RuntimeException {
-    private String message;
+    private final String message;
 
     public IllegalBoardCallException(String message){
         this.message = message;

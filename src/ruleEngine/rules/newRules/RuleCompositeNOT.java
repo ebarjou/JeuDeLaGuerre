@@ -45,11 +45,9 @@ public class RuleCompositeNOT extends RuleComposite {
         if(this.rule == null){
             return "";
         }
-        StringBuilder str = new StringBuilder();
-        str.append("(NOT ");
-        str.append(this.rule.toString()).append(")");
 
-        return str.toString();
+        return "(NOT " +
+                this.rule.toString() + ")";
     }
 
 }

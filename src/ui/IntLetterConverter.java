@@ -21,15 +21,15 @@ public class IntLetterConverter {
     }
 
     public static String getLettersFromInt(int n) {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         int base = 26;
         while (n >= 0) {
             int val = n % base;
             char c = 'A';
             c += val;
-            res = c + res;
+            res.insert(0, c);
             n = n / base - 1;
         }
-        return res;
+        return res.toString();
     }
 }
