@@ -111,10 +111,16 @@ public class TermGUI extends Application {
     private void processResponse(GameResponse response) {
         switch (response.getResponse()) {
             case VALID: {
-                System.out.println(response.getMessage());
+                //System.out.println(response.getMessage());
+                if(response.getMessage() != null && !response.getMessage().isEmpty()){
+                    ResultAlert.getInstance().setMessage("Valid action", "Message : ", "Detailed result : ", response.getMessage());
+                    ResultAlert.getInstance().showAndWait();
+                }
                 break;
             }
             case INVALID: {
+                //resetDisplayText() just changes the invalid case text.
+                ResultAlert.getInstance().resetDisplayText();
                 if (response.getMessage() == null) ResultAlert.getInstance().setMessage("This is not a valid command.");
                 else ResultAlert.getInstance().setMessage(response.getMessage());
                 ResultAlert.getInstance().show();

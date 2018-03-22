@@ -13,7 +13,6 @@ import java.util.List;
 
 public class LoadFile {
 
-    //TODO: Need exception on convertBuilding and convertUnit
     public LoadFile() {
     }
 
@@ -22,6 +21,7 @@ public class LoadFile {
         bw.write(gs.getWidth() + ";" + gs.getHeight() + "\n");
         bw.write((gs.getActualPlayer().ordinal() + 1) + ";" + gs.getActionLeft() + "\n");
 
+        //Saving buildings
         List<Building> buildings = gs.getAllBuildings();
         for(Building b : buildings){
             bw.write(b.getBuildingData().getID() + ";"
@@ -29,6 +29,7 @@ public class LoadFile {
                     + (b.getPlayer().ordinal() + 1) + "\n");
         }
 
+        //Saving units
         List<Unit> allUnits = gs.getAllUnits();
         for(Unit u : allUnits){
             bw.write(u.getUnitData().getID() + ";"                  // ID
@@ -87,32 +88,30 @@ public class LoadFile {
         return null;
     }
 
-    //TODO: Add try catch and controls on type we should have
     public void loadFile(String name) throws IOException, BadFileFormatException {
         if (name == null || name.isEmpty())
             throw new IOException("Path is empty, can't load.");
-        //board = new Board(25, 20);
 
-        BufferedReader br = new BufferedReader(new FileReader(name));
-        String line;
-        line = br.readLine();
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(name));
+        String line = bufferedReader.readLine();
         String[] tokens = line.split(";");
-        // init board
-        int w = Integer.parseInt(tokens[0]);
-        int h = Integer.parseInt(tokens[1]);
 
-        GameState gameState = new GameState(w, h);
+        // init board
+        int width = Integer.parseInt(tokens[0]);
+        int height = Integer.parseInt(tokens[1]);
+
+        GameState gameState = new GameState(width, height);
         gameState.removeAll();
 
         // set player
-        line = br.readLine();
+        line = bufferedReader.readLine();
         tokens = line.split(";");
         int player = Integer.parseInt(tokens[0]);
         gameState.setActualPlayer(EPlayer.values()[player - 1]);
         gameState.setActionLeft(Integer.parseInt(tokens[1]));
 
         //Add buildings
-        while ((line = br.readLine()) != null) {
+        while ((line = bufferedReader.readLine()) != null) {
             tokens = line.split(";");
             if(tokens.length > 4)
                 break;
@@ -124,8 +123,10 @@ public class LoadFile {
                 x = Integer.parseInt(tokens[1]) - 1;
                 y = Integer.parseInt(tokens[2]) - 1;
                 owner = EPlayer.values()[Integer.parseInt(tokens[3]) - 1];
+                if(!gameState.isValidCoordinate(x, y))
+                    throw new BadFileFormatException();
             } catch(Exception e) {
-                br.close();
+                bufferedReader.close();
                 throw new BadFileFormatException();
             }
             Building building = new Building(buildingData, owner);
@@ -149,8 +150,10 @@ public class LoadFile {
                 isLastMove = Boolean.parseBoolean(tokens[5]);
                 canAttack = Boolean.parseBoolean(tokens[6]);
                 owner = EPlayer.values()[Integer.parseInt(tokens[7]) - 1];
+                if(!gameState.isValidCoordinate(x, y))
+                    throw new BadFileFormatException();
             } catch(Exception e){
-                br.close();
+                bufferedReader.close();
                 throw new BadFileFormatException();
             }
 
@@ -167,9 +170,9 @@ public class LoadFile {
                 gameState.setLastUnitMoved(unit);
 
             gameState.addUnit(unit);
-            line = br.readLine();
+            line = bufferedReader.readLine();
         }
-        br.close();
+        bufferedReader.close();
         Game.getInstance().reinit(gameState);
     }
 }

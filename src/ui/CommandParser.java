@@ -86,6 +86,11 @@ public class CommandParser {
     }
 
     @Command
+    public void help(){
+        result.setCommand(HELP);
+    }
+
+    @Command
     public void load(String path) {
         result.setCommand(LOAD);
         result.setText(path);

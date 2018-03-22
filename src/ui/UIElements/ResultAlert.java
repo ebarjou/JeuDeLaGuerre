@@ -8,6 +8,10 @@ import javafx.scene.layout.Priority;
 
 public class ResultAlert extends Alert {
     private static ResultAlert instance = null;
+    private Label label;
+    private static final String invalidActionTitle = "Invalid Action";
+    private static final String invalidActionHeader = "An error occurred while processing this command";
+    private static final String invalidActionLabel = "Detailed error report : ";
 
     private TextArea textArea;
 
@@ -18,14 +22,11 @@ public class ResultAlert extends Alert {
 
     private ResultAlert(){
         super(AlertType.INFORMATION);
-        setTitle("Invalid Action");
-        setHeaderText("An error occurred while processing this command");
-
+        setTitle(invalidActionTitle);
+        setHeaderText(invalidActionHeader);
 
         // Create expandable Exception.
-
-
-        Label label = new Label("Detailed error report : ");
+        label = new Label(invalidActionLabel);
 
         textArea = new TextArea();
         textArea.setEditable(false);
@@ -51,14 +52,23 @@ public class ResultAlert extends Alert {
             case 0:
                 setContentText("An error occured.");
                 break;
-            case 1:
-                setContentText(line[0]);
-                textArea.setText(message);
-                break;
             default:
                 setContentText(line[0]);
                 textArea.setText(message);
                 break;
         }
+    }
+
+    public void setMessage(String title, String header, String label, String message) {
+        getDialogPane().setHeaderText(header);
+        setTitle(title);
+        this.label.setText(label);
+        setMessage(message);
+    }
+
+    public void resetDisplayText(){
+        getDialogPane().setHeaderText(invalidActionHeader);
+        setTitle(invalidActionTitle);
+        this.label.setText(invalidActionLabel);
     }
 }

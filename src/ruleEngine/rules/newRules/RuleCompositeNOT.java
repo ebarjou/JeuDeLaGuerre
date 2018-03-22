@@ -50,4 +50,11 @@ public class RuleCompositeNOT extends RuleComposite {
                 this.rule.toString() + ")";
     }
 
+    public String getRules(){
+        if(this.rule == null){
+            return "no rule for NOT !!";
+        }
+        return rule.toString();
+    }
+
 }
