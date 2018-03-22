@@ -12,13 +12,20 @@ import ruleEngine.exceptions.IncorrectGameActionException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AllAvailableMovesMethod implements IMetricsMoveMethod {
 	@Override
 	public Collection<MoveWrapper> compute(GameState gameState, EPlayer player) {
 		Collection<Unit> units = InfoModule.getAllUnitsFromPlayer(gameState, player);
 		GameState fake = gameState.clone();
+		return generateActionList(units, fake, player);
+
+	}
+
+	private Collection<MoveWrapper> generateActionList(Collection<Unit> units, GameState fake, EPlayer player) {
 		fake.setActualPlayer(player);
 		List<MoveWrapper> actionList = new ArrayList<>();
 		for (Unit unit : units) {

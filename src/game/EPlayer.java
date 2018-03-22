@@ -13,7 +13,7 @@ public enum EPlayer {
     public EPlayer other(){
         if (val == 0)
             return PLAYER_SOUTH;
-        else
-            return PLAYER_NORTH;
+
+        return PLAYER_NORTH;
     }
 }

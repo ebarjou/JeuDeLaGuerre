@@ -11,10 +11,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import ui.IntLetterConverter;
-import ui.UIElements.BoardDrawer;
 
 class BoardCanvas extends Canvas {
 
@@ -133,36 +133,28 @@ class BoardCanvas extends Canvas {
         g.save();
         g.setFill(Color.IVORY);
         g.fillRect(pos_x, pos_y, size, size);
-        if(metricsMapType != null){
+        if(metricsMapType != null)
             switch (metricsMapType) {
                 //TODO: Put minimal color value
-                case ATTACK_MAP:
-                    g.setFill(Color.rgb(255, 0, 0, Math.min(metrics[x][y] / 38.0, 1.0)));
-                    g.fillRect(pos_x, pos_y, size, size);
-                    break;
-                case RANGE_MAP_1M:
-                    g.setFill(Color.rgb(255, 0, 0, Math.min(metrics[x][y] / 40, 1.0)));
-                    g.fillRect(pos_x, pos_y, size, size);
-                    break;
-                case RANGE_MAP_FAST:
-                    g.setFill(Color.rgb(255, 0, 0, Math.min(metrics[x][y] / 17, 1.0)));
+				case COMMUNICATION_MAP:
+					if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
+						g.setFill(SOUTH_COLOR_LIGHT);
+						g.fillRect(pos_x, pos_y, size, size);
+						g.setFill(NORTH_COLOR_LIGHT);
+						g.fillPolygon(new double[] {pos_x, pos_x + size, pos_x}, new double[] {pos_y, pos_y, pos_y + size}, 3);
+					} else if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
+						g.setFill(NORTH_COLOR_LIGHT);
+						g.fillRect(pos_x, pos_y, size, size);
+					} else if (gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
+						g.setFill(SOUTH_COLOR_LIGHT);
+						g.fillRect(pos_x, pos_y, size, size);
+					}break;
+				default:
+					Paint p = metricsMapType.getDrawMethod().getPaint(metrics[x][y]);
+					g.setFill(p);
                     g.fillRect(pos_x, pos_y, size, size);
                     break;
             }
-        } else {
-            if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
-                g.setFill(SOUTH_COLOR_LIGHT);
-                g.fillRect(pos_x, pos_y, size, size);
-                g.setFill(NORTH_COLOR_LIGHT);
-                g.fillPolygon(new double[] {pos_x, pos_x + size, pos_x}, new double[] {pos_y, pos_y, pos_y + size}, 3);
-            } else if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
-                g.setFill(NORTH_COLOR_LIGHT);
-                g.fillRect(pos_x, pos_y, size, size);
-            } else if (gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
-                g.setFill(SOUTH_COLOR_LIGHT);
-                g.fillRect(pos_x, pos_y, size, size);
-            }
-        }
 
         g.restore();
     }

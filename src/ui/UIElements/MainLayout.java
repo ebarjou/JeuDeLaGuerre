@@ -1,6 +1,7 @@
 package ui.UIElements;
 
 import analyse.EMetricsMapType;
+import com.sun.xml.internal.bind.v2.runtime.property.StructureLoaderBuilder;
 import game.EPlayer;
 import game.gameState.GameState;
 import javafx.beans.value.ChangeListener;
@@ -14,6 +15,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import java.util.*;
+
 
 public class MainLayout extends BorderPane{
     public static final int CANVAS_WIDTH = 800;
@@ -26,7 +29,7 @@ public class MainLayout extends BorderPane{
     private static final int COMMAND_PANEL_MARGIN = 10;
 
     private final ComboBox metricsDisplay;
-    private final ObservableList<String> metricsList =
+    private ObservableList<String> metricsList =
             FXCollections.observableArrayList(
                     "Communications",
                     "Offensive map",
@@ -34,7 +37,7 @@ public class MainLayout extends BorderPane{
                     "Danger map (1M)",
                     "Danger map (Fast)"
             );
-
+    private Map<String, EMetricsMapType> metricsObjects;
     private BoardCanvas canvas;
     private CommandPane commandPane;
     private InfosPane infosPane;
@@ -42,6 +45,11 @@ public class MainLayout extends BorderPane{
     private TextField textField;
 
     public MainLayout(){
+        metricsObjects = new HashMap<>();
+        for (EMetricsMapType t : EMetricsMapType.values())
+            metricsObjects.put(t.getMapName(), t);
+
+        metricsList = FXCollections.observableArrayList(metricsObjects.keySet());
         this.setMinHeight(CANVAS_HEIGHT + COMMAND_HEIGHT + COORDINATES_BAR_WIDTH);
         this.setMinWidth(CANVAS_WIDTH + INFOS_WIDTH + COORDINATES_BAR_WIDTH);
 
@@ -87,16 +95,7 @@ public class MainLayout extends BorderPane{
     private class MetrixBoxEvent implements ChangeListener<String>{
         @Override
         public void changed(ObservableValue<? extends String> ov, String t, String t1) {
-            if(t1.equals(metricsList.get(0))){
-                canvas.setMetricsMapType(null);
-            } else if(t1.equals(metricsList.get(1))){
-                canvas.setMetricsMapType(EMetricsMapType.ATTACK_MAP);
-            }else if (t1.equals(metricsList.get(3))){
-                canvas.setMetricsMapType(EMetricsMapType.RANGE_MAP_1M);
-            }else if (t1.equals(metricsList.get(4))){
-                canvas.setMetricsMapType(EMetricsMapType.RANGE_MAP_FAST);
-            }
-
+            canvas.setMetricsMapType(metricsObjects.get(t1));
             canvas.refresh();
         }
     }

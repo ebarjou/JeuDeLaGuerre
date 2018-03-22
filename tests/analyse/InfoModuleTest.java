@@ -32,19 +32,19 @@ public class InfoModuleTest {
     @Test
     public void attackMap(){
         System.out.println("Attack Map");
-        printMap(InfoModule.getInfoMap(EMetricsMapType.ATTACK_MAP, s, EPlayer.PLAYER_NORTH));
+        printMap(InfoModule.getInfoMap(EMetricsMapType.STATIC_ATTACK_MAP, s, EPlayer.PLAYER_NORTH));
     }
 
     @Test
     public void rangeMap1m(){
         System.out.println("Range 1M Map");
-        printMap(InfoModule.getInfoMap(EMetricsMapType.RANGE_MAP_1M, s, EPlayer.PLAYER_NORTH));
+        printMap(InfoModule.getInfoMap(EMetricsMapType.ATTACK_MAP_1M, s, EPlayer.PLAYER_NORTH));
     }
 
     @Test
     public void rangeMapFast(){
         System.out.println("Range Fast Map");
-        printMap(InfoModule.getInfoMap(EMetricsMapType.RANGE_MAP_FAST, s, EPlayer.PLAYER_NORTH));
+        printMap(InfoModule.getInfoMap(EMetricsMapType.ATTACK_MAP_FAST, s, EPlayer.PLAYER_NORTH));
     }
 
 

@@ -14,21 +14,21 @@ public class InfoModule {
 
 	private static RuleChecker ruleChecker;
 
-	public static double[][] getInfoMap(EMetricsMapType type, GameState gameState, EPlayer player){
+	public static double[][] getInfoMap(EMetricsMapType type, GameState gameState, EPlayer player) {
 		IMetricsMapMethod m = type.getMethod();
 		return m.compute(gameState, player);
 	}
 
-	public static Collection<MoveWrapper> getAvailableMoves(EMetricsMoveType type, GameState gameState, EPlayer player){
+	public static Collection<MoveWrapper> getAvailableMoves(EMetricsMoveType type, GameState gameState, EPlayer player) {
 		IMetricsMoveMethod m = type.getMethod();
 		return m.compute(gameState, player);
 	}
 
-	public static Collection<Unit> getAllUnitsFromPlayer(GameState state, EPlayer player){
+	public static Collection<Unit> getAllUnitsFromPlayer(GameState state, EPlayer player) {
 		return state.getAllUnits().stream().filter((unit -> unit.getPlayer().equals(player))).collect(Collectors.toList());
 	}
 
-	public static RuleChecker getRuleChecker(){
+	public static RuleChecker getRuleChecker() {
 		if (ruleChecker == null)
 			ruleChecker = new RuleChecker();
 

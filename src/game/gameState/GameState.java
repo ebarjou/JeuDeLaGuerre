@@ -92,7 +92,8 @@ public class GameState implements Cloneable {
     }
 
     public void switchPlayer() {
-        actualPlayer = EPlayer.values()[(actualPlayer.ordinal() + 1) % EPlayer.values().length];
+        //actualPlayer = EPlayer.values()[(actualPlayer.ordinal() + 1) % EPlayer.values().length];
+        actualPlayer = actualPlayer.other();
         cantAttackUnits.clear();
         for(Unit unit : allUnits) {
             unit.setCanMove(true);
