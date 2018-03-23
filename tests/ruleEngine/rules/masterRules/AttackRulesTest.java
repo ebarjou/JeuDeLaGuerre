@@ -380,7 +380,7 @@ public class AttackRulesTest {
 
     @Test
     public void checkActionRealWrongSourceEnemy() {
-        expectedMessage = "CheckIsAllyUnit : This unit is not owned by PLAYER_NORTH.\n" +
+        expectedMessage = "CheckIsAllyUnit : This unit is not owned by North Player.\n" +
                 "CheckLastMove, CheckUnitRange, CheckCanAttackUnit, CheckIsRelay,  : Those rules are not checked because CheckIsAllyUnit has failed.\n" +
                 "CheckIsInCommunication : This unit is not in the player communication.\n";
         gameAction.setSourceCoordinates(12, 8);
