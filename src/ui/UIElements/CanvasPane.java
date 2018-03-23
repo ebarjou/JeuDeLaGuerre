@@ -8,9 +8,8 @@ import ui.UIElements.BoardCanvas;
 class CanvasPane extends Pane {
     private final BoardCanvas canvas;
 
-    public CanvasPane(double width, double height, BoardCanvas canvas, CheckBox[] metricsChannels) {
+    public CanvasPane(double width, double height, BoardCanvas canvas) {
         this.canvas = canvas;
-        canvas.setMetricsChannels(metricsChannels);
         setMinWidth(width);
         setMinHeight(height);
         setMaxWidth(Double.MAX_VALUE);

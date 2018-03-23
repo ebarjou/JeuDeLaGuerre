@@ -1,24 +1,17 @@
 package ui.UIElements;
 
 import analyse.EMetricsMapType;
-import com.sun.xml.internal.bind.v2.runtime.property.StructureLoaderBuilder;
 import game.EPlayer;
 import game.gameState.GameState;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.CheckBoxTreeItem;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-
-import java.util.*;
 
 
 public class MainLayout extends BorderPane{
@@ -30,19 +23,19 @@ public class MainLayout extends BorderPane{
 
     private static final int COMMAND_PANEL_HEIGHT = 28;
     private static final int COMMAND_PANEL_MARGIN = 10;
-	private boolean initialize = true;
-    private static final String COMBOBOX_SEPARATOR = "----------------";
 
-    private final ComboBox metricsDisplay;
-    private ObservableList<String> metricsList =
+    private final ChoiceBox metricsDisplay;
+    private ObservableList metricsList =
             FXCollections.observableArrayList(
-                    "Communications",
-                    "Offensive map",
-                    "Defense map",
-                    "Danger map (1M)",
-                    "Danger map (Fast)"
+                    EMetricsMapType.COMMUNICATION_MAP,
+                    new Separator(),
+                    EMetricsMapType.STATIC_ATTACK_MAP,
+                    EMetricsMapType.ATTACK_MAP_FAST,
+                    EMetricsMapType.RANGE_MAP_FAST,
+                    new Separator(),
+                    EMetricsMapType.ATTACK_MAP_1M,
+                    EMetricsMapType.RANGE_MAP_1M
             );
-    private Map<String, EMetricsMapType> metricsObjects;
     private BoardCanvas canvas;
     private CommandPane commandPane;
     private InfosPane infosPane;
@@ -50,22 +43,6 @@ public class MainLayout extends BorderPane{
     private TextField textField;
 
     public MainLayout(){
-        metricsObjects = new HashMap<>();
-//        for (EMetricsMapType t : EMetricsMapType.values())
-//            metricsObjects.put(t.getMapName(), t);
-
-        List<String> labels = new LinkedList<>();
-        for (int i = 0; i <= EMetricsMapType.getMaxIndex(); ++i){
-            EMetricsMapType t = EMetricsMapType.getType(i);
-            if (t == null){
-                labels.add(COMBOBOX_SEPARATOR);
-            }else{
-                labels.add(t.getMapName());
-                metricsObjects.put(t.getMapName(), t);
-            }
-        }
-
-        metricsList = FXCollections.observableArrayList(labels);
         this.setMinHeight(CANVAS_HEIGHT + COMMAND_HEIGHT + COORDINATES_BAR_WIDTH);
         this.setMinWidth(CANVAS_WIDTH + INFOS_WIDTH + COORDINATES_BAR_WIDTH);
 
@@ -74,20 +51,20 @@ public class MainLayout extends BorderPane{
         canvas = new BoardCanvas(CANVAS_WIDTH + COORDINATES_BAR_WIDTH, CANVAS_HEIGHT + COORDINATES_BAR_WIDTH, COORDINATES_BAR_WIDTH, textField);
         textField.setPrefWidth(canvas.getWidth());
 
-        metricsDisplay = new ComboBox(metricsList);
-        metricsDisplay.valueProperty().addListener(new MetrixBoxEvent());
+        metricsDisplay = new ChoiceBox(metricsList);
+        metricsDisplay.valueProperty().addListener(new ChoiceBoxEvent());
 
-        CheckBox[] metricsChannels = new CheckBox[2];
-		metricsChannels[0] = new CheckBox(EPlayer.PLAYER_NORTH.toString());
-		metricsChannels[1] = new CheckBox(EPlayer.PLAYER_SOUTH.toString());
-		metricsChannels[0].setSelected(true);
-		metricsChannels[1].setSelected(true);
-		metricsChannels[0].selectedProperty().addListener(new MetrixChannelEvent());
-		metricsChannels[1].selectedProperty().addListener(new MetrixChannelEvent());
+        CheckBox metricsCB_North = new CheckBox(EPlayer.PLAYER_NORTH.toString());
+        metricsCB_North.setSelected(true);
+        metricsCB_North.selectedProperty().addListener(new MetricsChannelEvent(EPlayer.PLAYER_NORTH.ordinal()));
+
+        CheckBox metricsCB_South = new CheckBox(EPlayer.PLAYER_SOUTH.toString());
+        metricsCB_South.setSelected(true);
+        metricsCB_South.selectedProperty().addListener(new MetricsChannelEvent(EPlayer.PLAYER_SOUTH.ordinal()));
 
         commandPane = new CommandPane(textField);
-        infosPane = new InfosPane(metricsDisplay, metricsChannels);
-        gamePane = new CanvasPane(CANVAS_WIDTH, CANVAS_HEIGHT, canvas, metricsChannels);
+        infosPane = new InfosPane(metricsDisplay, metricsCB_North, metricsCB_South);
+        gamePane = new CanvasPane(CANVAS_WIDTH, CANVAS_HEIGHT, canvas);
 
         this.setBottom(commandPane);
         this.setCenter(gamePane);
@@ -104,10 +81,6 @@ public class MainLayout extends BorderPane{
         textField.setOnKeyPressed(value);
     }
 
-    public void setCommandText(String value){
-        textField.setText(value);
-    }
-
     public String getCommandText(){
         return textField.getText();
     }
@@ -116,24 +89,24 @@ public class MainLayout extends BorderPane{
         textField.clear();
     }
 
-    private class MetrixBoxEvent implements ChangeListener<String>{
+    private class ChoiceBoxEvent implements ChangeListener<EMetricsMapType>{
         @Override
-        public void changed(ObservableValue<? extends String> ov, String t, String t1) {
-            if (t1.equals(COMBOBOX_SEPARATOR)){
-				Platform.runLater(() -> metricsDisplay.getSelectionModel().select(t));
-            }else if (initialize || !t.equals(COMBOBOX_SEPARATOR)){
-                canvas.setMetricsMapType(metricsObjects.get(t1));
-                canvas.refresh(!initialize);
-                initialize = false;
-            }
+        public void changed(ObservableValue ov, EMetricsMapType oldValue, EMetricsMapType newValue) {
+            canvas.setMetricsMapType(newValue);
+            canvas.draw(null);
         }
     }
 
-    private class MetrixChannelEvent implements ChangeListener<Boolean>{
+    private class MetricsChannelEvent implements ChangeListener<Boolean>{
+        private int id;
 
+        public MetricsChannelEvent(int id){
+            this.id = id;
+        }
 		@Override
 		public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-			canvas.refresh(false);
+			canvas.setDisplayMetrics(id, newValue);
+            canvas.draw(null);
 		}
 	}
 }

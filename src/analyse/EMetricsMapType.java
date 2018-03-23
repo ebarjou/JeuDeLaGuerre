@@ -1,7 +1,7 @@
 package analyse;
 
 import analyse.mapMethods.*;
-import ui.UIElements.IDrawableInfo;
+import javafx.scene.paint.Paint;
 
 public enum EMetricsMapType {
 	COMMUNICATION_MAP("Communication map", new CommunicationMapMethod()),
@@ -13,18 +13,13 @@ public enum EMetricsMapType {
 	RANGE_MAP_1M("Range map using 1 unit (slow)", new RangeMapMethod(1)),
 	RANGE_MAP_FAST("Imprecise Range Map (fast)", new ImpreciseRangeMapMethod());
 
-
-
-
 	private final String mapName;
     private final IMetricsMapMethod method;
-    private final IDrawableInfo drawMethod;
     private final static int maxIndex = 7;
 
     EMetricsMapType(String mapName, IMetricsMapMethod metricMethod){
         this.mapName = mapName;
     	this.method = metricMethod;
-        this.drawMethod = metricMethod;
 	}
 
 	public static int getMaxIndex(){
@@ -35,23 +30,16 @@ public enum EMetricsMapType {
         return method;
     }
 
-    public IDrawableInfo getDrawMethod() {
-        return drawMethod;
+    public Paint getPaint(double value) {
+        return method.getPaint(value);
     }
 
 	public String getMapName() {
 		return mapName;
 	}
 
-	public static EMetricsMapType getType(int i){
-    	switch (i){
-			case 0 : return COMMUNICATION_MAP;
-			case 2 : return STATIC_ATTACK_MAP;
-			case 3 : return ATTACK_MAP_1M;
-			case 4 : return ATTACK_MAP_FAST;
-			case 6 : return RANGE_MAP_1M;
-			case 7 : return RANGE_MAP_FAST;
-			default: return null;
-		}
+	@Override
+	public String toString() {
+		return mapName;
 	}
 }

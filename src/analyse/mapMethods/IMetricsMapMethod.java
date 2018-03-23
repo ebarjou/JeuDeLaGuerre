@@ -2,8 +2,9 @@ package analyse.mapMethods;
 
 import game.EPlayer;
 import game.gameState.GameState;
-import ui.UIElements.IDrawableInfo;
+import javafx.scene.paint.Paint;
 
-public interface IMetricsMapMethod extends IDrawableInfo{
+public interface IMetricsMapMethod{
     double[][] compute(GameState state, EPlayer player);
+    Paint getPaint(double value);
 }

@@ -40,6 +40,6 @@ public class ImpreciseAttackMapMethod implements IMetricsMapMethod {
 
 	@Override
 	public Paint getPaint(double mapValue) {
-		return EMetricsMapType.STATIC_ATTACK_MAP.getDrawMethod().getPaint(mapValue);
+		return EMetricsMapType.STATIC_ATTACK_MAP.getPaint(mapValue);
 	}
 }

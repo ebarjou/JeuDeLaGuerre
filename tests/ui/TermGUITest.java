@@ -58,30 +58,6 @@ public class TermGUITest {
     }
 
     @Test
-    public void appInit() {
-        Thread thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                new JFXPanel(); // Initializes the JavaFx Platform
-                Platform.runLater(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        new TermGUI().start(new Stage());
-                    }
-                });
-            }
-        });
-        thread.start();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException ignore) {
-        }
-    }
-
-    @Test
     public void parse() {
         UIAction UIAction;
         for(COMMANDS cmd : COMMANDS.values()){

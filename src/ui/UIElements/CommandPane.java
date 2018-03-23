@@ -1,6 +1,5 @@
 package ui.UIElements;
 
-import game.EPlayer;
 import game.Game;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -12,13 +11,11 @@ import javafx.scene.paint.Color;
 
 class CommandPane extends HBox{
     private final int MARGIN = 10;
-    private TextField commandTextField;
     private Label labelPlayerTurn;
     private Label labelActionLeft;
 
 
     public CommandPane(TextField commandTextField){
-        this.commandTextField = commandTextField;
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, null, null)));
 
         labelPlayerTurn = new Label(Game.getInstance().getGameState().getActualPlayer().toString());

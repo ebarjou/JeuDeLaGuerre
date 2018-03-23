@@ -6,7 +6,6 @@ import game.board.Unit;
 import game.gameState.GameState;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import ui.UIElements.IDrawableInfo;
 
 import java.util.Arrays;
 import java.util.Collection;
