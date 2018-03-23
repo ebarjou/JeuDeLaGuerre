@@ -17,6 +17,13 @@ public class Board implements IBoard{
     private byte[] communication;
     private boolean[] marked;
 
+    /**
+     * @param width
+     * @param height
+     * Create a board of the specified size.
+     * The board contain for each cell an unit and a building with associated player(s),
+     * the communication for each player and a mark boolean.
+     */
     public Board(int width, int height) {
         this.height = height;
         this.width = width;
@@ -26,6 +33,13 @@ public class Board implements IBoard{
         marked = new boolean[height * width];
     }
 
+    /**
+     * @param width
+     * @param height
+     * @param units, buildings, communications
+     * Create a board of the specified size, that use the given arrays as it's data.
+     * Those arrays must be width*height of length.
+     */
     private Board(int width, int height, short[] units, short[] buildings, byte[] communications) {
         this.height = height;
         this.width = width;
@@ -35,29 +49,56 @@ public class Board implements IBoard{
         marked = new boolean[height * width];
     }
 
+    /**
+     * @return the number of column of this board
+     */
     public int getWidth(){
         return width;
     }
 
+    /**
+     * @return the number of row of this board
+     */
     public int getHeight(){
         return height;
     }
 
+    /**
+     * @param x
+     * @param y
+     * @return true if those coordinates are within the board, else false
+     */
     public boolean isValidCoordinate(int x, int y) {
         return x >= 0 && y >= 0 && x < width && y < height;
     }
 
+    /**
+     * @param player
+     * @param x
+     * @param y
+     * @return true if the cell [x,y] is in communication for this player
+     */
     public boolean isInCommunication(EPlayer player, int x, int y) {
         if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         return (communication[getOffset(x, y)] & 1 << player.ordinal()) > 0;
     }
 
+    /**
+     * @param player
+     * @param x
+     * @param y
+     * @param enable : true to set in communication, false to remove the communication
+     * Set the cell [x,y]communication to [enable]
+     */
     public void setInCommunication(EPlayer player, int x, int y, boolean enable) {
         if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         if (enable) communication[getOffset(x, y)] |= 1 << player.ordinal();
         else communication[getOffset(x, y)] &= ~(1 << player.ordinal());
     }
 
+    /**
+     * Set all communication to false for all players
+     */
     public void clearCommunication() {
         Arrays.fill(communication, (byte) 0);
     }
@@ -67,48 +108,97 @@ public class Board implements IBoard{
         return buildings[getOffset(x, y)] != 0;
     }
 
-    //GS do this
+    /**
+     * @param building
+     * @param player
+     * @param x
+     * @param y
+     * Set the building on the cell [x,y] for the player
+     */
     public void setBuilding(EBuildingData building, EPlayer player, int x, int y) {
         buildings[getOffset(x, y)] = setItemPlayer(player, setItemType(building, (short) 0));
     }
 
+    /**
+     * @param x
+     * @param y
+     * @return the EBuildingData of the cell [x,y].
+     * @throws IllegalBoardCallException if there is no building on the cell
+     */
     public EBuildingData getBuildingType(int x, int y) {
         if(!isBuilding(x,y)) throw new IllegalBoardCallException("Not a building.");
         return getBuildingType(buildings[getOffset(x, y)]);
     }
 
+    /**
+     * @param x
+     * @param y
+     * @return the EPlayer of the building on the cell [x,y].
+     * @throws IllegalBoardCallException if there is no building on the cell
+     */
     public EPlayer getBuildingPlayer(int x, int y) {
         if(!isBuilding(x,y)) throw new IllegalBoardCallException("Not a building.");
         return getPlayer(buildings[getOffset(x, y)]);
     }
 
+    /**
+     * @param x
+     * @param y
+     * @return true is there is an unit on the cell [x,y]
+     */
     public boolean isUnit(int x, int y) {
         if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         return units[getOffset(x, y)] != 0;
     }
 
-    //GS do this
+    /**
+     * @param unit
+     * @param player
+     * @param x
+     * @param y
+     * Set the unit on the cell [x,y] for the player
+     */
     public void setUnit(EUnitData unit, EPlayer player, int x, int y) {
         if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         units[getOffset(x, y)] = setItemPlayer(player, setItemType(unit, (short) 0));
     }
 
+    /**
+     * @param x
+     * @param y
+     * Remove the unit on cell [x,y]
+     */
     public void delUnit(int x, int y) {
         if(!isValidCoordinate(x,y)) throw new IllegalBoardCallException("Invalid coordinates");
         units[getOffset(x, y)] = 0;
     }
 
+    /**
+     * @param x
+     * @param y
+     * Remove the building on cell [x,y]
+     */
     public void delBuilding(int x, int y){
         if(!isValidCoordinate(x, y)) throw new IllegalBoardCallException("Invalid coordinates");
         buildings[getOffset(x, y)] = 0;
     }
 
+    /**
+     * @param x
+     * @param y
+     * @return the EUnitData of the cell [x,y]
+     */
     public EUnitData getUnitType(int x, int y) {
         if(!isUnit(x,y))
             throw new IllegalBoardCallException("Not a unit.");
         return getUnitType(units[getOffset(x, y)]);
     }
 
+    /**
+     * @param x
+     * @param y
+     * @return the EPlayer of the unit on the cell [x,y].
+     */
     public EPlayer getUnitPlayer(int x, int y) {
         if(!isUnit(x,y)) throw new IllegalBoardCallException("Not a unit.");
         return getPlayer(units[getOffset(x, y)]);
@@ -128,10 +218,12 @@ public class Board implements IBoard{
         marked[getOffset(x, y)] = mark;
     }
 
+    /**
+     * Remove all mark on the board
+     */
     public void clearMarked() {
         Arrays.fill(marked,false);
     }
-
 
     public void moveUnit(int xs, int ys, int xd, int yd){
         if(!isUnit(xs,ys) || isUnit(xd, yd)) throw new IllegalBoardCallException("Not a unit.");
@@ -141,10 +233,8 @@ public class Board implements IBoard{
 
     /**
      * Return the max distance between y,y2 and x,x2
-     * @param x
-     * @param y
-     * @param x2
-     * @param y2
+     * @param x,y coordinates of the first point
+     * @param x2,y2 coordinates of the second point
      * @return the max distance between (y-y2) and (x-x2)
      */
     public int getDistance(int x, int y, int x2, int y2) {
@@ -155,47 +245,6 @@ public class Board implements IBoard{
         int diffY = Math.abs(y - y2);
         return Math.max(diffX, diffY);
     }
-
-    private String cellToString(int x, int y){
-        String res = "";
-        EUnitData u;
-        EBuildingData b;
-        EPlayer pU;
-        EPlayer pB;
-        try {
-            u = this.getUnitType(x, y);
-            pU = this.getUnitPlayer(x, y);
-            res += u + " ; " + pU + "\n";
-        } catch (IllegalBoardCallException ignored){
-        }
-        try {
-            pB = this.getBuildingPlayer(x, y);
-            b = this.getBuildingType(x, y);
-            res += b + " ; " + pB + "\n";
-        } catch (IllegalBoardCallException ignored){
-        }
-        if(res.isEmpty())
-            return res;
-
-        return res + "Com1 : " + isInCommunication(EPlayer.PLAYER_NORTH, x, y)
-                + "\nCom2: " + isInCommunication(EPlayer.PLAYER_SOUTH, x, y) + "\n";
-    }
-
-    public String toString(){
-        StringBuilder result = new StringBuilder();
-        result.append("Width = ").append(width).append(" ; Height = ").append(height).append("\n");
-        for(int x = 0; x < width; x++){
-            for(int y = 0; y < height; y++){
-                String str = cellToString(x, y);
-                if(!str.isEmpty()) {
-                    result.append("(").append(x).append(";").append(y).append(") -> ");
-                    result.append(cellToString(x, y)).append("\n");
-                }
-            }
-        }
-        return result.toString();
-    }
-
 
     /*
      * Private atomic methods to abstract the bit manipulation.
@@ -223,5 +272,43 @@ public class Board implements IBoard{
 
     private short setItemPlayer(EPlayer player, short item) {
         return (short) ((item & MASK_PLAYER) | player.ordinal());
+    }
+
+    /*   */
+
+    private String cellToString(int x, int y){
+        String res = "";
+        EUnitData u;
+        EBuildingData b;
+        EPlayer pU, pB;
+        try {
+            u = this.getUnitType(x, y);
+            pU = this.getUnitPlayer(x, y);
+            res += u + " ; " + pU + "\n";
+        } catch (IllegalBoardCallException ignored){ }
+        try {
+            pB = this.getBuildingPlayer(x, y);
+            b = this.getBuildingType(x, y);
+            res += b + " ; " + pB + "\n";
+        } catch (IllegalBoardCallException ignored){ }
+        if(res.isEmpty())
+            return res;
+        return res + "Com1 : " + isInCommunication(EPlayer.PLAYER_NORTH, x, y)
+                + "\nCom2: " + isInCommunication(EPlayer.PLAYER_SOUTH, x, y) + "\n";
+    }
+
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append("Width = ").append(width).append(" ; Height = ").append(height).append("\n");
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
+                String str = cellToString(x, y);
+                if(!str.isEmpty()) {
+                    result.append("(").append(x).append(";").append(y).append(") -> ");
+                    result.append(cellToString(x, y)).append("\n");
+                }
+            }
+        }
+        return result.toString();
     }
 }
