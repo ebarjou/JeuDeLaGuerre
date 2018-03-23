@@ -26,9 +26,12 @@ public class DebordGameTest {
     private List<GameAction> actions;
     private GameAction gameAction;
     private RuleChecker rule;
+    private int turn, actionNb;
 
     @Before
     public void setUp() throws Exception {
+        turn = 1;
+        actionNb = 0;
         actions = new ArrayList<>();
         gameAction = null;
         rule = new RuleChecker();
@@ -75,9 +78,20 @@ public class DebordGameTest {
         saveEnd();
     }
 
+    private void checkActionValid(GameAction gameAction){
+        this.gameAction = gameAction;
+        checkActionValid(turn, ++actionNb);
+        if (this.gameAction.getActionType() == EGameActionType.END_TURN) {
+            saveEnd("debordGameTurns/Turn" + ((turn % 2 != 0 ) ? (turn + 1) / 2 : (turn + 1) / 2 + "'") + ".txt");
+            actionNb = 0;
+            ++turn;
+        }
+    }
+
     private void addAction(EPlayer player, EGameActionType gameActionType) {
         GameAction gameAction = new GameAction(player, gameActionType);
-        actions.add(gameAction);
+        //actions.add(gameAction);
+        checkActionValid(gameAction);
     }
 
     private void addAction(EPlayer player, EGameActionType gameActionType, int srcX, char srcY, int targetX, char targetY) {
@@ -92,7 +106,9 @@ public class DebordGameTest {
         GameAction gameAction = new GameAction(player, gameActionType);
         gameAction.setSourceCoordinates(valSrcX, valSrcY);
         gameAction.setTargetCoordinates(valTargetX, valTargetY);
-        actions.add(gameAction);
+        //actions.add(gameAction);
+        checkActionValid(gameAction);
+
     }
 
     private void saveEnd() {
@@ -104,7 +120,18 @@ public class DebordGameTest {
         }
     }
 
-    private void generateListOfActions1() {
+    private void saveEnd(String filename) {
+        LoadFile lf = new LoadFile();
+        try {
+            lf.save(filename, gameState);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public void generateListOfActions1() {
         EPlayer player;
 
         // Turn 1-North
@@ -197,6 +224,10 @@ public class DebordGameTest {
         addAction(player, EGameActionType.MOVE, 17, 'K', 16, 'J'); // I
         addAction(player, EGameActionType.END_TURN);
 
+
+        //In the book, a horseman detroys an arsenal, so we check if there is an arsenal before, and after the north turn.
+        assertTrue(gameState.isBuilding(2, 19));
+
         // Turn 6-North
         player = EPlayer.PLAYER_NORTH;
         addAction(player, EGameActionType.MOVE, 3, 'R', 3, 'T'); // C
@@ -205,6 +236,8 @@ public class DebordGameTest {
         addAction(player, EGameActionType.MOVE, 5, 'G', 7, 'F'); // C
         addAction(player, EGameActionType.MOVE, 6, 'H', 8, 'G'); // C
         addAction(player, EGameActionType.END_TURN);
+
+        assertTrue(!gameState.isBuilding(2, 19));
 
         // Turn 6-South
         player = EPlayer.PLAYER_SOUTH;
