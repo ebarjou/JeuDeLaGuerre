@@ -17,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import org.apache.xpath.operations.Bool;
 
 import java.util.*;
 

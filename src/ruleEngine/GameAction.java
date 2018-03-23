@@ -74,14 +74,4 @@ public class GameAction {
         this.player = player;
     }
 
-    /**
-     * Create a wrapper for 2D coordinates.
-     * @param x The column index of the coordinate.
-     * @param y The row index of the coordinate.
-     * @return The resulting coordinate instance.
-     */
-    public Coordinates createCoordinates(int x, int y) {
-        return new Coordinates(x, y);
-    }
-
 }
