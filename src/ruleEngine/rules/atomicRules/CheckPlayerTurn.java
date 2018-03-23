@@ -19,7 +19,7 @@ public class CheckPlayerTurn implements IRule {
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         if (action.getPlayer() != state.getActualPlayer()) {
             result.invalidate();
-            result.addMessage(this, "This is not player " + action.getPlayer().name() + "'s turn.");
+            result.addMessage(this, "This is not player " + action.getPlayer().toString() + "'s turn.");
             return false;
         }
 

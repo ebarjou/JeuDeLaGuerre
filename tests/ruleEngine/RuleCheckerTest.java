@@ -145,7 +145,7 @@ public class RuleCheckerTest {
 
         RuleResult result = new RuleResult();
         String expectedMessage = "MoveRules : The Arsenal at position (0, 10) has been destroyed.\n" +
-                "VictoryRules : PLAYER_NORTH winner !\n\n";
+                "VictoryRules : North Player winner !\n\n";
         try {
             result = rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {
@@ -184,7 +184,7 @@ public class RuleCheckerTest {
 
         RuleResult result = new RuleResult();
         String expectedMessage = "AttackRules : The unit at position (0, 2) died : Attack:8 Defense:6.\n" +
-                "VictoryRules : PLAYER_NORTH winner !\n\n";
+                "VictoryRules : North Player winner !\n\n";
         try {
             result = rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {

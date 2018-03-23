@@ -93,7 +93,7 @@ public class MoveRulesTest {
 
     @Test
     public void checkActionRealWrongInfantry() {
-        expectedMessage = "CheckIsAllyUnit : This unit is not owned by PLAYER_NORTH.\n" +
+        expectedMessage = "CheckIsAllyUnit : This unit is not owned by North Player.\n" +
                 "CheckIsInCommunication, CheckIsRelay, , CheckUnitMP, CheckIsEmptyPath, CheckIsPriorityUnit, CheckCanMoveUnit,  : Those rules are not checked because CheckIsAllyUnit has failed.\n";
         gameAction.setSourceCoordinates(24, 19);
         gameAction.setTargetCoordinates(24, 17);

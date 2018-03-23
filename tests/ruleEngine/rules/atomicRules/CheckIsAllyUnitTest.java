@@ -44,7 +44,7 @@ public class CheckIsAllyUnitTest {
         when(iGameState.getUnitPlayer(1, 1)).thenReturn(EPlayer.PLAYER_SOUTH);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
-        String expectedMessage = "CheckIsAllyUnit : This unit is not owned by PLAYER_NORTH.\n";
+        String expectedMessage = "CheckIsAllyUnit : This unit is not owned by North Player.\n";
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
 

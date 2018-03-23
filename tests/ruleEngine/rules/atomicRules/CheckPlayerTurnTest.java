@@ -28,7 +28,7 @@ public class CheckPlayerTurnTest {
         rule = new CheckPlayerTurn();
         result = new RuleResult();
         when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
-        expectedMessage = "CheckPlayerTurn : This is not player PLAYER_NORTH's turn.\n";
+        expectedMessage = "CheckPlayerTurn : This is not player North Player's turn.\n";
     }
 
     @Test

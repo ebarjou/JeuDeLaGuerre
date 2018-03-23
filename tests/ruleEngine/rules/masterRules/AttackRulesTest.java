@@ -245,7 +245,7 @@ public class AttackRulesTest {
 
         performAssertsCorrectMove(EUnitData.CAVALRY);
 
-        expectedMessage = "AttackRules : The unit at position (3, 2) will have to move in PLAYER_SOUTH's next turn : Attack:7 Defense:6.\n";
+        expectedMessage = "AttackRules : The unit at position (3, 2) will have to move in South Player's next turn : Attack:7 Defense:6.\n";
         gameAction.setSourceCoordinates(3, 1);
         gameAction.setTargetCoordinates(3, 2);
 

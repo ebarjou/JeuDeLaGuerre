@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -15,6 +16,9 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import ui.IntLetterConverter;
+
+import java.util.LinkedList;
+import java.util.List;
 
 class BoardCanvas extends Canvas {
 
@@ -30,7 +34,8 @@ class BoardCanvas extends Canvas {
     private int caseSize;
     private GameState gameState;
     private EMetricsMapType metricsMapType;
-    private double[][] metrics;
+    private List<double[][]> metrics;
+    private CheckBox[] metricsChannels;
 
     BoardCanvas(int w, int h, int coords_width, TextField textField) {
         super(w + coords_width, h + coords_width);
@@ -39,6 +44,7 @@ class BoardCanvas extends Canvas {
         this.coords_width = coords_width;
         this.board_height = (int)(getHeight() - coords_width);
         this.board_width = (int)(getWidth() - coords_width);
+        this.metrics = new LinkedList<>();
 
         g = this.getGraphicsContext2D();
         g.setLineWidth(2);
@@ -67,7 +73,8 @@ class BoardCanvas extends Canvas {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         if (gameState != null) {
-            if(metricsMapType != null) this.metrics = metricsMapType.getMethod().compute(gameState, gameState.getActualPlayer());
+
+
             if(getWidth()/gameState.getWidth() > getHeight()/gameState.getHeight()){
                 caseSize = (int)Math.floor(board_height/(double)gameState.getHeight());
                 dx = (int)((getWidth()-(caseSize*gameState.getWidth()+coords_width))/2.0);
@@ -125,7 +132,13 @@ class BoardCanvas extends Canvas {
         draw(gameState);
     }
 
-    void refresh(){
+    void refresh(boolean recomputeMetrics){
+        if (recomputeMetrics){
+            if(metricsMapType != null){
+                this.metrics.add(0,metricsMapType.getMethod().compute(gameState, EPlayer.PLAYER_NORTH));
+                this.metrics.add(1,metricsMapType.getMethod().compute(gameState, EPlayer.PLAYER_SOUTH));
+            }
+        }
         draw(gameState);
     }
 
@@ -137,22 +150,30 @@ class BoardCanvas extends Canvas {
             switch (metricsMapType) {
                 //TODO: Put minimal color value
 				case COMMUNICATION_MAP:
-					if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
+					if (metricsChannels[0].isSelected() && metricsChannels[1].isSelected() && gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
 						g.setFill(SOUTH_COLOR_LIGHT);
 						g.fillRect(pos_x, pos_y, size, size);
 						g.setFill(NORTH_COLOR_LIGHT);
 						g.fillPolygon(new double[] {pos_x, pos_x + size, pos_x}, new double[] {pos_y, pos_y, pos_y + size}, 3);
-					} else if (gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
+					} else if (metricsChannels[0].isSelected() && gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
 						g.setFill(NORTH_COLOR_LIGHT);
 						g.fillRect(pos_x, pos_y, size, size);
-					} else if (gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
+					} else if (metricsChannels[1].isSelected() && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
 						g.setFill(SOUTH_COLOR_LIGHT);
 						g.fillRect(pos_x, pos_y, size, size);
 					}break;
 				default:
-					Paint p = metricsMapType.getDrawMethod().getPaint(metrics[x][y]);
-					g.setFill(p);
-                    g.fillRect(pos_x, pos_y, size, size);
+                    if (metricsChannels[0].isSelected()){
+                        Paint p = metricsMapType.getDrawMethod().getPaint(metrics.get(0)[x][y]);
+                        g.setFill(p);
+                        g.fillRect(pos_x, pos_y, size, size);
+                    }
+
+                    if (metricsChannels[1].isSelected()){
+                        Paint p = metricsMapType.getDrawMethod().getPaint(metrics.get(1)[x][y]);
+                        g.setFill(p);
+                        g.fillRect(pos_x, pos_y, size, size);
+                    }
                     break;
             }
 
@@ -195,6 +216,10 @@ class BoardCanvas extends Canvas {
         g.restore();
     }
 
+    public void setMetricsChannels(CheckBox[] metricsChannels) {
+        this.metricsChannels = metricsChannels;
+    }
+
     private class ClickHandler implements EventHandler<MouseEvent> {
         TextField textField;
 
@@ -217,5 +242,6 @@ class BoardCanvas extends Canvas {
 
     public void setMetricsMapType(EMetricsMapType type){
         this.metricsMapType = type;
+
     }
 }

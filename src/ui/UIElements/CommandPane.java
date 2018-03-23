@@ -21,8 +21,8 @@ class CommandPane extends HBox{
         this.commandTextField = commandTextField;
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, null, null)));
 
-        labelPlayerTurn = new Label(Game.getInstance().getGameState().getActualPlayer().name());
-        labelPlayerTurn.setTextFill(Game.getInstance().getGameState().getActualPlayer()==EPlayer.PLAYER_SOUTH?Color.ORANGERED:Color.BLUE);
+        labelPlayerTurn = new Label(Game.getInstance().getGameState().getActualPlayer().toString());
+        labelPlayerTurn.setTextFill(Game.getInstance().getGameState().getActualPlayer().getPreferedColor());
         labelPlayerTurn.setPrefHeight(MainLayout.COMMAND_HEIGHT);
 
         labelActionLeft = new Label("Action left : " + Game.getInstance().getGameState().getActionLeft());

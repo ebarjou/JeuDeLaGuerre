@@ -1,14 +1,16 @@
 package ui.UIElements;
 
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.Pane;
 import ui.UIElements.BoardCanvas;
 
 class CanvasPane extends Pane {
     private final BoardCanvas canvas;
 
-    public CanvasPane(double width, double height, BoardCanvas canvas) {
+    public CanvasPane(double width, double height, BoardCanvas canvas, CheckBox[] metricsChannels) {
         this.canvas = canvas;
+        canvas.setMetricsChannels(metricsChannels);
         setMinWidth(width);
         setMinHeight(height);
         setMaxWidth(Double.MAX_VALUE);

@@ -1,14 +1,18 @@
 package game;
 
+import javafx.scene.paint.Color;
+
 public enum EPlayer {
-    PLAYER_NORTH(0),
-    PLAYER_SOUTH(1);
+    PLAYER_NORTH(0, Color.ORANGERED),
+    PLAYER_SOUTH(1, Color.BLUE);
 
     private final int val;
+    private final Color preferedColor;
 
-    EPlayer(int val){
+    EPlayer(int val, Color preferedColor){
         this.val = val;
-    }
+		this.preferedColor = preferedColor;
+	}
 
     public EPlayer other(){
         if (val == 0)
@@ -16,4 +20,17 @@ public enum EPlayer {
 
         return PLAYER_NORTH;
     }
+
+    @Override
+    public String toString() {
+        switch (val){
+            case 0 : return "North Player";
+            default: return "South Player";
+        }
+
+    }
+
+	public Color getPreferedColor() {
+		return preferedColor;
+	}
 }

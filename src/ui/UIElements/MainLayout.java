@@ -10,11 +10,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.CheckBoxTreeItem;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import org.apache.xpath.operations.Bool;
 
 import java.util.*;
 
@@ -75,9 +78,17 @@ public class MainLayout extends BorderPane{
         metricsDisplay = new ComboBox(metricsList);
         metricsDisplay.valueProperty().addListener(new MetrixBoxEvent());
 
+        CheckBox[] metricsChannels = new CheckBox[2];
+		metricsChannels[0] = new CheckBox(EPlayer.PLAYER_NORTH.toString());
+		metricsChannels[1] = new CheckBox(EPlayer.PLAYER_SOUTH.toString());
+		metricsChannels[0].setSelected(true);
+		metricsChannels[1].setSelected(true);
+		metricsChannels[0].selectedProperty().addListener(new MetrixChannelEvent());
+		metricsChannels[1].selectedProperty().addListener(new MetrixChannelEvent());
+
         commandPane = new CommandPane(textField);
-        infosPane = new InfosPane(metricsDisplay);
-        gamePane = new CanvasPane(CANVAS_WIDTH, CANVAS_HEIGHT, canvas);
+        infosPane = new InfosPane(metricsDisplay, metricsChannels);
+        gamePane = new CanvasPane(CANVAS_WIDTH, CANVAS_HEIGHT, canvas, metricsChannels);
 
         this.setBottom(commandPane);
         this.setCenter(gamePane);
@@ -86,7 +97,7 @@ public class MainLayout extends BorderPane{
 
     public void refresh(GameState board){
         canvas.draw(board);
-        commandPane.setPlayer(board.getActualPlayer().name(), board.getActualPlayer()== EPlayer.PLAYER_SOUTH?Color.ORANGERED:Color.BLUE);
+        commandPane.setPlayer(board.getActualPlayer().toString(), board.getActualPlayer()== EPlayer.PLAYER_SOUTH?Color.ORANGERED:Color.BLUE);
         commandPane.setActionLeft(board.getActionLeft());
     }
 
@@ -113,10 +124,17 @@ public class MainLayout extends BorderPane{
 				Platform.runLater(() -> metricsDisplay.getSelectionModel().select(t));
             }else if (initialize || !t.equals(COMBOBOX_SEPARATOR)){
                 canvas.setMetricsMapType(metricsObjects.get(t1));
-                canvas.refresh();
+                canvas.refresh(!initialize);
                 initialize = false;
             }
         }
     }
 
+    private class MetrixChannelEvent implements ChangeListener<Boolean>{
+
+		@Override
+		public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+			canvas.refresh(false);
+		}
+	}
 }

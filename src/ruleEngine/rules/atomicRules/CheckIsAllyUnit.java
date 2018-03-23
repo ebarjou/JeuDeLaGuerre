@@ -27,7 +27,7 @@ public class CheckIsAllyUnit implements IRule {
 
         if (state.isUnit(x, y)) {
             if (state.getActualPlayer() != state.getUnitPlayer(x, y)) {
-                result.addMessage(this, "This unit is not owned by " + state.getActualPlayer().name() + ".");
+                result.addMessage(this, "This unit is not owned by " + state.getActualPlayer().toString() + ".");
                 result.invalidate();
                 return false;
             }
