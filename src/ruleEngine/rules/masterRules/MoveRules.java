@@ -74,8 +74,12 @@ public class MoveRules extends RuleCompositeAND {
                     break;
                 }
             }
-            if (remove != null)
+            if (remove != null) {
                 state.removeBuilding(remove);
+                // Destroying an ARSENAL is considered an attack. The moving unit is therefore unable to initiate another attack
+                state.setLastUnitMoved(null);
+                result.addMessage(this, "The Arsenal at position (" + target.getX() + ", " + target.getY() + ") has been destroyed.");
+            }
         }
     }
 }

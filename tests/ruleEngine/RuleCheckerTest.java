@@ -144,7 +144,8 @@ public class RuleCheckerTest {
         gameAction.setTargetCoordinates(0, 10);
 
         RuleResult result = new RuleResult();
-        String expectedMessage = "VictoryRules : PLAYER_NORTH winner !\n\n";
+        String expectedMessage = "MoveRules : The Arsenal at position (0, 10) has been destroyed.\n" +
+                "VictoryRules : PLAYER_NORTH winner !\n\n";
         try {
             result = rulechecker.checkAndApplyAction(gameState, gameAction);
         } catch (IncorrectGameActionException e) {

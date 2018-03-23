@@ -208,7 +208,19 @@ public class MoveRulesTest {
 		} catch (IncorrectGameActionException e) {
 			assertTrue(false);
 		}
-		Unit movedUnit = gameState.getLastUnitMoved();
+		Unit movedUnit = null;
+        try {
+            movedUnit = gameState.getLastUnitMoved();
+        } catch (NullPointerException e) {
+            for (Unit unit : gameState.getAllUnits()) {
+                Coordinates coord = gameAction.getTargetCoordinates();
+                if (unit.getX() == coord.getX() && unit.getY() == coord.getY()) {
+                    movedUnit = unit;
+                    break;
+                }
+            }
+        }
+        assertNotNull(movedUnit);
 		assertTrue(movedUnit.getX() == gameAction.getTargetCoordinates().getX());
 		assertTrue(movedUnit.getY() == gameAction.getTargetCoordinates().getY());
 		assertTrue(movedUnit.getPlayer() == gameState.getActualPlayer());

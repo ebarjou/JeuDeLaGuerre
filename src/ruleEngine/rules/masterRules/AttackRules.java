@@ -7,6 +7,7 @@ import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
+import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.rules.atomicRules.*;
 import ruleEngine.rules.newRules.IRule;
@@ -137,7 +138,9 @@ public class AttackRules extends RuleCompositeAND {
             int dist = state.getDistance(x, y, xT, yT);
 
             if (isAttack && unit.isCanAttack() && (isUnitCanAttack(state, new Coordinates(x, y)))) {
-                if (charge && unit.isCanCharge()) {
+                if (charge && unit.isCanCharge()
+                        && ( ( !state.isBuilding(x, y) )
+                        || ( state.getBuildingType(x, y) != EBuildingData.FORTRESS) ) ) {
                     return chargeVal + getFightValueRec(state, action, player, x, y, dir, true, true);
                 } else if (unit.getFightRange() >= dist) {
                     return unit.getAtkValue() + getFightValueRec(state, action, player, x, y, dir, true, false);
@@ -156,7 +159,9 @@ public class AttackRules extends RuleCompositeAND {
         EPlayer player = state.getUnitPlayer(src.getX(), src.getY());
 
         boolean charge = state.isUnit(src.getX(), src.getY())
-            && ( state.getUnitType(src.getX(), src.getY()).isCanCharge() );
+                && ( state.getUnitType(src.getX(), src.getY()).isCanCharge() )
+                && ( ( !state.isBuilding(src.getX(), src.getY()) )
+                    || ( state.getBuildingType(src.getX(), src.getY()) != EBuildingData.FORTRESS) );
         int chargeX = 0;
         int chargeY = 0;
         if (charge) {
