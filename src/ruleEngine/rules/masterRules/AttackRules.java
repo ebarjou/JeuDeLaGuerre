@@ -10,10 +10,7 @@ import ruleEngine.RuleResult;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.rules.atomicRules.*;
-import ruleEngine.rules.newRules.IRule;
-import ruleEngine.rules.newRules.RuleCompositeAND;
-import ruleEngine.rules.newRules.RuleCompositeLazyAND;
-import ruleEngine.rules.newRules.RuleCompositeNOT;
+import ruleEngine.rules.newRules.*;
 
 import java.util.List;
 
@@ -43,7 +40,10 @@ public class AttackRules extends RuleCompositeAND {
         IRule isAllyUnitDep = new RuleCompositeLazyAND();
         isAllyUnitDep.add(new CheckIsAllyUnit());
         andRules.add(new CheckLastMove());
-        andRules.add(new CheckUnitRange());
+        IRule rangeRulesDep = new RuleCompositeOR();
+        rangeRulesDep.add(new CheckUnitRange());
+        rangeRulesDep.add(new CheckIsCharge());
+        andRules.add(rangeRulesDep);
         andRules.add(new CheckCanAttackUnit());
         // Adding the rule if not a relay
         IRule notRelay = new RuleCompositeNOT();

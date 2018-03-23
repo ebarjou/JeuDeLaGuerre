@@ -6,6 +6,7 @@ import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
+import ruleEngine.entity.EBuildingData;
 import ruleEngine.rules.newRules.IRule;
 
 import java.util.List;
@@ -16,34 +17,6 @@ import java.util.List;
  * @see ruleEngine.rules.masterRules.AttackRules
  */
 public class CheckUnitRange implements IRule {
-
-    private boolean isAlignedCharge(GameState state, GameAction action) {
-        Coordinates src = action.getSourceCoordinates();
-        Coordinates dst = action.getTargetCoordinates();
-
-        int dirX = dst.getX() - src.getX();
-        int dirY = dst.getY() - src.getY();
-        int diffX = Math.abs(dirX);
-        int diffY = Math.abs(dirY);
-        if (( diffX != diffY ) && (dirX != 0) && (dirY != 0))   return false;
-
-        if (diffX != 0) dirX = dirX / diffX; // 1 or -1
-        if (diffY != 0) dirY = dirY / diffY; // 1 or -1
-
-        int x = src.getX();
-        int y = src.getY();
-        while (x != dst.getX() || y != dst.getY()) {
-            if ( !state.isUnit(x, y)
-                    || !state.getUnitType(x, y).isCanCharge()
-                    || !(state.getUnitPlayer(x, y) == action.getPlayer())
-                    || !isUnitCanAttack(state, new Coordinates(x, y)) ) {
-                return false;
-            }
-            x += dirX;
-            y += dirY;
-        }
-        return true;
-    }
 
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
@@ -56,7 +29,7 @@ public class CheckUnitRange implements IRule {
             int range = state.getUnitType(x, y).getFightRange();
             int dist = state.getDistance(x, y, x2, y2);
 
-            if (dist > range && !isAlignedCharge(state, action)) {
+            if (dist > range) {
                 result.addMessage(this,
                         "Not enough range to attack, the unit has a range of "
                                 + range + ", and you need a range of " + dist + ".");
@@ -69,15 +42,6 @@ public class CheckUnitRange implements IRule {
             result.invalidate();
             return false;
         }
-    }
-
-
-    private boolean isUnitCanAttack(GameState state, Coordinates coords){
-        List<Unit> cantAttackUnits = state.getCantAttackUnits();
-        for(Unit unit : cantAttackUnits)
-            if(unit.getX() == coords.getX() && unit.getY() == coords.getY())
-                return false;
-        return true;
     }
 
 
