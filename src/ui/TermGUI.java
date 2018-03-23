@@ -114,7 +114,7 @@ public class TermGUI extends Application {
                 //System.out.println(response.getMessage());
                 if(response.getMessage() != null && !response.getMessage().isEmpty()){
                     ResultAlert.getInstance().setMessage("Valid action", "Message : ", "Detailed result : ", response.getMessage());
-                    ResultAlert.getInstance().showAndWait();
+                    ResultAlert.getInstance().show();
                 }
                 break;
             }
