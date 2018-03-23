@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 public class DebordGameTest {
 
@@ -27,34 +28,22 @@ public class DebordGameTest {
     private RuleChecker rule;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         actions = new ArrayList<>();
         gameAction = null;
         rule = new RuleChecker();
 
-        GUIThread guiThread = new GUIThread();
-        Player p1 = new GUIPlayer();
-        Player p2 = new GUIPlayer();
-        Game.init(p1, p2);
+        Player player = mock(Player.class);
+        Game.init(player, player);
         LoadFile lf = new LoadFile();
-        try {
-            lf.loadFile("presets/debord.txt");
-        } catch (IOException | BadFileFormatException e) {
-            assertTrue("Test class " + this.getClass().getSimpleName() +
-                    " could not load the test file : Test interrupted.", false);
-        }
+        lf.loadFile("presets/debord.txt");
 
         gameState = Game.getInstance().getGameState();
-
-        try {
-            GameAction communication = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
-            RuleResult r = rule.checkAndApplyAction(gameState, communication);
-            assertTrue("Can't check the actions of DebordGameTest because action COMMUNICATION failed beforehand.", r.isValid());
-        } catch (IncorrectGameActionException e) {
-            assertTrue("Can't check the actions of DebordGameTest because action COMMUNICATION failed beforehand.", false);
-        }
-
         gameState.setActualPlayer(EPlayer.PLAYER_NORTH);
+
+        GameAction communication = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
+        RuleResult r = rule.checkAndApplyAction(gameState, communication);
+        assertTrue("Can't check the actions of DebordGameTest because action COMMUNICATION failed beforehand.", r.isValid());
     }
 
     private void checkActionValid(int turn, int actionNb) {
@@ -83,6 +72,7 @@ public class DebordGameTest {
                 ++turn;
             }
         }
+        saveEnd();
     }
 
     private void addAction(EPlayer player, EGameActionType gameActionType) {
@@ -103,6 +93,15 @@ public class DebordGameTest {
         gameAction.setSourceCoordinates(valSrcX, valSrcY);
         gameAction.setTargetCoordinates(valTargetX, valTargetY);
         actions.add(gameAction);
+    }
+
+    private void saveEnd() {
+        LoadFile lf = new LoadFile();
+        try {
+            lf.save("presets/debordGameTestEnd.txt", gameState);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void generateListOfActions1() {
@@ -214,6 +213,57 @@ public class DebordGameTest {
         addAction(player, EGameActionType.MOVE, 15, 'J', 16, 'H'); // Tc
         addAction(player, EGameActionType.MOVE, 15, 'G', 16, 'F'); // A
         addAction(player, EGameActionType.MOVE, 18, 'L', 16, 'J'); // C
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 7-North
+        player = EPlayer.PLAYER_NORTH;
+        addAction(player, EGameActionType.MOVE, 3, 'T', 3, 'R'); // C
+        addAction(player, EGameActionType.MOVE, 11, 'E', 12, 'D'); // I
+        addAction(player, EGameActionType.MOVE, 10, 'F', 11, 'E'); // I
+        addAction(player, EGameActionType.MOVE, 8, 'G', 10, 'F'); // C
+        addAction(player, EGameActionType.MOVE, 7, 'F', 9, 'F'); // C
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 7-South
+        player = EPlayer.PLAYER_SOUTH;
+        addAction(player, EGameActionType.MOVE, 16, 'J', 15, 'H'); // C
+        addAction(player, EGameActionType.MOVE, 14, 'H', 15, 'G'); // I
+        addAction(player, EGameActionType.MOVE, 15, 'I', 14, 'H'); // I
+        addAction(player, EGameActionType.MOVE, 14, 'J', 15, 'I'); // I
+        addAction(player, EGameActionType.MOVE, 15, 'M', 15, 'L'); // I
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 8-North
+        player = EPlayer.PLAYER_NORTH;
+        addAction(player, EGameActionType.MOVE, 12, 'D', 13, 'D'); // I
+        addAction(player, EGameActionType.MOVE, 11, 'E', 11, 'D'); // I
+        addAction(player, EGameActionType.MOVE, 10, 'F', 12, 'D'); // C
+        addAction(player, EGameActionType.MOVE, 9, 'F', 11, 'E'); // C
+        addAction(player, EGameActionType.MOVE, 9, 'E', 10, 'F'); // C
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 8-South
+        player = EPlayer.PLAYER_SOUTH;
+        addAction(player, EGameActionType.MOVE, 17, 'L', 17, 'K'); // I
+        addAction(player, EGameActionType.MOVE, 15, 'K', 14, 'J'); // I
+        addAction(player, EGameActionType.MOVE, 15, 'L', 15, 'K'); // I
+        addAction(player, EGameActionType.MOVE, 16, 'F', 17, 'E'); // A
+        addAction(player, EGameActionType.MOVE, 15, 'H', 16, 'F'); // C
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 9-North
+        player = EPlayer.PLAYER_NORTH;
+        addAction(player, EGameActionType.MOVE, 12, 'F', 13, 'F'); // Ac
+        addAction(player, EGameActionType.MOVE, 10, 'F', 12, 'F'); // C
+        addAction(player, EGameActionType.MOVE, 9, 'G', 10, 'F'); // I
+        addAction(player, EGameActionType.MOVE, 8, 'H', 9, 'G'); // I
+        addAction(player, EGameActionType.MOVE, 7, 'H', 8, 'H'); // I
+        addAction(player, EGameActionType.END_TURN);
+
+        // Turn 9-South
+        player = EPlayer.PLAYER_SOUTH;
+        addAction(player, EGameActionType.MOVE, 16, 'D', 18, 'D'); // C
+        //addAction(player, EGameActionType.MOVE, 16, 'J', 15, 'I'); // I
         addAction(player, EGameActionType.END_TURN);
     }
 }
