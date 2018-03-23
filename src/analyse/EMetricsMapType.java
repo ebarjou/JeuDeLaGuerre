@@ -7,11 +7,11 @@ public enum EMetricsMapType {
 	COMMUNICATION_MAP("Communication map", new CommunicationMapMethod()),
 
     STATIC_ATTACK_MAP("Static Attack Map", new StaticAttackMapMethod()),
-    ATTACK_MAP_1M("Attack map using 1 unit", new AttackMapMethod(1)),
-    ATTACK_MAP_FAST("Imprecise Attack map using all units", new ImpreciseAttackMapMethod()),
+    ATTACK_MAP_1M("Attack map using 1 unit (slow)", new AttackMapMethod(1)),
+    ATTACK_MAP_FAST("Imprecise Attack map using all units (fast)", new ImpreciseAttackMapMethod()),
 
-	RANGE_MAP_1M("Range map using 1 unit", new RangeMapMethod(1)),
-	RANGE_MAP_FAST("Imprecise Range map using all units", new ImpreciseRangeMapMethod());
+	RANGE_MAP_1M("Range map using 1 unit (slow)", new RangeMapMethod(1)),
+	RANGE_MAP_FAST("Imprecise Range map using all units (fast)", new ImpreciseRangeMapMethod());
 
 
 
