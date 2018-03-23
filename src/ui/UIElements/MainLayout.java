@@ -4,6 +4,7 @@ import analyse.EMetricsMapType;
 import com.sun.xml.internal.bind.v2.runtime.property.StructureLoaderBuilder;
 import game.EPlayer;
 import game.gameState.GameState;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,6 +28,8 @@ public class MainLayout extends BorderPane{
 
     private static final int COMMAND_PANEL_HEIGHT = 28;
     private static final int COMMAND_PANEL_MARGIN = 10;
+	private boolean initialize = true;
+    private static final String COMBOBOX_SEPARATOR = "----------------";
 
     private final ComboBox metricsDisplay;
     private ObservableList<String> metricsList =
@@ -46,10 +49,21 @@ public class MainLayout extends BorderPane{
 
     public MainLayout(){
         metricsObjects = new HashMap<>();
-        for (EMetricsMapType t : EMetricsMapType.values())
-            metricsObjects.put(t.getMapName(), t);
+//        for (EMetricsMapType t : EMetricsMapType.values())
+//            metricsObjects.put(t.getMapName(), t);
 
-        metricsList = FXCollections.observableArrayList(metricsObjects.keySet());
+        List<String> labels = new LinkedList<>();
+        for (int i = 0; i <= EMetricsMapType.getMaxIndex(); ++i){
+            EMetricsMapType t = EMetricsMapType.getType(i);
+            if (t == null){
+                labels.add(COMBOBOX_SEPARATOR);
+            }else{
+                labels.add(t.getMapName());
+                metricsObjects.put(t.getMapName(), t);
+            }
+        }
+
+        metricsList = FXCollections.observableArrayList(labels);
         this.setMinHeight(CANVAS_HEIGHT + COMMAND_HEIGHT + COORDINATES_BAR_WIDTH);
         this.setMinWidth(CANVAS_WIDTH + INFOS_WIDTH + COORDINATES_BAR_WIDTH);
 
@@ -95,8 +109,13 @@ public class MainLayout extends BorderPane{
     private class MetrixBoxEvent implements ChangeListener<String>{
         @Override
         public void changed(ObservableValue<? extends String> ov, String t, String t1) {
-            canvas.setMetricsMapType(metricsObjects.get(t1));
-            canvas.refresh();
+            if (t1.equals(COMBOBOX_SEPARATOR)){
+				Platform.runLater(() -> metricsDisplay.getSelectionModel().select(t));
+            }else if (initialize || !t.equals(COMBOBOX_SEPARATOR)){
+                canvas.setMetricsMapType(metricsObjects.get(t1));
+                canvas.refresh();
+                initialize = false;
+            }
         }
     }
 
