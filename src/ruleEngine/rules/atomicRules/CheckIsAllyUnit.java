@@ -14,12 +14,6 @@ import ruleEngine.rules.newRules.IRule;
 */
 public class CheckIsAllyUnit implements IRule {
 
-
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
-
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         int x = action.getSourceCoordinates().getX();

@@ -12,8 +12,8 @@ import ruleEngine.rules.newRules.IRule;
 import java.util.List;
 
 /**
- * Check if an attack performed by a unit is within its range of action.<br>
- * Valid if the target cell is within the range of the unit, invalid otherwise.
+ * Check if an attack performed by a unit could be a charge.<br>
+ * Valid if the target cell could charge, invalid otherwise.
  * @see ruleEngine.rules.masterRules.AttackRules
  */
 public class CheckIsCharge implements IRule {
@@ -67,9 +67,4 @@ public class CheckIsCharge implements IRule {
         return false;
     }
 
-
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
 }

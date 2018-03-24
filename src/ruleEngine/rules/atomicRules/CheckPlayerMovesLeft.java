@@ -22,11 +22,4 @@ public class CheckPlayerMovesLeft implements IRule {
 
         return true;
     }
-
-
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
-
 }

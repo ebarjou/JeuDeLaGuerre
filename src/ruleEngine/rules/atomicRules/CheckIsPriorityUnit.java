@@ -40,10 +40,4 @@ public class CheckIsPriorityUnit implements IRule {
         }
         return isNoUnitPlayer;
     }
-
-
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
 }

@@ -92,12 +92,6 @@ public class CheckIsEmptyPath implements IRule {
         }
     }
 
-
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
-
     private class Vertex {
         int dist;
         private int x, y; // index in array board

@@ -34,8 +34,4 @@ public class CheckLastMove implements IRule {
 
         return true;
     }
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
 }

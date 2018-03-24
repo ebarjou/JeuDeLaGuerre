@@ -58,7 +58,7 @@ public class CheckIsChargeTest {
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(5, 5));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(3, 3));
         when(iGameState.getDistance(5, 5, 3, 3)).thenReturn(2);
-        expectedMessage = rule.toString() + " : The initiating unit is not able to charge.\n";
+        expectedMessage = rule.getName() + " : The initiating unit is not able to charge.\n";
 
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
@@ -82,7 +82,7 @@ public class CheckIsChargeTest {
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(5, 5));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(9, 5));
         when(iGameState.getDistance(5, 5, 9, 5)).thenReturn(4);
-        expectedMessage = rule.toString() + " : The initiating unit is not able to charge.\n";
+        expectedMessage = rule.getName() + " : The initiating unit is not able to charge.\n";
 
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
@@ -98,7 +98,7 @@ public class CheckIsChargeTest {
         when(unit.getX()).thenReturn(8);
         when(unit.getY()).thenReturn(5);
         cantAttackUnits.add(unit);
-        expectedMessage = rule.toString() + " : The initiating unit is not in a position to proceed a charge.\n";
+        expectedMessage = rule.getName() + " : The initiating unit is not in a position to proceed a charge.\n";
 
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());

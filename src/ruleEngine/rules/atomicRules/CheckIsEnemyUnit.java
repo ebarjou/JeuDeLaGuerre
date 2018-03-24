@@ -32,9 +32,4 @@ public class CheckIsEnemyUnit implements IRule {
         return false;
     }
 
-
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
 }

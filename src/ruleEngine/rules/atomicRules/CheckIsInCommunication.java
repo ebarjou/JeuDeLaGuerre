@@ -23,8 +23,4 @@ public class CheckIsInCommunication implements IRule {
         result.invalidate();
         return false;
     }
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
 }

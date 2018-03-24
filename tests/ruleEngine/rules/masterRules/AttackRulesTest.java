@@ -408,7 +408,7 @@ public class AttackRulesTest {
     @Test
     public void checkActionRealWrongSourceEmpty() {
         expectedMessage = "CheckIsAllyUnit : There is no unit at (10, 8).\n" +
-                "CheckLastMove, CheckUnitRange, CheckIsCharge, , CheckCanAttackUnit, CheckIsRelay,  : Those rules are not checked because CheckIsAllyUnit has failed.\n";
+                "CheckLastMove, CheckUnitRange, CheckIsCharge, CheckCanAttackUnit, CheckIsRelay : Those rules are not checked because CheckIsAllyUnit has failed.\n";
         gameAction.setSourceCoordinates(10, 8);
         gameAction.setTargetCoordinates(7, 8);
 
@@ -418,7 +418,7 @@ public class AttackRulesTest {
     @Test
     public void checkActionRealWrongSourceEnemy() {
         expectedMessage = "CheckIsAllyUnit : This unit is not owned by North Player.\n" +
-                "CheckLastMove, CheckUnitRange, CheckIsCharge, , CheckCanAttackUnit, CheckIsRelay,  : Those rules are not checked because CheckIsAllyUnit has failed.\n" +
+                "CheckLastMove, CheckUnitRange, CheckIsCharge, CheckCanAttackUnit, CheckIsRelay : Those rules are not checked because CheckIsAllyUnit has failed.\n" +
                 "CheckIsInCommunication : This unit is not in the player communication.\n";
         gameAction.setSourceCoordinates(12, 8);
         gameAction.setTargetCoordinates(7, 8);

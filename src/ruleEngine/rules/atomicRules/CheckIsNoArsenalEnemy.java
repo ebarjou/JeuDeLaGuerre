@@ -44,9 +44,4 @@ public class CheckIsNoArsenalEnemy implements IRule {
         return victory;
     }
 
-
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
 }

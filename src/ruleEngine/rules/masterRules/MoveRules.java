@@ -19,8 +19,6 @@ import java.util.List;
 public class MoveRules extends RuleCompositeAND {
 
     public MoveRules() {
-        super();
-
         super.add(new CheckPlayerTurn());
         super.add(new CheckPlayerMovesLeft());
 
@@ -29,8 +27,8 @@ public class MoveRules extends RuleCompositeAND {
 
         IRule rulesDependentOfOnBoard = new RuleCompositeAND();
 
-        IRule dependencyIsUnit = new RuleCompositeLazyAND();
-        dependencyIsUnit.add(new CheckIsAllyUnit());
+        IRule dependendentIsUnit = new RuleCompositeLazyAND();
+        dependendentIsUnit.add(new CheckIsAllyUnit());
 
         IRule rulesDependentOfIsUnit = new RuleCompositeAND();
 
@@ -44,8 +42,8 @@ public class MoveRules extends RuleCompositeAND {
         rulesDependentOfIsUnit.add(new CheckIsPriorityUnit());
         rulesDependentOfIsUnit.add(new CheckCanMoveUnit());
 
-        dependencyIsUnit.add(rulesDependentOfIsUnit);
-        rulesDependentOfOnBoard.add(dependencyIsUnit);
+        dependendentIsUnit.add(rulesDependentOfIsUnit);
+        rulesDependentOfOnBoard.add(dependendentIsUnit);
 
         dependentOnBoard.add(rulesDependentOfOnBoard);
         super.add(dependentOnBoard);

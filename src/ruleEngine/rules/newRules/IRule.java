@@ -6,9 +6,9 @@ import ruleEngine.RuleResult;
 
 public interface IRule {
     boolean checkAction(GameState state, GameAction action, RuleResult result);
-    String toString();
+    default String getName(){ return getClass().getSimpleName();}
     default String getRules(){
-      return toString();
+      return getName();
     }
     default void applyResult(GameState state, GameAction action, RuleResult result){}
     default void add(IRule r){}

@@ -30,32 +30,41 @@ public class AttackRules extends RuleCompositeAND {
     private static final int chargeVal = 7;
 
     public AttackRules() {
-        //TODO: check if the unit can attack (relay can actually initiate the fight). Test if it's fixed
         super.add(new CheckPlayerTurn());
         IRule onBoardDep = new RuleCompositeLazyAND();
         onBoardDep.add(new CheckOnBoard());
-
-        IRule andRules = new RuleCompositeAND();
+        // Creating rules depending of CheckOnBoard
 
         IRule isAllyUnitDep = new RuleCompositeLazyAND();
         isAllyUnitDep.add(new CheckIsAllyUnit());
+
+        //-Creating rules depending of CheckIsAllyUnit
+        IRule andRules = new RuleCompositeAND();
         andRules.add(new CheckLastMove());
-        IRule rangeRulesDep = new RuleCompositeOR();
-        rangeRulesDep.add(new CheckUnitRange());
-        rangeRulesDep.add(new CheckIsCharge());
-        andRules.add(rangeRulesDep);
+
+        //--Creating rules for range attack
+        IRule rangeRules = new RuleCompositeOR();
+        rangeRules.add(new CheckUnitRange());
+        rangeRules.add(new CheckIsCharge());
+
+        //-Adding range rules in the dependencies of CheckIsAllyUnit
+        andRules.add(rangeRules);
         andRules.add(new CheckCanAttackUnit());
-        // Adding the rule if not a relay
+
+        //--Creating not isRelay rule and adding it in the dependencies of CheckIsAllyUnit
         IRule notRelay = new RuleCompositeNOT();
         notRelay.add(new CheckIsRelay());
         andRules.add(notRelay);
-        //----
+
+        //-Adding all rules depending of CheckIsAllyUnit in CheckIsAlly dependencies
         isAllyUnitDep.add(andRules);
 
+        //-Adding rules depending of CheckOnBoard
         andRules = new RuleCompositeAND();
         andRules.add(isAllyUnitDep);
         andRules.add(new CheckIsInCommunication());
 
+        //--Creating and adding rules dependencies of isEnnemy -> AreAligned -> IsEmptyAttackPath
         IRule areAlignedDep = new RuleCompositeLazyAND();
         areAlignedDep.add(new CheckIsEnemyUnit());
         areAlignedDep.add(new CheckAreAligned());

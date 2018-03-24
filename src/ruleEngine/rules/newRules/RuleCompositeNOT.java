@@ -41,20 +41,19 @@ public class RuleCompositeNOT extends RuleComposite {
     }
 
 
-    public String toString(){
-        if(this.rule == null){
+    public String getName(){
+        if(this.rule == null)
             return "";
-        }
 
         return "(NOT " +
-                this.rule.toString() + ")";
+                this.rule.getName() + ")";
     }
 
     public String getRules(){
-        if(this.rule == null){
-            return "no rule for NOT !!";
-        }
-        return rule.toString();
+        if(this.rule == null)
+            return "Error: NOT composite has no rule";
+
+        return rule.getName();
     }
 
 }

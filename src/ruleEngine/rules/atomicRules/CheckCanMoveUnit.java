@@ -17,12 +17,6 @@ import java.util.List;
  */
 public class CheckCanMoveUnit implements IRule {
 
-
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
-
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();

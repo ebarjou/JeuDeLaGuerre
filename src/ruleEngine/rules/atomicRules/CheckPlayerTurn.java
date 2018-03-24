@@ -25,9 +25,4 @@ public class CheckPlayerTurn implements IRule {
 
         return true;
     }
-
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
 }

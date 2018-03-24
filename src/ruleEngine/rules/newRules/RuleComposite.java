@@ -37,12 +37,19 @@ public abstract class RuleComposite implements IRule{
 
     }
 
+    /**
+     * @return a String containing all the class name of each atomic rule in this composite
+     */
     @Override
     public String getRules(){
+        if(rules.isEmpty())
+            return "";
+
         StringBuilder rulesName = new StringBuilder();
-        for(IRule rule : rules){
-            rulesName.append(rule.getRules()).append(", ");
-        }
+        for(int i = 0; i < rules.size() - 1; ++i)
+            rulesName.append(rules.get(i).getRules()).append(", ");
+
+        rulesName.append(rules.get(rules.size() - 1).getRules());
         return rulesName.toString();
     }
 

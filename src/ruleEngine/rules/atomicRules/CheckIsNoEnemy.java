@@ -30,9 +30,4 @@ public class CheckIsNoEnemy implements IRule {
         return isNoEnemy;
     }
 
-
-
-    public String toString(){
-        return this.getClass().getSimpleName();
-    }
 }

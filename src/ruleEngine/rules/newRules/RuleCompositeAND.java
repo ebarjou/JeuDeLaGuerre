@@ -30,18 +30,17 @@ public class RuleCompositeAND extends RuleComposite {
         return valid;
     }
 
-    public String toString(){
-        if(rules.size() == 0){
+    public String getName(){
+        if(rules.isEmpty())
             return this.getClass().getSimpleName();
-        }
+
         StringBuilder str = new StringBuilder();
         str.append("(");
-        for(int i = 0; i < rules.size() - 1; i++){
-            str.append(rules.get(i).toString()).append(" AND ");
-        }
-        str.append(rules.get(rules.size()-1).toString()).append(")");
+        for(int i = 0; i < rules.size() - 1; ++i)
+            str.append(rules.get(i).getName()).append(" AND ");
+
+        str.append(rules.get(rules.size()-1).getName()).append(")");
 
         return str.toString();
     }
-
 }
