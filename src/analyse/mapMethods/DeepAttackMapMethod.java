@@ -18,13 +18,13 @@ import ruleEngine.exceptions.IncorrectGameActionException;
 
 import java.util.*;
 
-public class AttackMapMethod implements IMetricsMapMethod {
+public class DeepAttackMapMethod implements IMetricsMapMethod {
 
 	private Collection<Coordinates> sourceCoordinates;
 
 	private int deep;    //Number of moves to take in account
 
-	public AttackMapMethod(int deep) {
+	public DeepAttackMapMethod(int deep) {
 		this.deep = deep;
 	}
 

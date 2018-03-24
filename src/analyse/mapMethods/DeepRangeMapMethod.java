@@ -3,8 +3,8 @@ package analyse.mapMethods;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
-public class RangeMapMethod extends AttackMapMethod {
-	public RangeMapMethod(int deep) {
+public class DeepRangeMapMethod extends DeepAttackMapMethod {
+	public DeepRangeMapMethod(int deep) {
 		super(deep);
 	}
 

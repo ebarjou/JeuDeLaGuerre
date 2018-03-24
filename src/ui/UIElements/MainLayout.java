@@ -29,12 +29,16 @@ public class MainLayout extends BorderPane{
             FXCollections.observableArrayList(
                     EMetricsMapType.COMMUNICATION_MAP,
                     new Separator(),
+                    EMetricsMapType.RANGE_MAP_FAST,
+                    EMetricsMapType.RANGE_MAP_1M,
+                    new Separator(),
                     EMetricsMapType.STATIC_ATTACK_MAP,
                     EMetricsMapType.ATTACK_MAP_FAST,
-                    EMetricsMapType.RANGE_MAP_FAST,
-                    new Separator(),
                     EMetricsMapType.ATTACK_MAP_1M,
-                    EMetricsMapType.RANGE_MAP_1M
+                    new Separator(),
+                    EMetricsMapType.DEFENSE_MAP_FAST,
+                    new Separator(),
+                    EMetricsMapType.OUTCOME_MAP_FAST
             );
     private BoardCanvas canvas;
     private CommandPane commandPane;
