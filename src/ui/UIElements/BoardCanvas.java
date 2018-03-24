@@ -58,8 +58,19 @@ class BoardCanvas extends Canvas {
         draw(null);
     }
 
-    private void refreshMetrics(){
-        if(targetMetricsMapType != null && currentMetricsMapType != targetMetricsMapType){
+    private void refreshStateAndMetrics(GameState newGameState){
+        boolean refreshMetrics = false;
+        if(gameState == null && newGameState == null) return;
+        if(newGameState != null){ //refresh board with the new gameState
+            this.gameState = newGameState;
+            refreshMetrics = true;
+        }else if(newGameState == null && gameState != null){ //refresh board with previous gameState
+            refreshMetrics = true;
+        }
+        if(gameState != null && targetMetricsMapType != null && currentMetricsMapType != targetMetricsMapType){
+            refreshMetrics = true;
+        }
+        if(refreshMetrics){
             this.metrics[0] = targetMetricsMapType.getMethod().compute(gameState, EPlayer.values()[0]);
             this.metrics[1] = targetMetricsMapType.getMethod().compute(gameState, EPlayer.values()[1]);
             currentMetricsMapType = targetMetricsMapType;
@@ -73,7 +84,7 @@ class BoardCanvas extends Canvas {
     void draw(GameState newGameState) {
         this.board_height = (int)(getHeight() - coords_width);
         this.board_width = (int)(getWidth() - coords_width);
-        if(newGameState != null) this.gameState = newGameState;
+        refreshStateAndMetrics(newGameState);
         dx = 0;
         dy = 0;
 
@@ -82,7 +93,6 @@ class BoardCanvas extends Canvas {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         if (this.gameState != null) {
-            refreshMetrics();
 
             if(getWidth()/gameState.getWidth() > getHeight()/gameState.getHeight()){
                 caseSize = (int)Math.floor(board_height/(double)gameState.getHeight());

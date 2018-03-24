@@ -81,7 +81,6 @@ class BoardDrawer {
         g.strokeLine(pos_x + size, pos_y, pos_x + size + sizeSplits, pos_y - sizeSplits);
         g.strokeLine(pos_x, pos_y + size, pos_x - sizeSplits, pos_y + size + sizeSplits);
         g.strokeLine(pos_x + size, pos_y + size, pos_x + size + sizeSplits, pos_y + size + sizeSplits);
-
     }
 
     private static void drawDebordStylePass(GraphicsContext g, int pos_x, int pos_y, int size, int margin){
@@ -124,7 +123,6 @@ class BoardDrawer {
         g.strokeLine(pos_x + size/5, pos_y + size/5, pos_x + size/5, pos_y + size * 0.8);
         g.strokeLine(pos_x + size/5, pos_y + size * 0.8, pos_x + size * 0.8, pos_y + size * 0.8);
         g.strokeLine(pos_x + size * 0.8, pos_y + size/5, pos_x + size * 0.8, pos_y + size * 0.8);
-
 
         g.strokeLine(pos_x - size / 5, pos_y - size/5, pos_x + size *1.2, pos_y - size/5);
         g.strokeLine(pos_x - size/5, pos_y - size/5, pos_x - size/5, pos_y + size * 1.2);
