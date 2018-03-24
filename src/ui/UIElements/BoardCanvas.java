@@ -64,8 +64,6 @@ class BoardCanvas extends Canvas {
         if(newGameState != null){ //refresh board with the new gameState
             this.gameState = newGameState;
             refreshMetrics = true;
-        }else if(newGameState == null && gameState != null){ //refresh board with previous gameState
-            refreshMetrics = true;
         }
         if(gameState != null && targetMetricsMapType != null && currentMetricsMapType != targetMetricsMapType){
             refreshMetrics = true;
