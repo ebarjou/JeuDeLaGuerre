@@ -39,7 +39,7 @@ public class RuleCheckerTest {
     }
 
     @Test
-    public void checkActionMoveTest() {
+    public void checkAndApplyActionMoveTest() {
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
         try {
@@ -66,7 +66,7 @@ public class RuleCheckerTest {
     }
 
     @Test
-    public void checkActionAttackTest() {
+    public void checkAndApplyActionAttackTest() {
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
         try {
@@ -106,7 +106,7 @@ public class RuleCheckerTest {
     }
 
     @Test
-    public void checkActionEndTurnTest() {
+    public void checkAndApplyActionEndTurnTest() {
 
         GameAction gameAction = Mockito.mock(GameAction.class);
         Mockito.when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
@@ -126,7 +126,7 @@ public class RuleCheckerTest {
     }
 
     @Test
-    public void checkActionVictoryAfterMoveTest() {
+    public void checkAndApplyActionVictoryAfterMoveTest() {
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
         try {
@@ -156,7 +156,7 @@ public class RuleCheckerTest {
     }
 
     @Test
-    public void checkActionVictoryAfterAttackTest() {
+    public void checkAndApplyActionVictoryAfterAttackTest() {
 
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
         try {
@@ -196,13 +196,34 @@ public class RuleCheckerTest {
     }
 
     @Test
-    public void checkActionInvalidTest() {
+    public void checkAndApplyActionInvalidTest() {
         GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.NONE);
         try {
             rulechecker.checkAndApplyAction(gameState, gameAction);
             assertTrue("Action NONE should not be recognized by RuleChecker.checkAndApplyAction().", false);
-        } catch (IncorrectGameActionException e) {
-            // Intended : Do nothing
+        } catch (IncorrectGameActionException ignored) {
+        }
+        gameAction.setActionType(EGameActionType.COMMUNICATION);
+        try {
+            rulechecker.checkAction(gameState, gameAction);
+            assertTrue("Action COMMUNICATION should not be recognized by RuleChecker.checkAction().", false);
+        } catch (IncorrectGameActionException ignored) {
+        }
+    }
+
+    @Test
+    public void checkActionInvalidTests() {
+        GameAction gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.COMMUNICATION);
+        try {
+            rulechecker.checkAction(gameState, gameAction);
+            assertTrue("Action COMMUNICATION should not be recognized by RuleChecker.checkAction().", false);
+        } catch (IncorrectGameActionException ignored) {
+        }
+        gameAction.setActionType(EGameActionType.NONE);
+        try {
+            rulechecker.checkAction(gameState, gameAction);
+            assertTrue("Action NONE should not be recognized by RuleChecker.checkAction().", false);
+        } catch (IncorrectGameActionException ignored) {
         }
     }
 }

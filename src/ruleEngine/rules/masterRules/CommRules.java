@@ -32,7 +32,7 @@ public class CommRules extends RuleCompositeAND {
         List<Building> allBuildings = gameState.getAllBuildings();
 
         for(Building building : allBuildings) {
-            if (building.getBuildingData() == EBuildingData.ARSENAL && !building.isBroken()) {
+            if (building.getBuildingData() == EBuildingData.ARSENAL) {
                 int x = building.getX();
                 int y = building.getY();
                 gameState.setInCommunication(gameState.getBuildingPlayer(x, y), x, y, true);

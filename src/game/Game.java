@@ -62,10 +62,6 @@ public class Game {
         return gameState;
     }
 
-    public GameState getGameStateManager() {
-        return gameState;
-    }
-
     public void reinit(GameState gameState){
         this.gameState = gameState;
         this.historyGameState = new Stack<>();

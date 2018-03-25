@@ -6,13 +6,11 @@ import ruleEngine.entity.EBuildingData;
 public class Building implements Cloneable {
     private final EBuildingData building;
     private final EPlayer player;
-    private boolean isBroken;
     private int x, y;
 
     public Building(EBuildingData building, EPlayer player) {
         this.building = building;
         this.player = player;
-        isBroken = false;
     }
 
     public void setPosition(int x, int y){
@@ -26,14 +24,6 @@ public class Building implements Cloneable {
 
     public int getY(){
         return y;
-    }
-
-    public boolean isBroken(){
-        return isBroken;
-    }
-
-    public void setBroken(boolean isBroken){
-        this.isBroken = isBroken;
     }
 
     public EBuildingData getBuildingData() {
@@ -56,6 +46,6 @@ public class Building implements Cloneable {
     }
 
     public String toString(){
-        return "Type " + building + " ; player = " + player + " ; pos (" + x + ";" + y +")\nIs broken : " + isBroken + "\n";
+        return "Type " + building + " ; player = " + player + " ; pos (" + x + ";" + y +")\n";
     }
 }

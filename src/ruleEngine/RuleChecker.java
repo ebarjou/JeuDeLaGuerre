@@ -39,21 +39,18 @@ public class RuleChecker {
     public boolean checkAction(GameState state, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
         IRule masterRule;
-        boolean checkVictory = false;
         switch (action.getActionType()) {
             case MOVE:
                 masterRule = moveRuleMaster;
-                checkVictory = true;
                 break;
             case ATTACK:
                 masterRule = attackRuleMaster;
-                checkVictory = true;
                 break;
             default:
                 throw new IncorrectGameActionException("Unhandled GameAction type.");
         }
         boolean valid = masterRule.checkAction(state, action, result);
-        return result.isValid();
+        return valid && result.isValid();
     }
 
     /**
