@@ -283,5 +283,45 @@ public class DebordGameTest {
         checkActionValid(EGameActionType.MOVE, 18, 'K', 17, 'K'); // I
         checkActionValid(EGameActionType.END_TURN);
 
+        // Turn 44-North
+        checkActionValid(EGameActionType.MOVE, 16, 'E', 14, 'F'); // Ac
+        checkActionValid(EGameActionType.MOVE, 18, 'G', 16, 'G'); // C
+        checkActionValid(EGameActionType.MOVE, 13, 'F', 12, 'G'); // I
+        checkActionValid(EGameActionType.MOVE, 14, 'G', 13, 'H'); // I
+        checkActionValid(EGameActionType.MOVE, 15, 'F', 14, 'G'); // I
+        checkActionValid(EGameActionType.END_TURN);
+
+        // Turn 44-South
+        checkActionValid(EGameActionType.MOVE, 12, 'J', 13, 'K'); // C
+        checkActionValid(EGameActionType.MOVE, 12, 'I', 12, 'J'); // I
+        checkActionValid(EGameActionType.MOVE, 19, 'K', 19, 'I'); // C
+        checkActionValid(EGameActionType.MOVE, 18, 'L', 19, 'K'); // A
+        checkActionValid(EGameActionType.MOVE, 20, 'L', 20, 'J'); // C
+        // Check the result of the attack
+        assertTrue(gameState.isUnit(17, 7));
+        checkActionValid(EGameActionType.ATTACK, 20, 'J', 18, 'H'); // I to I
+        assertTrue(!gameState.isUnit(17, 7));
+        checkActionValid(EGameActionType.END_TURN);
+
+        // Turn 45-North
+        checkActionValid(EGameActionType.MOVE, 13, 'H', 12, 'I'); // I
+        checkActionValid(EGameActionType.MOVE, 13, 'G', 13, 'H'); // I
+        checkActionValid(EGameActionType.MOVE, 14, 'F', 13, 'G'); // Ac
+        checkActionValid(EGameActionType.MOVE, 16, 'I', 15, 'J'); // I
+        checkActionValid(EGameActionType.MOVE, 14, 'H', 14, 'I'); // C
+        // Check the result of the attack
+        assertTrue(gameState.isUnit(12, 9));
+        checkActionValid(EGameActionType.ATTACK, 14, 'I', 13, 'J'); // C to I
+        assertTrue(!gameState.isUnit(12, 9));
+        checkActionValid(EGameActionType.END_TURN);
+
+        // Turn 45-South
+        checkActionValid(EGameActionType.MOVE, 15, 'L', 17, 'M'); // Tc
+        checkActionValid(EGameActionType.MOVE, 15, 'K', 15, 'L'); // I
+        checkActionValid(EGameActionType.MOVE, 13, 'K', 15, 'K'); // C
+        checkActionValid(EGameActionType.MOVE, 12, 'J', 13, 'K'); // I
+        checkActionValid(EGameActionType.MOVE, 17, 'N', 18, 'O'); // T
+        checkActionValid(EGameActionType.END_TURN);
+
     }
 }
