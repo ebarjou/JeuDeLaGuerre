@@ -29,6 +29,14 @@ public class CheckIsCharge implements IRule {
             result.invalidate();
             return false;
         }
+        if ( state.isBuilding( dst.getX(), dst.getY() ) &&
+                ( (state.getBuildingType(dst.getX(), dst.getY()) == EBuildingData.FORTRESS) ||
+                        (state.getBuildingType(dst.getX(), dst.getY()) == EBuildingData.PASS) ) ) {
+            result.addMessage(this,
+                    "The targeted unit is in a pass or a fortress and cannot be charged.");
+            result.invalidate();
+            return false;
+        }
 
         int dirX = dst.getX() - src.getX();
         int dirY = dst.getY() - src.getY();
