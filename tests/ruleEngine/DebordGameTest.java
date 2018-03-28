@@ -323,5 +323,25 @@ public class DebordGameTest {
         checkActionValid(EGameActionType.MOVE, 17, 'N', 18, 'O'); // T
         checkActionValid(EGameActionType.END_TURN);
 
+        // Turn 46-North
+        checkActionValid(EGameActionType.MOVE, 12, 'G', 12, 'H'); // I
+        checkActionValid(EGameActionType.MOVE, 15, 'H', 15, 'I'); // C
+        checkActionValid(EGameActionType.MOVE, 16, 'G', 14, 'H'); // C
+        checkActionValid(EGameActionType.MOVE, 14, 'G', 15, 'H'); // I
+        checkActionValid(EGameActionType.MOVE, 17, 'H', 16, 'I'); // A
+        // Check the result of the attack
+        assertTrue(gameState.isUnit(15, 8));
+        checkActionValid(EGameActionType.ATTACK, 16, 'I', 13, 'I'); // A to I
+        assertTrue(!gameState.isUnit(12, 8));
+        checkActionValid(EGameActionType.END_TURN);
+
+        // Turn 46-South
+        checkActionValid(EGameActionType.MOVE, 15, 'L', 15, 'M'); // I
+        checkActionValid(EGameActionType.MOVE, 16, 'L', 15, 'L'); // Ac
+        checkActionValid(EGameActionType.MOVE, 15, 'K', 16, 'L'); // C
+        checkActionValid(EGameActionType.MOVE, 13, 'K', 14, 'L'); // I
+        checkActionValid(EGameActionType.MOVE, 14, 'J', 15, 'K'); // I
+        checkActionValid(EGameActionType.END_TURN);
+
     }
 }
