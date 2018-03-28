@@ -71,7 +71,6 @@ public class StaticAttackMapMethod implements IMetricsMapMethod {
 		if (state.isBuilding(x, y) && !state.getBuildingType(x, y).isAccessible())
 			return false;
 
-
 		map[x][y] += value;
 		return true;
 	}

@@ -5,21 +5,20 @@ import game.Game;
 import game.board.Building;
 import game.board.Unit;
 import game.gameState.GameState;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import player.Player;
-import ruleEngine.*;
+import ruleEngine.EGameActionType;
+import ruleEngine.GameAction;
+import ruleEngine.RuleChecker;
+import ruleEngine.RuleResult;
 import ruleEngine.entity.EBuildingData;
 import ruleEngine.entity.EUnitData;
 import ruleEngine.exceptions.IncorrectGameActionException;
-import system.BadFileFormatException;
 import system.LoadFile;
 
-import java.io.IOException;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class AttackRulesTest {
@@ -232,7 +231,7 @@ public class AttackRulesTest {
 
         performAssertsCorrectMove(EUnitData.CAVALRY);
 
-        expectedMessage = "AttackRules : The unit at position (11, 5) died : Attack:7 Defense:2.\n";
+        expectedMessage = "AttackRules : The unit at position (11, 5) died : Attack:4 Defense:2.\n";
         gameAction.setSourceCoordinates(10, 6);
         gameAction.setTargetCoordinates(11, 5);
 
@@ -246,7 +245,7 @@ public class AttackRulesTest {
 
         performAssertsCorrectMove(EUnitData.CAVALRY);
 
-        expectedMessage = "AttackRules : The unit at position (6, 8) has been attacked, but nothing happened : Attack:12 Defense:24.\n";
+        expectedMessage = "AttackRules : The unit at position (6, 8) has been attacked, but nothing happened : Attack:9 Defense:24.\n";
         gameAction.setSourceCoordinates(6, 7);
         gameAction.setTargetCoordinates(6, 8);
 
@@ -260,7 +259,7 @@ public class AttackRulesTest {
 
         performAssertsCorrectMove(EUnitData.CAVALRY);
 
-        expectedMessage = "AttackRules : The unit at position (6, 8) has been attacked, but nothing happened : Attack:19 Defense:24.\n";
+        expectedMessage = "AttackRules : The unit at position (6, 8) has been attacked, but nothing happened : Attack:13 Defense:24.\n";
         gameAction.setSourceCoordinates(6, 7);
         gameAction.setTargetCoordinates(6, 8);
 
@@ -274,7 +273,7 @@ public class AttackRulesTest {
 
         performAssertsCorrectMove(EUnitData.CAVALRY);
 
-        expectedMessage = "AttackRules : The unit at position (6, 8) died : Attack:26 Defense:24.\n";
+        expectedMessage = "AttackRules : The unit at position (6, 8) has been attacked, but nothing happened : Attack:13 Defense:24.\n";
         gameAction.setSourceCoordinates(6, 7);
         gameAction.setTargetCoordinates(6, 8);
 
@@ -369,7 +368,7 @@ public class AttackRulesTest {
 
         performAssertsCorrectMove(EUnitData.CAVALRY);
 
-        expectedMessage = "AttackRules : The unit at position (16, 4) has been attacked, but nothing happened : Attack:7 Defense:10.\n";
+        expectedMessage = "AttackRules : The unit at position (16, 4) has been attacked, but nothing happened : Attack:4 Defense:10.\n";
         gameAction.setSourceCoordinates(15, 5);
         gameAction.setTargetCoordinates(16, 4);
 

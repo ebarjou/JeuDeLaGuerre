@@ -167,10 +167,23 @@ public class AttackRules extends RuleCompositeAND {
         Coordinates dst = action.getTargetCoordinates();
         EPlayer player = state.getUnitPlayer(src.getX(), src.getY());
 
-        boolean charge = state.isUnit(src.getX(), src.getY())
-                && ( state.getUnitType(src.getX(), src.getY()).isCanCharge() )
-                && ( ( !state.isBuilding(src.getX(), src.getY()) )
-                    || ( state.getBuildingType(src.getX(), src.getY()) != EBuildingData.FORTRESS) );
+        boolean isUnitSrc = state.isUnit(src.getX(), src.getY());
+		boolean isBuildingSrc = state.isBuilding(src.getX(), src.getY());
+		boolean isBuildingDst = state.isBuilding(dst.getX(), dst.getY());
+		EUnitData unitSrc = null;
+		EBuildingData buildingSrc = null;
+		EBuildingData buildingDst = null;
+
+		if (isUnitSrc)
+			unitSrc = state.getUnitType(src.getX(), src.getY());
+		if (isBuildingSrc)
+			buildingSrc = state.getBuildingType(src.getX(), src.getY());
+		if (isBuildingDst)
+			buildingDst = state.getBuildingType(dst.getX(), dst.getY());
+
+		boolean charge = isUnitSrc && unitSrc.isCanCharge() && (!isBuildingSrc || (buildingSrc != EBuildingData.FORTRESS))
+				&& (!isBuildingDst || (buildingDst != EBuildingData.FORTRESS && buildingDst != EBuildingData.PASS));
+
         int chargeX = 0;
         int chargeY = 0;
         if (charge) {
