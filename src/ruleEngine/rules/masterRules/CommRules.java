@@ -3,7 +3,6 @@ package ruleEngine.rules.masterRules;
 import game.EPlayer;
 import game.board.Building;
 import game.board.EDirection;
-import game.board.exceptions.IllegalBoardCallException;
 import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
@@ -46,21 +45,18 @@ public class CommRules extends RuleCompositeAND {
         int dist = 1;
         while (!isObstacle(gameState, x, y, player) && (rangeMax < 0 || dist <= rangeMax)) {
             gameState.setInCommunication(player, x, y, true);
-            EUnitProperty u;
-            try {
-                u = gameState.getUnitType(x, y);
-            } catch (IllegalBoardCallException e) {
-                u = null;
-            }
-            if (u != null && gameState.getUnitPlayer(x, y) == player && !gameState.isMarked(x, y)) {
+            EUnitProperty unitProperty = (gameState.isUnit(x, y) ? gameState.getUnitType(x, y) : null);
+
+            if(unitProperty != null && gameState.getUnitPlayer(x, y) == player && !gameState.isMarked(x, y)){
                 gameState.setMarked(x, y, true);
                 int rangeUnit = 1;
-                if (u.isRelayCommunication())
+                if (unitProperty.isRelayCommunication())
                     rangeUnit = -1;
 
                 for (EDirection d : EDirection.values())
                     createCom(gameState, x, y, d, player, rangeUnit);
             }
+
             x += dir.getX();
             y += dir.getY();
             dist++;
@@ -70,23 +66,10 @@ public class CommRules extends RuleCompositeAND {
     private boolean isObstacle(GameState gameState, int x, int y, EPlayer player) {
         if (!gameState.isValidCoordinate(x, y))
             return true;
-        EUnitProperty unitProperty;
-        EBuildingProperty buildingProperty;
-        try {
-            unitProperty = gameState.getUnitType(x, y);
-        } catch (IllegalBoardCallException e) {
-            unitProperty = null;
-        }
-
-        try {
-            buildingProperty = gameState.getBuildingType(x, y);
-        } catch (IllegalBoardCallException e) {
-            buildingProperty = null;
-        }
-
+        EUnitProperty unitProperty = (gameState.isUnit(x, y) ? gameState.getUnitType(x, y) : null);
+        EBuildingProperty buildingProperty = (gameState.isBuilding(x, y) ? gameState.getBuildingType(x, y) : null);
         return (buildingProperty != null && buildingProperty == EBuildingProperty.MOUNTAIN)
-                || (unitProperty != null && gameState.getUnitPlayer(x, y) != player
-                && !unitProperty.isRelayCommunication());
+                || (unitProperty != null && gameState.getUnitPlayer(x, y) != player && !unitProperty.isRelayCommunication());
     }
 
 }
