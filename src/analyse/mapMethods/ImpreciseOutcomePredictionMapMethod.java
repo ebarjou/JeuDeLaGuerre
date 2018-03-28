@@ -25,15 +25,15 @@ public class ImpreciseOutcomePredictionMapMethod implements IMetricsMapMethod {
         if ((int) value == 0)
             return Color.rgb(0, 0, 0, 0);
 
-        Color weak = Color.DARKRED;
-        Color strong = Color.DARKGREEN;
+        Color weak = Color.RED;
+        Color strong = Color.GREEN;
         Color result;
         if (value < 0)
             result = weak;
         else
             result = strong;
 
-        double alpha = Math.abs(value / 30) + 0.05;
+        double alpha = Math.abs(value / 80) + 0.05;
         return result.deriveColor(1, 1, 1, Math.min(1, alpha));
     }
 }

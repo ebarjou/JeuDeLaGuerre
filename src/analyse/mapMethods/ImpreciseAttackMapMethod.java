@@ -11,6 +11,6 @@ public class ImpreciseAttackMapMethod extends AbstractImpreciseMapMethod {
 
     @Override
     public Paint getPaint(double mapValue) {
-        return EMetricsMapType.STATIC_ATTACK_MAP.getPaint(mapValue);
+        return EMetricsMapType.ATTACK_MAP_STATIC.getPaint(mapValue);
     }
 }

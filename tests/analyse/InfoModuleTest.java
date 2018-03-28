@@ -11,7 +11,7 @@ import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import system.LoadFile;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 public class InfoModuleTest {
 
@@ -32,7 +32,7 @@ public class InfoModuleTest {
     @Test
     public void attackMap(){
         System.out.println("Attack Map");
-        printMap(InfoModule.getInfoMap(EMetricsMapType.STATIC_ATTACK_MAP, s, EPlayer.PLAYER_NORTH));
+        printMap(InfoModule.getInfoMap(EMetricsMapType.ATTACK_MAP_STATIC, s, EPlayer.PLAYER_NORTH));
     }
 
     @Test

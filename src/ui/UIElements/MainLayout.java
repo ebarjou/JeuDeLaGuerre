@@ -35,13 +35,15 @@ public class MainLayout extends BorderPane {
                     EMetricsMapType.RANGE_MAP_FAST,
                     EMetricsMapType.RANGE_MAP_1M,
                     new Separator(),
-                    EMetricsMapType.STATIC_ATTACK_MAP,
+                    EMetricsMapType.ATTACK_MAP_STATIC,
                     EMetricsMapType.ATTACK_MAP_FAST,
                     EMetricsMapType.ATTACK_MAP_1M,
                     new Separator(),
+                    EMetricsMapType.DEFENSE_MAP_STATIC,
                     EMetricsMapType.DEFENSE_MAP_FAST,
                     new Separator(),
-                    EMetricsMapType.OUTCOME_MAP_FAST
+                    EMetricsMapType.OUTCOME_MAP_FAST,
+                    EMetricsMapType.OUTCOME_MAP_FAST_STATIC
             );
     private BoardCanvas canvas;
     private CommandPane commandPane;

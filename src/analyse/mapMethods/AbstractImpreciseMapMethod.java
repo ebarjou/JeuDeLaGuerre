@@ -5,23 +5,19 @@ import game.EPlayer;
 import game.board.Unit;
 import game.gameState.GameState;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 public abstract class AbstractImpreciseMapMethod implements IMetricsMapMethod {
 
     private boolean usingAttack;    //False : using Def
 
-    public AbstractImpreciseMapMethod(boolean usingAttack) {
+    AbstractImpreciseMapMethod(boolean usingAttack) {
         this.usingAttack = usingAttack;
     }
 
     @Override
     public double[][] compute(GameState state, EPlayer player) {
-        double[][] result = new double[state.getWidth()][state.getHeight()];
-        double startValue = (player.equals(EPlayer.PLAYER_SOUTH) ? 0.2 : 0.1);
-        for (double[] d : result)
-            Arrays.fill(d, startValue);
+        double[][] result = InfoModule.initializeDoubleMap(state, player);
 
         Collection<Unit> units = InfoModule.getAllUnitsFromPlayer(state, player);
         for (Unit u : units) {

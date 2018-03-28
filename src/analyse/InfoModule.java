@@ -7,6 +7,7 @@ import game.board.Unit;
 import game.gameState.GameState;
 import ruleEngine.RuleChecker;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -30,5 +31,14 @@ public class InfoModule {
 
     public static RuleChecker getRuleChecker() {
         return ruleChecker;
+    }
+
+    public static double[][] initializeDoubleMap(GameState state, EPlayer player){
+        double[][] result = new double[state.getWidth()][state.getHeight()];
+        double startValue = (player.equals(EPlayer.PLAYER_SOUTH) ? 0.2 : 0.1);
+        for (double[] d : result)
+            Arrays.fill(d, startValue);
+
+        return result;
     }
 }
