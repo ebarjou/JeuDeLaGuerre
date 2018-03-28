@@ -1,13 +1,12 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.IBoard;
 import org.junit.Before;
 import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EUnitProperty;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -33,14 +32,14 @@ public class CheckIsInCommunicationTest {
 
     @Test
     public void checkActionMockingCorrectComm() {
-        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
+        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitProperty.INFANTRY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(true);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
     }
 
     @Test
     public void checkActionMockingCorrectRelayAndComm() {
-        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.RELAY);
+        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitProperty.RELAY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(true);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
@@ -48,7 +47,7 @@ public class CheckIsInCommunicationTest {
 
     @Test
     public void checkActionMockingCorrectRelayHorseAndComm() {
-        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.RELAY_HORSE);
+        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitProperty.RELAY_HORSE);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(true);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
@@ -56,7 +55,7 @@ public class CheckIsInCommunicationTest {
 
     @Test
     public void checkActionMockingWrongRelayOnly() {
-        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.RELAY);
+        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitProperty.RELAY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
@@ -65,7 +64,7 @@ public class CheckIsInCommunicationTest {
 
     @Test
     public void checkActionMockingWrongRelayHorseOnly() {
-        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.RELAY_HORSE);
+        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitProperty.RELAY_HORSE);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
@@ -74,7 +73,7 @@ public class CheckIsInCommunicationTest {
 
     @Test
     public void checkActionMockingWrongNoComm() {
-        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
+        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitProperty.INFANTRY);
         when(iGameState.isInCommunication(EPlayer.PLAYER_NORTH, 1, 1)).thenReturn(false);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));

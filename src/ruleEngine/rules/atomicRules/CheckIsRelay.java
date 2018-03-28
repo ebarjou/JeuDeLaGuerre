@@ -5,14 +5,14 @@ import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EUnitProperty;
 import ruleEngine.rules.newRules.IRule;
 
 /**
  * Check if a unit is a Relay type unit.<br>
  * Valid if it is, invalid if otherwise.
  *
- * @see EUnitData
+ * @see EUnitProperty
  * @see ruleEngine.rules.masterRules.CommRules
  */
 public class CheckIsRelay implements IRule {
@@ -21,12 +21,10 @@ public class CheckIsRelay implements IRule {
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
         try {
-            EUnitData unitData = state.getUnitType(src.getX(), src.getY());
-            if (unitData.isRelayCommunication()) {
+            EUnitProperty unitProperty = state.getUnitType(src.getX(), src.getY());
+            if (unitProperty.isRelayCommunication())
                 return true;
-            }
-
-        } catch (IllegalBoardCallException ignored){
+        } catch (IllegalBoardCallException ignored) {
         }
 
         result.addMessage(this, "This unit is not a relay.");

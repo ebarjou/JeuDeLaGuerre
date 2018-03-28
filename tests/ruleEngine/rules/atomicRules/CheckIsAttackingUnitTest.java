@@ -1,16 +1,12 @@
 package ruleEngine.rules.atomicRules;
 
-import game.EPlayer;
-import game.board.Board;
-import game.board.Unit;
 import game.gameState.GameState;
 import org.junit.Before;
 import org.junit.Test;
 import ruleEngine.Coordinates;
-import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EUnitProperty;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -38,7 +34,7 @@ public class CheckIsAttackingUnitTest {
 	@Test
 	public void checkActionMockingValidInfantry() {
 		// INFANTRY
-		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.INFANTRY);
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitProperty.INFANTRY);
 		assertTrue(rule.checkAction(gameState, gameAction, result));
 		assertTrue(result.isValid());
 	}
@@ -46,7 +42,7 @@ public class CheckIsAttackingUnitTest {
 	@Test
 	public void checkActionMockingValidCavalry() {
 		// CAVALRY
-		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.CAVALRY);
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitProperty.CAVALRY);
 		assertTrue(rule.checkAction(gameState, gameAction, result));
 		assertTrue(result.isValid());
 	}
@@ -54,7 +50,7 @@ public class CheckIsAttackingUnitTest {
 	@Test
 	public void checkActionMockingValidArtillery() {
 		// ARTILLERY
-		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.ARTILLERY);
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitProperty.ARTILLERY);
 		assertTrue(rule.checkAction(gameState, gameAction, result));
 		assertTrue(result.isValid());
 	}
@@ -62,7 +58,7 @@ public class CheckIsAttackingUnitTest {
 	@Test
 	public void checkActionMockingValidArtilleryHorse() {
 		// ARTILLERY_HORSE
-		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.ARTILLERY_HORSE);
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitProperty.ARTILLERY_HORSE);
 		assertTrue(rule.checkAction(gameState, gameAction, result));
 		assertTrue(result.isValid());
 	}
@@ -70,7 +66,7 @@ public class CheckIsAttackingUnitTest {
 	@Test
 	public void checkActionMockingInvalidRelay() {
 		// RELAY
-		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.RELAY);
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitProperty.RELAY);
 		assertFalse(rule.checkAction(gameState, gameAction, result));
 		assertFalse(result.isValid());
 		assertTrue(result.getLogMessage().contains(expectedMessage));
@@ -79,7 +75,7 @@ public class CheckIsAttackingUnitTest {
 	@Test
 	public void checkActionMockingInvalidRelayHorse() {
 		// RELAY_HORSE
-		when(gameState.getUnitType(0, 0)).thenReturn(EUnitData.RELAY_HORSE);
+		when(gameState.getUnitType(0, 0)).thenReturn(EUnitProperty.RELAY_HORSE);
 		assertFalse(rule.checkAction(gameState, gameAction, result));
 		assertFalse(result.isValid());
 		assertTrue(result.getLogMessage().contains(expectedMessage));

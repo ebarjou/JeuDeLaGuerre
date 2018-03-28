@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Check if a move performed from a unit to its destination is clear from obstacles or other units.<br>
+ * Check if a move performed from a unit to its destination is clear from obstacles or next units.<br>
  * Valid if the path is clear, invalid otherwise.
  *
  * @see ruleEngine.rules.masterRules.MoveRules
@@ -23,8 +23,8 @@ public class CheckIsEmptyPath implements IRule {
     private Vertex[][] initMap(int MP, Coordinates src) {
         length = 2 * MP + 1;
         Vertex[][] map = new Vertex[length][length];
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < length; j++) {
+        for (int i = 0; i < length; ++i) {
+            for (int j = 0; j < length; ++j) {
                 map[i][j] = new Vertex(src.getX() - MP + i, src.getY() - MP + j, i, j);
             }
         }
@@ -54,7 +54,6 @@ public class CheckIsEmptyPath implements IRule {
                     for (int j = actual.j - 1; j <= actual.j + 1; j++) {
                         //Don't add the neighbours with invalid coords or those we have already added
                         if (i < 0 || j < 0 || i >= length || j >= length)
-                        //TODO: Is this line really necessary ? We already bound both i and j in the for loop
                             continue;
 
                         int x = map[i][j].x;
@@ -84,7 +83,7 @@ public class CheckIsEmptyPath implements IRule {
             result.addMessage(this, "There is no path found using " + MP + " movement points.");
             result.invalidate();
             return false;
-        } catch (IllegalBoardCallException e){
+        } catch (IllegalBoardCallException e) {
             //TODO : Isn't this part impossible to reach ?
             result.addMessage(this, "There is no path found");
             result.invalidate();

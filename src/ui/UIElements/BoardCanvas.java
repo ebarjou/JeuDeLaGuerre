@@ -41,8 +41,8 @@ class BoardCanvas extends Canvas {
         this.currentMetricsMapType = null;
         this.targetMetricsMapType = EMetricsMapType.COMMUNICATION_MAP;
         this.coords_width = coords_width;
-        this.board_height = (int)(getHeight() - coords_width);
-        this.board_width = (int)(getWidth() - coords_width);
+        this.board_height = (int) (getHeight() - coords_width);
+        this.board_width = (int) (getWidth() - coords_width);
         this.metrics = new double[2][][];
         this.displayMetrics = new boolean[2];
         displayMetrics[0] = true;
@@ -58,17 +58,17 @@ class BoardCanvas extends Canvas {
         draw(null);
     }
 
-    private void refreshStateAndMetrics(GameState newGameState){
+    private void refreshStateAndMetrics(GameState newGameState) {
         boolean refreshMetrics = false;
-        if(gameState == null && newGameState == null) return;
-        if(newGameState != null){ //refresh board with the new gameState
+        if (gameState == null && newGameState == null) return;
+        if (newGameState != null) { //refresh board with the new gameState
             this.gameState = newGameState;
             refreshMetrics = true;
         }
-        if(gameState != null && targetMetricsMapType != null && currentMetricsMapType != targetMetricsMapType){
+        if (gameState != null && targetMetricsMapType != null && currentMetricsMapType != targetMetricsMapType) {
             refreshMetrics = true;
         }
-        if(refreshMetrics){
+        if (refreshMetrics) {
             this.metrics[0] = targetMetricsMapType.getMethod().compute(gameState, EPlayer.values()[0]);
             this.metrics[1] = targetMetricsMapType.getMethod().compute(gameState, EPlayer.values()[1]);
             currentMetricsMapType = targetMetricsMapType;
@@ -77,11 +77,11 @@ class BoardCanvas extends Canvas {
 
     /**
      * @param newGameState Board to be displayed
-     * Refresh the canvas according to the given Board.
+     *                     Refresh the canvas according to the given Board.
      */
     void draw(GameState newGameState) {
-        this.board_height = (int)(getHeight() - coords_width);
-        this.board_width = (int)(getWidth() - coords_width);
+        this.board_height = (int) (getHeight() - coords_width);
+        this.board_width = (int) (getWidth() - coords_width);
         refreshStateAndMetrics(newGameState);
         dx = 0;
         dy = 0;
@@ -92,17 +92,17 @@ class BoardCanvas extends Canvas {
 
         if (this.gameState != null) {
 
-            if(getWidth()/gameState.getWidth() > getHeight()/gameState.getHeight()){
-                caseSize = (int)Math.floor(board_height/(double)gameState.getHeight());
-                dx = (int)((getWidth()-(caseSize*gameState.getWidth()+coords_width))/2.0);
+            if (getWidth() / gameState.getWidth() > getHeight() / gameState.getHeight()) {
+                caseSize = (int) Math.floor(board_height / (double) gameState.getHeight());
+                dx = (int) ((getWidth() - (caseSize * gameState.getWidth() + coords_width)) / 2.0);
             } else {
-                caseSize = (int)Math.floor(board_width/(double)gameState.getWidth());
-                dy = (int)((getHeight()-(caseSize*gameState.getHeight()+coords_width))/2.0);
+                caseSize = (int) Math.floor(board_width / (double) gameState.getWidth());
+                dy = (int) ((getHeight() - (caseSize * gameState.getHeight() + coords_width)) / 2.0);
             }
 
             //draw canvas background
             g.setFill(Color.GRAY);
-            g.fillRect(0, 0, getWidth(),  getHeight());
+            g.fillRect(0, 0, getWidth(), getHeight());
 
             //Display letters and numbers around the board
             printCasesHIndex(gameState, dx + 35, dy + coords_width / 2, caseSize);
@@ -112,7 +112,7 @@ class BoardCanvas extends Canvas {
 
             //draw board background
             g.setFill(Color.BLACK);
-            g.fillRect(dx, dy, caseSize*gameState.getWidth(), caseSize*gameState.getHeight());
+            g.fillRect(dx, dy, caseSize * gameState.getWidth(), caseSize * gameState.getHeight());
 
             //draw individual cell background
             for (int j = 0; j < gameState.getHeight(); ++j) {
@@ -128,7 +128,7 @@ class BoardCanvas extends Canvas {
             for (int j = 0; j < gameState.getHeight(); ++j) {
                 for (int i = 0; i < gameState.getWidth(); ++i) {
                     int x = dx + MARGIN + i * caseSize,
-                            y =  dy + MARGIN + j * caseSize,
+                            y = dy + MARGIN + j * caseSize,
                             size = caseSize - MARGIN * 2;
                     drawCellItem(gameState, i, j, x, y, size);
                 }
@@ -139,12 +139,12 @@ class BoardCanvas extends Canvas {
         }
     }
 
-    void updateHeight(double height){
+    void updateHeight(double height) {
         super.setHeight(height);
         draw(gameState);
     }
 
-    void updateWidth(double width){
+    void updateWidth(double width) {
         super.setWidth(width);
         draw(gameState);
     }
@@ -153,30 +153,31 @@ class BoardCanvas extends Canvas {
         g.save();
         g.setFill(Color.IVORY);
         g.fillRect(pos_x, pos_y, size, size);
-        if(metrics[0] != null && metrics[1] != null)
+        if (metrics[0] != null && metrics[1] != null)
             switch (targetMetricsMapType) {
                 //TODO: Put minimal color value
-				case COMMUNICATION_MAP:
-					if (displayMetrics[0] && displayMetrics[1] && gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
-						g.setFill(SOUTH_COLOR_LIGHT);
-						g.fillRect(pos_x, pos_y, size, size);
-						g.setFill(NORTH_COLOR_LIGHT);
-						g.fillPolygon(new double[] {pos_x, pos_x + size, pos_x}, new double[] {pos_y, pos_y, pos_y + size}, 3);
-					} else if (displayMetrics[0] && gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
-						g.setFill(NORTH_COLOR_LIGHT);
-						g.fillRect(pos_x, pos_y, size, size);
-					} else if (displayMetrics[1] && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
-						g.setFill(SOUTH_COLOR_LIGHT);
-						g.fillRect(pos_x, pos_y, size, size);
-					}break;
-				default:
-                    if (displayMetrics[0]){
+                case COMMUNICATION_MAP:
+                    if (displayMetrics[0] && displayMetrics[1] && gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y) && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
+                        g.setFill(SOUTH_COLOR_LIGHT);
+                        g.fillRect(pos_x, pos_y, size, size);
+                        g.setFill(NORTH_COLOR_LIGHT);
+                        g.fillPolygon(new double[]{pos_x, pos_x + size, pos_x}, new double[]{pos_y, pos_y, pos_y + size}, 3);
+                    } else if (displayMetrics[0] && gameState.isInCommunication(EPlayer.PLAYER_NORTH, x, y)) {
+                        g.setFill(NORTH_COLOR_LIGHT);
+                        g.fillRect(pos_x, pos_y, size, size);
+                    } else if (displayMetrics[1] && gameState.isInCommunication(EPlayer.PLAYER_SOUTH, x, y)) {
+                        g.setFill(SOUTH_COLOR_LIGHT);
+                        g.fillRect(pos_x, pos_y, size, size);
+                    }
+                    break;
+                default:
+                    if (displayMetrics[0]) {
                         Paint p = targetMetricsMapType.getPaint(metrics[0][x][y]);
                         g.setFill(p);
                         g.fillRect(pos_x, pos_y, size, size);
                     }
 
-                    if (displayMetrics[1]){
+                    if (displayMetrics[1]) {
                         Paint p = targetMetricsMapType.getPaint(metrics[1][x][y]);
                         g.setFill(p);
                         g.fillRect(pos_x, pos_y, size, size);
@@ -196,11 +197,13 @@ class BoardCanvas extends Canvas {
 
         try {
             BoardDrawer.drawBuilding(g, gameState.getBuildingType(x, y), gameState.getBuildingPlayer(x, y), pos_x, pos_y, size, MARGIN);
-        } catch (IllegalBoardCallException ignored) {}
+        } catch (IllegalBoardCallException ignored) {
+        }
 
         try {
             BoardDrawer.drawUnit(g, gameState.getUnitType(x, y), gameState.getUnitPlayer(x, y), pos_x, pos_y, size);
-        } catch (IllegalBoardCallException ignored) {}
+        } catch (IllegalBoardCallException ignored) {
+        }
         g.restore();
     }
 
@@ -223,31 +226,31 @@ class BoardCanvas extends Canvas {
         g.restore();
     }
 
-    public void setDisplayMetrics(int i, boolean display){
+    public void setDisplayMetrics(int i, boolean display) {
         this.displayMetrics[i] = display;
     }
 
-    public void setMetricsMapType(EMetricsMapType type){
+    public void setMetricsMapType(EMetricsMapType type) {
         this.targetMetricsMapType = type;
     }
 
     private class ClickHandler implements EventHandler<MouseEvent> {
         TextField textField;
 
-        ClickHandler(TextField textField){
+        ClickHandler(TextField textField) {
             this.textField = textField;
         }
 
         @Override
         public void handle(MouseEvent mouseEvent) {
-            if(caseSize <= 0 || textField == null) return;
-            if(mouseEvent.getX() < dx || mouseEvent.getX() > dx + caseSize*gameState.getWidth()
-                    || mouseEvent.getY() < dy || mouseEvent.getY() > dy + caseSize*gameState.getHeight())
+            if (caseSize <= 0 || textField == null) return;
+            if (mouseEvent.getX() < dx || mouseEvent.getX() > dx + caseSize * gameState.getWidth()
+                    || mouseEvent.getY() < dy || mouseEvent.getY() > dy + caseSize * gameState.getHeight())
                 return;
 
-            int col = (int)((mouseEvent.getX()-dx)/caseSize);
-            int row = (int)((mouseEvent.getY()-dy)/caseSize);
-            textField.setText(textField.getText() + " " + IntLetterConverter.getLettersFromInt(row) + (col+1));
+            int col = (int) ((mouseEvent.getX() - dx) / caseSize);
+            int row = (int) ((mouseEvent.getY() - dy) / caseSize);
+            textField.setText(textField.getText() + " " + IntLetterConverter.getLettersFromInt(row) + (col + 1));
         }
     }
 }

@@ -1,11 +1,10 @@
 package ui;
 
 import javafx.application.Application;
-import ui.TermGUI;
 
 public class GUIThread extends Thread {
 
-    public GUIThread(){
+    public GUIThread() {
         super();
     }
 

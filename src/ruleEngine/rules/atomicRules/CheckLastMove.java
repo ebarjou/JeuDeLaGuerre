@@ -11,6 +11,7 @@ import ruleEngine.rules.newRules.IRule;
  * Check if the unit attacking is the last one moved by the player, as a delayed attack or static attack isn't allowed from
  * our rule interpretation.<br>
  * Valid if the attacking unit is the same that has performed a move this same turn, invalid otherwise.
+ *
  * @see ruleEngine.rules.masterRules.AttackRules
  */
 public class CheckLastMove implements IRule {

@@ -38,8 +38,8 @@ public class TermGUI extends Application {
         createScene();
         primaryStage.setTitle("JdlG");
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(MainLayout.CANVAS_WIDTH+MainLayout.INFOS_WIDTH+MainLayout.COORDINATES_BAR_WIDTH + 16);      /*      */
-        primaryStage.setMinHeight(MainLayout.CANVAS_HEIGHT+MainLayout.COMMAND_HEIGHT+MainLayout.COORDINATES_BAR_WIDTH + 40); /* JavaFx's stage size seems to contains window's edges */
+        primaryStage.setMinWidth(MainLayout.CANVAS_WIDTH + MainLayout.INFOS_WIDTH + MainLayout.COORDINATES_BAR_WIDTH + 16);      /*      */
+        primaryStage.setMinHeight(MainLayout.CANVAS_HEIGHT + MainLayout.COMMAND_HEIGHT + MainLayout.COORDINATES_BAR_WIDTH + 40); /* JavaFx's stage size seems to contains window's edges */
         primaryStage.sizeToScene();
         primaryStage.show();
 
@@ -87,8 +87,8 @@ public class TermGUI extends Application {
 
     /**
      * @param cmd the command that need to be processed
-     * Call parseCommand to get a valid UIAction and send it to the current Player.
-     * Then, wait for the response and process it.
+     *            Call parseCommand to get a valid UIAction and send it to the current Player.
+     *            Then, wait for the response and process it.
      */
     private void processCommand(String cmd) {
         parser.clearResult();
@@ -106,13 +106,13 @@ public class TermGUI extends Application {
 
     /**
      * @param response the GameResponse that need to be processed
-     * Process the response and refresh the UI accordingly.
+     *                 Process the response and refresh the UI accordingly.
      */
     private void processResponse(GameResponse response) {
         switch (response.getResponse()) {
             case VALID: {
                 //System.out.println(response.getMessage());
-                if(response.getMessage() != null && !response.getMessage().isEmpty()){
+                if (response.getMessage() != null && !response.getMessage().isEmpty()) {
                     ResultAlert.getInstance().setMessage("Valid action", "Message : ", "Detailed result : ", response.getMessage());
                     ResultAlert.getInstance().show();
                 }
@@ -140,14 +140,15 @@ public class TermGUI extends Application {
     }
 
     private class CommandEvent implements EventHandler<KeyEvent> {
-        private boolean couldBeMove(String command){
+        private boolean couldBeMove(String command) {
             return command.matches("[ ]*([a-zA-Z]+)([0-9]+)[ ]+([a-zA-Z]+)([0-9]+)[ ]*");
         }
+
         @Override
         public void handle(KeyEvent event) {
             if (event.getCode() == KeyCode.ENTER) {
                 String command = mainLayout.getCommandText();
-                if(couldBeMove(command))
+                if (couldBeMove(command))
                     command = "move " + command;
                 processCommand(command);
                 mainLayout.clearCommandText();

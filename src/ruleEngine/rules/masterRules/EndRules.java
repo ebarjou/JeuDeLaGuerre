@@ -13,7 +13,7 @@ import ruleEngine.rules.newRules.RuleCompositeAND;
  */
 public class EndRules extends RuleCompositeAND {
 
-    public EndRules(){
+    public EndRules() {
         super.add(new CheckPlayerTurn());
         super.add(new CheckNoPriorityUnitAlly());
     }

@@ -10,6 +10,7 @@ import ruleEngine.RuleResult;
  * all IRule in {@link RuleComposite#rules}, it checks all the rules while the result is false,
  * and stop when a result is valid. The order in which you add the rules is important.
  * {@link RuleCompositeAND}.
+ *
  * @see RuleComposite
  * @see IRule
  * @see RuleResult
@@ -17,19 +18,19 @@ import ruleEngine.RuleResult;
  */
 public class RuleCompositeLazyOR extends RuleComposite {
 
-    public RuleCompositeLazyOR(){
+    public RuleCompositeLazyOR() {
         super();
     }
 
     @Override
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
-        if(rules.isEmpty())
+        if (rules.isEmpty())
             return true;
         boolean valid;
         RuleResult tmpResult = new RuleResult();
-        for(IRule rule : rules){
+        for (IRule rule : rules) {
             valid = rule.checkAction(state, action, tmpResult);
-            if(valid) {
+            if (valid) {
                 return true;
             }
         }
@@ -39,16 +40,16 @@ public class RuleCompositeLazyOR extends RuleComposite {
         return false;
     }
 
-    public String getName(){
-        if(rules.isEmpty())
+    public String getName() {
+        if (rules.isEmpty())
             return this.getClass().getSimpleName();
 
         StringBuilder str = new StringBuilder();
         str.append("(");
-        for(int i = 0; i < rules.size() - 1; ++i)
+        for (int i = 0; i < rules.size() - 1; ++i)
             str.append(rules.get(i).getName()).append(" ORdep ");
 
-        str.append(rules.get(rules.size()-1).getName()).append(")");
+        str.append(rules.get(rules.size() - 1).getName()).append(")");
 
         return str.toString();
     }

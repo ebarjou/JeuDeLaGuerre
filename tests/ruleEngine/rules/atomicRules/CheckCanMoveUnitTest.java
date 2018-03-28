@@ -1,14 +1,13 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.IBoard;
 import game.board.Unit;
 import org.junit.Before;
 import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EUnitProperty;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -37,7 +36,7 @@ public class CheckCanMoveUnitTest {
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
         List<Unit> l = new LinkedList<>();
         when(iGameState.getAllUnits()).thenReturn(l);
-        Unit u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        Unit u = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_NORTH);
         u.setPosition(1, 1);
         l.add(u);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));

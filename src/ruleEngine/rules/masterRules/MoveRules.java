@@ -5,10 +5,13 @@ import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EBuildingProperty;
+import ruleEngine.entity.EUnitProperty;
 import ruleEngine.rules.atomicRules.*;
-import ruleEngine.rules.newRules.*;
+import ruleEngine.rules.newRules.IRule;
+import ruleEngine.rules.newRules.RuleCompositeAND;
+import ruleEngine.rules.newRules.RuleCompositeLazyAND;
+import ruleEngine.rules.newRules.RuleCompositeLazyOR;
 
 import java.util.List;
 
@@ -27,8 +30,8 @@ public class MoveRules extends RuleCompositeAND {
 
         IRule rulesDependentOfOnBoard = new RuleCompositeAND();
 
-        IRule dependendentIsUnit = new RuleCompositeLazyAND();
-        dependendentIsUnit.add(new CheckIsAllyUnit());
+        IRule dependentIsUnit = new RuleCompositeLazyAND();
+        dependentIsUnit.add(new CheckIsAllyUnit());
 
         IRule rulesDependentOfIsUnit = new RuleCompositeAND();
 
@@ -42,8 +45,8 @@ public class MoveRules extends RuleCompositeAND {
         rulesDependentOfIsUnit.add(new CheckIsPriorityUnit());
         rulesDependentOfIsUnit.add(new CheckCanMoveUnit());
 
-        dependendentIsUnit.add(rulesDependentOfIsUnit);
-        rulesDependentOfOnBoard.add(dependendentIsUnit);
+        dependentIsUnit.add(rulesDependentOfIsUnit);
+        rulesDependentOfOnBoard.add(dependentIsUnit);
 
         dependentOnBoard.add(rulesDependentOfOnBoard);
         super.add(dependentOnBoard);
@@ -59,13 +62,13 @@ public class MoveRules extends RuleCompositeAND {
         state.removeOneAction();
         state.moveUnit(src.getX(), src.getY(), target.getX(), target.getY());
 
-        EUnitData movingUnit = state.getUnitType(target.getX(), target.getY());
-        if(movingUnit.isCanAttack()) {
+        EUnitProperty movingUnit = state.getUnitType(target.getX(), target.getY());
+        if (movingUnit.isCanAttack()) {
             List<Building> buildings = state.getAllBuildings();
             Building remove = null;
             for (Building building : buildings) {
                 if (building.getPlayer() != action.getPlayer()
-                        && building.getBuildingData() == EBuildingData.ARSENAL
+                        && building.getBuildingData() == EBuildingProperty.ARSENAL
                         && building.getX() == target.getX()
                         && building.getY() == target.getY()) {
                     remove = building;

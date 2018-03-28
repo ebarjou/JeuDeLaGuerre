@@ -13,10 +13,9 @@ public class CheckIsInCommunication implements IRule {
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         Coordinates src = action.getSourceCoordinates();
         try {
-            if (state.isInCommunication(action.getPlayer(), src.getX(), src.getY())) {
+            if (state.isInCommunication(action.getPlayer(), src.getX(), src.getY()))
                 return true;
-            }
-        } catch (IllegalBoardCallException ignored){
+        } catch (IllegalBoardCallException ignored) {
         }
 
         result.addMessage(this, "This unit is not in the player communication.");

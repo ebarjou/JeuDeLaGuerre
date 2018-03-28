@@ -27,8 +27,8 @@ public class CheckIsEmptyAttackPath implements IRule {
         int x = src.getX();
         int y = src.getY();
         while (x != dst.getX() || y != dst.getY()) {
-            if ( state.isBuilding(x, y)
-                    && !state.getBuildingType(x, y).isAccessible() ) {
+            if (state.isBuilding(x, y)
+                    && !state.getBuildingType(x, y).isAccessible()) {
                 result.addMessage(this,
                         "This unit cannot attack here because there is an obstacle.");
                 result.invalidate();

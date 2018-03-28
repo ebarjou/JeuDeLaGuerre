@@ -1,16 +1,17 @@
 package system;
 
-public class BadFileFormatException extends Exception{
+public class BadFileFormatException extends Exception {
     private final String errorMsg;
-    public BadFileFormatException(){
+
+    public BadFileFormatException() {
         errorMsg = "Format expected in File is not respected.";
     }
 
-    public String getErrorMsg(){
+    public String getErrorMsg() {
         return errorMsg;
     }
 
-    public String toString(){
+    public String toString() {
         return errorMsg;
     }
 }

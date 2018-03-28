@@ -7,20 +7,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
 public class ResultAlert extends Alert {
-    private static ResultAlert instance = null;
-    private Label label;
     private static final String invalidActionTitle = "Invalid Action";
     private static final String invalidActionHeader = "An error occurred while processing this command";
     private static final String invalidActionLabel = "Detailed error report : ";
-
+    private static ResultAlert instance = null;
+    private Label label;
     private TextArea textArea;
 
-    public static ResultAlert getInstance(){
-        if(instance == null) instance = new ResultAlert();
-        return instance;
-    }
-
-    private ResultAlert(){
+    private ResultAlert() {
         super(AlertType.INFORMATION);
         setTitle(invalidActionTitle);
         setHeaderText(invalidActionHeader);
@@ -46,7 +40,12 @@ public class ResultAlert extends Alert {
         getDialogPane().setExpandableContent(expContent);
     }
 
-    public void setMessage(String message){
+    public static ResultAlert getInstance() {
+        if (instance == null) instance = new ResultAlert();
+        return instance;
+    }
+
+    public void setMessage(String message) {
         String[] line = message.split("\n");
         switch (line.length) {
             case 0:
@@ -66,7 +65,7 @@ public class ResultAlert extends Alert {
         setMessage(message);
     }
 
-    public void resetDisplayText(){
+    public void resetDisplayText() {
         getDialogPane().setHeaderText(invalidActionHeader);
         setTitle(invalidActionTitle);
         this.label.setText(invalidActionLabel);

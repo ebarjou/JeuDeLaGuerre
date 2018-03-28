@@ -9,13 +9,13 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
-class CommandPane extends HBox{
+class CommandPane extends HBox {
     private final int MARGIN = 10;
     private Label labelPlayerTurn;
     private Label labelActionLeft;
 
 
-    public CommandPane(TextField commandTextField){
+    public CommandPane(TextField commandTextField) {
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, null, null)));
 
         labelPlayerTurn = new Label(Game.getInstance().getGameState().getActualPlayer().toString());
@@ -33,12 +33,12 @@ class CommandPane extends HBox{
         this.getChildren().add(labelActionLeft);
     }
 
-    public void setPlayer(String player, Color color){
+    public void setPlayer(String player, Color color) {
         labelPlayerTurn.setTextFill(color);
         labelPlayerTurn.setText(player);
     }
 
-    public void setActionLeft(int n){
+    public void setActionLeft(int n) {
         labelActionLeft.setText("Action left : " + n);
     }
 }

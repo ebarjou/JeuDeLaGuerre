@@ -1,32 +1,32 @@
 package game.board;
 
 import game.EPlayer;
-import ruleEngine.entity.EBuildingData;
+import ruleEngine.entity.EBuildingProperty;
 
 public class Building implements Cloneable {
-    private final EBuildingData building;
+    private final EBuildingProperty building;
     private final EPlayer player;
     private int x, y;
 
-    public Building(EBuildingData building, EPlayer player) {
+    public Building(EBuildingProperty building, EPlayer player) {
         this.building = building;
         this.player = player;
     }
 
-    public void setPosition(int x, int y){
+    public void setPosition(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX(){
+    public int getX() {
         return x;
     }
 
-    public int getY(){
+    public int getY() {
         return y;
     }
 
-    public EBuildingData getBuildingData() {
+    public EBuildingProperty getBuildingData() {
         return building;
     }
 
@@ -42,10 +42,11 @@ public class Building implements Cloneable {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+
         return (Building) o;
     }
 
-    public String toString(){
-        return "Type " + building + " ; player = " + player + " ; pos (" + x + ";" + y +")\n";
+    public String toString() {
+        return "Type " + building + " ; player = " + player + " ; pos (" + x + ";" + y + ")\n";
     }
 }

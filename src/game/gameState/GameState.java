@@ -5,8 +5,8 @@ import game.board.Board;
 import game.board.Building;
 import game.board.Unit;
 import ruleEngine.Coordinates;
-import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EBuildingProperty;
+import ruleEngine.entity.EUnitProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +14,13 @@ import java.util.List;
 /**
  * GameState is a representation of the actual board' state and manages information about the turn.
  * It contains the player who can play this turn, lists of all units, buildings, priorityUnits,
- *  units which can't attack this turn, the last unit moved this turn, the number of remaining actions for the player and
- *  the state of the board.
- *  @See Board
- *  @See Unit
- *  @See Building
- *  @See EPlayer
+ * units which can't attack this turn, the last unit moved this turn, the number of remaining actions for the player and
+ * the state of the board.
+ *
+ * @See Board
+ * @See Unit
+ * @See Building
+ * @See EPlayer
  */
 public class GameState implements Cloneable {
 
@@ -38,29 +39,30 @@ public class GameState implements Cloneable {
     public GameState(int w, int h) {
         board = new Board(w, h);
         lastUnitMoved = null;
-        allUnits      = new ArrayList<>();
-        allBuildings  = new ArrayList<>();
+        allUnits = new ArrayList<>();
+        allBuildings = new ArrayList<>();
         priorityUnits = new ArrayList<>();
         cantAttackUnits = new ArrayList<>();
 
-        actionLeft   = 5;
+        actionLeft = 5;
         actualPlayer = EPlayer.PLAYER_NORTH;
     }
 
     public GameState(Board board) {
-        this.board    = board;
+        this.board = board;
         lastUnitMoved = null;
-        allUnits      = new ArrayList<>();
-        allBuildings  = new ArrayList<>();
+        allUnits = new ArrayList<>();
+        allBuildings = new ArrayList<>();
         priorityUnits = new ArrayList<>();
         cantAttackUnits = new ArrayList<>();
 
-        actionLeft   = 5;
+        actionLeft = MAX_ACTION;
         actualPlayer = EPlayer.PLAYER_NORTH;
     }
 
     /**
      * Add the building reference to the list containing all buildings.
+     *
      * @param building The building you want to add.
      */
     public void addBuilding(Building building) {
@@ -70,6 +72,7 @@ public class GameState implements Cloneable {
 
     /**
      * Add the unit reference to the list containing all units.
+     *
      * @param unit The unit you want to add.
      */
     public void addUnit(Unit unit) {
@@ -79,6 +82,7 @@ public class GameState implements Cloneable {
 
     /**
      * Add the unit reference to the list containing units that must move.
+     *
      * @param unit The unit you want to add.
      */
     public void addPriorityUnit(Unit unit) {
@@ -90,6 +94,7 @@ public class GameState implements Cloneable {
 
     /**
      * Remove the unit having the same coordinates as coords in the priority unit list.
+     *
      * @param coords The coordinate of the unit you want to remove from this list.
      */
     public void removePriorityUnit(Coordinates coords) {
@@ -101,20 +106,16 @@ public class GameState implements Cloneable {
             }
         }
         //TODO: If trying to remove a unit not in priority units... ?
-        if(targetUnit != null)
+        if (targetUnit != null)
             priorityUnits.remove(targetUnit);
-    }
-
-    public void setLastUnitMoved(Unit unit){
-        this.lastUnitMoved = unit;
-    }
-
-    public void setActualPlayer(EPlayer player) {
-        actualPlayer = player;
     }
 
     public EPlayer getActualPlayer() {
         return actualPlayer;
+    }
+
+    public void setActualPlayer(EPlayer player) {
+        actualPlayer = player;
     }
 
     /**
@@ -125,11 +126,11 @@ public class GameState implements Cloneable {
      */
     public void switchPlayer() {
         //actualPlayer = EPlayer.values()[(actualPlayer.ordinal() + 1) % EPlayer.values().length];
-        actualPlayer = actualPlayer.other();
+        actualPlayer = actualPlayer.next();
         cantAttackUnits.clear();
-        for(Unit unit : allUnits) {
+        for (Unit unit : allUnits) {
             unit.setCanMove(true);
-            if(unit.getPlayer() == actualPlayer) {
+            if (unit.getPlayer() == actualPlayer) {
                 for (Unit pUnit : priorityUnits) {
                     if (unit.getX() == pUnit.getX() && unit.getY() == pUnit.getY()) {
                         cantAttackUnits.add(unit);
@@ -141,7 +142,6 @@ public class GameState implements Cloneable {
         actionLeft = MAX_ACTION;
         lastUnitMoved = null;
     }
-
 
     public int getActionLeft() {
         return actionLeft;
@@ -162,10 +162,11 @@ public class GameState implements Cloneable {
 
     /**
      * Set the variable canMove of the Unit having the same coordinates as coords to false.
+     *
      * @param coords The coordinates of the unit you want to disable his canMove.
      */
-    public void setUnitHasMoved(Coordinates coords){
-        for(Unit unit : allUnits) {
+    public void setUnitHasMoved(Coordinates coords) {
+        for (Unit unit : allUnits) {
             if (unit.getX() == coords.getX() && unit.getY() == coords.getY()) {
                 unit.setCanMove(false);
                 lastUnitMoved = unit;
@@ -187,50 +188,53 @@ public class GameState implements Cloneable {
         lastUnitMoved = null;
     }
 
-
     /**
      * @return the reference of the list containing all units.
      */
-    public List<Unit> getAllUnits(){
+    public List<Unit> getAllUnits() {
         return allUnits;
     }
 
     /**
      * @return the reference of the list containing all buildings.
      */
-    public List<Building> getAllBuildings(){
+    public List<Building> getAllBuildings() {
         return allBuildings;
     }
 
     /**
      * @return the reference of the list containing all priority units.
      */
-    public List<Unit> getPriorityUnits(){
+    public List<Unit> getPriorityUnits() {
         return priorityUnits;
     }
 
     /**
      * @return the reference of the list containing all units which can't attack this turn.
      */
-    public List<Unit> getCantAttackUnits(){
+    public List<Unit> getCantAttackUnits() {
         return cantAttackUnits;
     }
 
     /**
      * @return the last unit moved this turn.
      */
-    public Unit getLastUnitMoved() throws NullPointerException{
-        if(lastUnitMoved == null){
+    public Unit getLastUnitMoved() throws NullPointerException {
+        if (lastUnitMoved == null) {
             throw new NullPointerException();
         }
         return lastUnitMoved;
     }
 
-    public int getWidth(){
+    public void setLastUnitMoved(Unit unit) {
+        this.lastUnitMoved = unit;
+    }
+
+    public int getWidth() {
         return board.getWidth();
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return board.getHeight();
     }
 
@@ -239,112 +243,114 @@ public class GameState implements Cloneable {
      * @param y The coordinate of the y-axis
      * @return True if the coordinates (x;y) is on the board, false otherwise.
      */
-    public boolean isValidCoordinate(int x, int y){
+    public boolean isValidCoordinate(int x, int y) {
         return board.isValidCoordinate(x, y);
     }
 
-    public boolean isInCommunication(EPlayer player, int x, int y){
+    public boolean isInCommunication(EPlayer player, int x, int y) {
         return board.isInCommunication(player, x, y);
     }
 
-    public void setInCommunication(EPlayer player, int x, int y, boolean enable){
+    public void setInCommunication(EPlayer player, int x, int y, boolean enable) {
         board.setInCommunication(player, x, y, enable);
     }
 
-    public void clearCommunication(){
+    public void clearCommunication() {
         board.clearCommunication();
     }
 
-    public boolean isBuilding(int x, int y){
+    public boolean isBuilding(int x, int y) {
         return board.isBuilding(x, y);
     }
 
-    public EBuildingData getBuildingType(int x, int y){
+    public EBuildingProperty getBuildingType(int x, int y) {
         return board.getBuildingType(x, y);
     }
 
-    public EPlayer getBuildingPlayer(int x, int y){
+    public EPlayer getBuildingPlayer(int x, int y) {
         return board.getBuildingPlayer(x, y);
     }
 
-    public boolean isUnit(int x, int y){
+    public boolean isUnit(int x, int y) {
         return board.isUnit(x, y);
     }
 
     /**
      * Remove the unit at position (x;y) from every lists and from the board.
+     *
      * @param x The coordinate on x-axis
      * @param y The coordinate on y-axis
      */
-    public void removeUnit(int x, int y){
+    public void removeUnit(int x, int y) {
         board.delUnit(x, y);
         Unit remove = null;
-        for(Unit u : allUnits){
-            if(u.getX() == x && u.getY() == y) {
+        for (Unit u : allUnits) {
+            if (u.getX() == x && u.getY() == y) {
                 remove = u;
                 break;
             }
         }
-        if(remove != null)
+        if (remove != null)
             allUnits.remove(remove);
 
-        for(Unit u : priorityUnits){
-            if(u.getX() == x && u.getY() == y) {
+        for (Unit u : priorityUnits) {
+            if (u.getX() == x && u.getY() == y) {
                 remove = u;
                 break;
             }
         }
-        if(remove != null)
+        if (remove != null)
             priorityUnits.remove(remove);
     }
 
-    public void removeBuilding(Building building){
+    public void removeBuilding(Building building) {
         board.delBuilding(building.getX(), building.getY());
         allBuildings.remove(building);
     }
 
-    public EUnitData getUnitType(int x, int y){
+    public EUnitProperty getUnitType(int x, int y) {
         return board.getUnitType(x, y);
     }
 
-    public EPlayer getUnitPlayer(int x, int y){
+    public EPlayer getUnitPlayer(int x, int y) {
         return board.getUnitPlayer(x, y);
     }
 
-    public boolean isMarked(int x, int y){
+    public boolean isMarked(int x, int y) {
         return board.isMarked(x, y);
     }
 
-    public void setMarked(int x, int y, boolean mark){
+    public void setMarked(int x, int y, boolean mark) {
         board.setMarked(x, y, mark);
     }
 
-    public void clearMarked(){
+    public void clearMarked() {
         board.clearMarked();
     }
 
     /**
      * Move the unit having the same coordinates as (srcX, srcY) to (tgtX, tgtY).
+     *
      * @param srcX The source position on x-axis
      * @param srcY The source position on y-axis
      * @param tgtX The target position on x-axis
      * @param tgtY The target position on y-axis
      */
-    public void moveUnit(int srcX, int srcY, int tgtX, int tgtY){
+    public void moveUnit(int srcX, int srcY, int tgtX, int tgtY) {
         board.moveUnit(srcX, srcY, tgtX, tgtY);
 
         Unit tmp = null;
-        for(Unit u : priorityUnits){
-            if(u.getX() == srcX && u.getY() == srcY){
+        for (Unit u : priorityUnits) {
+            if (u.getX() == srcX && u.getY() == srcY) {
                 tmp = u;
                 break;
             }
         }
-        if(tmp != null)
+        if (tmp != null)
             priorityUnits.remove(tmp);
 
-        for(Unit u : allUnits){
-            if(u.getX() == srcX && u.getY() == srcY){
+        for (Unit u : allUnits) {
+            if (u.getX() == srcX && u.getY() == srcY) {
                 u.setPosition(tgtX, tgtY);
                 break;
             }
@@ -352,27 +358,27 @@ public class GameState implements Cloneable {
     }
 
     /**
-     * @param x Position on x-axis
-     * @param y Position on y-axis
+     * @param x  Position on x-axis
+     * @param y  Position on y-axis
      * @param x2 Position2 on x-axis
      * @param y2 Position2 on y-axis
      * @return The distance between (x, y) and (x2, y2) => The max between abs(x - x2) and abs(y - y2).
      */
-    public int getDistance(int x, int y, int x2, int y2){
+    public int getDistance(int x, int y, int x2, int y2) {
         return board.getDistance(x, y, x2, y2);
     }
 
-    private List<Building> cloneBuilding(List<Building> array){
+    private List<Building> cloneBuilding(List<Building> array) {
         List<Building> newArray = new ArrayList<>();
-        for(Building building : array){
+        for (Building building : array) {
             newArray.add(building.clone());
         }
         return newArray;
     }
 
-    private List<Unit> cloneUnits(List<Unit> array){
+    private List<Unit> cloneUnits(List<Unit> array) {
         List<Unit> newArray = new ArrayList<>();
-        for(Unit unit : array){
+        for (Unit unit : array) {
             newArray.add(unit.clone());
         }
         return newArray;
@@ -392,13 +398,13 @@ public class GameState implements Cloneable {
         ((GameState) o).cantAttackUnits = cloneUnits(cantAttackUnits);
         ((GameState) o).allBuildings = cloneBuilding(allBuildings);
         ((GameState) o).lastUnitMoved = null;
-        if(lastUnitMoved != null)
+        if (lastUnitMoved != null)
             ((GameState) o).lastUnitMoved = lastUnitMoved.clone();
         ((GameState) o).board = board.clone();
         return (GameState) o;
     }
 
-    public String toString(){
+    public String toString() {
         return board.toString();
     }
 }

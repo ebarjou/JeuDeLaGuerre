@@ -9,7 +9,7 @@ public class GUIPlayer implements Player {
     private Object wait_command;
     private Object wait_response;
 
-    public GUIPlayer(){
+    public GUIPlayer() {
         action = null;
         response = null;
         wait_command = new Object();
@@ -17,15 +17,7 @@ public class GUIPlayer implements Player {
     }
 
     @Override
-    public void setCommand(UIAction action){
-        this.action = action;
-        synchronized (wait_command) {
-            wait_command.notifyAll();
-        }
-    }
-
-    @Override
-    public UIAction getCommand(){
+    public UIAction getCommand() {
         UIAction output;
         synchronized (wait_command) {
             while (action == null) {
@@ -41,15 +33,15 @@ public class GUIPlayer implements Player {
     }
 
     @Override
-    public void setResponse(GameResponse response){
-        this.response = response;
-        synchronized (wait_response) {
-            wait_response.notifyAll();
+    public void setCommand(UIAction action) {
+        this.action = action;
+        synchronized (wait_command) {
+            wait_command.notifyAll();
         }
     }
 
     @Override
-    public GameResponse getResponse(){
+    public GameResponse getResponse() {
         GameResponse output;
         synchronized (wait_response) {
             while (response == null) {
@@ -62,5 +54,13 @@ public class GUIPlayer implements Player {
         output = response;
         response = null;
         return output;
+    }
+
+    @Override
+    public void setResponse(GameResponse response) {
+        this.response = response;
+        synchronized (wait_response) {
+            wait_response.notifyAll();
+        }
     }
 }

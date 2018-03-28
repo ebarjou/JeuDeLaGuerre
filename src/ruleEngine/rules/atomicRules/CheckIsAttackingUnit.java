@@ -26,7 +26,7 @@ public class CheckIsAttackingUnit implements IRule {
                 return false;
             }
             return true;
-        } catch (IllegalBoardCallException e){
+        } catch (IllegalBoardCallException e) {
             result.addMessage(this, "This unit is not suited to attack.");
             result.invalidate();
             return false;

@@ -14,7 +14,8 @@ import ruleEngine.rules.newRules.RuleCompositeLazyOR;
  * Class testing if a game is ended by the destruction of all of a player units or arsenals.
  */
 public class VictoryRules extends RuleCompositeAND {
-    public VictoryRules(){
+
+    public VictoryRules() {
         super.add(new CheckPlayerTurn());
         IRule orDep = new RuleCompositeLazyOR();
         orDep.add(new CheckIsNoArsenalEnemy());
@@ -22,14 +23,14 @@ public class VictoryRules extends RuleCompositeAND {
         super.add(orDep);
     }
 
-    public boolean checkAction(GameState state, GameAction action, RuleResult result){
+    public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         RuleResult tmpResult = new RuleResult();
         boolean validAction = super.checkAction(state, action, tmpResult);
-        if(!tmpResult.isValid()){
+        if (!tmpResult.isValid())
             result.invalidate();
-        } else {
+        else
             result.addMessage(this, action.getPlayer() + " winner !");
-        }
+
         return validAction;
     }
 

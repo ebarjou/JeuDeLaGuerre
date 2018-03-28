@@ -1,42 +1,42 @@
 package game.board;
 
 import game.EPlayer;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EUnitProperty;
 
 public class Unit implements Cloneable {
-    private final EUnitData unit;
+    private final EUnitProperty unit;
     private final EPlayer player;
     private boolean canMove;
     private int x, y;
 
-    public Unit(EUnitData unit, EPlayer player) {
+    public Unit(EUnitProperty unit, EPlayer player) {
         this.unit = unit;
         this.player = player;
         canMove = true;
     }
 
-    public void setPosition(int x, int y){
+    public void setPosition(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX(){
+    public int getX() {
         return x;
     }
 
-    public int getY(){
+    public int getY() {
         return y;
     }
 
-    public boolean getCanMove(){
+    public boolean getCanMove() {
         return canMove;
     }
 
-    public void setCanMove(boolean canMove){
+    public void setCanMove(boolean canMove) {
         this.canMove = canMove;
     }
 
-    public EUnitData getUnitData() {
+    public EUnitProperty getUnitData() {
         return unit;
     }
 
@@ -55,7 +55,7 @@ public class Unit implements Cloneable {
         return (Unit) o;
     }
 
-    public String toString(){
-        return "Type " + unit + " ; player = " + player + " ; pos (" + x + ";" + y +")\nCan move : " + canMove + "\n";
+    public String toString() {
+        return "Type " + unit + " ; player = " + player + " ; pos (" + x + ";" + y + ")\nCan move : " + canMove + "\n";
     }
 }

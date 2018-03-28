@@ -4,7 +4,6 @@ import analyse.InfoModule;
 import game.EPlayer;
 import game.board.Unit;
 import game.gameState.GameState;
-import javafx.scene.paint.Paint;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,7 +12,7 @@ public abstract class AbstractImpreciseMapMethod implements IMetricsMapMethod {
 
     private boolean usingAttack;    //False : using Def
 
-    public AbstractImpreciseMapMethod(boolean usingAttack){
+    public AbstractImpreciseMapMethod(boolean usingAttack) {
         this.usingAttack = usingAttack;
     }
 
@@ -21,11 +20,11 @@ public abstract class AbstractImpreciseMapMethod implements IMetricsMapMethod {
     public double[][] compute(GameState state, EPlayer player) {
         double[][] result = new double[state.getWidth()][state.getHeight()];
         double startValue = (player.equals(EPlayer.PLAYER_SOUTH) ? 0.2 : 0.1);
-        for(double[] d : result)
+        for (double[] d : result)
             Arrays.fill(d, startValue);
 
         Collection<Unit> units = InfoModule.getAllUnitsFromPlayer(state, player);
-        for (Unit u : units){
+        for (Unit u : units) {
             if (usingAttack && !u.getUnitData().isCanAttack())
                 continue;
 

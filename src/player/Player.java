@@ -5,10 +5,12 @@ import ui.UIAction;
 
 public interface Player {
 
-    void setCommand(UIAction action);
     UIAction getCommand();
 
-    void setResponse(GameResponse response);
+    void setCommand(UIAction action);
+
     GameResponse getResponse();
+
+    void setResponse(GameResponse response);
 
 }

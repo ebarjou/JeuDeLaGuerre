@@ -8,6 +8,7 @@ import ruleEngine.rules.newRules.IRule;
 /**
  * Check if an action is performing within the board boundaries.<br>
  * Valid if the action is performing within the boundaries, invalid otherwise.
+ *
  * @see ruleEngine.rules.masterRules.MoveRules
  * @see ruleEngine.rules.masterRules.AttackRules
  */
@@ -20,11 +21,13 @@ public class CheckOnBoard implements IRule {
             result.invalidate();
             return false;
         }
+
         if (!state.isValidCoordinate(action.getTargetCoordinates().getX(), action.getTargetCoordinates().getY())) {
             result.addMessage(this, "Target coordinates are beyond the board's boundaries.");
             result.invalidate();
             return false;
         }
+
         return true;
     }
 

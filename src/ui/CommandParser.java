@@ -28,7 +28,7 @@ public class CommandParser {
 
     /**
      * @param c String containing letters then numbers
-     * @return  int[], [0] being the convertion from b26 to b10 of the letters, and [1] the number from the string.
+     * @return int[], [0] being the convertion from b26 to b10 of the letters, and [1] the number from the string.
      * @throws Exception if the string was not correct.
      */
     private int[] parseCoords(String c) throws Exception {
@@ -86,7 +86,7 @@ public class CommandParser {
     }
 
     @Command
-    public void help(){
+    public void help() {
         result.setCommand(HELP);
     }
 
@@ -98,7 +98,7 @@ public class CommandParser {
     }
 
     @Command
-    public void save(String path){
+    public void save(String path) {
         result.setCommand(SAVE);
         result.setText(path);
     }

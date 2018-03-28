@@ -2,6 +2,7 @@ package ruleEngine;
 
 /**
  * Designs an action performed on the game.
+ *
  * @see game.Game
  */
 public enum EGameActionType {

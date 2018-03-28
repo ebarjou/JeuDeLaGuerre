@@ -5,10 +5,10 @@ import game.gameState.GameState;
 import ui.commands.GameToUserCall;
 
 public class GameResponse {
-    private GameToUserCall response;
-    private String message;
     private final GameState board;
     private final EPlayer player;
+    private GameToUserCall response;
+    private String message;
 
     public GameResponse(GameToUserCall response, String message, GameState gameState, EPlayer player) {
         this.response = response;

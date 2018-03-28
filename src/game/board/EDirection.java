@@ -10,19 +10,19 @@ public enum EDirection {
     LEFT(-1, 0),
     UP_LEFT(-1, -1);
 
-
     private final int x;
     private final int y;
-    EDirection(int x, int y){
+
+    EDirection(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX(){
+    public int getX() {
         return x;
     }
 
-    public int getY(){
+    public int getY() {
         return y;
     }
 }

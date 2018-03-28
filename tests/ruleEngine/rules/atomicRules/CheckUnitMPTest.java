@@ -1,17 +1,14 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.Board;
 import game.board.Unit;
 import game.gameState.GameState;
 import org.junit.Before;
 import org.junit.Test;
-import game.gameState.GameState;
-import org.mockito.Mockito;
 import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EUnitProperty;
 
 import static org.junit.Assert.*;
 
@@ -27,11 +24,11 @@ public class CheckUnitMPTest {
     public void setUp(){
 
         // MovementValue = 1
-        Unit infantry = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        Unit infantry = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_NORTH);
         infantry.setPosition(0, 0);
 
         // MovementValue = 2
-        Unit cavalry = new Unit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH);
+        Unit cavalry = new Unit(EUnitProperty.CAVALRY, EPlayer.PLAYER_NORTH);
         cavalry.setPosition(5, 5);
 
         gameAction = new GameAction(EPlayer.PLAYER_NORTH, EGameActionType.MOVE);

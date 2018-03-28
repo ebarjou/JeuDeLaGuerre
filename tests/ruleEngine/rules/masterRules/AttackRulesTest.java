@@ -12,8 +12,8 @@ import ruleEngine.EGameActionType;
 import ruleEngine.GameAction;
 import ruleEngine.RuleChecker;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EBuildingProperty;
+import ruleEngine.entity.EUnitProperty;
 import ruleEngine.exceptions.IncorrectGameActionException;
 import system.LoadFile;
 
@@ -53,7 +53,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 9);
         gameAction.setTargetCoordinates(10, 8);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "AttackRules : The unit at position (12, 8) has been attacked, but nothing happened : Attack:4 Defense:12.\n";
         gameAction.setSourceCoordinates(10, 8);
@@ -67,7 +67,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 9);
         gameAction.setTargetCoordinates(10, 10);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "AttackRules : The unit at position (12, 10) has been attacked, but nothing happened : Attack:8 Defense:12.\n";
         gameAction.setSourceCoordinates(10, 10);
@@ -81,7 +81,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 9);
         gameAction.setTargetCoordinates(9, 8);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "AttackRules : The unit at position (7, 8) has been attacked, but nothing happened : Attack:13 Defense:24.\n";
         gameAction.setSourceCoordinates(9, 8);
@@ -97,7 +97,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(12, 8);
         gameAction.setTargetCoordinates(12, 7);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "AttackRules : The unit at position (11, 7) has been attacked, but nothing happened : Attack:8 Defense:8.\n";
         gameAction.setSourceCoordinates(12, 7);
@@ -111,7 +111,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 7);
         gameAction.setTargetCoordinates(9, 7);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "AttackRules : The unit at position (9, 5) has been attacked, but nothing happened : Attack:4 Defense:18.\n";
         gameAction.setSourceCoordinates(9, 7);
@@ -125,12 +125,12 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 9);
         gameAction.setTargetCoordinates(10, 8);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         gameAction.setSourceCoordinates(10, 7);
         gameAction.setTargetCoordinates(10, 6);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "AttackRules : The unit at position (9, 5) died : Attack:4 Defense:0.\n";
         gameAction.setSourceCoordinates(10, 6);
@@ -141,7 +141,7 @@ public class AttackRulesTest {
 
     @Test
     public void checkActionRealCorrectInfantryAttackCantAttackAlly() {
-        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
+        Unit unit = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_SOUTH);
         unit.setPosition(12, 1);
         gameState.addPriorityUnit(unit);
 
@@ -150,12 +150,12 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(12, 1);
         gameAction.setTargetCoordinates(12, 0);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         gameAction.setSourceCoordinates(14, 0);
         gameAction.setTargetCoordinates(13, 0);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "AttackRules : The unit at position (11, 0) has been attacked, but nothing happened : Attack:4 Defense:5.\n";
         gameAction.setSourceCoordinates(13, 0);
@@ -169,7 +169,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(16, 7);
         gameAction.setTargetCoordinates(16, 8);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "AttackRules : The unit at position (15, 8) died : Attack:12 Defense:8.\n";
         gameAction.setSourceCoordinates(16, 8);
@@ -183,7 +183,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(9, 10);
         gameAction.setTargetCoordinates(10, 10);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (12, 8) has been attacked, but nothing happened : Attack:4 Defense:12.\n";
         gameAction.setSourceCoordinates(10, 10);
@@ -199,7 +199,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(9, 5);
         gameAction.setTargetCoordinates(10, 6);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (10, 7) has been attacked, but nothing happened : Attack:7 Defense:13.\n";
         gameAction.setSourceCoordinates(10, 6);
@@ -213,7 +213,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(9, 10);
         gameAction.setTargetCoordinates(10, 10);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (12, 10) died : Attack:14 Defense:12.\n";
         gameAction.setSourceCoordinates(10, 10);
@@ -227,7 +227,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(6, 6);
         gameAction.setTargetCoordinates(5, 6);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (3, 8) died : Attack:21 Defense:13.\n";
         gameAction.setSourceCoordinates(5, 6);
@@ -243,7 +243,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(9, 5);
         gameAction.setTargetCoordinates(10, 6);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (11, 5) died : Attack:4 Defense:2.\n";
         gameAction.setSourceCoordinates(10, 6);
@@ -257,7 +257,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(6, 6);
         gameAction.setTargetCoordinates(6, 7);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (6, 8) has been attacked, but nothing happened : Attack:9 Defense:24.\n";
         gameAction.setSourceCoordinates(6, 7);
@@ -271,7 +271,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(6, 5);
         gameAction.setTargetCoordinates(6, 7);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (6, 8) has been attacked, but nothing happened : Attack:13 Defense:24.\n";
         gameAction.setSourceCoordinates(6, 7);
@@ -285,7 +285,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(4, 7);
         gameAction.setTargetCoordinates(6, 7);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (6, 8) has been attacked, but nothing happened : Attack:13 Defense:24.\n";
         gameAction.setSourceCoordinates(6, 7);
@@ -299,7 +299,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(5, 3);
         gameAction.setTargetCoordinates(3, 1);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (3, 2) will have to move in South Player's next turn : Attack:7 Defense:6.\n";
         gameAction.setSourceCoordinates(3, 1);
@@ -322,7 +322,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(5, 3);
         gameAction.setTargetCoordinates(3, 1);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (3, 0) died : Attack:7 Defense:6.\n";
         gameAction.setSourceCoordinates(3, 1);
@@ -336,7 +336,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(5, 3);
         gameAction.setTargetCoordinates(4, 2);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (6, 0) died : Attack:14 Defense:6.\n";
         gameAction.setSourceCoordinates(4, 2);
@@ -347,14 +347,14 @@ public class AttackRulesTest {
 
     @Test
     public void checkActionRealCorrectCavalryCantChargeInfantryPass() {
-        Building building = new Building(EBuildingData.PASS, EPlayer.PLAYER_NORTH);
+        Building building = new Building(EBuildingProperty.PASS, EPlayer.PLAYER_NORTH);
         building.setPosition(6, 0);
         gameState.addBuilding(building);
 
         gameAction.setSourceCoordinates(5, 3);
         gameAction.setTargetCoordinates(4, 2);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (6, 0) has been attacked, but nothing happened : Attack:8 Defense:8.\n";
         gameAction.setSourceCoordinates(4, 2);
@@ -365,14 +365,14 @@ public class AttackRulesTest {
 
     @Test
     public void checkActionRealCorrectCavalryCantChargeInfantryFort() {
-        Building building = new Building(EBuildingData.FORTRESS, EPlayer.PLAYER_NORTH);
+        Building building = new Building(EBuildingProperty.FORTRESS, EPlayer.PLAYER_NORTH);
         building.setPosition(6, 0);
         gameState.addBuilding(building);
 
         gameAction.setSourceCoordinates(5, 3);
         gameAction.setTargetCoordinates(4, 2);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (6, 0) has been attacked, but nothing happened : Attack:8 Defense:10.\n";
         gameAction.setSourceCoordinates(4, 2);
@@ -383,14 +383,14 @@ public class AttackRulesTest {
 
     @Test
     public void checkActionRealCorrectCavalryCantChargeFromFort1() {
-        Building building = new Building(EBuildingData.FORTRESS, EPlayer.PLAYER_NORTH);
+        Building building = new Building(EBuildingProperty.FORTRESS, EPlayer.PLAYER_NORTH);
         building.setPosition(5, 1);
         gameState.addBuilding(building);
 
         gameAction.setSourceCoordinates(5, 3);
         gameAction.setTargetCoordinates(4, 2);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (6, 0) died : Attack:8 Defense:6.\n";
         gameAction.setSourceCoordinates(4, 2);
@@ -400,15 +400,15 @@ public class AttackRulesTest {
     }
 
     @Test
-    public void checkActionRealCorrectCavalryCantChargeFromFort2() {
-        Building building = new Building(EBuildingData.FORTRESS, EPlayer.PLAYER_NORTH);
+    public void checkActionRealCorrectCavalryCantCharge2InfantryPass() {
+        Building building = new Building(EBuildingProperty.FORTRESS, EPlayer.PLAYER_NORTH);
         building.setPosition(4, 2);
         gameState.addBuilding(building);
 
         gameAction.setSourceCoordinates(5, 3);
         gameAction.setTargetCoordinates(4, 2);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (6, 0) died : Attack:8 Defense:6.\n";
         gameAction.setSourceCoordinates(4, 2);
@@ -422,7 +422,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(15, 5);
         gameAction.setTargetCoordinates(16, 6);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         performAssertsCorrectEndTurn();
         performAssertsCorrectEndTurn();
@@ -430,7 +430,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(16, 6);
         gameAction.setTargetCoordinates(15, 5);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "AttackRules : The unit at position (16, 4) has been attacked, but nothing happened : Attack:4 Defense:10.\n";
         gameAction.setSourceCoordinates(15, 5);
@@ -444,7 +444,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 11);
         gameAction.setTargetCoordinates(9, 11);
 
-        performAssertsCorrectMove(EUnitData.ARTILLERY);
+        performAssertsCorrectMove(EUnitProperty.ARTILLERY);
 
         expectedMessage = "AttackRules : The unit at position (12, 8) has been attacked, but nothing happened : Attack:5 Defense:12.\n";
         gameAction.setSourceCoordinates(9, 11);
@@ -459,7 +459,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(5, 7);
         gameAction.setTargetCoordinates(6, 7);
 
-        performAssertsCorrectMove(EUnitData.ARTILLERY_HORSE);
+        performAssertsCorrectMove(EUnitProperty.ARTILLERY_HORSE);
 
         expectedMessage = "AttackRules : The unit at position (6, 8) has been attacked, but nothing happened : Attack:9 Defense:24.\n";
         gameAction.setSourceCoordinates(6, 7);
@@ -494,7 +494,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 9);
         gameAction.setTargetCoordinates(10, 8);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "CheckIsEnemyUnit : There is no unit at (11;8)\n" +
                 "CheckAreAligned : Those rules are not checked because CheckIsEnemyUnit has failed.\n" +
@@ -510,7 +510,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 9);
         gameAction.setTargetCoordinates(10, 8);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "CheckIsEnemyUnit : Targeted unit is not an enemy.\n" +
                 "CheckAreAligned : Those rules are not checked because CheckIsEnemyUnit has failed.\n" +
@@ -535,7 +535,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 9);
         gameAction.setTargetCoordinates(10, 8);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "CheckLastMove : Unit is not the last one moved.\n";
         gameAction.setSourceCoordinates(16, 7);
@@ -549,7 +549,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 9);
         gameAction.setTargetCoordinates(11, 9);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "AttackRules : The unit at position (12, 8) has been attacked, but nothing happened : Attack:4 Defense:12.\n";
         gameAction.setSourceCoordinates(11, 9);
@@ -570,7 +570,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 9);
         gameAction.setTargetCoordinates(10, 8);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "RuleCompositeOR : CheckUnitRange : Not enough range to attack, the unit has a range of 2, and you need a range of 3.\n" +
                 "CheckIsCharge : The initiating unit is not able to charge.\n\n";
@@ -585,7 +585,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 9);
         gameAction.setTargetCoordinates(9, 9);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "CheckAreAligned : The source is not aligned either horizontally, vertically or diagonally with the target.\n" +
                 "CheckIsEmptyAttackPath : Those rules are not checked because CheckAreAligned has failed.\n";
@@ -600,7 +600,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(16, 7);
         gameAction.setTargetCoordinates(17, 8);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "CheckIsInCommunication : This unit is not in the player communication.\n";
         gameAction.setSourceCoordinates(17, 8);
@@ -614,7 +614,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(16, 7);
         gameAction.setTargetCoordinates(16, 6);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "CheckIsEmptyAttackPath : This unit cannot attack here because there is an obstacle.\n";
         gameAction.setSourceCoordinates(16, 6);
@@ -625,7 +625,7 @@ public class AttackRulesTest {
 
     @Test
     public void checkActionRealWrongInfantryCantAttack() {
-        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
+        Unit unit = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_SOUTH);
         unit.setPosition(12, 1);
         gameState.addPriorityUnit(unit);
 
@@ -634,7 +634,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(12, 1);
         gameAction.setTargetCoordinates(12, 0);
 
-        performAssertsCorrectMove(EUnitData.INFANTRY);
+        performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
         expectedMessage = "CheckCanAttackUnit : This unit can't attack this turn.\n";
         gameAction.setSourceCoordinates(12, 0);
@@ -648,7 +648,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(9, 10);
         gameAction.setTargetCoordinates(9, 8);
 
-        performAssertsCorrectMove(EUnitData.CAVALRY);
+        performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
         expectedMessage = "RuleCompositeOR : CheckUnitRange : Not enough range to attack, the unit has a range of 2, and you need a range of 3.\n" +
                 "CheckIsCharge : The initiating unit is not in a position to proceed a charge.\n\n";
@@ -663,7 +663,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(10, 11);
         gameAction.setTargetCoordinates(11, 12);
 
-        performAssertsCorrectMove(EUnitData.ARTILLERY);
+        performAssertsCorrectMove(EUnitProperty.ARTILLERY);
 
         expectedMessage = "RuleCompositeOR : CheckUnitRange : Not enough range to attack, the unit has a range of 3, and you need a range of 4.\n" +
                 "CheckIsCharge : The initiating unit is not able to charge.\n\n";
@@ -678,7 +678,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(5, 7);
         gameAction.setTargetCoordinates(5, 5);
 
-        performAssertsCorrectMove(EUnitData.ARTILLERY_HORSE);
+        performAssertsCorrectMove(EUnitProperty.ARTILLERY_HORSE);
 
         expectedMessage = "RuleCompositeOR : CheckUnitRange : Not enough range to attack, the unit has a range of 3, and you need a range of 4.\n" +
                 "CheckIsCharge : The initiating unit is not able to charge.\n\n" +
@@ -694,7 +694,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(11, 7);
         gameAction.setTargetCoordinates(10, 6);
 
-        performAssertsCorrectMove(EUnitData.RELAY);
+        performAssertsCorrectMove(EUnitProperty.RELAY);
 
         expectedMessage = "CheckIsRelay : Expected false, but returned true.\n";
         gameAction.setSourceCoordinates(10, 6);
@@ -708,7 +708,7 @@ public class AttackRulesTest {
         gameAction.setSourceCoordinates(11, 5);
         gameAction.setTargetCoordinates(10, 6);
 
-        performAssertsCorrectMove(EUnitData.RELAY_HORSE);
+        performAssertsCorrectMove(EUnitProperty.RELAY_HORSE);
 
         expectedMessage = "CheckIsRelay : Expected false, but returned true.\n";
         gameAction.setSourceCoordinates(10, 6);
@@ -717,7 +717,7 @@ public class AttackRulesTest {
         performAssertsWrongAttack();
     }
 
-    private void performAssertsCorrectMove(EUnitData unitData) {
+    private void performAssertsCorrectMove(EUnitProperty unitData) {
         gameAction.setActionType(EGameActionType.MOVE);
         assertTrue(ruleMove.checkAction(gameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());

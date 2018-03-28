@@ -7,8 +7,8 @@ import game.gameState.GameState;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EBuildingProperty;
+import ruleEngine.entity.EUnitProperty;
 import ruleEngine.exceptions.IncorrectGameActionException;
 
 import static org.junit.Assert.assertTrue;
@@ -23,17 +23,17 @@ public class RuleCheckerTest {
         rulechecker = new RuleChecker();
         gameState = new GameState(25, 20);
 
-        Building building = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH);
+        Building building = new Building(EBuildingProperty.ARSENAL, EPlayer.PLAYER_NORTH);
         building.setPosition(10, 10);
         gameState.addBuilding(building);
-        building = new Building(EBuildingData.ARSENAL, EPlayer.PLAYER_SOUTH);
+        building = new Building(EBuildingProperty.ARSENAL, EPlayer.PLAYER_SOUTH);
         building.setPosition(0, 10);
         gameState.addBuilding(building);
 
-        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        Unit unit = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_NORTH);
         unit.setPosition(0, 0);
         gameState.addUnit(unit);
-        unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
+        unit = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_SOUTH);
         unit.setPosition(0, 2);
         gameState.addUnit(unit);
     }
@@ -135,7 +135,7 @@ public class RuleCheckerTest {
             assertTrue("Can't check Victory because action COMMUNICATION failed beforehand.", false);
         }
 
-        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        Unit unit = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_NORTH);
         unit.setPosition(1, 10);
         gameState.addUnit(unit);
 
@@ -174,7 +174,7 @@ public class RuleCheckerTest {
             assertTrue("Can't check Victory because action MOVE failed beforehand.", false);
         }
 
-        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        Unit unit = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_NORTH);
         unit.setPosition(2, 0);
         gameState.addUnit(unit);
 

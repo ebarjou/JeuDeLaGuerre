@@ -5,7 +5,7 @@ import game.board.Unit;
 import org.junit.Before;
 import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.*;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EUnitProperty;
 
 import java.util.*;
 
@@ -29,10 +29,10 @@ public class CheckUnitRangeTest {
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
         unit = mock(Unit.class);
-        when(iGameState.getUnitType(5, 5)).thenReturn(EUnitData.INFANTRY);
-        when(iGameState.getUnitType(6, 5)).thenReturn(EUnitData.CAVALRY);
-        when(iGameState.getUnitType(7, 5)).thenReturn(EUnitData.CAVALRY);
-        when(iGameState.getUnitType(8, 5)).thenReturn(EUnitData.CAVALRY);
+        when(iGameState.getUnitType(5, 5)).thenReturn(EUnitProperty.INFANTRY);
+        when(iGameState.getUnitType(6, 5)).thenReturn(EUnitProperty.CAVALRY);
+        when(iGameState.getUnitType(7, 5)).thenReturn(EUnitProperty.CAVALRY);
+        when(iGameState.getUnitType(8, 5)).thenReturn(EUnitProperty.CAVALRY);
         when(iGameState.isUnit(5, 5)).thenReturn(true);
         when(iGameState.isUnit(6, 5)).thenReturn(true);
         when(iGameState.isUnit(7, 5)).thenReturn(true);

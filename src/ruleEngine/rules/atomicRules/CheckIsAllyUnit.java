@@ -6,12 +6,12 @@ import ruleEngine.RuleResult;
 import ruleEngine.rules.newRules.IRule;
 
 /**
-* Check if a unit is owned by the player requesting the move.<br>
-* Valid if it's the same player, invalid otherwise.
-*
-* @see ruleEngine.rules.masterRules.MoveRules
-* @see ruleEngine.rules.masterRules.AttackRules
-*/
+ * Check if a unit is owned by the player requesting the move.<br>
+ * Valid if it's the same player, invalid otherwise.
+ *
+ * @see ruleEngine.rules.masterRules.MoveRules
+ * @see ruleEngine.rules.masterRules.AttackRules
+ */
 public class CheckIsAllyUnit implements IRule {
 
     @Override

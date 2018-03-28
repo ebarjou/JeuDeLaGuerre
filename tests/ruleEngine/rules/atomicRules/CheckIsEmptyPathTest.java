@@ -1,11 +1,10 @@
 package ruleEngine.rules.atomicRules;
 
-import game.board.IBoard;
 import org.junit.Before;
 import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.*;
-import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EBuildingProperty;
+import ruleEngine.entity.EUnitProperty;
 
 import static org.junit.Assert.*;
 
@@ -31,15 +30,15 @@ public class CheckIsEmptyPathTest {
         when(iGameState.isBuilding(anyInt(), anyInt())).thenReturn(false);
         when(iGameState.isBuilding(2, 0)).thenReturn(true);
         when(iGameState.isBuilding(2, 1)).thenReturn(true);
-        when(iGameState.getBuildingType(2, 0)).thenReturn(EBuildingData.PASS);
-        when(iGameState.getBuildingType(2, 1)).thenReturn(EBuildingData.MOUNTAIN);
+        when(iGameState.getBuildingType(2, 0)).thenReturn(EBuildingProperty.PASS);
+        when(iGameState.getBuildingType(2, 1)).thenReturn(EBuildingProperty.MOUNTAIN);
         when(iGameState.isValidCoordinate(0, 0)).thenReturn(false);
     }
 
     @Test
     public void checkActionMockingCorrect(){
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(3, 3));
-        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.CAVALRY);
+        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitProperty.CAVALRY);
         when(iGameState.isValidCoordinate(anyInt(), anyInt())).thenReturn(true);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
@@ -49,7 +48,7 @@ public class CheckIsEmptyPathTest {
     public void checkActionMockingWrongCoordinates(){
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(3, 3));
         when(iGameState.isValidCoordinate(anyInt(), anyInt())).thenReturn(false);
-        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.CAVALRY);
+        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitProperty.CAVALRY);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         expectedMessage = "CheckIsEmptyPath : There is no path found using 2 movement points.\n";
@@ -59,7 +58,7 @@ public class CheckIsEmptyPathTest {
     @Test
     public void checkActionMockingWrongRange(){
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(15, 15));
-        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitData.INFANTRY);
+        when(iGameState.getUnitType(1, 1)).thenReturn(EUnitProperty.INFANTRY);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         expectedMessage = "CheckIsEmptyPath : There is no path found using 1 movement points.\n";

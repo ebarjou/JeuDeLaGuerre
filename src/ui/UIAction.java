@@ -6,8 +6,8 @@ import ruleEngine.GameAction;
 import ui.commands.UserToGameCall;
 
 public class UIAction {
-    private UserToGameCall command;
     private final GameAction gameAction;
+    private UserToGameCall command;
     private String error_message;
     private String text;
 

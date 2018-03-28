@@ -20,7 +20,7 @@ public class CheckIsPriorityUnit implements IRule {
     public boolean checkAction(GameState state, GameAction action, RuleResult result) {
         if (isUnitHasPriority(state, action.getPlayer(), action.getSourceCoordinates()))
             return true;
-        result.addMessage(this, "There are other units that need to be moved first.");
+        result.addMessage(this, "There are next units that need to be moved first.");
         result.invalidate();
         return false;
     }
@@ -28,7 +28,7 @@ public class CheckIsPriorityUnit implements IRule {
     private boolean isUnitHasPriority(GameState state, EPlayer player, Coordinates coords) {
         List<Unit> priorityUnits = state.getPriorityUnits();
 
-        if(priorityUnits.isEmpty())
+        if (priorityUnits.isEmpty())
             return true;
 
         boolean isNoUnitPlayer = true;

@@ -6,10 +6,9 @@ import org.junit.Before;
 import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EUnitProperty;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -42,7 +41,7 @@ public class CheckNoPriorityUnitAllyTest {
 
 	@Test
 	public void checkActionMockingCorrectOtherPlayerPriorityUnit() {
-		Unit u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
+		Unit u = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_SOUTH);
 		units.add(u);
 		assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
 		assertTrue(ruleResult.isValid());
@@ -50,7 +49,7 @@ public class CheckNoPriorityUnitAllyTest {
 
 	@Test
 	public void checkActionMockingWrongPriorityUnit() {
-		Unit u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+		Unit u = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_NORTH);
         units.add(u);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());

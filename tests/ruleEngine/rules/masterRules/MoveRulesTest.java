@@ -10,13 +10,12 @@ import org.junit.Before;
 import org.junit.Test;
 import player.Player;
 import ruleEngine.*;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EUnitProperty;
 import ruleEngine.exceptions.IncorrectGameActionException;
 import system.LoadFile;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
 
 public class MoveRulesTest {
 
@@ -48,7 +47,7 @@ public class MoveRulesTest {
         gameAction.setSourceCoordinates(9, 10);
         gameAction.setTargetCoordinates(10, 10);
 
-        performAssertsCorrect(EUnitData.INFANTRY);
+        performAssertsCorrect(EUnitProperty.INFANTRY);
     }
 
     @Test
@@ -56,7 +55,7 @@ public class MoveRulesTest {
         gameAction.setSourceCoordinates(9, 9);
         gameAction.setTargetCoordinates(11, 11);
 
-        performAssertsCorrect(EUnitData.CAVALRY);
+        performAssertsCorrect(EUnitProperty.CAVALRY);
     }
 
     @Test
@@ -64,7 +63,7 @@ public class MoveRulesTest {
         gameAction.setSourceCoordinates(9, 11);
         gameAction.setTargetCoordinates(10, 11);
 
-        performAssertsCorrect(EUnitData.ARTILLERY);
+        performAssertsCorrect(EUnitProperty.ARTILLERY);
     }
 
     @Test
@@ -72,7 +71,7 @@ public class MoveRulesTest {
         gameAction.setSourceCoordinates(9, 12);
         gameAction.setTargetCoordinates(11, 14);
 
-        performAssertsCorrect(EUnitData.ARTILLERY_HORSE);
+        performAssertsCorrect(EUnitProperty.ARTILLERY_HORSE);
     }
 
     @Test
@@ -80,7 +79,7 @@ public class MoveRulesTest {
         gameAction.setSourceCoordinates(0, 8);
         gameAction.setTargetCoordinates(0, 7);
 
-        performAssertsCorrect(EUnitData.RELAY);
+        performAssertsCorrect(EUnitProperty.RELAY);
     }
 
     @Test
@@ -88,7 +87,7 @@ public class MoveRulesTest {
         gameAction.setSourceCoordinates(3, 7);
         gameAction.setTargetCoordinates(3, 5);
 
-        performAssertsCorrect(EUnitData.RELAY_HORSE);
+        performAssertsCorrect(EUnitProperty.RELAY_HORSE);
     }
 
     @Test
@@ -138,13 +137,13 @@ public class MoveRulesTest {
 
     @Test
     public void checkActionRealWrongRelay() {
-        Unit unit = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_NORTH);
+        Unit unit = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_NORTH);
         unit.setPosition(9, 10);
         gameState.addPriorityUnit(unit);
 
         expectedMessage = "CheckUnitMP : Not enough movement point, the unit has 1 MP, and you need 2 MP.\n" +
 				"CheckIsEmptyPath : There is no path found using 1 movement points.\n" +
-				"CheckIsPriorityUnit : There are other units that need to be moved first.\n";
+				"CheckIsPriorityUnit : There are next units that need to be moved first.\n";
         gameAction.setSourceCoordinates(0, 8);
         gameAction.setTargetCoordinates(0, 6);
 
@@ -166,11 +165,11 @@ public class MoveRulesTest {
         gameAction.setSourceCoordinates(23, 8);
         gameAction.setTargetCoordinates(23, 9);
 
-        performAssertsCorrect(EUnitData.RELAY);
+        performAssertsCorrect(EUnitProperty.RELAY);
         gameAction.setSourceCoordinates(24, 8);
         gameAction.setTargetCoordinates(24, 9);
 
-        performAssertsCorrect(EUnitData.INFANTRY);
+        performAssertsCorrect(EUnitProperty.INFANTRY);
 
         Building arsenal = null;
         for (Building b : gameState.getAllBuildings()) {
@@ -187,7 +186,7 @@ public class MoveRulesTest {
         gameAction.setSourceCoordinates(23, 8);
         gameAction.setTargetCoordinates(24, 9);
 
-        performAssertsCorrect(EUnitData.RELAY);
+        performAssertsCorrect(EUnitProperty.RELAY);
 
         Building arsenal = null;
         for (Building b : gameState.getAllBuildings()) {
@@ -199,7 +198,7 @@ public class MoveRulesTest {
         assertTrue("Arsenal broken after being occupied by an inoffensive unit.", arsenal != null);
     }
 
-	private void performAssertsCorrect(EUnitData unitData) {
+	private void performAssertsCorrect(EUnitProperty unitData) {
 		assertTrue(rule.checkAction(gameState, gameAction, ruleResult));
 		assertTrue(ruleResult.isValid());
 		rule.applyResult(gameState, gameAction, ruleResult);

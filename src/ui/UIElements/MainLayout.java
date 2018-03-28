@@ -8,13 +8,16 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
 
-public class MainLayout extends BorderPane{
+public class MainLayout extends BorderPane {
     public static final int CANVAS_WIDTH = 800;
     public static final int CANVAS_HEIGHT = 640;
     public static final int COMMAND_HEIGHT = 50;
@@ -46,7 +49,7 @@ public class MainLayout extends BorderPane{
     private CanvasPane gamePane;
     private TextField textField;
 
-    public MainLayout(){
+    public MainLayout() {
         this.setMinHeight(CANVAS_HEIGHT + COMMAND_HEIGHT + COORDINATES_BAR_WIDTH);
         this.setMinWidth(CANVAS_WIDTH + INFOS_WIDTH + COORDINATES_BAR_WIDTH);
 
@@ -75,25 +78,25 @@ public class MainLayout extends BorderPane{
         this.setRight(infosPane);
     }
 
-    public void refresh(GameState board){
+    public void refresh(GameState board) {
         canvas.draw(board);
-        commandPane.setPlayer(board.getActualPlayer().toString(), board.getActualPlayer()== EPlayer.PLAYER_SOUTH?Color.ORANGERED:Color.BLUE);
+        commandPane.setPlayer(board.getActualPlayer().toString(), board.getActualPlayer() == EPlayer.PLAYER_SOUTH ? Color.ORANGERED : Color.BLUE);
         commandPane.setActionLeft(board.getActionLeft());
     }
 
-    public void setCommandHandler(EventHandler<? super KeyEvent> value){
+    public void setCommandHandler(EventHandler<? super KeyEvent> value) {
         textField.setOnKeyPressed(value);
     }
 
-    public String getCommandText(){
+    public String getCommandText() {
         return textField.getText();
     }
 
-    public void clearCommandText(){
+    public void clearCommandText() {
         textField.clear();
     }
 
-    private class ChoiceBoxEvent implements ChangeListener<EMetricsMapType>{
+    private class ChoiceBoxEvent implements ChangeListener<EMetricsMapType> {
         @Override
         public void changed(ObservableValue ov, EMetricsMapType oldValue, EMetricsMapType newValue) {
             canvas.setMetricsMapType(newValue);
@@ -101,16 +104,17 @@ public class MainLayout extends BorderPane{
         }
     }
 
-    private class MetricsChannelEvent implements ChangeListener<Boolean>{
+    private class MetricsChannelEvent implements ChangeListener<Boolean> {
         private int id;
 
-        public MetricsChannelEvent(int id){
+        public MetricsChannelEvent(int id) {
             this.id = id;
         }
-		@Override
-		public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-			canvas.setDisplayMetrics(id, newValue);
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            canvas.setDisplayMetrics(id, newValue);
             canvas.draw(null);
-		}
-	}
+        }
+    }
 }

@@ -3,9 +3,9 @@ package game.board;
 import game.EPlayer;
 import game.board.exceptions.IllegalBoardCallException;
 import org.junit.Before;
-import org.junit.Test;import game.gameState.GameState;
-import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
+import org.junit.Test;
+import ruleEngine.entity.EBuildingProperty;
+import ruleEngine.entity.EUnitProperty;
 
 import static org.junit.Assert.*;
 
@@ -19,14 +19,14 @@ public class BoardTest {
 
     @Test
     public void test() throws Exception {
-        board.setBuilding(EBuildingData.ARSENAL, EPlayer.PLAYER_NORTH, 1, 1);
-        board.setUnit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH, 4, 5);
-        board.setUnit(EUnitData.CAVALRY, EPlayer.PLAYER_NORTH, 1, 1);
+        board.setBuilding(EBuildingProperty.ARSENAL, EPlayer.PLAYER_NORTH, 1, 1);
+        board.setUnit(EUnitProperty.INFANTRY, EPlayer.PLAYER_SOUTH, 4, 5);
+        board.setUnit(EUnitProperty.CAVALRY, EPlayer.PLAYER_NORTH, 1, 1);
         board.setInCommunication(EPlayer.PLAYER_NORTH, 2, 4, true);
 
-        assertTrue(board.getUnitType(4, 5) == EUnitData.INFANTRY);
-        assertTrue(board.getBuildingType(1, 1) == EBuildingData.ARSENAL);
-        assertTrue(board.getUnitType(1, 1) == EUnitData.CAVALRY);
+        assertTrue(board.getUnitType(4, 5) == EUnitProperty.INFANTRY);
+        assertTrue(board.getBuildingType(1, 1) == EBuildingProperty.ARSENAL);
+        assertTrue(board.getUnitType(1, 1) == EUnitProperty.CAVALRY);
 
         assertTrue(board.getUnitPlayer(1, 1) == EPlayer.PLAYER_NORTH);
         assertTrue(board.getBuildingPlayer(1, 1) == EPlayer.PLAYER_NORTH);
@@ -74,9 +74,9 @@ public class BoardTest {
 
         Board boardClone = board.clone();
 
-        assertTrue(board.getUnitType(4, 5) == EUnitData.INFANTRY);
-        assertTrue(board.getBuildingType(1, 1) == EBuildingData.ARSENAL);
-        assertTrue(board.getUnitType(1, 1) == EUnitData.CAVALRY);
+        assertTrue(board.getUnitType(4, 5) == EUnitProperty.INFANTRY);
+        assertTrue(board.getBuildingType(1, 1) == EBuildingProperty.ARSENAL);
+        assertTrue(board.getUnitType(1, 1) == EUnitProperty.CAVALRY);
 
         assertTrue(board.getUnitPlayer(1, 1) == EPlayer.PLAYER_NORTH);
         assertTrue(board.getBuildingPlayer(1, 1) == EPlayer.PLAYER_NORTH);

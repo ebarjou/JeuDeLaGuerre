@@ -1,8 +1,8 @@
 package game.board;
 
 import game.EPlayer;
-import ruleEngine.entity.EBuildingData;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EBuildingProperty;
+import ruleEngine.entity.EUnitProperty;
 
 public interface IBoard {
     int getWidth();
@@ -15,13 +15,13 @@ public interface IBoard {
 
     boolean isBuilding(int x, int y);
 
-    EBuildingData getBuildingType(int x, int y);
+    EBuildingProperty getBuildingType(int x, int y);
 
     EPlayer getBuildingPlayer(int x, int y);
 
     boolean isUnit(int x, int y);
 
-    EUnitData getUnitType(int x, int y);
+    EUnitProperty getUnitType(int x, int y);
 
     EPlayer getUnitPlayer(int x, int y);
 

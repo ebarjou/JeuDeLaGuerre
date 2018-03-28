@@ -1,12 +1,11 @@
 package ruleEngine.rules.atomicRules;
 
-import game.board.IBoard;
 import org.junit.Before;
 import org.junit.Test;import game.gameState.GameState;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EBuildingData;
+import ruleEngine.entity.EBuildingProperty;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -39,7 +38,7 @@ public class CheckIsEmptyAttackPathTest {
     @Test
     public void checkActionMockingCorrectPass() {
         when(iGameState.isBuilding(1, 3)).thenReturn(true);
-        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingData.PASS);
+        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingProperty.PASS);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
     }
@@ -47,7 +46,7 @@ public class CheckIsEmptyAttackPathTest {
     @Test
     public void checkActionMockingCorrectArsenal() {
         when(iGameState.isBuilding(1, 3)).thenReturn(true);
-        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingData.ARSENAL);
+        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingProperty.ARSENAL);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
     }
@@ -55,7 +54,7 @@ public class CheckIsEmptyAttackPathTest {
     @Test
     public void checkActionMockingCorrectFortress() {
         when(iGameState.isBuilding(1, 3)).thenReturn(true);
-        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingData.FORTRESS);
+        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingProperty.FORTRESS);
         assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
     }
@@ -63,7 +62,7 @@ public class CheckIsEmptyAttackPathTest {
     @Test
     public void checkActionMockingWrongMountain() {
         when(iGameState.isBuilding(1, 3)).thenReturn(true);
-        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingData.MOUNTAIN);
+        when(iGameState.getBuildingType(1, 3)).thenReturn(EBuildingProperty.MOUNTAIN);
         assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));

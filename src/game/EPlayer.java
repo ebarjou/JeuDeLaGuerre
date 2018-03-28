@@ -9,12 +9,12 @@ public enum EPlayer {
     private final int val;
     private final Color preferedColor;
 
-    EPlayer(int val, Color preferedColor){
+    EPlayer(int val, Color preferedColor) {
         this.val = val;
-		this.preferedColor = preferedColor;
-	}
+        this.preferedColor = preferedColor;
+    }
 
-    public EPlayer other(){
+    public EPlayer next() {
         if (val == 0)
             return PLAYER_SOUTH;
 
@@ -23,14 +23,16 @@ public enum EPlayer {
 
     @Override
     public String toString() {
-        switch (val){
-            case 0 : return "North Player";
-            default: return "South Player";
+        switch (val) {
+            case 0:
+                return "North Player";
+            default:
+                return "South Player";
         }
 
     }
 
-	public Color getPreferedColor() {
-		return preferedColor;
-	}
+    public Color getPreferedColor() {
+        return preferedColor;
+    }
 }

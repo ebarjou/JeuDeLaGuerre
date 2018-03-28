@@ -12,26 +12,23 @@ import java.util.stream.Collectors;
 
 public class InfoModule {
 
-	private static RuleChecker ruleChecker;
+    private final static RuleChecker ruleChecker = new RuleChecker();
 
-	public static double[][] getInfoMap(EMetricsMapType type, GameState gameState, EPlayer player) {
-		IMetricsMapMethod m = type.getMethod();
-		return m.compute(gameState, player);
-	}
+    public static double[][] getInfoMap(EMetricsMapType type, GameState gameState, EPlayer player) {
+        IMetricsMapMethod m = type.getMethod();
+        return m.compute(gameState, player);
+    }
 
-	public static Collection<MoveWrapper> getAvailableMoves(EMetricsMoveType type, GameState gameState, EPlayer player) {
-		IMetricsMoveMethod m = type.getMethod();
-		return m.compute(gameState, player);
-	}
+    public static Collection<MoveWrapper> getAvailableMoves(EMetricsMoveType type, GameState gameState, EPlayer player) {
+        IMetricsMoveMethod method = type.getMethod();
+        return method.compute(gameState, player);
+    }
 
-	public static Collection<Unit> getAllUnitsFromPlayer(GameState state, EPlayer player) {
-		return state.getAllUnits().stream().filter((unit -> unit.getPlayer().equals(player))).collect(Collectors.toList());
-	}
+    public static Collection<Unit> getAllUnitsFromPlayer(GameState state, EPlayer player) {
+        return state.getAllUnits().stream().filter((unit -> unit.getPlayer().equals(player))).collect(Collectors.toList());
+    }
 
-	public static RuleChecker getRuleChecker() {
-		if (ruleChecker == null)
-			ruleChecker = new RuleChecker();
-
-		return ruleChecker;
-	}
+    public static RuleChecker getRuleChecker() {
+        return ruleChecker;
+    }
 }

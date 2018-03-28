@@ -8,7 +8,7 @@ import org.junit.Test;
 import ruleEngine.Coordinates;
 import ruleEngine.GameAction;
 import ruleEngine.RuleResult;
-import ruleEngine.entity.EUnitData;
+import ruleEngine.entity.EUnitProperty;
 
 import java.util.LinkedList;
 
@@ -28,7 +28,7 @@ public class CheckIsPriorityUnitTest {
         gameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
-        expectedMessage = "CheckIsPriorityUnit : There are other units that need to be moved first.\n";
+        expectedMessage = "CheckIsPriorityUnit : There are next units that need to be moved first.\n";
         rule = new CheckIsPriorityUnit();
         units = new LinkedList<>();
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(1, 1));
@@ -45,7 +45,7 @@ public class CheckIsPriorityUnitTest {
 
     @Test
     public void checkActionMockingCorrectPriorityUnitSelected() {
-        Unit u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
+        Unit u = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_SOUTH);
         u.setPosition(1, 1);
         units.add(u);
         assertTrue(rule.checkAction(gameState, gameAction, ruleResult));
@@ -54,7 +54,7 @@ public class CheckIsPriorityUnitTest {
 
     @Test
     public void checkActionMockingCorrectWrongPriorityUnitNotSelected() {
-        Unit u = new Unit(EUnitData.INFANTRY, EPlayer.PLAYER_SOUTH);
+        Unit u = new Unit(EUnitProperty.INFANTRY, EPlayer.PLAYER_SOUTH);
         u.setPosition(0, 0);
         units.add(u);
         assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
