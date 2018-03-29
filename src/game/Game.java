@@ -107,10 +107,10 @@ public class Game {
                 LoadFile lf = new LoadFile();
                 try {
                     lf.save(cmd.getText(), gameState);
+                    return new GameResponse(VALID, "Game saved successfully.", gameState, gameState.getActualPlayer());
                 } catch (IOException e) {
                     return new GameResponse(INVALID, e.getMessage(), gameState, gameState.getActualPlayer());
                 }
-                break;
             }
             case REVERT: {
                 if (!historyGameState.isEmpty())

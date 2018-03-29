@@ -9,6 +9,10 @@ import org.junit.Test;
 import player.Player;
 import ruleEngine.exceptions.IncorrectGameActionException;
 import system.LoadFile;
+import ui.GameResponse;
+import ui.UIAction;
+import ui.commands.GameToUserCall;
+import ui.commands.UserToGameCall;
 
 import java.io.IOException;
 
@@ -18,21 +22,24 @@ import static org.mockito.Mockito.mock;
 public class DebordGameTest {
 
     private GameState gameState;
-    private RuleChecker rule;
+    private Game game;
     private int turn, actionNb;
     private EPlayer actualPlayer;
 
     @Before
     public void setUp() {
-        rule = new RuleChecker();
-
         Player player = mock(Player.class);
         Game.init(player, player);
+        game = Game.getInstance();
     }
 
-    private void loadTurn(String file, int turn) throws Exception {
-        LoadFile lf = new LoadFile();
-        lf.loadFile(file);
+    private void loadTurn(String filename, int turn) {
+        UIAction cmd = new UIAction(UserToGameCall.LOAD, EGameActionType.COMMUNICATION);
+        cmd.setText(filename);
+        game.processCommand(cmd);
+        GameResponse gr = game.processCommand(cmd);
+        assertTrue("Can't check the actions of DebordGameTest because either LOAD or COMMUNICATION failed beforehand on file" +
+                filename + ".", gr.getResponse() == GameToUserCall.VALID);
 
         gameState = Game.getInstance().getGameState();
         actualPlayer = gameState.getActualPlayer();
@@ -40,10 +47,13 @@ public class DebordGameTest {
         this.turn = turn;
         actionNb = 5 - gameState.getActionLeft();
         if (actionNb < 0)   actionNb = 0;
+    }
 
-        GameAction communication = new GameAction(actualPlayer, EGameActionType.COMMUNICATION);
-        RuleResult r = rule.checkAndApplyAction(gameState, communication);
-        assertTrue("Can't check the actions of DebordGameTest because action COMMUNICATION failed beforehand.", r.isValid());
+    private void saveGame(String filename) {
+        UIAction cmd = new UIAction(UserToGameCall.SAVE, EGameActionType.NONE);
+        cmd.setText(filename);
+        GameResponse gr = game.processCommand(cmd);
+        assertTrue("Action SAVE wasn't recognized by the Game.", gr.getResponse() == GameToUserCall.VALID);
     }
 
     private void checkActionValid(EGameActionType gameActionType) {
@@ -72,16 +82,12 @@ public class DebordGameTest {
     private void checkActionValid(GameAction gameAction){
         ++actionNb;
 
-        RuleResult ruleResult = new RuleResult();
-        ruleResult.invalidate();
-        try {
-            ruleResult = rule.checkAndApplyAction(gameState, gameAction);
-        } catch (IncorrectGameActionException e) {
-            assertTrue("Action " + gameAction.getActionType() + " wasn't recognized by the RuleChecker.", false);
-        }
-        assertTrue(this.getClass().getSimpleName() + " failed at turn " + ((turn + 1) / 2) + ((turn % 2 != 0 ) ? "" : "bis" ) + ", action " + actionNb + ".\n" +
-                "Log Message : " + ruleResult.getLogMessage(), ruleResult.isValid());
+        UIAction cmd = new UIAction(UserToGameCall.GAME_ACTION, gameAction);
+        GameResponse gr = game.processCommand(cmd);
+        assertTrue("Action " + gameAction.getActionType() + " wasn't recognized by the game.",
+                gr.getResponse() == GameToUserCall.VALID);
 
+        gameState = game.getGameState();
         if (gameAction.getActionType() == EGameActionType.END_TURN) {
             saveGame("debordGameTurns/Turn" + ((turn + 1) / 2) + ((turn % 2 != 0 ) ? "" : "bis" ) + ".txt");
             actionNb = 0;
@@ -90,18 +96,9 @@ public class DebordGameTest {
         }
     }
 
-    private void saveGame(String filename) {
-        LoadFile lf = new LoadFile();
-        try {
-            lf.save(filename, gameState);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     @Test
-    public void testTurns1To8() throws Exception {
+    public void testTurns1To8() {
         loadTurn("presets/debord.txt", 1);
 
         // Turn 1-North
@@ -240,7 +237,7 @@ public class DebordGameTest {
     }
 
     @Test
-    public void testTurns42To48() throws Exception {
+    public void testTurns42To48() {
         loadTurn("presets/debordTurn41bis.txt", 83);
 
         // Turn 42-North
