@@ -343,5 +343,49 @@ public class DebordGameTest {
         checkActionValid(EGameActionType.MOVE, 14, 'J', 15, 'K'); // I
         checkActionValid(EGameActionType.END_TURN);
 
+        // Turn 47-North
+        checkActionValid(EGameActionType.MOVE, 12, 'H', 13, 'I'); // I
+        checkActionValid(EGameActionType.MOVE, 15, 'J', 14, 'J'); // I
+        checkActionValid(EGameActionType.MOVE, 16, 'H', 17, 'I'); // I
+        checkActionValid(EGameActionType.MOVE, 15, 'H', 16, 'H'); // I
+        checkActionValid(EGameActionType.MOVE, 14, 'I', 15, 'J'); // C
+        // Check the result of the attack
+        assertTrue(gameState.isUnit(15, 9));
+        checkActionValid(EGameActionType.ATTACK, 15, 'J', 16, 'J'); // C to I
+        assertTrue(!gameState.isUnit(15, 9));
+        checkActionValid(EGameActionType.END_TURN);
+
+        // Turn 47-South
+        checkActionValid(EGameActionType.MOVE, 15, 'L', 17, 'L'); // Ac
+        checkActionValid(EGameActionType.MOVE, 16, 'L', 17, 'J'); // C
+        checkActionValid(EGameActionType.MOVE, 14, 'L', 15, 'L'); // I
+        checkActionValid(EGameActionType.MOVE, 15, 'M', 16, 'L'); // I
+        checkActionValid(EGameActionType.MOVE, 20, 'J', 18, 'I'); // C
+        // Check the result of the attack
+        assertTrue(gameState.isUnit(16, 8));
+        checkActionValid(EGameActionType.ATTACK, 18, 'I', 17, 'I'); // C to I
+        assertTrue(!gameState.isUnit(16, 8));
+        checkActionValid(EGameActionType.END_TURN);
+
+        // Turn 48-North
+        checkActionValid(EGameActionType.MOVE, 16, 'I', 17, 'H'); // A
+        checkActionValid(EGameActionType.MOVE, 14, 'H', 16, 'I'); // C
+        checkActionValid(EGameActionType.MOVE, 13, 'G', 14, 'I'); // Ac
+        checkActionValid(EGameActionType.MOVE, 13, 'H', 14, 'H'); // I
+        checkActionValid(EGameActionType.MOVE, 15, 'J', 17, 'I'); // C
+        // Check the result of the attack
+        assertTrue(gameState.isUnit(17, 8));
+        checkActionValid(EGameActionType.ATTACK, 17, 'I', 18, 'I'); // C to C
+        assertTrue(!gameState.isUnit(17, 8));
+        checkActionValid(EGameActionType.END_TURN);
+
+        // Turn 48-South
+        checkActionValid(EGameActionType.MOVE, 15, 'K', 16, 'K'); // I
+        checkActionValid(EGameActionType.MOVE, 17, 'M', 19, 'N'); // Tc
+        checkActionValid(EGameActionType.MOVE, 19, 'K', 19, 'L'); // A
+        checkActionValid(EGameActionType.MOVE, 18, 'J', 19, 'J'); // I
+        checkActionValid(EGameActionType.MOVE, 19, 'I', 18, 'K'); // C
+        checkActionValid(EGameActionType.END_TURN);
+
     }
 }
