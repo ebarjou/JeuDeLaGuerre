@@ -32,7 +32,7 @@ public class RuleCompositeOR extends RuleComposite {
         }
         if (!valid) {
             result.invalidate();
-            result.addMessage(this, tmpResult.getLogMessage());
+            result.addMessage(tmpResult.getLogMessage());
         }
         return valid;
     }
