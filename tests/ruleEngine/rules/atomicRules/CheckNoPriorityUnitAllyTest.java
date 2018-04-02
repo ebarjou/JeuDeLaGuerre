@@ -22,7 +22,7 @@ public class CheckNoPriorityUnitAllyTest {
 	private LinkedList<Unit> units;
 
 	@Before
-    public void setUp() throws Exception {
+    public void setUp() {
         iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();

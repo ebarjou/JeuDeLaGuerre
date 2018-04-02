@@ -19,7 +19,7 @@ public class CheckOnBoardTest {
     private String expectedMessage;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         iBoard = mock(IBoard.class);
         iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);

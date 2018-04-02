@@ -572,7 +572,7 @@ public class AttackRulesTest {
 
         performAssertsCorrectMove(EUnitProperty.INFANTRY);
 
-        expectedMessage = "RuleCompositeOR : CheckUnitRange : Not enough range to attack, the unit has a range of 2, and you need a range of 3.\n" +
+        expectedMessage = "CheckUnitRange : Not enough range to attack, the unit has a range of 2, and you need a range of 3.\n" +
                 "CheckIsCharge : The initiating unit is not able to charge.\n\n";
         gameAction.setSourceCoordinates(10, 8);
         gameAction.setTargetCoordinates(7, 8);
@@ -650,7 +650,7 @@ public class AttackRulesTest {
 
         performAssertsCorrectMove(EUnitProperty.CAVALRY);
 
-        expectedMessage = "RuleCompositeOR : CheckUnitRange : Not enough range to attack, the unit has a range of 2, and you need a range of 3.\n" +
+        expectedMessage = "CheckUnitRange : Not enough range to attack, the unit has a range of 2, and you need a range of 3.\n" +
                 "CheckIsCharge : The initiating unit is not in a position to proceed a charge.\n\n";
         gameAction.setSourceCoordinates(9, 8);
         gameAction.setTargetCoordinates(12, 8);
@@ -665,7 +665,7 @@ public class AttackRulesTest {
 
         performAssertsCorrectMove(EUnitProperty.ARTILLERY);
 
-        expectedMessage = "RuleCompositeOR : CheckUnitRange : Not enough range to attack, the unit has a range of 3, and you need a range of 4.\n" +
+        expectedMessage = "CheckUnitRange : Not enough range to attack, the unit has a range of 3, and you need a range of 4.\n" +
                 "CheckIsCharge : The initiating unit is not able to charge.\n\n";
         gameAction.setSourceCoordinates(11, 12);
         gameAction.setTargetCoordinates(7, 8);
@@ -680,7 +680,7 @@ public class AttackRulesTest {
 
         performAssertsCorrectMove(EUnitProperty.ARTILLERY_HORSE);
 
-        expectedMessage = "RuleCompositeOR : CheckUnitRange : Not enough range to attack, the unit has a range of 3, and you need a range of 4.\n" +
+        expectedMessage = "CheckUnitRange : Not enough range to attack, the unit has a range of 3, and you need a range of 4.\n" +
                 "CheckIsCharge : The initiating unit is not able to charge.\n\n" +
                 "CheckIsInCommunication : This unit is not in the player communication.\n";
         gameAction.setSourceCoordinates(5, 5);

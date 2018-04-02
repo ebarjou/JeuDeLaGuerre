@@ -21,7 +21,7 @@ public class CheckAreAlignedTest {
     private CheckAreAligned rule;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         ruleResult = new RuleResult();
         iGameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
