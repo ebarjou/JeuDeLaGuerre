@@ -4,6 +4,7 @@ import game.gameState.GameState;
 import ruleEngine.exceptions.IncorrectGameActionException;
 import ruleEngine.rules.masterRules.*;
 import ruleEngine.rules.newRules.IRule;
+import ruleEngine.rules.newRules.RuleComposite;
 
 /**
  * Object acting as a hub for {@link game.Game} to check actions on the board. Should be instantiated once.
@@ -12,11 +13,11 @@ import ruleEngine.rules.newRules.IRule;
  * @see RuleResult
  */
 public class RuleChecker {
-    private final IRule moveRuleMaster;
-    private final IRule attackRuleMaster;
-    private final IRule commRuleMaster;
-    private final IRule endRuleMaster;
-    private final IRule victoryRuleMaster;
+    private final RuleComposite moveRuleMaster;
+    private final RuleComposite attackRuleMaster;
+    private final RuleComposite commRuleMaster;
+    private final RuleComposite endRuleMaster;
+    private final RuleComposite victoryRuleMaster;
 
     public RuleChecker() {
         moveRuleMaster = new MoveRules();
@@ -64,7 +65,7 @@ public class RuleChecker {
      */
     public RuleResult checkAndApplyAction(GameState gameState, GameAction action) throws IncorrectGameActionException {
         RuleResult result = new RuleResult();
-        IRule mr;
+        RuleComposite mr;
         boolean checkVictory = false;
         switch (action.getActionType()) {
             case MOVE:

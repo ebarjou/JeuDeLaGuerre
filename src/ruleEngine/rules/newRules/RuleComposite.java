@@ -34,7 +34,8 @@ public abstract class RuleComposite implements IRule {
      * @param action The allowed action on the game and thus to be performed.
      * @param result Information to give to the game once the action is performed.
      */
-    @Override
+
+
     public void applyResult(GameState state, GameAction action, RuleResult result) {
 
     }
@@ -60,7 +61,6 @@ public abstract class RuleComposite implements IRule {
      *
      * @param rule The atomic to check.
      */
-    @Override
     public void add(IRule rule) {
         rules.add(rule);
     }

@@ -31,19 +31,19 @@ public class AttackRules extends RuleCompositeAND {
 
     public AttackRules() {
         super.add(new CheckPlayerTurn());
-        IRule onBoardDep = new RuleCompositeLazyAND();
+        RuleComposite onBoardDep = new RuleCompositeLazyAND();
         onBoardDep.add(new CheckOnBoard());
         // Creating rules depending of CheckOnBoard
 
-        IRule isAllyUnitDep = new RuleCompositeLazyAND();
+        RuleComposite isAllyUnitDep = new RuleCompositeLazyAND();
         isAllyUnitDep.add(new CheckIsAllyUnit());
 
         //-Creating rules depending of CheckIsAllyUnit
-        IRule andRules = new RuleCompositeAND();
+        RuleComposite andRules = new RuleCompositeAND();
         andRules.add(new CheckLastMove());
 
         //--Creating rules for range attack
-        IRule rangeRules = new RuleCompositeOR();
+        RuleComposite rangeRules = new RuleCompositeOR();
         rangeRules.add(new CheckUnitRange());
         rangeRules.add(new CheckIsCharge());
 
@@ -52,7 +52,7 @@ public class AttackRules extends RuleCompositeAND {
         andRules.add(new CheckCanAttackUnit());
 
         //--Creating not isRelay rule and adding it in the dependencies of CheckIsAllyUnit
-        IRule notRelay = new RuleCompositeNOT();
+        RuleComposite notRelay = new RuleCompositeNOT();
         notRelay.add(new CheckIsRelay());
         andRules.add(notRelay);
 
@@ -65,7 +65,7 @@ public class AttackRules extends RuleCompositeAND {
         andRules.add(new CheckIsInCommunication());
 
         //--Creating and adding rules dependencies of isEnnemy -> AreAligned -> IsEmptyAttackPath
-        IRule areAlignedDep = new RuleCompositeLazyAND();
+        RuleComposite areAlignedDep = new RuleCompositeLazyAND();
         areAlignedDep.add(new CheckIsEnemyUnit());
         areAlignedDep.add(new CheckAreAligned());
         areAlignedDep.add(new CheckIsEmptyAttackPath());

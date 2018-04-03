@@ -8,7 +8,7 @@ import ruleEngine.RuleResult;
 import ruleEngine.entity.EBuildingProperty;
 import ruleEngine.entity.EUnitProperty;
 import ruleEngine.rules.atomicRules.*;
-import ruleEngine.rules.newRules.IRule;
+import ruleEngine.rules.newRules.RuleComposite;
 import ruleEngine.rules.newRules.RuleCompositeAND;
 import ruleEngine.rules.newRules.RuleCompositeLazyAND;
 import ruleEngine.rules.newRules.RuleCompositeLazyOR;
@@ -25,17 +25,17 @@ public class MoveRules extends RuleCompositeAND {
         super.add(new CheckPlayerTurn());
         super.add(new CheckPlayerMovesLeft());
 
-        IRule dependentOnBoard = new RuleCompositeLazyAND();
+        RuleComposite dependentOnBoard = new RuleCompositeLazyAND();
         dependentOnBoard.add(new CheckOnBoard());
 
-        IRule rulesDependentOfOnBoard = new RuleCompositeAND();
+        RuleComposite rulesDependentOfOnBoard = new RuleCompositeAND();
 
-        IRule dependentIsUnit = new RuleCompositeLazyAND();
+        RuleComposite dependentIsUnit = new RuleCompositeLazyAND();
         dependentIsUnit.add(new CheckIsAllyUnit());
 
-        IRule rulesDependentOfIsUnit = new RuleCompositeAND();
+        RuleComposite rulesDependentOfIsUnit = new RuleCompositeAND();
 
-        IRule orRuleCommunication = new RuleCompositeLazyOR();
+        RuleComposite orRuleCommunication = new RuleCompositeLazyOR();
         orRuleCommunication.add(new CheckIsInCommunication());
         orRuleCommunication.add(new CheckIsRelay());
         rulesDependentOfIsUnit.add(orRuleCommunication);

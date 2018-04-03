@@ -6,7 +6,7 @@ import ruleEngine.RuleResult;
 import ruleEngine.rules.atomicRules.CheckIsNoArsenalEnemy;
 import ruleEngine.rules.atomicRules.CheckIsNoEnemy;
 import ruleEngine.rules.atomicRules.CheckPlayerTurn;
-import ruleEngine.rules.newRules.IRule;
+import ruleEngine.rules.newRules.RuleComposite;
 import ruleEngine.rules.newRules.RuleCompositeAND;
 import ruleEngine.rules.newRules.RuleCompositeLazyOR;
 
@@ -17,7 +17,7 @@ public class VictoryRules extends RuleCompositeAND {
 
     public VictoryRules() {
         super.add(new CheckPlayerTurn());
-        IRule orDep = new RuleCompositeLazyOR();
+        RuleComposite orDep = new RuleCompositeLazyOR();
         orDep.add(new CheckIsNoArsenalEnemy());
         orDep.add(new CheckIsNoEnemy());
         super.add(orDep);

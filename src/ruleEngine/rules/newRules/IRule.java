@@ -15,9 +15,4 @@ public interface IRule {
         return getName();
     }
 
-    default void applyResult(GameState state, GameAction action, RuleResult result) {
-    }
-
-    default void add(IRule r) {
-    }
 }
