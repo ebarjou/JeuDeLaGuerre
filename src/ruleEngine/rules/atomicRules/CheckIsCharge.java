@@ -43,7 +43,12 @@ public class CheckIsCharge implements IRule {
         int dirY = dst.getY() - src.getY();
         int diffX = Math.abs(dirX);
         int diffY = Math.abs(dirY);
-        if ((diffX != diffY) && (dirX != 0) && (dirY != 0)) return false;
+        if ((diffX != diffY) && (dirX != 0) && (dirY != 0)) {
+            result.addMessage(this,
+                    "The targeted unit is not aligned with the initiating unit and cannot be charged.");
+            result.invalidate();
+            return false;
+        }
 
         if (diffX != 0) dirX = dirX / diffX; // 1 or -1
         if (diffY != 0) dirY = dirY / diffY; // 1 or -1

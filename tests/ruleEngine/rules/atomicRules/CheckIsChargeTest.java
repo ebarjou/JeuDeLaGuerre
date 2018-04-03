@@ -1,7 +1,6 @@
 package ruleEngine.rules.atomicRules;
 
 import game.EPlayer;
-import game.board.Building;
 import game.board.Unit;
 import game.gameState.GameState;
 import org.junit.Before;
@@ -21,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 public class CheckIsChargeTest {
 
-    private GameState iGameState;
+    private GameState gameState;
     private GameAction gameAction;
     private RuleResult ruleResult;
     private CheckIsCharge rule;
@@ -31,24 +30,24 @@ public class CheckIsChargeTest {
     @Before
     public void setUp(){
         rule = new CheckIsCharge();
-        iGameState = mock(GameState.class);
+        gameState = mock(GameState.class);
         gameAction = mock(GameAction.class);
         ruleResult = new RuleResult();
-        when(iGameState.getUnitType(5, 5)).thenReturn(EUnitProperty.INFANTRY);
-        when(iGameState.getUnitType(6, 5)).thenReturn(EUnitProperty.CAVALRY);
-        when(iGameState.getUnitType(7, 5)).thenReturn(EUnitProperty.CAVALRY);
-        when(iGameState.getUnitType(8, 5)).thenReturn(EUnitProperty.CAVALRY);
-        when(iGameState.isUnit(5, 5)).thenReturn(true);
-        when(iGameState.isUnit(6, 5)).thenReturn(true);
-        when(iGameState.isUnit(7, 5)).thenReturn(true);
-        when(iGameState.isUnit(8, 5)).thenReturn(true);
-        when(iGameState.getUnitPlayer(5, 5)).thenReturn(EPlayer.PLAYER_NORTH);
-        when(iGameState.getUnitPlayer(6, 5)).thenReturn(EPlayer.PLAYER_NORTH);
-        when(iGameState.getUnitPlayer(7, 5)).thenReturn(EPlayer.PLAYER_NORTH);
-        when(iGameState.getUnitPlayer(8, 5)).thenReturn(EPlayer.PLAYER_NORTH);
+        when(gameState.getUnitType(5, 5)).thenReturn(EUnitProperty.INFANTRY);
+        when(gameState.getUnitType(6, 5)).thenReturn(EUnitProperty.CAVALRY);
+        when(gameState.getUnitType(7, 5)).thenReturn(EUnitProperty.CAVALRY);
+        when(gameState.getUnitType(8, 5)).thenReturn(EUnitProperty.CAVALRY);
+        when(gameState.isUnit(5, 5)).thenReturn(true);
+        when(gameState.isUnit(6, 5)).thenReturn(true);
+        when(gameState.isUnit(7, 5)).thenReturn(true);
+        when(gameState.isUnit(8, 5)).thenReturn(true);
+        when(gameState.getUnitPlayer(5, 5)).thenReturn(EPlayer.PLAYER_NORTH);
+        when(gameState.getUnitPlayer(6, 5)).thenReturn(EPlayer.PLAYER_NORTH);
+        when(gameState.getUnitPlayer(7, 5)).thenReturn(EPlayer.PLAYER_NORTH);
+        when(gameState.getUnitPlayer(8, 5)).thenReturn(EPlayer.PLAYER_NORTH);
         when(gameAction.getPlayer()).thenReturn(EPlayer.PLAYER_NORTH);
         cantAttackUnits = new ArrayList<>();
-        when(iGameState.getCantAttackUnits()).thenReturn(cantAttackUnits);
+        when(gameState.getCantAttackUnits()).thenReturn(cantAttackUnits);
 
     }
 
@@ -59,7 +58,7 @@ public class CheckIsChargeTest {
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(4, 5));
         expectedMessage = rule.getName() + " : The initiating unit is not able to charge.\n";
 
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
@@ -70,7 +69,7 @@ public class CheckIsChargeTest {
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(6, 5));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(9, 5));
 
-        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(gameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
     }
 
@@ -81,7 +80,7 @@ public class CheckIsChargeTest {
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(9, 5));
         expectedMessage = rule.getName() + " : The initiating unit is not able to charge.\n";
 
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
@@ -99,7 +98,7 @@ public class CheckIsChargeTest {
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(9, 5));
         expectedMessage = rule.getName() + " : The initiating unit is not in a position to proceed a charge.\n";
 
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
@@ -111,7 +110,7 @@ public class CheckIsChargeTest {
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(10, 5));
         expectedMessage = rule.getName() + " : The initiating unit is not in a position to proceed a charge.\n";
 
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
@@ -119,14 +118,14 @@ public class CheckIsChargeTest {
     @Test
     public void checkActionMockingWrongCavalryInFortress1() {
         // Scenario 6
-        when(iGameState.isBuilding(6, 5)).thenReturn(true);
-        when(iGameState.getBuildingType(6, 5)).thenReturn(EBuildingProperty.FORTRESS);
+        when(gameState.isBuilding(6, 5)).thenReturn(true);
+        when(gameState.getBuildingType(6, 5)).thenReturn(EBuildingProperty.FORTRESS);
 
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(6, 5));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(9, 5));
         expectedMessage = rule.getName() + " : The initiating unit is not in a position to proceed a charge.\n";
 
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
@@ -134,14 +133,14 @@ public class CheckIsChargeTest {
     @Test
     public void checkActionMockingWrongCavalryInFortress2() {
         // Scenario 7
-        when(iGameState.isBuilding(8, 5)).thenReturn(true);
-        when(iGameState.getBuildingType(8, 5)).thenReturn(EBuildingProperty.FORTRESS);
+        when(gameState.isBuilding(8, 5)).thenReturn(true);
+        when(gameState.getBuildingType(8, 5)).thenReturn(EBuildingProperty.FORTRESS);
 
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(6, 5));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(9, 5));
         expectedMessage = rule.getName() + " : The initiating unit is not in a position to proceed a charge.\n";
 
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
@@ -149,14 +148,14 @@ public class CheckIsChargeTest {
     @Test
     public void checkActionMockingWrongEnemyInFortress() {
         // Scenario 8
-        when(iGameState.isBuilding(9, 5)).thenReturn(true);
-        when(iGameState.getBuildingType(9, 5)).thenReturn(EBuildingProperty.FORTRESS);
+        when(gameState.isBuilding(9, 5)).thenReturn(true);
+        when(gameState.getBuildingType(9, 5)).thenReturn(EBuildingProperty.FORTRESS);
 
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(6, 5));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(9, 5));
         expectedMessage = rule.getName() + " : The targeted unit is in a pass or a fortress and cannot be charged.\n";
 
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
@@ -164,27 +163,27 @@ public class CheckIsChargeTest {
     @Test
     public void checkActionMockingCorrectCavalryInPass() {
         // Scenario 9
-        when(iGameState.isBuilding(6, 5)).thenReturn(true);
-        when(iGameState.getBuildingType(6, 5)).thenReturn(EBuildingProperty.PASS);
+        when(gameState.isBuilding(6, 5)).thenReturn(true);
+        when(gameState.getBuildingType(6, 5)).thenReturn(EBuildingProperty.PASS);
 
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(6, 5));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(9, 5));
 
-        assertTrue(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertTrue(rule.checkAction(gameState, gameAction, ruleResult));
         assertTrue(ruleResult.isValid());
     }
 
     @Test
     public void checkActionMockingWrongEnemyInPass() {
         // Scenario 10
-        when(iGameState.isBuilding(9, 5)).thenReturn(true);
-        when(iGameState.getBuildingType(9, 5)).thenReturn(EBuildingProperty.PASS);
+        when(gameState.isBuilding(9, 5)).thenReturn(true);
+        when(gameState.getBuildingType(9, 5)).thenReturn(EBuildingProperty.PASS);
 
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(6, 5));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(9, 5));
         expectedMessage = rule.getName() + " : The targeted unit is in a pass or a fortress and cannot be charged.\n";
 
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
@@ -196,7 +195,7 @@ public class CheckIsChargeTest {
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(4, 5));
         expectedMessage = rule.getName() + " : The initiating unit is not in a position to proceed a charge.\n";
 
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
@@ -204,13 +203,25 @@ public class CheckIsChargeTest {
     @Test
     public void checkActionMockingWrongEnemyCavalry() {
         // Scenario 12
-        when(iGameState.getUnitPlayer(8, 5)).thenReturn(EPlayer.PLAYER_SOUTH);
+        when(gameState.getUnitPlayer(8, 5)).thenReturn(EPlayer.PLAYER_SOUTH);
 
         when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(6, 5));
         when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(9, 5));
         expectedMessage = rule.getName() + " : The initiating unit is not in a position to proceed a charge.\n";
 
-        assertFalse(rule.checkAction(iGameState, gameAction, ruleResult));
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
+        assertFalse(ruleResult.isValid());
+        assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
+    }
+
+    @Test
+    public void checkActionMockingWrongUnaligned() {
+        // Scenario 13
+        when(gameAction.getSourceCoordinates()).thenReturn(new Coordinates(6, 5));
+        when(gameAction.getTargetCoordinates()).thenReturn(new Coordinates(8, 6));
+        expectedMessage = rule.getName() + " : The targeted unit is not aligned with the initiating unit and cannot be charged.\n";
+
+        assertFalse(rule.checkAction(gameState, gameAction, ruleResult));
         assertFalse(ruleResult.isValid());
         assertTrue(ruleResult.getLogMessage().equals(expectedMessage));
     }
