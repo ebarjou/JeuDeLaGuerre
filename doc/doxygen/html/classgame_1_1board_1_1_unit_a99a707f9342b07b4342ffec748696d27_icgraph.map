@@ -1,0 +1,16 @@
+<map id="game.board.Unit.getY" name="game.board.Unit.getY">
+<area shape="rect" id="node2" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html#a5f92c163d4402bbd591c2673d09fbbaf" title="analyse.mapMethods.Abstract\lStaticMapMethod.isInCommunication" alt="" coords="201,71,440,112"/>
+<area shape="rect" id="node4" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html#a99af8635f28b5755001b9dfbbeee6b30" title="analyse.mapMethods.Abstract\lStaticMapMethod.applyAllAxis" alt="" coords="221,5,421,47"/>
+<area shape="rect" id="node5" href="$classgame_1_1game_state_1_1_game_state.html#a1e0ecf6737cb33799a09b30eb5f81431" title="game.gameState.GameState.addUnit" alt="" coords="201,137,440,163"/>
+<area shape="rect" id="node11" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_last_move.html#a1af50d2d1a89a15746df969f1925f66c" title="ruleEngine.rules.atomicRules.\lCheckLastMove.checkAction" alt="" coords="223,340,418,381"/>
+<area shape="rect" id="node12" href="$classsystem_1_1_load_file.html#a33ddd03f92888eb739d04f70f893e076" title="system.LoadFile.hasToMove" alt="" coords="227,187,414,214"/>
+<area shape="rect" id="node14" href="$classsystem_1_1_load_file.html#a5d3c0a0b1a0c4fda2ebb8f992db8eeae" title="system.LoadFile.isLastMove" alt="" coords="227,238,414,265"/>
+<area shape="rect" id="node15" href="$classsystem_1_1_load_file.html#aa76e99fc2bb6200c6905b151c0092b3b" title="system.LoadFile.canAttack" alt="" coords="230,289,411,315"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html#a314b86189e095a68a77027e051f0ea9c" title="analyse.mapMethods.Abstract\lStaticMapMethod.compute" alt="" coords="488,31,687,72"/>
+<area shape="rect" id="node6" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="488,125,687,167"/>
+<area shape="rect" id="node7" href="$classsystem_1_1_load_file.html#adf1c31e03c1dd422118d122ef17dc96e" title="system.LoadFile.loadFile" alt="" coords="504,191,671,218"/>
+<area shape="rect" id="node8" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="735,217,937,243"/>
+<area shape="rect" id="node9" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="985,217,1108,243"/>
+<area shape="rect" id="node10" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="1156,217,1239,243"/>
+<area shape="rect" id="node13" href="$classsystem_1_1_load_file.html#ae74023593b3080a395c9816e3cf220d1" title="system.LoadFile.save" alt="" coords="513,242,661,269"/>
+</map>

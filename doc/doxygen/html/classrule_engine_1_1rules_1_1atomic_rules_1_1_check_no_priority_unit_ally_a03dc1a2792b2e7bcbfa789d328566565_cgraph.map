@@ -1,0 +1,8 @@
+<map id="ruleEngine.rules.atomicRules.CheckNoPriorityUnitAlly.checkAction" name="ruleEngine.rules.atomicRules.CheckNoPriorityUnitAlly.checkAction">
+<area shape="rect" id="node2" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_no_priority_unit_ally.html#a45452c6d7649a9fdeef92f68eec43726" title="ruleEngine.rules.atomicRules.\lCheckNoPriorityUnitAlly.isPlayer\lHasPriorityUnits" alt="" coords="291,5,503,61"/>
+<area shape="rect" id="node3" href="$classgame_1_1game_state_1_1_game_state.html#a825ff360e839e7d4976539b460846b25" title="game.gameState.GameState.get\lPriorityUnits" alt="" coords="291,86,504,127"/>
+<area shape="rect" id="node4" href="$classgame_1_1game_state_1_1_game_state.html#a418ba65b15c926ef486b0a04090910d0" title="game.gameState.GameState.get\lActualPlayer" alt="" coords="291,151,504,193"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_rule_result.html#a3257a949d317dfb83ecc2b9cb17ab5fd" title="ruleEngine.RuleResult.invalidate" alt="" coords="294,217,501,244"/>
+<area shape="rect" id="node7" href="$classrule_engine_1_1_rule_result.html#a530d8dd9cb3461dba440b37e12347f5a" title="ruleEngine.RuleResult.add\lMessage" alt="" coords="310,269,485,310"/>
+<area shape="rect" id="node6" href="$classrule_engine_1_1_rule_result.html#a2cbcc84268db20bd941e6ff3ee648e6e" title="ruleEngine.RuleResult.is\lValid" alt="" coords="552,210,716,251"/>
+</map>

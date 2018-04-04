@@ -1,0 +1,17 @@
+<map id="ruleEngine.rules.atomicRules.CheckIsAllyUnit.checkAction" name="ruleEngine.rules.atomicRules.CheckIsAllyUnit.checkAction">
+<area shape="rect" id="node2" href="$classrule_engine_1_1_game_action.html#a27182b152911857a0f87e4977e2246f1" title="ruleEngine.GameAction.get\lSourceCoordinates" alt="" coords="264,5,445,47"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1_coordinates.html#a2b3c0539db7bec01491eef738487b147" title="ruleEngine.Coordinates.getX" alt="" coords="262,71,447,98"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1_coordinates.html#ad14bb7f6ecd9607d8f0110a38c6b3e87" title="ruleEngine.Coordinates.getY" alt="" coords="261,122,448,149"/>
+<area shape="rect" id="node5" href="$classgame_1_1game_state_1_1_game_state.html#aa00899823d9599e053902598707f2bae" title="game.gameState.GameState.isUnit" alt="" coords="509,190,737,217"/>
+<area shape="rect" id="node9" href="$classgame_1_1game_state_1_1_game_state.html#a418ba65b15c926ef486b0a04090910d0" title="game.gameState.GameState.get\lActualPlayer" alt="" coords="248,224,461,265"/>
+<area shape="rect" id="node10" href="$classgame_1_1game_state_1_1_game_state.html#a270d806134a05500cc970ced6bee81bc" title="game.gameState.GameState.get\lUnitPlayer" alt="" coords="248,289,461,331"/>
+<area shape="rect" id="node13" href="$classrule_engine_1_1_rule_result.html#a530d8dd9cb3461dba440b37e12347f5a" title="ruleEngine.RuleResult.add\lMessage" alt="" coords="267,355,442,396"/>
+<area shape="rect" id="node14" href="$enumgame_1_1_e_player.html#a74855692721e2ddd60963b62571d7e3e" title="game.EPlayer.toString" alt="" coords="278,421,431,447"/>
+<area shape="rect" id="node15" href="$classrule_engine_1_1_rule_result.html#a3257a949d317dfb83ecc2b9cb17ab5fd" title="ruleEngine.RuleResult.invalidate" alt="" coords="251,471,458,498"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_board.html#aed65bda6e81b3ddbc14fa80bd52ac992" title="game.board.Board.isUnit" alt="" coords="796,201,961,227"/>
+<area shape="rect" id="node7" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="1027,189,1197,231"/>
+<area shape="rect" id="node8" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="1020,255,1204,282"/>
+<area shape="rect" id="node11" href="$classgame_1_1board_1_1_board.html#a4290038dfff8b88ab1e95a96f5d083b9" title="game.board.Board.getUnit\lPlayer" alt="" coords="537,273,710,315"/>
+<area shape="rect" id="node12" href="$classgame_1_1board_1_1_board.html#ae5b7778e3e77c51eb44064d3a4521d71" title="game.board.Board.getPlayer" alt="" coords="785,306,972,333"/>
+<area shape="rect" id="node16" href="$classrule_engine_1_1_rule_result.html#a2cbcc84268db20bd941e6ff3ee648e6e" title="ruleEngine.RuleResult.is\lValid" alt="" coords="541,464,705,505"/>
+</map>

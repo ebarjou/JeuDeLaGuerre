@@ -1,0 +1,191 @@
+\hypertarget{interfacegame_1_1board_1_1_i_board}{}\section{game.\+board.\+I\+Board Interface Reference}
+\label{interfacegame_1_1board_1_1_i_board}\index{game.\+board.\+I\+Board@{game.\+board.\+I\+Board}}
+
+
+Inheritance diagram for game.\+board.\+I\+Board\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{interfacegame_1_1board_1_1_i_board__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_a86c145dd3518d14b37f6b50ee67bc629}{get\+Width}} ()
+\item 
+int \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_ac72f72b8a25b8cd594e4c8c1a6ce6ca8}{get\+Height}} ()
+\item 
+boolean \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_ad6794d47ba9f6c10be5fd956c786f0b5}{is\+Valid\+Coordinate}} (int x, int y)
+\item 
+boolean \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_a56c04deed490c7894f738f6d76f62f07}{is\+In\+Communication}} (\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} player, int x, int y)
+\item 
+boolean \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_aa493421a953d10fc9eaf45fa74f0a64d}{is\+Building}} (int x, int y)
+\item 
+\mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_building_property}{E\+Building\+Property}} \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_aeba201e4626a88c31e6f86894b1eab49}{get\+Building\+Type}} (int x, int y)
+\item 
+\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_a3be0f107436cd176949e9a94a90f7134}{get\+Building\+Player}} (int x, int y)
+\item 
+boolean \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_aeb50b7b22128aaddcbea6330ba78a03e}{is\+Unit}} (int x, int y)
+\item 
+\mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_unit_property}{E\+Unit\+Property}} \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_a3454c1934e15ea532165597697e1f73d}{get\+Unit\+Type}} (int x, int y)
+\item 
+\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_a5f4d593eb6fcd82b36ddd8f629ceee03}{get\+Unit\+Player}} (int x, int y)
+\item 
+boolean \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_ae5dd67cb593fd6609401b115faa4c42e}{is\+Marked}} (int x, int y)
+\item 
+void \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_a334f717410bd56a0112a70ce2a832c93}{set\+Marked}} (int x, int y, boolean mark)
+\item 
+void \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_a070b6270c21257546f66b2df878fecc7}{clear\+Marked}} ()
+\item 
+int \mbox{\hyperlink{interfacegame_1_1board_1_1_i_board_ae6a102ff58e3ee5d8cd4c4255790feff}{get\+Distance}} (int x, int y, int x2, int y2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_a070b6270c21257546f66b2df878fecc7}\label{interfacegame_1_1board_1_1_i_board_a070b6270c21257546f66b2df878fecc7}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!clear\+Marked@{clear\+Marked}}
+\index{clear\+Marked@{clear\+Marked}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{clear\+Marked()}{clearMarked()}}
+{\footnotesize\ttfamily void game.\+board.\+I\+Board.\+clear\+Marked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_acf5718b00471ceacee5182f1a214f124}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_a3be0f107436cd176949e9a94a90f7134}\label{interfacegame_1_1board_1_1_i_board_a3be0f107436cd176949e9a94a90f7134}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!get\+Building\+Player@{get\+Building\+Player}}
+\index{get\+Building\+Player@{get\+Building\+Player}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{get\+Building\+Player()}{getBuildingPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} game.\+board.\+I\+Board.\+get\+Building\+Player (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_a26945d3e21a7033fa9d6b26d61425fe2}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_aeba201e4626a88c31e6f86894b1eab49}\label{interfacegame_1_1board_1_1_i_board_aeba201e4626a88c31e6f86894b1eab49}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!get\+Building\+Type@{get\+Building\+Type}}
+\index{get\+Building\+Type@{get\+Building\+Type}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{get\+Building\+Type()}{getBuildingType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_building_property}{E\+Building\+Property}} game.\+board.\+I\+Board.\+get\+Building\+Type (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_ab5376949c9c2ee4fa825e3df27f798ed}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_ae6a102ff58e3ee5d8cd4c4255790feff}\label{interfacegame_1_1board_1_1_i_board_ae6a102ff58e3ee5d8cd4c4255790feff}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!get\+Distance@{get\+Distance}}
+\index{get\+Distance@{get\+Distance}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{get\+Distance()}{getDistance()}}
+{\footnotesize\ttfamily int game.\+board.\+I\+Board.\+get\+Distance (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{x2,  }\item[{int}]{y2 }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_a169a1f68a5c996127f2f762551405026}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_ac72f72b8a25b8cd594e4c8c1a6ce6ca8}\label{interfacegame_1_1board_1_1_i_board_ac72f72b8a25b8cd594e4c8c1a6ce6ca8}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!get\+Height@{get\+Height}}
+\index{get\+Height@{get\+Height}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{get\+Height()}{getHeight()}}
+{\footnotesize\ttfamily int game.\+board.\+I\+Board.\+get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_a3c3b04d752eee7f25fcf2a57d0675374}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_a5f4d593eb6fcd82b36ddd8f629ceee03}\label{interfacegame_1_1board_1_1_i_board_a5f4d593eb6fcd82b36ddd8f629ceee03}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!get\+Unit\+Player@{get\+Unit\+Player}}
+\index{get\+Unit\+Player@{get\+Unit\+Player}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{get\+Unit\+Player()}{getUnitPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} game.\+board.\+I\+Board.\+get\+Unit\+Player (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_a4290038dfff8b88ab1e95a96f5d083b9}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_a3454c1934e15ea532165597697e1f73d}\label{interfacegame_1_1board_1_1_i_board_a3454c1934e15ea532165597697e1f73d}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!get\+Unit\+Type@{get\+Unit\+Type}}
+\index{get\+Unit\+Type@{get\+Unit\+Type}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{get\+Unit\+Type()}{getUnitType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_unit_property}{E\+Unit\+Property}} game.\+board.\+I\+Board.\+get\+Unit\+Type (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_a86eddc47b7951c2e74f9acfb5d8ad2e1}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_a86c145dd3518d14b37f6b50ee67bc629}\label{interfacegame_1_1board_1_1_i_board_a86c145dd3518d14b37f6b50ee67bc629}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!get\+Width@{get\+Width}}
+\index{get\+Width@{get\+Width}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{get\+Width()}{getWidth()}}
+{\footnotesize\ttfamily int game.\+board.\+I\+Board.\+get\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_a831e13d9108a75d6efc5a92994ea1316}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_aa493421a953d10fc9eaf45fa74f0a64d}\label{interfacegame_1_1board_1_1_i_board_aa493421a953d10fc9eaf45fa74f0a64d}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!is\+Building@{is\+Building}}
+\index{is\+Building@{is\+Building}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{is\+Building()}{isBuilding()}}
+{\footnotesize\ttfamily boolean game.\+board.\+I\+Board.\+is\+Building (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_a6b6e3fb41b451a50ef9d5135067c2582}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_a56c04deed490c7894f738f6d76f62f07}\label{interfacegame_1_1board_1_1_i_board_a56c04deed490c7894f738f6d76f62f07}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!is\+In\+Communication@{is\+In\+Communication}}
+\index{is\+In\+Communication@{is\+In\+Communication}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{is\+In\+Communication()}{isInCommunication()}}
+{\footnotesize\ttfamily boolean game.\+board.\+I\+Board.\+is\+In\+Communication (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}}}]{player,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_aed2c46e80ddb40b36cbd09bb42b43974}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_ae5dd67cb593fd6609401b115faa4c42e}\label{interfacegame_1_1board_1_1_i_board_ae5dd67cb593fd6609401b115faa4c42e}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!is\+Marked@{is\+Marked}}
+\index{is\+Marked@{is\+Marked}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{is\+Marked()}{isMarked()}}
+{\footnotesize\ttfamily boolean game.\+board.\+I\+Board.\+is\+Marked (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_af3a3c94fbe601ba799bfe105e0630be6}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_aeb50b7b22128aaddcbea6330ba78a03e}\label{interfacegame_1_1board_1_1_i_board_aeb50b7b22128aaddcbea6330ba78a03e}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!is\+Unit@{is\+Unit}}
+\index{is\+Unit@{is\+Unit}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{is\+Unit()}{isUnit()}}
+{\footnotesize\ttfamily boolean game.\+board.\+I\+Board.\+is\+Unit (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_aed65bda6e81b3ddbc14fa80bd52ac992}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_ad6794d47ba9f6c10be5fd956c786f0b5}\label{interfacegame_1_1board_1_1_i_board_ad6794d47ba9f6c10be5fd956c786f0b5}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!is\+Valid\+Coordinate@{is\+Valid\+Coordinate}}
+\index{is\+Valid\+Coordinate@{is\+Valid\+Coordinate}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{is\+Valid\+Coordinate()}{isValidCoordinate()}}
+{\footnotesize\ttfamily boolean game.\+board.\+I\+Board.\+is\+Valid\+Coordinate (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_a02574586e2f8c3d6c4dd1672efdf0d68}{game.\+board.\+Board}}.
+
+\mbox{\Hypertarget{interfacegame_1_1board_1_1_i_board_a334f717410bd56a0112a70ce2a832c93}\label{interfacegame_1_1board_1_1_i_board_a334f717410bd56a0112a70ce2a832c93}} 
+\index{game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}!set\+Marked@{set\+Marked}}
+\index{set\+Marked@{set\+Marked}!game\+::board\+::\+I\+Board@{game\+::board\+::\+I\+Board}}
+\subsubsection{\texorpdfstring{set\+Marked()}{setMarked()}}
+{\footnotesize\ttfamily void game.\+board.\+I\+Board.\+set\+Marked (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{boolean}]{mark }\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{classgame_1_1board_1_1_board_a22008b95ac8e2754713eaebac4622ac4}{game.\+board.\+Board}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+game/board/\mbox{\hyperlink{_i_board_8java}{I\+Board.\+java}}\end{DoxyCompactItemize}

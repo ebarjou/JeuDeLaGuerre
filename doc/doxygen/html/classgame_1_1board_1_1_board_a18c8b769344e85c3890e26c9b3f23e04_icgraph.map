@@ -1,0 +1,11 @@
+<map id="game.board.Board.setItemType" name="game.board.Board.setItemType">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a663601f177534c45ffd3ded9838b54cc" title="game.board.Board.setBuilding" alt="" coords="256,15,452,42"/>
+<area shape="rect" id="node8" href="$classgame_1_1board_1_1_board.html#a9432da1a143c35864052234c09acec09" title="game.board.Board.setUnit" alt="" coords="267,67,441,94"/>
+<area shape="rect" id="node3" href="$classgame_1_1game_state_1_1_game_state.html#a1062a7a5164975ed330180b3ba47c7b2" title="game.gameState.GameState.add\lBuilding" alt="" coords="511,5,727,47"/>
+<area shape="rect" id="node4" href="$classsystem_1_1_load_file.html#adf1c31e03c1dd422118d122ef17dc96e" title="system.LoadFile.loadFile" alt="" coords="803,13,969,39"/>
+<area shape="rect" id="node5" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="1033,13,1236,39"/>
+<area shape="rect" id="node6" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="1284,13,1407,39"/>
+<area shape="rect" id="node7" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="1455,13,1537,39"/>
+<area shape="rect" id="node9" href="$classgame_1_1game_state_1_1_game_state.html#a1e0ecf6737cb33799a09b30eb5f81431" title="game.gameState.GameState.addUnit" alt="" coords="500,71,739,98"/>
+<area shape="rect" id="node10" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="787,64,985,105"/>
+</map>

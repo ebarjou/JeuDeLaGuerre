@@ -1,0 +1,10 @@
+<map id="player.BotPlayer.getCommand" name="player.BotPlayer.getCommand">
+<area shape="rect" id="node2" href="$classplayer_1_1_bot_player.html#abb2afb9c7bd26eb9c4f6a586a8164230" title="player.BotPlayer.createCommand" alt="" coords="252,115,469,141"/>
+<area shape="rect" id="node3" href="$classgame_1_1_game.html#a748613e7961431f1ab626475cf9c191b" title="game.Game.getInstance" alt="" coords="539,5,703,32"/>
+<area shape="rect" id="node4" href="$classgame_1_1_game.html#a21ddf7c79b79b1fd7e433082107fdeaa" title="game.Game.getGameState" alt="" coords="530,56,711,83"/>
+<area shape="rect" id="node5" href="$classanalyse_1_1_info_module.html#a6dfaaeb16de4ae73d9d0a72acc8817a0" title="analyse.InfoModule.getAvailable\lMoves" alt="" coords="517,107,724,149"/>
+<area shape="rect" id="node8" href="$classrule_engine_1_1_game_action.html#a606ab317d79faf03aba37638bdc23cd6" title="ruleEngine.GameAction.set\lSourceCoordinates" alt="" coords="530,173,711,214"/>
+<area shape="rect" id="node9" href="$classrule_engine_1_1_game_action.html#ace03895cc8a7061ecd2af09156cead26" title="ruleEngine.GameAction.set\lTargetCoordinates" alt="" coords="530,238,711,279"/>
+<area shape="rect" id="node6" href="$enumanalyse_1_1_e_metrics_move_type.html#aa8970fab2a06f13d314f9fc790c24048" title="analyse.EMetricsMoveType.get\lMethod" alt="" coords="772,75,975,117"/>
+<area shape="rect" id="node7" href="$interfaceanalyse_1_1move_methods_1_1_i_metrics_move_method.html#a140fc54c9b5b634c25ea2064b4642f6f" title="analyse.moveMethods.IMetrics\lMoveMethod.compute" alt="" coords="773,141,974,182"/>
+</map>

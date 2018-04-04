@@ -1,0 +1,4 @@
+<map id="player.Player" name="player.Player">
+<area shape="rect" id="node2" href="$classplayer_1_1_bot_player.html" title="player.BotPlayer" alt="" coords="5,80,124,107"/>
+<area shape="rect" id="node3" href="$classplayer_1_1_g_u_i_player.html" title="player.GUIPlayer" alt="" coords="149,80,269,107"/>
+</map>

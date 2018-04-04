@@ -1,0 +1,8 @@
+<map id="game.board.Board.getBuildingPlayer" name="game.board.Board.getBuildingPlayer">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a5725709db18e36c737861fd396faa517" title="game.board.Board.cellToString" alt="" coords="256,15,456,42"/>
+<area shape="rect" id="node5" href="$classgame_1_1game_state_1_1_game_state.html#a25ae413bd0f2d04b162673431975ec8f" title="game.gameState.GameState.get\lBuildingPlayer" alt="" coords="249,68,463,109"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#aef2fb3bb74281bbc59a9f2f7c1603141" title="game.board.Board.toString" alt="" coords="541,14,718,41"/>
+<area shape="rect" id="node4" href="$classgame_1_1game_state_1_1_game_state.html#a46d322e319cd211f4a4a90d7bf02d26c" title="game.gameState.GameState.to\lString" alt="" coords="796,5,1003,47"/>
+<area shape="rect" id="node6" href="$classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules.html#af8de9ef94d7ef2e2878534c7716490fc" title="ruleEngine.rules.masterRules.\lCommRules.computeCommunication" alt="" coords="511,68,748,109"/>
+<area shape="rect" id="node7" href="$classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules.html#a57094df71e5c0d9d6e8dd10cf33d23c5" title="ruleEngine.rules.masterRules.\lCommRules.applyResult" alt="" coords="801,71,997,112"/>
+</map>

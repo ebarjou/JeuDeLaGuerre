@@ -1,0 +1,12 @@
+<map id="game.gameState.GameState.getPriorityUnits" name="game.gameState.GameState.getPriorityUnits">
+<area shape="rect" id="node2" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="286,5,485,47"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit.html#ab4053d812e96d43c5c89e6919e6796e2" title="ruleEngine.rules.atomicRules.\lCheckIsPriorityUnit.isUnitHasPriority" alt="" coords="268,71,503,112"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_no_priority_unit_ally.html#a03dc1a2792b2e7bcbfa789d328566565" title="ruleEngine.rules.atomicRules.\lCheckNoPriorityUnitAlly.checkAction" alt="" coords="267,136,504,177"/>
+<area shape="rect" id="node6" href="$classsystem_1_1_load_file.html#a33ddd03f92888eb739d04f70f893e076" title="system.LoadFile.hasToMove" alt="" coords="292,202,479,229"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit.html#aab6e78a775704e1e740c3f52e664d04c" title="ruleEngine.rules.atomicRules.\lCheckIsPriorityUnit.checkAction" alt="" coords="552,71,761,112"/>
+<area shape="rect" id="node7" href="$classsystem_1_1_load_file.html#ae74023593b3080a395c9816e3cf220d1" title="system.LoadFile.save" alt="" coords="583,177,731,203"/>
+<area shape="rect" id="node11" href="$classsystem_1_1_load_file.html#adf1c31e03c1dd422118d122ef17dc96e" title="system.LoadFile.loadFile" alt="" coords="573,227,740,254"/>
+<area shape="rect" id="node8" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="809,202,1012,229"/>
+<area shape="rect" id="node9" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="1060,202,1183,229"/>
+<area shape="rect" id="node10" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="1231,202,1313,229"/>
+</map>

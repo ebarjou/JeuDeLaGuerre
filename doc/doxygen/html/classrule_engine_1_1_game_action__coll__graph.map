@@ -1,0 +1,5 @@
+<map id="ruleEngine.GameAction" name="ruleEngine.GameAction">
+<area shape="rect" id="node2" href="$enumrule_engine_1_1_e_game_action_type.html" title="ruleEngine.EGameActionType" alt="" coords="5,95,201,121"/>
+<area shape="rect" id="node3" href="$enumgame_1_1_e_player.html" title="game.EPlayer" alt="" coords="226,95,330,121"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_coordinates.html" title="ruleEngine.Coordinates" alt="" coords="355,95,511,121"/>
+</map>

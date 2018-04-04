@@ -1,0 +1,8 @@
+<map id="ui.CommandParser.attack" name="ui.CommandParser.attack">
+<area shape="rect" id="node2" href="$classui_1_1_command_parser.html#a6fe407cb1b5f88c583f4797de79fd98f" title="ui.CommandParser.parseCoords" alt="" coords="227,19,437,46"/>
+<area shape="rect" id="node4" href="$classui_1_1_u_i_action.html#a3185db453138fe37b085f1427f7aca62" title="ui.UIAction.getGameAction" alt="" coords="243,74,421,101"/>
+<area shape="rect" id="node6" href="$classrule_engine_1_1_game_action.html#a606ab317d79faf03aba37638bdc23cd6" title="ruleEngine.GameAction.set\lSourceCoordinates" alt="" coords="241,125,423,167"/>
+<area shape="rect" id="node7" href="$classrule_engine_1_1_game_action.html#ace03895cc8a7061ecd2af09156cead26" title="ruleEngine.GameAction.set\lTargetCoordinates" alt="" coords="241,191,423,232"/>
+<area shape="rect" id="node3" href="$classui_1_1_int_letter_converter.html#adb6e9cbdedba0aaa6960c395bdb4f236" title="ui.IntLetterConverter.get\lIntFromLetters" alt="" coords="497,5,655,47"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_game_action.html#a82419831fe1e365ea8a19d1ead0f9046" title="ruleEngine.GameAction.set\lPlayer" alt="" coords="485,71,667,112"/>
+</map>

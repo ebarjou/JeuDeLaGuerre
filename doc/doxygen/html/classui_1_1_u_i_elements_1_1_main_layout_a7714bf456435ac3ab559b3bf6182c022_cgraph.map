@@ -1,0 +1,5 @@
+<map id="ui.UIElements.MainLayout.refresh" name="ui.UIElements.MainLayout.refresh">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#a418ba65b15c926ef486b0a04090910d0" title="game.gameState.GameState.get\lActualPlayer" alt="" coords="271,5,484,47"/>
+<area shape="rect" id="node3" href="$enumgame_1_1_e_player.html#a74855692721e2ddd60963b62571d7e3e" title="game.EPlayer.toString" alt="" coords="301,71,454,98"/>
+<area shape="rect" id="node4" href="$classgame_1_1game_state_1_1_game_state.html#ab098a3f062ba9ad6eddc030911d85506" title="game.gameState.GameState.get\lActionLeft" alt="" coords="271,123,484,164"/>
+</map>

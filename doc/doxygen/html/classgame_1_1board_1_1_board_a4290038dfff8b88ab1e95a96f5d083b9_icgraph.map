@@ -1,0 +1,17 @@
+<map id="game.board.Board.getUnitPlayer" name="game.board.Board.getUnitPlayer">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a5725709db18e36c737861fd396faa517" title="game.board.Board.cellToString" alt="" coords="233,107,433,134"/>
+<area shape="rect" id="node5" href="$classgame_1_1game_state_1_1_game_state.html#a270d806134a05500cc970ced6bee81bc" title="game.gameState.GameState.get\lUnitPlayer" alt="" coords="227,279,440,320"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#aef2fb3bb74281bbc59a9f2f7c1603141" title="game.board.Board.toString" alt="" coords="504,13,681,39"/>
+<area shape="rect" id="node4" href="$classgame_1_1game_state_1_1_game_state.html#a46d322e319cd211f4a4a90d7bf02d26c" title="game.gameState.GameState.to\lString" alt="" coords="745,5,952,47"/>
+<area shape="rect" id="node6" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_ally_unit.html#a961880efbdfdf45e3ad9ecf31dc17cb8" title="ruleEngine.rules.atomicRules.\lCheckIsAllyUnit.checkAction" alt="" coords="495,64,690,105"/>
+<area shape="rect" id="node7" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_charge.html#a6458591e4a67fc19c5ea490b5da954d3" title="ruleEngine.rules.atomicRules.\lCheckIsCharge.checkAction" alt="" coords="495,129,690,171"/>
+<area shape="rect" id="node8" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_enemy_unit.html#a0f5a8e1e1d38431310489f7c6bdb9776" title="ruleEngine.rules.atomicRules.\lCheckIsEnemyUnit.checkAction" alt="" coords="488,195,697,236"/>
+<area shape="rect" id="node9" href="$classrule_engine_1_1rules_1_1master_rules_1_1_attack_rules.html#ae45bbf8fb4c1cef3733c6051f8b8b008" title="ruleEngine.rules.masterRules.\lAttackRules.applyResult" alt="" coords="1021,312,1217,353"/>
+<area shape="rect" id="node10" href="$classrule_engine_1_1rules_1_1master_rules_1_1_attack_rules.html#ab245cc7a1359f4049b2434184bc44076" title="ruleEngine.rules.masterRules.\lAttackRules.getFightValueRec" alt="" coords="493,363,693,404"/>
+<area shape="rect" id="node11" href="$classrule_engine_1_1rules_1_1master_rules_1_1_attack_rules.html#abbf934911508bc5804744745815493d5" title="ruleEngine.rules.masterRules.\lAttackRules.getAttackValue" alt="" coords="751,312,947,353"/>
+<area shape="rect" id="node12" href="$classrule_engine_1_1rules_1_1master_rules_1_1_attack_rules.html#a80c89bcb3fe06834e0c1ef1772a8c71e" title="ruleEngine.rules.masterRules.\lAttackRules.getDefenseValue" alt="" coords="751,377,947,419"/>
+<area shape="rect" id="node13" href="$classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules.html#a53d83ec67dede91baf381c333465c96f" title="ruleEngine.rules.masterRules.\lCommRules.createCom" alt="" coords="751,501,947,543"/>
+<area shape="rect" id="node16" href="$classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules.html#a8ce09b7e1c34043c5a768294cbc6adcd" title="ruleEngine.rules.masterRules.\lCommRules.isObstacle" alt="" coords="495,531,691,572"/>
+<area shape="rect" id="node14" href="$classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules.html#af8de9ef94d7ef2e2878534c7716490fc" title="ruleEngine.rules.masterRules.\lCommRules.computeCommunication" alt="" coords="1000,501,1237,543"/>
+<area shape="rect" id="node15" href="$classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules.html#a57094df71e5c0d9d6e8dd10cf33d23c5" title="ruleEngine.rules.masterRules.\lCommRules.applyResult" alt="" coords="1285,501,1481,543"/>
+</map>

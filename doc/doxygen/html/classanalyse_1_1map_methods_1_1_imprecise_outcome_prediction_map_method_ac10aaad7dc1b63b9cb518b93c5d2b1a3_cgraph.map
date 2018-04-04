@@ -1,0 +1,6 @@
+<map id="analyse.mapMethods.ImpreciseOutcomePredictionMapMethod.compute" name="analyse.mapMethods.ImpreciseOutcomePredictionMapMethod.compute">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#ab7f97a46f9310d08bd3358755168262c" title="game.gameState.GameState.get\lWidth" alt="" coords="308,5,521,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1game_state_1_1_game_state.html#a47a2783808cfff8d970c253a1f8a4a94" title="game.gameState.GameState.get\lHeight" alt="" coords="308,71,521,112"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a831e13d9108a75d6efc5a92994ea1316" title="game.board.Board.getWidth" alt="" coords="571,13,755,39"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_board.html#a3c3b04d752eee7f25fcf2a57d0675374" title="game.board.Board.getHeight" alt="" coords="569,78,756,105"/>
+</map>

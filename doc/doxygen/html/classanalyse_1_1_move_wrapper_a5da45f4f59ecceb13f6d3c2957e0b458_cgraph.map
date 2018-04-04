@@ -1,0 +1,7 @@
+<map id="analyse.MoveWrapper.equals" name="analyse.MoveWrapper.equals">
+<area shape="rect" id="node2" href="$classanalyse_1_1_move_wrapper.html#a61f841f79d6e29cbb55cbe2417e0b07b" title="analyse.MoveWrapper.Move\lWrapper" alt="" coords="260,5,444,47"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1_move_wrapper.html#a626a8a9e56b2d1ec8d49d5d028e707c8" title="analyse.MoveWrapper.getSource\lCoordinates" alt="" coords="245,71,459,112"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1_coordinates.html#a2b3c0539db7bec01491eef738487b147" title="ruleEngine.Coordinates.getX" alt="" coords="259,137,445,163"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_coordinates.html#ad14bb7f6ecd9607d8f0110a38c6b3e87" title="ruleEngine.Coordinates.getY" alt="" coords="259,187,445,214"/>
+<area shape="rect" id="node6" href="$classanalyse_1_1_move_wrapper.html#ae9b1716d7aeab0e925cdd62494667366" title="analyse.MoveWrapper.getTarget\lCoordinates" alt="" coords="248,239,456,280"/>
+</map>

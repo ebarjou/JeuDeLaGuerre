@@ -1,0 +1,5 @@
+<map id="game.gameState.GameState.setMarked" name="game.gameState.GameState.setMarked">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a22008b95ac8e2754713eaebac4622ac4" title="game.board.Board.setMarked" alt="" coords="267,42,460,69"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="515,5,685,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="508,71,692,98"/>
+</map>

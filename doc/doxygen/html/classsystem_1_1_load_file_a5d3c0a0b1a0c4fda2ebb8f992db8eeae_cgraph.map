@@ -1,0 +1,5 @@
+<map id="system.LoadFile.isLastMove" name="system.LoadFile.isLastMove">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#ac74c805b98b13a313b0a337e5fbd41d2" title="game.gameState.GameState.get\lLastUnitMoved" alt="" coords="240,5,453,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_unit.html#a83e3e2551f8750d2107e366e279adb4d" title="game.board.Unit.getX" alt="" coords="273,71,420,98"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_unit.html#a99a707f9342b07b4342ffec748696d27" title="game.board.Unit.getY" alt="" coords="273,122,421,149"/>
+</map>

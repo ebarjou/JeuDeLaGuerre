@@ -1,0 +1,89 @@
+\hypertarget{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit}{}\section{rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Can\+Attack\+Unit Class Reference}
+\label{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit}\index{rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Can\+Attack\+Unit@{rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Can\+Attack\+Unit}}
+
+
+Inheritance diagram for rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Can\+Attack\+Unit\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Can\+Attack\+Unit\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit_a12e775dc4a03dbda55a2d20d4a7138da}{check\+Action}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} state, \mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}} action, \mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}} result)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit_a3cf631790ea887c5d1fe3a438f3224dc}{is\+Unit\+Can\+Attack}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} state, \mbox{\hyperlink{classrule_engine_1_1_coordinates}{Coordinates}} coords)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Check if a unit is allowed to attack or not. A unit may not be able to attack if it has retreated previously.~\newline
+ Valid if allowed to attack, invalid otherwise.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classrule_engine_1_1rules_1_1master_rules_1_1_attack_rules}{rule\+Engine.\+rules.\+master\+Rules.\+Attack\+Rules}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit_a12e775dc4a03dbda55a2d20d4a7138da}\label{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit_a12e775dc4a03dbda55a2d20d4a7138da}} 
+\index{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Can\+Attack\+Unit@{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Can\+Attack\+Unit}!check\+Action@{check\+Action}}
+\index{check\+Action@{check\+Action}!rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Can\+Attack\+Unit@{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Can\+Attack\+Unit}}
+\subsubsection{\texorpdfstring{check\+Action()}{checkAction()}}
+{\footnotesize\ttfamily boolean rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Can\+Attack\+Unit.\+check\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{state,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}}}]{action,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}}}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implements \mbox{\hyperlink{interfacerule_engine_1_1rules_1_1new_rules_1_1_i_rule_a72ce29a47d7a5fba75a09444a50a481e}{rule\+Engine.\+rules.\+new\+Rules.\+I\+Rule}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit_a12e775dc4a03dbda55a2d20d4a7138da_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit_a3cf631790ea887c5d1fe3a438f3224dc}\label{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit_a3cf631790ea887c5d1fe3a438f3224dc}} 
+\index{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Can\+Attack\+Unit@{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Can\+Attack\+Unit}!is\+Unit\+Can\+Attack@{is\+Unit\+Can\+Attack}}
+\index{is\+Unit\+Can\+Attack@{is\+Unit\+Can\+Attack}!rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Can\+Attack\+Unit@{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Can\+Attack\+Unit}}
+\subsubsection{\texorpdfstring{is\+Unit\+Can\+Attack()}{isUnitCanAttack()}}
+{\footnotesize\ttfamily boolean rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Can\+Attack\+Unit.\+is\+Unit\+Can\+Attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{state,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_coordinates}{Coordinates}}}]{coords }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit_a3cf631790ea887c5d1fe3a438f3224dc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_can_attack_unit_a3cf631790ea887c5d1fe3a438f3224dc_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+rule\+Engine/rules/atomic\+Rules/\mbox{\hyperlink{_check_can_attack_unit_8java}{Check\+Can\+Attack\+Unit.\+java}}\end{DoxyCompactItemize}

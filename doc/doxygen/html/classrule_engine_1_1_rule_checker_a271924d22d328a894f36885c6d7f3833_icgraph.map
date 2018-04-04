@@ -1,0 +1,8 @@
+<map id="ruleEngine.RuleChecker.computeCommunications" name="ruleEngine.RuleChecker.computeCommunications">
+<area shape="rect" id="node2" href="$classrule_engine_1_1_rule_checker.html#a864194ca6149949900274c5b369abfc2" title="ruleEngine.RuleChecker.check\lAndApplyAction" alt="" coords="268,35,468,76"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="520,5,719,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1_game.html#a1847ff6b22bd747cc2983a261a79aed2" title="game.Game.handleGameAction" alt="" coords="516,71,723,98"/>
+<area shape="rect" id="node5" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="1021,71,1144,98"/>
+<area shape="rect" id="node7" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="771,97,973,123"/>
+<area shape="rect" id="node6" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="1192,71,1275,98"/>
+</map>

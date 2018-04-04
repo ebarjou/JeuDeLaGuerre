@@ -1,0 +1,7 @@
+<map id="ui.UIAction" name="ui.UIAction">
+<area shape="rect" id="node2" href="$enumui_1_1commands_1_1_user_to_game_call.html" title="ui.commands.UserToGameCall" alt="" coords="5,199,208,225"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1_game_action.html" title="ruleEngine.GameAction" alt="" coords="233,199,391,225"/>
+<area shape="rect" id="node4" href="$enumrule_engine_1_1_e_game_action_type.html" title="ruleEngine.EGameActionType" alt="" coords="39,95,235,121"/>
+<area shape="rect" id="node5" href="$enumgame_1_1_e_player.html" title="game.EPlayer" alt="" coords="260,95,364,121"/>
+<area shape="rect" id="node7" href="$classrule_engine_1_1_coordinates.html" title="ruleEngine.Coordinates" alt="" coords="389,95,545,121"/>
+</map>

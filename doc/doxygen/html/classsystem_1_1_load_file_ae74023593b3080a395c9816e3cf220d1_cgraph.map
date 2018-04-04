@@ -1,0 +1,10 @@
+<map id="system.LoadFile.save" name="system.LoadFile.save">
+<area shape="rect" id="node2" href="$classsystem_1_1_load_file.html#a33ddd03f92888eb739d04f70f893e076" title="system.LoadFile.hasToMove" alt="" coords="201,71,388,98"/>
+<area shape="rect" id="node6" href="$classsystem_1_1_load_file.html#a5d3c0a0b1a0c4fda2ebb8f992db8eeae" title="system.LoadFile.isLastMove" alt="" coords="201,173,388,199"/>
+<area shape="rect" id="node8" href="$classsystem_1_1_load_file.html#aa76e99fc2bb6200c6905b151c0092b3b" title="system.LoadFile.canAttack" alt="" coords="204,122,385,149"/>
+<area shape="rect" id="node3" href="$classgame_1_1game_state_1_1_game_state.html#a825ff360e839e7d4976539b460846b25" title="game.gameState.GameState.get\lPriorityUnits" alt="" coords="436,5,649,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_unit.html#a83e3e2551f8750d2107e366e279adb4d" title="game.board.Unit.getX" alt="" coords="469,71,616,98"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_unit.html#a99a707f9342b07b4342ffec748696d27" title="game.board.Unit.getY" alt="" coords="469,122,617,149"/>
+<area shape="rect" id="node7" href="$classgame_1_1game_state_1_1_game_state.html#ac74c805b98b13a313b0a337e5fbd41d2" title="game.gameState.GameState.get\lLastUnitMoved" alt="" coords="436,239,649,280"/>
+<area shape="rect" id="node9" href="$classgame_1_1game_state_1_1_game_state.html#a79fab4d746df83e6391ecb9db1c3ff09" title="game.gameState.GameState.get\lCantAttackUnits" alt="" coords="436,173,649,215"/>
+</map>

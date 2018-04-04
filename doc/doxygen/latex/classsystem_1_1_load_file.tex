@@ -1,0 +1,179 @@
+\hypertarget{classsystem_1_1_load_file}{}\section{system.\+Load\+File Class Reference}
+\label{classsystem_1_1_load_file}\index{system.\+Load\+File@{system.\+Load\+File}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsystem_1_1_load_file_ac5d64f03a0aeabd44ea9c6b6514112e5}{Load\+File}} ()
+\item 
+void \mbox{\hyperlink{classsystem_1_1_load_file_ae74023593b3080a395c9816e3cf220d1}{save}} (String filename, \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} gs)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classsystem_1_1_load_file_adf1c31e03c1dd422118d122ef17dc96e}{load\+File}} (String name)  throws I\+O\+Exception, Bad\+File\+Format\+Exception 
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classsystem_1_1_load_file_a33ddd03f92888eb739d04f70f893e076}{has\+To\+Move}} (\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} u, \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} gs)
+\item 
+boolean \mbox{\hyperlink{classsystem_1_1_load_file_a5d3c0a0b1a0c4fda2ebb8f992db8eeae}{is\+Last\+Move}} (\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} u, \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} gs)
+\item 
+boolean \mbox{\hyperlink{classsystem_1_1_load_file_aa76e99fc2bb6200c6905b151c0092b3b}{can\+Attack}} (\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} u, \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} gs)
+\item 
+\mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_building_property}{E\+Building\+Property}} \mbox{\hyperlink{classsystem_1_1_load_file_a56e36ed0f74cf5fc59a938e42d38bf13}{convert\+Building}} (String s)
+\item 
+\mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_unit_property}{E\+Unit\+Property}} \mbox{\hyperlink{classsystem_1_1_load_file_a3d783792d25f456b864b52e144533d79}{convert\+Unit}} (String s)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsystem_1_1_load_file_ac5d64f03a0aeabd44ea9c6b6514112e5}\label{classsystem_1_1_load_file_ac5d64f03a0aeabd44ea9c6b6514112e5}} 
+\index{system\+::\+Load\+File@{system\+::\+Load\+File}!Load\+File@{Load\+File}}
+\index{Load\+File@{Load\+File}!system\+::\+Load\+File@{system\+::\+Load\+File}}
+\subsubsection{\texorpdfstring{Load\+File()}{LoadFile()}}
+{\footnotesize\ttfamily system.\+Load\+File.\+Load\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classsystem_1_1_load_file_aa76e99fc2bb6200c6905b151c0092b3b}\label{classsystem_1_1_load_file_aa76e99fc2bb6200c6905b151c0092b3b}} 
+\index{system\+::\+Load\+File@{system\+::\+Load\+File}!can\+Attack@{can\+Attack}}
+\index{can\+Attack@{can\+Attack}!system\+::\+Load\+File@{system\+::\+Load\+File}}
+\subsubsection{\texorpdfstring{can\+Attack()}{canAttack()}}
+{\footnotesize\ttfamily boolean system.\+Load\+File.\+can\+Attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}}]{u,  }\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{gs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_aa76e99fc2bb6200c6905b151c0092b3b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_aa76e99fc2bb6200c6905b151c0092b3b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsystem_1_1_load_file_a56e36ed0f74cf5fc59a938e42d38bf13}\label{classsystem_1_1_load_file_a56e36ed0f74cf5fc59a938e42d38bf13}} 
+\index{system\+::\+Load\+File@{system\+::\+Load\+File}!convert\+Building@{convert\+Building}}
+\index{convert\+Building@{convert\+Building}!system\+::\+Load\+File@{system\+::\+Load\+File}}
+\subsubsection{\texorpdfstring{convert\+Building()}{convertBuilding()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_building_property}{E\+Building\+Property}} system.\+Load\+File.\+convert\+Building (\begin{DoxyParamCaption}\item[{String}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_a56e36ed0f74cf5fc59a938e42d38bf13_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsystem_1_1_load_file_a3d783792d25f456b864b52e144533d79}\label{classsystem_1_1_load_file_a3d783792d25f456b864b52e144533d79}} 
+\index{system\+::\+Load\+File@{system\+::\+Load\+File}!convert\+Unit@{convert\+Unit}}
+\index{convert\+Unit@{convert\+Unit}!system\+::\+Load\+File@{system\+::\+Load\+File}}
+\subsubsection{\texorpdfstring{convert\+Unit()}{convertUnit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_unit_property}{E\+Unit\+Property}} system.\+Load\+File.\+convert\+Unit (\begin{DoxyParamCaption}\item[{String}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_a3d783792d25f456b864b52e144533d79_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsystem_1_1_load_file_a33ddd03f92888eb739d04f70f893e076}\label{classsystem_1_1_load_file_a33ddd03f92888eb739d04f70f893e076}} 
+\index{system\+::\+Load\+File@{system\+::\+Load\+File}!has\+To\+Move@{has\+To\+Move}}
+\index{has\+To\+Move@{has\+To\+Move}!system\+::\+Load\+File@{system\+::\+Load\+File}}
+\subsubsection{\texorpdfstring{has\+To\+Move()}{hasToMove()}}
+{\footnotesize\ttfamily boolean system.\+Load\+File.\+has\+To\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}}]{u,  }\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{gs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_a33ddd03f92888eb739d04f70f893e076_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_a33ddd03f92888eb739d04f70f893e076_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsystem_1_1_load_file_a5d3c0a0b1a0c4fda2ebb8f992db8eeae}\label{classsystem_1_1_load_file_a5d3c0a0b1a0c4fda2ebb8f992db8eeae}} 
+\index{system\+::\+Load\+File@{system\+::\+Load\+File}!is\+Last\+Move@{is\+Last\+Move}}
+\index{is\+Last\+Move@{is\+Last\+Move}!system\+::\+Load\+File@{system\+::\+Load\+File}}
+\subsubsection{\texorpdfstring{is\+Last\+Move()}{isLastMove()}}
+{\footnotesize\ttfamily boolean system.\+Load\+File.\+is\+Last\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}}]{u,  }\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{gs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_a5d3c0a0b1a0c4fda2ebb8f992db8eeae_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_a5d3c0a0b1a0c4fda2ebb8f992db8eeae_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsystem_1_1_load_file_adf1c31e03c1dd422118d122ef17dc96e}\label{classsystem_1_1_load_file_adf1c31e03c1dd422118d122ef17dc96e}} 
+\index{system\+::\+Load\+File@{system\+::\+Load\+File}!load\+File@{load\+File}}
+\index{load\+File@{load\+File}!system\+::\+Load\+File@{system\+::\+Load\+File}}
+\subsubsection{\texorpdfstring{load\+File()}{loadFile()}}
+{\footnotesize\ttfamily void system.\+Load\+File.\+load\+File (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption}) throws I\+O\+Exception, \mbox{\hyperlink{classsystem_1_1_bad_file_format_exception}{Bad\+File\+Format\+Exception}}\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_adf1c31e03c1dd422118d122ef17dc96e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_adf1c31e03c1dd422118d122ef17dc96e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsystem_1_1_load_file_ae74023593b3080a395c9816e3cf220d1}\label{classsystem_1_1_load_file_ae74023593b3080a395c9816e3cf220d1}} 
+\index{system\+::\+Load\+File@{system\+::\+Load\+File}!save@{save}}
+\index{save@{save}!system\+::\+Load\+File@{system\+::\+Load\+File}}
+\subsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily void system.\+Load\+File.\+save (\begin{DoxyParamCaption}\item[{String}]{filename,  }\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{gs }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_ae74023593b3080a395c9816e3cf220d1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsystem_1_1_load_file_ae74023593b3080a395c9816e3cf220d1_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+system/\mbox{\hyperlink{_load_file_8java}{Load\+File.\+java}}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="ui.UIAction.getGameAction" name="ui.UIAction.getGameAction">
+<area shape="rect" id="node2" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="232,5,435,32"/>
+<area shape="rect" id="node5" href="$classui_1_1_command_parser.html#a93c89e96a15062847ba74d20d21075e1" title="ui.CommandParser.move" alt="" coords="250,56,417,83"/>
+<area shape="rect" id="node6" href="$classui_1_1_command_parser.html#a84493d28cdfdab457eec5bfeebaf7350" title="ui.CommandParser.attack" alt="" coords="247,107,420,133"/>
+<area shape="rect" id="node3" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="483,5,605,32"/>
+<area shape="rect" id="node4" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="653,5,736,32"/>
+</map>

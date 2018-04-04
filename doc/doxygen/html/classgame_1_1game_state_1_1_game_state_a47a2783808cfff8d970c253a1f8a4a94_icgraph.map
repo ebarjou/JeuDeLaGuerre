@@ -1,0 +1,10 @@
+<map id="game.gameState.GameState.getHeight" name="game.gameState.GameState.getHeight">
+<area shape="rect" id="node2" href="$classanalyse_1_1_info_module.html#a0693c1b360ceaad897107c41bddb1576" title="analyse.InfoModule.initialize\lDoubleMap" alt="" coords="302,71,486,112"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="570,5,769,47"/>
+<area shape="rect" id="node4" href="$classanalyse_1_1map_methods_1_1_abstract_imprecise_map_method.html#a05c258bdd82babbaad63b4a9a5bbb063" title="analyse.mapMethods.Abstract\lImpreciseMapMethod.compute" alt="" coords="569,136,769,177"/>
+<area shape="rect" id="node6" href="$classanalyse_1_1map_methods_1_1_communication_map_method.html#a9e617c1890ad709390adc27497bfd6ea" title="analyse.mapMethods.Communication\lMapMethod.compute" alt="" coords="274,188,514,229"/>
+<area shape="rect" id="node7" href="$classanalyse_1_1map_methods_1_1_f_s_outcome_prediction_map_method.html#af2f0988760eea49a665a0eeb3db9b591" title="analyse.mapMethods.FSOutcome\lPredictionMapMethod.compute" alt="" coords="284,253,504,295"/>
+<area shape="rect" id="node8" href="$classanalyse_1_1map_methods_1_1_imprecise_outcome_prediction_map_method.html#ac10aaad7dc1b63b9cb518b93c5d2b1a3" title="analyse.mapMethods.Imprecise\lOutcomePredictionMapMethod.compute" alt="" coords="267,319,521,360"/>
+<area shape="rect" id="node9" href="$classui_1_1_u_i_elements_1_1_board_canvas_1_1_click_handler.html#a84eaaabde709765305c31a38f59880e6" title="ui.UIElements.BoardCanvas.\lClickHandler.handle" alt="" coords="301,384,487,425"/>
+<area shape="rect" id="node5" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html#a314b86189e095a68a77027e051f0ea9c" title="analyse.mapMethods.Abstract\lStaticMapMethod.compute" alt="" coords="570,71,769,112"/>
+</map>

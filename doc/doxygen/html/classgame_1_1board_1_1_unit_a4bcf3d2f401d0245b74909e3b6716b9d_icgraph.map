@@ -1,0 +1,8 @@
+<map id="game.board.Unit.setPosition" name="game.board.Unit.setPosition">
+<area shape="rect" id="node2" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="240,5,439,47"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1rules_1_1master_rules_1_1_attack_rules.html#ae45bbf8fb4c1cef3733c6051f8b8b008" title="ruleEngine.rules.masterRules.\lAttackRules.applyResult" alt="" coords="241,71,437,112"/>
+<area shape="rect" id="node4" href="$classsystem_1_1_load_file.html#adf1c31e03c1dd422118d122ef17dc96e" title="system.LoadFile.loadFile" alt="" coords="256,137,423,163"/>
+<area shape="rect" id="node5" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="487,137,689,163"/>
+<area shape="rect" id="node6" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="737,137,860,163"/>
+<area shape="rect" id="node7" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="908,137,991,163"/>
+</map>

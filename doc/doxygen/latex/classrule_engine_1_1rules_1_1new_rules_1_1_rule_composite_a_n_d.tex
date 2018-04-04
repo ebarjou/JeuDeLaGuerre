@@ -1,0 +1,91 @@
+\hypertarget{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d}{}\section{rule\+Engine.\+rules.\+new\+Rules.\+Rule\+Composite\+A\+ND Class Reference}
+\label{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d}\index{rule\+Engine.\+rules.\+new\+Rules.\+Rule\+Composite\+A\+ND@{rule\+Engine.\+rules.\+new\+Rules.\+Rule\+Composite\+A\+ND}}
+
+
+Inheritance diagram for rule\+Engine.\+rules.\+new\+Rules.\+Rule\+Composite\+A\+ND\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for rule\+Engine.\+rules.\+new\+Rules.\+Rule\+Composite\+A\+ND\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d_a0ffaffcc28c95914802855e234bcb60f}{Rule\+Composite\+A\+ND}} ()
+\item 
+boolean \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d_aa7e869573bdce2cea2551d83c4546bc4}{check\+Action}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} state, \mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}} action, \mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}} result)
+\item 
+String \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d_a1807d41373e80bf5e2778e81a4148b7b}{get\+Name}} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Composite to be extended by super-\/set of atomic rules. Check the validity of all rules added by \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a4970c2904b55542c6c7323195a38c845}{Rule\+Composite\#add(\+I\+Rule)}}. This composite represents the logical A\+ND between all \mbox{\hyperlink{interfacerule_engine_1_1rules_1_1new_rules_1_1_i_rule}{I\+Rule}} in \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a0f873c0c52e3cf4815d5b09a5ca2ae7f}{Rule\+Composite\#rules}}, it checks all the rules even if the result is invalidate by one of the rule because we want to have the maximum of log on why the action is incorrect. If you need the lazy A\+ND, you must see \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_lazy_a_n_d}{Rule\+Composite\+Lazy\+A\+ND}}.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} 
+
+\mbox{\hyperlink{interfacerule_engine_1_1rules_1_1new_rules_1_1_i_rule}{I\+Rule}} 
+
+\mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}} 
+
+\mbox{\hyperlink{classrule_engine_1_1_rule_checker}{rule\+Engine.\+Rule\+Checker}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d_a0ffaffcc28c95914802855e234bcb60f}\label{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d_a0ffaffcc28c95914802855e234bcb60f}} 
+\index{rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND@{rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND}!Rule\+Composite\+A\+ND@{Rule\+Composite\+A\+ND}}
+\index{Rule\+Composite\+A\+ND@{Rule\+Composite\+A\+ND}!rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND@{rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND}}
+\subsubsection{\texorpdfstring{Rule\+Composite\+A\+N\+D()}{RuleCompositeAND()}}
+{\footnotesize\ttfamily rule\+Engine.\+rules.\+new\+Rules.\+Rule\+Composite\+A\+N\+D.\+Rule\+Composite\+A\+ND (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d_a0ffaffcc28c95914802855e234bcb60f_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d_aa7e869573bdce2cea2551d83c4546bc4}\label{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d_aa7e869573bdce2cea2551d83c4546bc4}} 
+\index{rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND@{rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND}!check\+Action@{check\+Action}}
+\index{check\+Action@{check\+Action}!rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND@{rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND}}
+\subsubsection{\texorpdfstring{check\+Action()}{checkAction()}}
+{\footnotesize\ttfamily boolean rule\+Engine.\+rules.\+new\+Rules.\+Rule\+Composite\+A\+N\+D.\+check\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{state,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}}}]{action,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}}}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implements \mbox{\hyperlink{interfacerule_engine_1_1rules_1_1new_rules_1_1_i_rule_a72ce29a47d7a5fba75a09444a50a481e}{rule\+Engine.\+rules.\+new\+Rules.\+I\+Rule}}.
+
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d_a1807d41373e80bf5e2778e81a4148b7b}\label{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite_a_n_d_a1807d41373e80bf5e2778e81a4148b7b}} 
+\index{rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND@{rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND@{rule\+Engine\+::rules\+::new\+Rules\+::\+Rule\+Composite\+A\+ND}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily String rule\+Engine.\+rules.\+new\+Rules.\+Rule\+Composite\+A\+N\+D.\+get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implements \mbox{\hyperlink{interfacerule_engine_1_1rules_1_1new_rules_1_1_i_rule_a99e11d165ca863908c6e985a79917067}{rule\+Engine.\+rules.\+new\+Rules.\+I\+Rule}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+rule\+Engine/rules/new\+Rules/\mbox{\hyperlink{_rule_composite_a_n_d_8java}{Rule\+Composite\+A\+N\+D.\+java}}\end{DoxyCompactItemize}

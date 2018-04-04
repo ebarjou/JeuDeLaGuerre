@@ -1,0 +1,10 @@
+<map id="game.board.Unit.getPlayer" name="game.board.Unit.getPlayer">
+<area shape="rect" id="node2" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html#a5f92c163d4402bbd591c2673d09fbbaf" title="analyse.mapMethods.Abstract\lStaticMapMethod.isInCommunication" alt="" coords="229,9,468,51"/>
+<area shape="rect" id="node4" href="$classgame_1_1game_state_1_1_game_state.html#a1e0ecf6737cb33799a09b30eb5f81431" title="game.gameState.GameState.addUnit" alt="" coords="229,78,468,105"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html#a314b86189e095a68a77027e051f0ea9c" title="analyse.mapMethods.Abstract\lStaticMapMethod.compute" alt="" coords="516,5,715,47"/>
+<area shape="rect" id="node5" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="516,71,715,112"/>
+<area shape="rect" id="node6" href="$classsystem_1_1_load_file.html#adf1c31e03c1dd422118d122ef17dc96e" title="system.LoadFile.loadFile" alt="" coords="532,137,699,163"/>
+<area shape="rect" id="node7" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="763,137,965,163"/>
+<area shape="rect" id="node8" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="1013,137,1136,163"/>
+<area shape="rect" id="node9" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="1184,137,1267,163"/>
+</map>

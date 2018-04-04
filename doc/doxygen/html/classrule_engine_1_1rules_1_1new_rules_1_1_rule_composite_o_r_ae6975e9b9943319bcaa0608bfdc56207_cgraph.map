@@ -1,0 +1,6 @@
+<map id="ruleEngine.rules.newRules.RuleCompositeOR.checkAction" name="ruleEngine.rules.newRules.RuleCompositeOR.checkAction">
+<area shape="rect" id="node2" href="$classrule_engine_1_1_rule_result.html#a3257a949d317dfb83ecc2b9cb17ab5fd" title="ruleEngine.RuleResult.invalidate" alt="" coords="259,13,465,39"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1_rule_result.html#a530d8dd9cb3461dba440b37e12347f5a" title="ruleEngine.RuleResult.add\lMessage" alt="" coords="275,64,449,105"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_rule_result.html#a25680c11a9156d9052b04a1803f81e9f" title="ruleEngine.RuleResult.get\lLogMessage" alt="" coords="276,129,448,171"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1_rule_result.html#a2cbcc84268db20bd941e6ff3ee648e6e" title="ruleEngine.RuleResult.is\lValid" alt="" coords="513,5,677,47"/>
+</map>

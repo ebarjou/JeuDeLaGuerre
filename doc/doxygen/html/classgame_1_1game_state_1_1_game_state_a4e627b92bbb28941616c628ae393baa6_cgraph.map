@@ -1,0 +1,5 @@
+<map id="game.gameState.GameState.setInCommunication" name="game.gameState.GameState.setInCommunication">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a47516ef1e79a14a60d65951e5fdc3817" title="game.board.Board.setInCommunication" alt="" coords="267,42,517,69"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="572,5,743,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="565,71,749,98"/>
+</map>

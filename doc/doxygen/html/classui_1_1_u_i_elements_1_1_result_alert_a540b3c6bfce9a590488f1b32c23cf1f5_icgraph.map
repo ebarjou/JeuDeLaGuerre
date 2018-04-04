@@ -1,0 +1,7 @@
+<map id="ui.UIElements.ResultAlert.setMessage" name="ui.UIElements.ResultAlert.setMessage">
+<area shape="rect" id="node2" href="$classui_1_1_term_g_u_i.html#aa1c37916b26b5ecb5e98a88621cb03c1" title="ui.TermGUI.processResponse" alt="" coords="247,31,441,57"/>
+<area shape="rect" id="node6" href="$classui_1_1_u_i_elements_1_1_result_alert.html#a287499be420acb3e4140cfc2464d3f32" title="ui.UIElements.ResultAlert.set\lMessage" alt="" coords="247,82,441,123"/>
+<area shape="rect" id="node3" href="$classui_1_1_term_g_u_i.html#a46859d29835a7053b48e49f27b377f76" title="ui.TermGUI.start" alt="" coords="529,5,646,32"/>
+<area shape="rect" id="node4" href="$classui_1_1_term_g_u_i.html#a8ef774ab2fe02b2469e7b675ba9c5a4d" title="ui.TermGUI.processCommand" alt="" coords="489,56,685,83"/>
+<area shape="rect" id="node5" href="$classui_1_1_term_g_u_i_1_1_command_event.html#a318fdfbc0c417b4a990a34b275e3896e" title="ui.TermGUI.CommandEvent.handle" alt="" coords="733,56,957,83"/>
+</map>

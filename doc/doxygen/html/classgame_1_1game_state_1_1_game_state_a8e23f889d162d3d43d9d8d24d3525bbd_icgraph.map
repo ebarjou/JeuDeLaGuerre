@@ -1,0 +1,11 @@
+<map id="game.gameState.GameState.isInCommunication" name="game.gameState.GameState.isInCommunication">
+<area shape="rect" id="node2" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="282,5,481,47"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html#a5f92c163d4402bbd591c2673d09fbbaf" title="analyse.mapMethods.Abstract\lStaticMapMethod.isInCommunication" alt="" coords="262,71,501,112"/>
+<area shape="rect" id="node5" href="$classanalyse_1_1map_methods_1_1_communication_map_method.html#a9e617c1890ad709390adc27497bfd6ea" title="analyse.mapMethods.Communication\lMapMethod.compute" alt="" coords="261,136,501,177"/>
+<area shape="rect" id="node6" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_in_communication.html#a333d209cb3eb29f7af7a09685c95afeb" title="ruleEngine.rules.atomicRules.\lCheckIsInCommunication.checkAction" alt="" coords="259,201,504,243"/>
+<area shape="rect" id="node7" href="$classrule_engine_1_1rules_1_1master_rules_1_1_attack_rules.html#ab245cc7a1359f4049b2434184bc44076" title="ruleEngine.rules.masterRules.\lAttackRules.getFightValueRec" alt="" coords="281,267,481,308"/>
+<area shape="rect" id="node10" href="$classrule_engine_1_1rules_1_1master_rules_1_1_attack_rules.html#a80c89bcb3fe06834e0c1ef1772a8c71e" title="ruleEngine.rules.masterRules.\lAttackRules.getDefenseValue" alt="" coords="553,325,749,367"/>
+<area shape="rect" id="node4" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html#a314b86189e095a68a77027e051f0ea9c" title="analyse.mapMethods.Abstract\lStaticMapMethod.compute" alt="" coords="552,71,751,112"/>
+<area shape="rect" id="node8" href="$classrule_engine_1_1rules_1_1master_rules_1_1_attack_rules.html#abbf934911508bc5804744745815493d5" title="ruleEngine.rules.masterRules.\lAttackRules.getAttackValue" alt="" coords="553,260,749,301"/>
+<area shape="rect" id="node9" href="$classrule_engine_1_1rules_1_1master_rules_1_1_attack_rules.html#ae45bbf8fb4c1cef3733c6051f8b8b008" title="ruleEngine.rules.masterRules.\lAttackRules.applyResult" alt="" coords="799,293,995,335"/>
+</map>

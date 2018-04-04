@@ -1,0 +1,12 @@
+<map id="game.Game.getInstance" name="game.Game.getInstance">
+<area shape="rect" id="node2" href="$classplayer_1_1_bot_player.html#abb2afb9c7bd26eb9c4f6a586a8164230" title="player.BotPlayer.createCommand" alt="" coords="217,56,435,83"/>
+<area shape="rect" id="node5" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="925,132,1008,159"/>
+<area shape="rect" id="node6" href="$classsystem_1_1_load_file.html#adf1c31e03c1dd422118d122ef17dc96e" title="system.LoadFile.loadFile" alt="" coords="243,157,409,184"/>
+<area shape="rect" id="node9" href="$classui_1_1_term_g_u_i.html#a46859d29835a7053b48e49f27b377f76" title="ui.TermGUI.start" alt="" coords="267,208,385,235"/>
+<area shape="rect" id="node10" href="$classui_1_1_term_g_u_i.html#a8ef774ab2fe02b2469e7b675ba9c5a4d" title="ui.TermGUI.processCommand" alt="" coords="228,259,424,285"/>
+<area shape="rect" id="node3" href="$classplayer_1_1_bot_player.html#a811ae631a057c586488b32badd752f3c" title="player.BotPlayer.getCommand" alt="" coords="495,5,694,32"/>
+<area shape="rect" id="node4" href="$classplayer_1_1_bot_player.html#a716f0bd1509ca717defac662e8a3bb27" title="player.BotPlayer.setCommand" alt="" coords="495,56,694,83"/>
+<area shape="rect" id="node7" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="493,157,696,184"/>
+<area shape="rect" id="node8" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="755,157,877,184"/>
+<area shape="rect" id="node11" href="$classui_1_1_term_g_u_i_1_1_command_event.html#a318fdfbc0c417b4a990a34b275e3896e" title="ui.TermGUI.CommandEvent.handle" alt="" coords="483,259,707,285"/>
+</map>

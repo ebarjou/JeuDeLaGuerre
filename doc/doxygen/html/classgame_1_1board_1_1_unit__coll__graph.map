@@ -1,0 +1,4 @@
+<map id="game.board.Unit" name="game.board.Unit">
+<area shape="rect" id="node3" href="$enumgame_1_1_e_player.html" title="game.EPlayer" alt="" coords="109,95,213,121"/>
+<area shape="rect" id="node5" href="$enumrule_engine_1_1entity_1_1_e_unit_property.html" title="ruleEngine.entity.EUnitProperty" alt="" coords="237,95,441,121"/>
+</map>

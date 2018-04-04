@@ -1,0 +1,18 @@
+<map id="analyse.mapMethods.AbstractStaticMapMethod.applyAllAxis" name="analyse.mapMethods.AbstractStaticMapMethod.applyAllAxis">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_unit.html#a165d186d9ffb91527d90807134dbe212" title="game.board.Unit.getUnitData" alt="" coords="272,5,461,32"/>
+<area shape="rect" id="node3" href="$enumrule_engine_1_1entity_1_1_e_unit_property.html#a827c762c3ba5f1bde2858d069506087c" title="ruleEngine.entity.EUnitProperty.get\lAtkValue" alt="" coords="253,57,480,98"/>
+<area shape="rect" id="node4" href="$enumrule_engine_1_1entity_1_1_e_unit_property.html#a05066d575b2ab489f18315a9185729ce" title="ruleEngine.entity.EUnitProperty.get\lDefValue" alt="" coords="253,122,480,163"/>
+<area shape="rect" id="node5" href="$enumrule_engine_1_1entity_1_1_e_unit_property.html#af85a56d807863d90dbbb3422b2cf627a" title="ruleEngine.entity.EUnitProperty.get\lFightRange" alt="" coords="253,187,480,229"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_unit.html#a83e3e2551f8750d2107e366e279adb4d" title="game.board.Unit.getX" alt="" coords="293,253,440,280"/>
+<area shape="rect" id="node7" href="$classgame_1_1board_1_1_unit.html#a99a707f9342b07b4342ffec748696d27" title="game.board.Unit.getY" alt="" coords="293,304,441,331"/>
+<area shape="rect" id="node8" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html#af36453d4f13bf86967d153d5e5575ad5" title="analyse.mapMethods.Abstract\lStaticMapMethod.applySingleAxis" alt="" coords="256,355,477,397"/>
+<area shape="rect" id="node9" href="$classgame_1_1game_state_1_1_game_state.html#aa60313a4c02762b0b05c5474cb3a987f" title="game.gameState.GameState.is\lValidCoordinate" alt="" coords="799,231,1004,273"/>
+<area shape="rect" id="node11" href="$classgame_1_1game_state_1_1_game_state.html#af6886fabf0eb529d7bda218d46d45ae7" title="game.gameState.GameState.is\lBuilding" alt="" coords="799,297,1004,338"/>
+<area shape="rect" id="node14" href="$classgame_1_1game_state_1_1_game_state.html#a2d95887f3ee78109ddcb0b27b6a8ec93" title="game.gameState.GameState.get\lBuildingType" alt="" coords="528,355,741,397"/>
+<area shape="rect" id="node16" href="$enumrule_engine_1_1entity_1_1_e_building_property.html#a4897fdf509002eb7cd5c1b1b5c8f10fe" title="ruleEngine.entity.EBuilding\lProperty.isAccessible" alt="" coords="545,421,724,462"/>
+<area shape="rect" id="node17" href="$enumrule_engine_1_1entity_1_1_e_building_property.html#a65d0295002f2e355b4599132104d3314" title="ruleEngine.entity.EBuilding\lProperty.getBonusDef" alt="" coords="545,486,724,527"/>
+<area shape="rect" id="node10" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="1304,254,1475,295"/>
+<area shape="rect" id="node12" href="$classgame_1_1board_1_1_board.html#a6b6e3fb41b451a50ef9d5135067c2582" title="game.board.Board.isBuilding" alt="" coords="1061,307,1249,333"/>
+<area shape="rect" id="node13" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="1297,333,1481,360"/>
+<area shape="rect" id="node15" href="$classgame_1_1board_1_1_board.html#ab5376949c9c2ee4fa825e3df27f798ed" title="game.board.Board.getBuildingType" alt="" coords="789,363,1013,389"/>
+</map>

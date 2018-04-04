@@ -1,0 +1,5 @@
+<map id="game.Game.getGameState" name="game.Game.getGameState">
+<area shape="rect" id="node2" href="$classplayer_1_1_bot_player.html#abb2afb9c7bd26eb9c4f6a586a8164230" title="player.BotPlayer.createCommand" alt="" coords="235,31,452,57"/>
+<area shape="rect" id="node3" href="$classplayer_1_1_bot_player.html#a811ae631a057c586488b32badd752f3c" title="player.BotPlayer.getCommand" alt="" coords="500,5,699,32"/>
+<area shape="rect" id="node4" href="$classplayer_1_1_bot_player.html#a716f0bd1509ca717defac662e8a3bb27" title="player.BotPlayer.setCommand" alt="" coords="500,56,699,83"/>
+</map>

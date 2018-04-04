@@ -1,0 +1,20 @@
+<map id="analyse.moveMethods.AllAvailableMovesMethod.compute" name="analyse.moveMethods.AllAvailableMovesMethod.compute">
+<area shape="rect" id="node2" href="$classanalyse_1_1_info_module.html#a502795470587e7a7b93af1f1fd7a470d" title="analyse.InfoModule.getAll\lUnitsFromPlayer" alt="" coords="303,63,473,104"/>
+<area shape="rect" id="node4" href="$classgame_1_1game_state_1_1_game_state.html#acb0b76d0c2eb02659818962cd2894d3a" title="game.gameState.GameState.clone" alt="" coords="275,209,501,235"/>
+<area shape="rect" id="node11" href="$classanalyse_1_1move_methods_1_1_all_available_moves_method.html#a1b46ec313b796fcea3764e71e5d427c9" title="analyse.moveMethods.AllAvailable\lMovesMethod.generateActionList" alt="" coords="277,543,499,584"/>
+<area shape="rect" id="node3" href="$classgame_1_1game_state_1_1_game_state.html#a07fb5a48de7241b6cb683989bf0a3f9b" title="game.gameState.GameState.get\lAllUnits" alt="" coords="556,5,769,47"/>
+<area shape="rect" id="node5" href="$classgame_1_1game_state_1_1_game_state.html#a2af3edd7bad5467700803bcad2e17c43" title="game.gameState.GameState.\lGameState" alt="" coords="565,71,760,112"/>
+<area shape="rect" id="node6" href="$classgame_1_1game_state_1_1_game_state.html#ae1661eac863f6e53722801714ad31103" title="game.gameState.GameState.clone\lUnits" alt="" coords="549,136,776,177"/>
+<area shape="rect" id="node7" href="$classgame_1_1game_state_1_1_game_state.html#a9acfa671516164070b06cb8f94be79fa" title="game.gameState.GameState.clone\lBuilding" alt="" coords="549,201,776,243"/>
+<area shape="rect" id="node8" href="$classgame_1_1board_1_1_unit.html#ad4f3140a22fc3d4dfb3ecaede3e15d8b" title="game.board.Unit.clone" alt="" coords="587,291,739,318"/>
+<area shape="rect" id="node9" href="$classgame_1_1board_1_1_board.html#a9c451f4c61b310a98999f4d6968bc6e1" title="game.board.Board.clone" alt="" coords="581,342,744,369"/>
+<area shape="rect" id="node10" href="$classgame_1_1board_1_1_board.html#a4a4512e961aaf295bb4227f6f3fc7981" title="game.board.Board.Board" alt="" coords="830,342,997,369"/>
+<area shape="rect" id="node12" href="$classgame_1_1game_state_1_1_game_state.html#a92394b3a782113ba3e2a19397099dcd4" title="game.gameState.GameState.set\lActualPlayer" alt="" coords="556,393,769,435"/>
+<area shape="rect" id="node13" href="$classrule_engine_1_1_game_action.html#a606ab317d79faf03aba37638bdc23cd6" title="ruleEngine.GameAction.set\lSourceCoordinates" alt="" coords="572,459,753,500"/>
+<area shape="rect" id="node14" href="$classrule_engine_1_1_coordinates.html#a2b3c0539db7bec01491eef738487b147" title="ruleEngine.Coordinates.getX" alt="" coords="570,525,755,551"/>
+<area shape="rect" id="node15" href="$classrule_engine_1_1_coordinates.html#ad14bb7f6ecd9607d8f0110a38c6b3e87" title="ruleEngine.Coordinates.getY" alt="" coords="569,575,756,602"/>
+<area shape="rect" id="node16" href="$classrule_engine_1_1_game_action.html#ace03895cc8a7061ecd2af09156cead26" title="ruleEngine.GameAction.set\lTargetCoordinates" alt="" coords="572,627,753,668"/>
+<area shape="rect" id="node17" href="$classanalyse_1_1_info_module.html#a03bb959f532b214a07058127e528712b" title="analyse.InfoModule.getRule\lChecker" alt="" coords="572,692,753,733"/>
+<area shape="rect" id="node18" href="$classrule_engine_1_1_rule_checker.html#a8d948e5ff32b545244d251c57a59c117" title="ruleEngine.RuleChecker.check\lAction" alt="" coords="563,757,763,799"/>
+<area shape="rect" id="node19" href="$interfacerule_engine_1_1rules_1_1new_rules_1_1_i_rule.html#a72ce29a47d7a5fba75a09444a50a481e" title="ruleEngine.rules.newRules.\lIRule.checkAction" alt="" coords="824,757,1003,799"/>
+</map>

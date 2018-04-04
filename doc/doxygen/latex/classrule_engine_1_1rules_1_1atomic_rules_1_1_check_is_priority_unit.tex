@@ -1,0 +1,87 @@
+\hypertarget{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit}{}\section{rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Is\+Priority\+Unit Class Reference}
+\label{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit}\index{rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Is\+Priority\+Unit@{rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Is\+Priority\+Unit}}
+
+
+Inheritance diagram for rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Is\+Priority\+Unit\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Is\+Priority\+Unit\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit_aab6e78a775704e1e740c3f52e664d04c}{check\+Action}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} state, \mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}} action, \mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}} result)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit_ab4053d812e96d43c5c89e6919e6796e2}{is\+Unit\+Has\+Priority}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} state, \mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} player, \mbox{\hyperlink{classrule_engine_1_1_coordinates}{Coordinates}} coords)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Check if a unit must retreat or not. If there is no units that need to retreat, the rule is valid.~\newline
+ Valid if the unit needs to retreat, or if there is no units that need to retreat, invalid otherwise. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classrule_engine_1_1rules_1_1master_rules_1_1_move_rules}{rule\+Engine.\+rules.\+master\+Rules.\+Move\+Rules}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit_aab6e78a775704e1e740c3f52e664d04c}\label{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit_aab6e78a775704e1e740c3f52e664d04c}} 
+\index{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Is\+Priority\+Unit@{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Is\+Priority\+Unit}!check\+Action@{check\+Action}}
+\index{check\+Action@{check\+Action}!rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Is\+Priority\+Unit@{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Is\+Priority\+Unit}}
+\subsubsection{\texorpdfstring{check\+Action()}{checkAction()}}
+{\footnotesize\ttfamily boolean rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Is\+Priority\+Unit.\+check\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{state,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}}}]{action,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}}}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implements \mbox{\hyperlink{interfacerule_engine_1_1rules_1_1new_rules_1_1_i_rule_a72ce29a47d7a5fba75a09444a50a481e}{rule\+Engine.\+rules.\+new\+Rules.\+I\+Rule}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit_aab6e78a775704e1e740c3f52e664d04c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit_ab4053d812e96d43c5c89e6919e6796e2}\label{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit_ab4053d812e96d43c5c89e6919e6796e2}} 
+\index{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Is\+Priority\+Unit@{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Is\+Priority\+Unit}!is\+Unit\+Has\+Priority@{is\+Unit\+Has\+Priority}}
+\index{is\+Unit\+Has\+Priority@{is\+Unit\+Has\+Priority}!rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Is\+Priority\+Unit@{rule\+Engine\+::rules\+::atomic\+Rules\+::\+Check\+Is\+Priority\+Unit}}
+\subsubsection{\texorpdfstring{is\+Unit\+Has\+Priority()}{isUnitHasPriority()}}
+{\footnotesize\ttfamily boolean rule\+Engine.\+rules.\+atomic\+Rules.\+Check\+Is\+Priority\+Unit.\+is\+Unit\+Has\+Priority (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{state,  }\item[{\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}}}]{player,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_coordinates}{Coordinates}}}]{coords }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit_ab4053d812e96d43c5c89e6919e6796e2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit_ab4053d812e96d43c5c89e6919e6796e2_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+rule\+Engine/rules/atomic\+Rules/\mbox{\hyperlink{_check_is_priority_unit_8java}{Check\+Is\+Priority\+Unit.\+java}}\end{DoxyCompactItemize}

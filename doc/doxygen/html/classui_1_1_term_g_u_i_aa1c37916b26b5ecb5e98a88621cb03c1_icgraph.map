@@ -1,0 +1,5 @@
+<map id="ui.TermGUI.processResponse" name="ui.TermGUI.processResponse">
+<area shape="rect" id="node2" href="$classui_1_1_term_g_u_i.html#a46859d29835a7053b48e49f27b377f76" title="ui.TermGUI.start" alt="" coords="287,5,405,32"/>
+<area shape="rect" id="node3" href="$classui_1_1_term_g_u_i.html#a8ef774ab2fe02b2469e7b675ba9c5a4d" title="ui.TermGUI.processCommand" alt="" coords="248,56,444,83"/>
+<area shape="rect" id="node4" href="$classui_1_1_term_g_u_i_1_1_command_event.html#a318fdfbc0c417b4a990a34b275e3896e" title="ui.TermGUI.CommandEvent.handle" alt="" coords="492,56,716,83"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="analyse.InfoModule.getAvailableMoves" name="analyse.InfoModule.getAvailableMoves">
+<area shape="rect" id="node2" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="269,5,468,47"/>
+<area shape="rect" id="node3" href="$classplayer_1_1_bot_player.html#abb2afb9c7bd26eb9c4f6a586a8164230" title="player.BotPlayer.createCommand" alt="" coords="260,71,477,98"/>
+<area shape="rect" id="node4" href="$classplayer_1_1_bot_player.html#a811ae631a057c586488b32badd752f3c" title="player.BotPlayer.getCommand" alt="" coords="525,46,724,73"/>
+<area shape="rect" id="node5" href="$classplayer_1_1_bot_player.html#a716f0bd1509ca717defac662e8a3bb27" title="player.BotPlayer.setCommand" alt="" coords="525,97,724,123"/>
+</map>

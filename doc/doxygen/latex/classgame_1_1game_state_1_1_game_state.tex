@@ -1,0 +1,1109 @@
+\hypertarget{classgame_1_1game_state_1_1_game_state}{}\section{game.\+game\+State.\+Game\+State Class Reference}
+\label{classgame_1_1game_state_1_1_game_state}\index{game.\+game\+State.\+Game\+State@{game.\+game\+State.\+Game\+State}}
+
+
+Inheritance diagram for game.\+game\+State.\+Game\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classgame_1_1game_state_1_1_game_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for game.\+game\+State.\+Game\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a2af3edd7bad5467700803bcad2e17c43}{Game\+State}} (int w, int h)
+\item 
+\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ae248b3c15e5355261423c9f6a443bcd3}{Game\+State}} (\mbox{\hyperlink{classgame_1_1board_1_1_board}{Board}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ad22688d7dca32fbc677dce94b9cf3862}{board}})
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a1062a7a5164975ed330180b3ba47c7b2}{add\+Building}} (\mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}} building)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a1e0ecf6737cb33799a09b30eb5f81431}{add\+Unit}} (\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} unit)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a3fbe9f547d5175914f4785a40d1871ad}{add\+Priority\+Unit}} (\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} unit)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a97278bc7001044fe8be64c4a9e890867}{remove\+Priority\+Unit}} (\mbox{\hyperlink{classrule_engine_1_1_coordinates}{Coordinates}} coords)
+\item 
+\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a418ba65b15c926ef486b0a04090910d0}{get\+Actual\+Player}} ()
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a92394b3a782113ba3e2a19397099dcd4}{set\+Actual\+Player}} (\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} player)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a8c72ae2f7753681316a4a1d16e183b6e}{switch\+Player}} ()
+\item 
+int \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ab098a3f062ba9ad6eddc030911d85506}{get\+Action\+Left}} ()
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_afdbab1b9e1116bfa025e589355bcc0fe}{set\+Action\+Left}} (int n)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_af28ff27a89c8b57b67919e5cf17982c5}{remove\+One\+Action}} ()
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_adbe937aae18d5146f28e3cd181c54515}{set\+Unit\+Has\+Moved}} (\mbox{\hyperlink{classrule_engine_1_1_coordinates}{Coordinates}} coords)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ac216deada73327e534501b741a7ffa54}{remove\+All}} ()
+\item 
+List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} $>$ \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a07fb5a48de7241b6cb683989bf0a3f9b}{get\+All\+Units}} ()
+\item 
+List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}} $>$ \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a9f60d276ddcdaaca453b1767aa03608a}{get\+All\+Buildings}} ()
+\item 
+List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} $>$ \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a825ff360e839e7d4976539b460846b25}{get\+Priority\+Units}} ()
+\item 
+List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} $>$ \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a79fab4d746df83e6391ecb9db1c3ff09}{get\+Cant\+Attack\+Units}} ()
+\item 
+\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ac74c805b98b13a313b0a337e5fbd41d2}{get\+Last\+Unit\+Moved}} ()  throws Null\+Pointer\+Exception 
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a6b65e481b29441ea54040f36144b1d8b}{set\+Last\+Unit\+Moved}} (\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} unit)
+\item 
+int \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ab7f97a46f9310d08bd3358755168262c}{get\+Width}} ()
+\item 
+int \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a47a2783808cfff8d970c253a1f8a4a94}{get\+Height}} ()
+\item 
+boolean \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_aa60313a4c02762b0b05c5474cb3a987f}{is\+Valid\+Coordinate}} (int x, int y)
+\item 
+boolean \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a8e23f889d162d3d43d9d8d24d3525bbd}{is\+In\+Communication}} (\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} player, int x, int y)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a4e627b92bbb28941616c628ae393baa6}{set\+In\+Communication}} (\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} player, int x, int y, boolean enable)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a41a6717791a72572de33f8e4fe2b956a}{clear\+Communication}} ()
+\item 
+boolean \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_af6886fabf0eb529d7bda218d46d45ae7}{is\+Building}} (int x, int y)
+\item 
+\mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_building_property}{E\+Building\+Property}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a2d95887f3ee78109ddcb0b27b6a8ec93}{get\+Building\+Type}} (int x, int y)
+\item 
+\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a25ae413bd0f2d04b162673431975ec8f}{get\+Building\+Player}} (int x, int y)
+\item 
+boolean \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_aa00899823d9599e053902598707f2bae}{is\+Unit}} (int x, int y)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a671269ff7143ada95e467bc922be519e}{remove\+Unit}} (int x, int y)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ac1a1d226c2aee2ff606c94ec1f2d2243}{remove\+Building}} (\mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}} building)
+\item 
+\mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_unit_property}{E\+Unit\+Property}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_aab7480b446f4745f84e9a8831692a472}{get\+Unit\+Type}} (int x, int y)
+\item 
+\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a270d806134a05500cc970ced6bee81bc}{get\+Unit\+Player}} (int x, int y)
+\item 
+boolean \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_abfb97afaa4914330a9df6db34e0ae323}{is\+Marked}} (int x, int y)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a2b96db554e56b41714d9ff4cffed5fbc}{set\+Marked}} (int x, int y, boolean mark)
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a8d1aba23400ae5b7cbd54af6514c83cc}{clear\+Marked}} ()
+\item 
+void \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_aea3d3b45856b36e86e0792b2fe3fdca5}{move\+Unit}} (int srcX, int srcY, int tgtX, int tgtY)
+\item 
+int \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a29fa52bbdf644f5107e5d150107801a2}{get\+Distance}} (int x, int y, int x2, int y2)
+\item 
+\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_acb0b76d0c2eb02659818962cd2894d3a}{clone}} ()
+\item 
+String \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a46d322e319cd211f4a4a90d7bf02d26c}{to\+String}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}} $>$ \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a9acfa671516164070b06cb8f94be79fa}{clone\+Building}} (List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}} $>$ array)
+\item 
+List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} $>$ \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ae1661eac863f6e53722801714ad31103}{clone\+Units}} (List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} $>$ array)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a9b6b62e58a1ea7239dbac19581d0bc7e}{actual\+Player}}
+\item 
+List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} $>$ \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ac3f3be0bc6fd5f54ebd5a4bc6ea82a6d}{all\+Units}}
+\item 
+List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}} $>$ \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a40fab1341385b8ece57ad4bf9fc3931a}{all\+Buildings}}
+\item 
+List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} $>$ \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ae32c0ba11d25bb24b4b6f753deab679c}{priority\+Units}}
+\item 
+List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} $>$ \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_acd6622fa3145cd9c82a42de6e32bbf4c}{cant\+Attack\+Units}}
+\item 
+\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_acb8600c6c780c1381e1f0bedf54b3c5d}{last\+Unit\+Moved}}
+\item 
+\mbox{\hyperlink{classgame_1_1board_1_1_board}{Board}} \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ad22688d7dca32fbc677dce94b9cf3862}{board}}
+\item 
+int \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_a26efcfe9c5276664b2e1a1b0bd83b745}{action\+Left}}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final int \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state_ac08c06796c12e109d6db782ddcd50b5f}{M\+A\+X\+\_\+\+A\+C\+T\+I\+ON}} = 5
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} is a representation of the actual board\textquotesingle{} state and manages information about the turn. It contains the player who can play this turn, lists of all units, buildings, priority\+Units, units which can\textquotesingle{}t attack this turn, the last unit moved this turn, the number of remaining actions for the player and the state of the board.
+
+Board  Unit  Building  \mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a2af3edd7bad5467700803bcad2e17c43}\label{classgame_1_1game_state_1_1_game_state_a2af3edd7bad5467700803bcad2e17c43}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!Game\+State@{Game\+State}}
+\index{Game\+State@{Game\+State}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{Game\+State()}{GameState()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily game.\+game\+State.\+Game\+State.\+Game\+State (\begin{DoxyParamCaption}\item[{int}]{w,  }\item[{int}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a2af3edd7bad5467700803bcad2e17c43_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ae248b3c15e5355261423c9f6a443bcd3}\label{classgame_1_1game_state_1_1_game_state_ae248b3c15e5355261423c9f6a443bcd3}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!Game\+State@{Game\+State}}
+\index{Game\+State@{Game\+State}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{Game\+State()}{GameState()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily game.\+game\+State.\+Game\+State.\+Game\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1board_1_1_board}{Board}}}]{board }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a1062a7a5164975ed330180b3ba47c7b2}\label{classgame_1_1game_state_1_1_game_state_a1062a7a5164975ed330180b3ba47c7b2}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!add\+Building@{add\+Building}}
+\index{add\+Building@{add\+Building}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{add\+Building()}{addBuilding()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+add\+Building (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}}}]{building }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add the building reference to the list containing all buildings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em building} & The building you want to add. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a1062a7a5164975ed330180b3ba47c7b2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a1062a7a5164975ed330180b3ba47c7b2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a3fbe9f547d5175914f4785a40d1871ad}\label{classgame_1_1game_state_1_1_game_state_a3fbe9f547d5175914f4785a40d1871ad}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!add\+Priority\+Unit@{add\+Priority\+Unit}}
+\index{add\+Priority\+Unit@{add\+Priority\+Unit}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{add\+Priority\+Unit()}{addPriorityUnit()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+add\+Priority\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}}]{unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add the unit reference to the list containing units that must move.
+
+
+\begin{DoxyParams}{Parameters}
+{\em unit} & The unit you want to add. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a3fbe9f547d5175914f4785a40d1871ad_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a1e0ecf6737cb33799a09b30eb5f81431}\label{classgame_1_1game_state_1_1_game_state_a1e0ecf6737cb33799a09b30eb5f81431}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!add\+Unit@{add\+Unit}}
+\index{add\+Unit@{add\+Unit}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{add\+Unit()}{addUnit()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+add\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}}]{unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add the unit reference to the list containing all units.
+
+
+\begin{DoxyParams}{Parameters}
+{\em unit} & The unit you want to add. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a1e0ecf6737cb33799a09b30eb5f81431_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a1e0ecf6737cb33799a09b30eb5f81431_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a41a6717791a72572de33f8e4fe2b956a}\label{classgame_1_1game_state_1_1_game_state_a41a6717791a72572de33f8e4fe2b956a}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!clear\+Communication@{clear\+Communication}}
+\index{clear\+Communication@{clear\+Communication}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{clear\+Communication()}{clearCommunication()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+clear\+Communication (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a41a6717791a72572de33f8e4fe2b956a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a41a6717791a72572de33f8e4fe2b956a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a8d1aba23400ae5b7cbd54af6514c83cc}\label{classgame_1_1game_state_1_1_game_state_a8d1aba23400ae5b7cbd54af6514c83cc}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!clear\+Marked@{clear\+Marked}}
+\index{clear\+Marked@{clear\+Marked}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{clear\+Marked()}{clearMarked()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+clear\+Marked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a8d1aba23400ae5b7cbd54af6514c83cc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a8d1aba23400ae5b7cbd54af6514c83cc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_acb0b76d0c2eb02659818962cd2894d3a}\label{classgame_1_1game_state_1_1_game_state_acb0b76d0c2eb02659818962cd2894d3a}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!clone@{clone}}
+\index{clone@{clone}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} game.\+game\+State.\+Game\+State.\+clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_acb0b76d0c2eb02659818962cd2894d3a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_acb0b76d0c2eb02659818962cd2894d3a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a9acfa671516164070b06cb8f94be79fa}\label{classgame_1_1game_state_1_1_game_state_a9acfa671516164070b06cb8f94be79fa}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!clone\+Building@{clone\+Building}}
+\index{clone\+Building@{clone\+Building}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{clone\+Building()}{cloneBuilding()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}}$>$ game.\+game\+State.\+Game\+State.\+clone\+Building (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}} $>$}]{array }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a9acfa671516164070b06cb8f94be79fa_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ae1661eac863f6e53722801714ad31103}\label{classgame_1_1game_state_1_1_game_state_ae1661eac863f6e53722801714ad31103}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!clone\+Units@{clone\+Units}}
+\index{clone\+Units@{clone\+Units}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{clone\+Units()}{cloneUnits()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}$>$ game.\+game\+State.\+Game\+State.\+clone\+Units (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} $>$}]{array }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_ae1661eac863f6e53722801714ad31103_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ab098a3f062ba9ad6eddc030911d85506}\label{classgame_1_1game_state_1_1_game_state_ab098a3f062ba9ad6eddc030911d85506}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Action\+Left@{get\+Action\+Left}}
+\index{get\+Action\+Left@{get\+Action\+Left}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Action\+Left()}{getActionLeft()}}
+{\footnotesize\ttfamily int game.\+game\+State.\+Game\+State.\+get\+Action\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_ab098a3f062ba9ad6eddc030911d85506_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a418ba65b15c926ef486b0a04090910d0}\label{classgame_1_1game_state_1_1_game_state_a418ba65b15c926ef486b0a04090910d0}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Actual\+Player@{get\+Actual\+Player}}
+\index{get\+Actual\+Player@{get\+Actual\+Player}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Actual\+Player()}{getActualPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} game.\+game\+State.\+Game\+State.\+get\+Actual\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a418ba65b15c926ef486b0a04090910d0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a9f60d276ddcdaaca453b1767aa03608a}\label{classgame_1_1game_state_1_1_game_state_a9f60d276ddcdaaca453b1767aa03608a}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+All\+Buildings@{get\+All\+Buildings}}
+\index{get\+All\+Buildings@{get\+All\+Buildings}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+All\+Buildings()}{getAllBuildings()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}}$>$ game.\+game\+State.\+Game\+State.\+get\+All\+Buildings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the reference of the list containing all buildings. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a9f60d276ddcdaaca453b1767aa03608a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a07fb5a48de7241b6cb683989bf0a3f9b}\label{classgame_1_1game_state_1_1_game_state_a07fb5a48de7241b6cb683989bf0a3f9b}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+All\+Units@{get\+All\+Units}}
+\index{get\+All\+Units@{get\+All\+Units}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+All\+Units()}{getAllUnits()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}$>$ game.\+game\+State.\+Game\+State.\+get\+All\+Units (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the reference of the list containing all units. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a07fb5a48de7241b6cb683989bf0a3f9b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a25ae413bd0f2d04b162673431975ec8f}\label{classgame_1_1game_state_1_1_game_state_a25ae413bd0f2d04b162673431975ec8f}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Building\+Player@{get\+Building\+Player}}
+\index{get\+Building\+Player@{get\+Building\+Player}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Building\+Player()}{getBuildingPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} game.\+game\+State.\+Game\+State.\+get\+Building\+Player (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a25ae413bd0f2d04b162673431975ec8f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a25ae413bd0f2d04b162673431975ec8f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a2d95887f3ee78109ddcb0b27b6a8ec93}\label{classgame_1_1game_state_1_1_game_state_a2d95887f3ee78109ddcb0b27b6a8ec93}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Building\+Type@{get\+Building\+Type}}
+\index{get\+Building\+Type@{get\+Building\+Type}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Building\+Type()}{getBuildingType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_building_property}{E\+Building\+Property}} game.\+game\+State.\+Game\+State.\+get\+Building\+Type (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a2d95887f3ee78109ddcb0b27b6a8ec93_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a2d95887f3ee78109ddcb0b27b6a8ec93_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a79fab4d746df83e6391ecb9db1c3ff09}\label{classgame_1_1game_state_1_1_game_state_a79fab4d746df83e6391ecb9db1c3ff09}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Cant\+Attack\+Units@{get\+Cant\+Attack\+Units}}
+\index{get\+Cant\+Attack\+Units@{get\+Cant\+Attack\+Units}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Cant\+Attack\+Units()}{getCantAttackUnits()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}$>$ game.\+game\+State.\+Game\+State.\+get\+Cant\+Attack\+Units (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the reference of the list containing all units which can\textquotesingle{}t attack this turn. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a79fab4d746df83e6391ecb9db1c3ff09_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a29fa52bbdf644f5107e5d150107801a2}\label{classgame_1_1game_state_1_1_game_state_a29fa52bbdf644f5107e5d150107801a2}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Distance@{get\+Distance}}
+\index{get\+Distance@{get\+Distance}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Distance()}{getDistance()}}
+{\footnotesize\ttfamily int game.\+game\+State.\+Game\+State.\+get\+Distance (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{x2,  }\item[{int}]{y2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Position on x-\/axis \\
+\hline
+{\em y} & Position on y-\/axis \\
+\hline
+{\em x2} & Position2 on x-\/axis \\
+\hline
+{\em y2} & Position2 on y-\/axis \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The distance between (x, y) and (x2, y2) =$>$ The max between abs(x -\/ x2) and abs(y -\/ y2). 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a29fa52bbdf644f5107e5d150107801a2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a29fa52bbdf644f5107e5d150107801a2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a47a2783808cfff8d970c253a1f8a4a94}\label{classgame_1_1game_state_1_1_game_state_a47a2783808cfff8d970c253a1f8a4a94}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Height@{get\+Height}}
+\index{get\+Height@{get\+Height}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Height()}{getHeight()}}
+{\footnotesize\ttfamily int game.\+game\+State.\+Game\+State.\+get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a47a2783808cfff8d970c253a1f8a4a94_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a47a2783808cfff8d970c253a1f8a4a94_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ac74c805b98b13a313b0a337e5fbd41d2}\label{classgame_1_1game_state_1_1_game_state_ac74c805b98b13a313b0a337e5fbd41d2}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Last\+Unit\+Moved@{get\+Last\+Unit\+Moved}}
+\index{get\+Last\+Unit\+Moved@{get\+Last\+Unit\+Moved}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Last\+Unit\+Moved()}{getLastUnitMoved()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} game.\+game\+State.\+Game\+State.\+get\+Last\+Unit\+Moved (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws Null\+Pointer\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the last unit moved this turn. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_ac74c805b98b13a313b0a337e5fbd41d2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a825ff360e839e7d4976539b460846b25}\label{classgame_1_1game_state_1_1_game_state_a825ff360e839e7d4976539b460846b25}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Priority\+Units@{get\+Priority\+Units}}
+\index{get\+Priority\+Units@{get\+Priority\+Units}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Priority\+Units()}{getPriorityUnits()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}$>$ game.\+game\+State.\+Game\+State.\+get\+Priority\+Units (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the reference of the list containing all priority units. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a825ff360e839e7d4976539b460846b25_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a270d806134a05500cc970ced6bee81bc}\label{classgame_1_1game_state_1_1_game_state_a270d806134a05500cc970ced6bee81bc}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Unit\+Player@{get\+Unit\+Player}}
+\index{get\+Unit\+Player@{get\+Unit\+Player}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Unit\+Player()}{getUnitPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} game.\+game\+State.\+Game\+State.\+get\+Unit\+Player (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a270d806134a05500cc970ced6bee81bc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a270d806134a05500cc970ced6bee81bc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_aab7480b446f4745f84e9a8831692a472}\label{classgame_1_1game_state_1_1_game_state_aab7480b446f4745f84e9a8831692a472}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Unit\+Type@{get\+Unit\+Type}}
+\index{get\+Unit\+Type@{get\+Unit\+Type}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Unit\+Type()}{getUnitType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumrule_engine_1_1entity_1_1_e_unit_property}{E\+Unit\+Property}} game.\+game\+State.\+Game\+State.\+get\+Unit\+Type (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_aab7480b446f4745f84e9a8831692a472_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_aab7480b446f4745f84e9a8831692a472_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ab7f97a46f9310d08bd3358755168262c}\label{classgame_1_1game_state_1_1_game_state_ab7f97a46f9310d08bd3358755168262c}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!get\+Width@{get\+Width}}
+\index{get\+Width@{get\+Width}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{get\+Width()}{getWidth()}}
+{\footnotesize\ttfamily int game.\+game\+State.\+Game\+State.\+get\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_ab7f97a46f9310d08bd3358755168262c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_ab7f97a46f9310d08bd3358755168262c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_af6886fabf0eb529d7bda218d46d45ae7}\label{classgame_1_1game_state_1_1_game_state_af6886fabf0eb529d7bda218d46d45ae7}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!is\+Building@{is\+Building}}
+\index{is\+Building@{is\+Building}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{is\+Building()}{isBuilding()}}
+{\footnotesize\ttfamily boolean game.\+game\+State.\+Game\+State.\+is\+Building (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_af6886fabf0eb529d7bda218d46d45ae7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_af6886fabf0eb529d7bda218d46d45ae7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a8e23f889d162d3d43d9d8d24d3525bbd}\label{classgame_1_1game_state_1_1_game_state_a8e23f889d162d3d43d9d8d24d3525bbd}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!is\+In\+Communication@{is\+In\+Communication}}
+\index{is\+In\+Communication@{is\+In\+Communication}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{is\+In\+Communication()}{isInCommunication()}}
+{\footnotesize\ttfamily boolean game.\+game\+State.\+Game\+State.\+is\+In\+Communication (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}}}]{player,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a8e23f889d162d3d43d9d8d24d3525bbd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a8e23f889d162d3d43d9d8d24d3525bbd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_abfb97afaa4914330a9df6db34e0ae323}\label{classgame_1_1game_state_1_1_game_state_abfb97afaa4914330a9df6db34e0ae323}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!is\+Marked@{is\+Marked}}
+\index{is\+Marked@{is\+Marked}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{is\+Marked()}{isMarked()}}
+{\footnotesize\ttfamily boolean game.\+game\+State.\+Game\+State.\+is\+Marked (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_abfb97afaa4914330a9df6db34e0ae323_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_abfb97afaa4914330a9df6db34e0ae323_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_aa00899823d9599e053902598707f2bae}\label{classgame_1_1game_state_1_1_game_state_aa00899823d9599e053902598707f2bae}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!is\+Unit@{is\+Unit}}
+\index{is\+Unit@{is\+Unit}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{is\+Unit()}{isUnit()}}
+{\footnotesize\ttfamily boolean game.\+game\+State.\+Game\+State.\+is\+Unit (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_aa00899823d9599e053902598707f2bae_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_aa00899823d9599e053902598707f2bae_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_aa60313a4c02762b0b05c5474cb3a987f}\label{classgame_1_1game_state_1_1_game_state_aa60313a4c02762b0b05c5474cb3a987f}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!is\+Valid\+Coordinate@{is\+Valid\+Coordinate}}
+\index{is\+Valid\+Coordinate@{is\+Valid\+Coordinate}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{is\+Valid\+Coordinate()}{isValidCoordinate()}}
+{\footnotesize\ttfamily boolean game.\+game\+State.\+Game\+State.\+is\+Valid\+Coordinate (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The coordinate of the x-\/axis \\
+\hline
+{\em y} & The coordinate of the y-\/axis \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the coordinates (x;y) is on the board, false otherwise. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_aa60313a4c02762b0b05c5474cb3a987f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_aa60313a4c02762b0b05c5474cb3a987f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_aea3d3b45856b36e86e0792b2fe3fdca5}\label{classgame_1_1game_state_1_1_game_state_aea3d3b45856b36e86e0792b2fe3fdca5}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!move\+Unit@{move\+Unit}}
+\index{move\+Unit@{move\+Unit}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{move\+Unit()}{moveUnit()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+move\+Unit (\begin{DoxyParamCaption}\item[{int}]{srcX,  }\item[{int}]{srcY,  }\item[{int}]{tgtX,  }\item[{int}]{tgtY }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Move the unit having the same coordinates as (srcX, srcY) to (tgtX, tgtY).
+
+
+\begin{DoxyParams}{Parameters}
+{\em srcX} & The source position on x-\/axis \\
+\hline
+{\em srcY} & The source position on y-\/axis \\
+\hline
+{\em tgtX} & The target position on x-\/axis \\
+\hline
+{\em tgtY} & The target position on y-\/axis \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_aea3d3b45856b36e86e0792b2fe3fdca5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_aea3d3b45856b36e86e0792b2fe3fdca5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ac216deada73327e534501b741a7ffa54}\label{classgame_1_1game_state_1_1_game_state_ac216deada73327e534501b741a7ffa54}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!remove\+All@{remove\+All}}
+\index{remove\+All@{remove\+All}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{remove\+All()}{removeAll()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+remove\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create new empty lists and new empty board with the same dimensions, and set the last\+Unit\+Moved to null. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_ac216deada73327e534501b741a7ffa54_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_ac216deada73327e534501b741a7ffa54_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ac1a1d226c2aee2ff606c94ec1f2d2243}\label{classgame_1_1game_state_1_1_game_state_ac1a1d226c2aee2ff606c94ec1f2d2243}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!remove\+Building@{remove\+Building}}
+\index{remove\+Building@{remove\+Building}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{remove\+Building()}{removeBuilding()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+remove\+Building (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}}}]{building }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_ac1a1d226c2aee2ff606c94ec1f2d2243_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_ac1a1d226c2aee2ff606c94ec1f2d2243_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_af28ff27a89c8b57b67919e5cf17982c5}\label{classgame_1_1game_state_1_1_game_state_af28ff27a89c8b57b67919e5cf17982c5}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!remove\+One\+Action@{remove\+One\+Action}}
+\index{remove\+One\+Action@{remove\+One\+Action}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{remove\+One\+Action()}{removeOneAction()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+remove\+One\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove one remaining action to the actual player. Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_af28ff27a89c8b57b67919e5cf17982c5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a97278bc7001044fe8be64c4a9e890867}\label{classgame_1_1game_state_1_1_game_state_a97278bc7001044fe8be64c4a9e890867}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!remove\+Priority\+Unit@{remove\+Priority\+Unit}}
+\index{remove\+Priority\+Unit@{remove\+Priority\+Unit}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{remove\+Priority\+Unit()}{removePriorityUnit()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+remove\+Priority\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrule_engine_1_1_coordinates}{Coordinates}}}]{coords }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove the unit having the same coordinates as coords in the priority unit list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em coords} & The coordinate of the unit you want to remove from this list. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a97278bc7001044fe8be64c4a9e890867_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a97278bc7001044fe8be64c4a9e890867_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a671269ff7143ada95e467bc922be519e}\label{classgame_1_1game_state_1_1_game_state_a671269ff7143ada95e467bc922be519e}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!remove\+Unit@{remove\+Unit}}
+\index{remove\+Unit@{remove\+Unit}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{remove\+Unit()}{removeUnit()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+remove\+Unit (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove the unit at position (x;y) from every lists and from the board.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The coordinate on x-\/axis \\
+\hline
+{\em y} & The coordinate on y-\/axis \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a671269ff7143ada95e467bc922be519e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a671269ff7143ada95e467bc922be519e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_afdbab1b9e1116bfa025e589355bcc0fe}\label{classgame_1_1game_state_1_1_game_state_afdbab1b9e1116bfa025e589355bcc0fe}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!set\+Action\+Left@{set\+Action\+Left}}
+\index{set\+Action\+Left@{set\+Action\+Left}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{set\+Action\+Left()}{setActionLeft()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+set\+Action\+Left (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_afdbab1b9e1116bfa025e589355bcc0fe_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a92394b3a782113ba3e2a19397099dcd4}\label{classgame_1_1game_state_1_1_game_state_a92394b3a782113ba3e2a19397099dcd4}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!set\+Actual\+Player@{set\+Actual\+Player}}
+\index{set\+Actual\+Player@{set\+Actual\+Player}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{set\+Actual\+Player()}{setActualPlayer()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+set\+Actual\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}}}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a92394b3a782113ba3e2a19397099dcd4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a4e627b92bbb28941616c628ae393baa6}\label{classgame_1_1game_state_1_1_game_state_a4e627b92bbb28941616c628ae393baa6}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!set\+In\+Communication@{set\+In\+Communication}}
+\index{set\+In\+Communication@{set\+In\+Communication}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{set\+In\+Communication()}{setInCommunication()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+set\+In\+Communication (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}}}]{player,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{boolean}]{enable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a4e627b92bbb28941616c628ae393baa6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a4e627b92bbb28941616c628ae393baa6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a6b65e481b29441ea54040f36144b1d8b}\label{classgame_1_1game_state_1_1_game_state_a6b65e481b29441ea54040f36144b1d8b}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!set\+Last\+Unit\+Moved@{set\+Last\+Unit\+Moved}}
+\index{set\+Last\+Unit\+Moved@{set\+Last\+Unit\+Moved}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{set\+Last\+Unit\+Moved()}{setLastUnitMoved()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+set\+Last\+Unit\+Moved (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}}]{unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a6b65e481b29441ea54040f36144b1d8b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a2b96db554e56b41714d9ff4cffed5fbc}\label{classgame_1_1game_state_1_1_game_state_a2b96db554e56b41714d9ff4cffed5fbc}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!set\+Marked@{set\+Marked}}
+\index{set\+Marked@{set\+Marked}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{set\+Marked()}{setMarked()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+set\+Marked (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{boolean}]{mark }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a2b96db554e56b41714d9ff4cffed5fbc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a2b96db554e56b41714d9ff4cffed5fbc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_adbe937aae18d5146f28e3cd181c54515}\label{classgame_1_1game_state_1_1_game_state_adbe937aae18d5146f28e3cd181c54515}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!set\+Unit\+Has\+Moved@{set\+Unit\+Has\+Moved}}
+\index{set\+Unit\+Has\+Moved@{set\+Unit\+Has\+Moved}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{set\+Unit\+Has\+Moved()}{setUnitHasMoved()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+set\+Unit\+Has\+Moved (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrule_engine_1_1_coordinates}{Coordinates}}}]{coords }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the variable can\+Move of the Unit having the same coordinates as coords to false.
+
+
+\begin{DoxyParams}{Parameters}
+{\em coords} & The coordinates of the unit you want to disable his can\+Move. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_adbe937aae18d5146f28e3cd181c54515_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_adbe937aae18d5146f28e3cd181c54515_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a8c72ae2f7753681316a4a1d16e183b6e}\label{classgame_1_1game_state_1_1_game_state_a8c72ae2f7753681316a4a1d16e183b6e}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!switch\+Player@{switch\+Player}}
+\index{switch\+Player@{switch\+Player}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{switch\+Player()}{switchPlayer()}}
+{\footnotesize\ttfamily void game.\+game\+State.\+Game\+State.\+switch\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Switch the actual player for this turn to the next one. Clear the units in cant\+Attack\+Units and add the units that must move for the next player in the cant\+Attack\+Units list to prevent his priority units to attack or to participate for an attack this turn. Set to null the last\+Unit\+Moved Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a8c72ae2f7753681316a4a1d16e183b6e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a8c72ae2f7753681316a4a1d16e183b6e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a46d322e319cd211f4a4a90d7bf02d26c}\label{classgame_1_1game_state_1_1_game_state_a46d322e319cd211f4a4a90d7bf02d26c}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{to\+String()}{toString()}}
+{\footnotesize\ttfamily String game.\+game\+State.\+Game\+State.\+to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1game_state_1_1_game_state_a46d322e319cd211f4a4a90d7bf02d26c_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a26efcfe9c5276664b2e1a1b0bd83b745}\label{classgame_1_1game_state_1_1_game_state_a26efcfe9c5276664b2e1a1b0bd83b745}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!action\+Left@{action\+Left}}
+\index{action\+Left@{action\+Left}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{action\+Left}{actionLeft}}
+{\footnotesize\ttfamily int game.\+game\+State.\+Game\+State.\+action\+Left\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a9b6b62e58a1ea7239dbac19581d0bc7e}\label{classgame_1_1game_state_1_1_game_state_a9b6b62e58a1ea7239dbac19581d0bc7e}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!actual\+Player@{actual\+Player}}
+\index{actual\+Player@{actual\+Player}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{actual\+Player}{actualPlayer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} game.\+game\+State.\+Game\+State.\+actual\+Player\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_a40fab1341385b8ece57ad4bf9fc3931a}\label{classgame_1_1game_state_1_1_game_state_a40fab1341385b8ece57ad4bf9fc3931a}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!all\+Buildings@{all\+Buildings}}
+\index{all\+Buildings@{all\+Buildings}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{all\+Buildings}{allBuildings}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classgame_1_1board_1_1_building}{Building}}$>$ game.\+game\+State.\+Game\+State.\+all\+Buildings\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ac3f3be0bc6fd5f54ebd5a4bc6ea82a6d}\label{classgame_1_1game_state_1_1_game_state_ac3f3be0bc6fd5f54ebd5a4bc6ea82a6d}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!all\+Units@{all\+Units}}
+\index{all\+Units@{all\+Units}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{all\+Units}{allUnits}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}$>$ game.\+game\+State.\+Game\+State.\+all\+Units\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ad22688d7dca32fbc677dce94b9cf3862}\label{classgame_1_1game_state_1_1_game_state_ad22688d7dca32fbc677dce94b9cf3862}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!board@{board}}
+\index{board@{board}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{board}{board}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgame_1_1board_1_1_board}{Board}} game.\+game\+State.\+Game\+State.\+board\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_acd6622fa3145cd9c82a42de6e32bbf4c}\label{classgame_1_1game_state_1_1_game_state_acd6622fa3145cd9c82a42de6e32bbf4c}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!cant\+Attack\+Units@{cant\+Attack\+Units}}
+\index{cant\+Attack\+Units@{cant\+Attack\+Units}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{cant\+Attack\+Units}{cantAttackUnits}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}$>$ game.\+game\+State.\+Game\+State.\+cant\+Attack\+Units\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_acb8600c6c780c1381e1f0bedf54b3c5d}\label{classgame_1_1game_state_1_1_game_state_acb8600c6c780c1381e1f0bedf54b3c5d}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!last\+Unit\+Moved@{last\+Unit\+Moved}}
+\index{last\+Unit\+Moved@{last\+Unit\+Moved}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{last\+Unit\+Moved}{lastUnitMoved}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}} game.\+game\+State.\+Game\+State.\+last\+Unit\+Moved\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ac08c06796c12e109d6db782ddcd50b5f}\label{classgame_1_1game_state_1_1_game_state_ac08c06796c12e109d6db782ddcd50b5f}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!M\+A\+X\+\_\+\+A\+C\+T\+I\+ON@{M\+A\+X\+\_\+\+A\+C\+T\+I\+ON}}
+\index{M\+A\+X\+\_\+\+A\+C\+T\+I\+ON@{M\+A\+X\+\_\+\+A\+C\+T\+I\+ON}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+A\+C\+T\+I\+ON}{MAX\_ACTION}}
+{\footnotesize\ttfamily final int game.\+game\+State.\+Game\+State.\+M\+A\+X\+\_\+\+A\+C\+T\+I\+ON = 5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classgame_1_1game_state_1_1_game_state_ae32c0ba11d25bb24b4b6f753deab679c}\label{classgame_1_1game_state_1_1_game_state_ae32c0ba11d25bb24b4b6f753deab679c}} 
+\index{game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}!priority\+Units@{priority\+Units}}
+\index{priority\+Units@{priority\+Units}!game\+::game\+State\+::\+Game\+State@{game\+::game\+State\+::\+Game\+State}}
+\subsubsection{\texorpdfstring{priority\+Units}{priorityUnits}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classgame_1_1board_1_1_unit}{Unit}}$>$ game.\+game\+State.\+Game\+State.\+priority\+Units\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+game/game\+State/\mbox{\hyperlink{_game_state_8java}{Game\+State.\+java}}\end{DoxyCompactItemize}

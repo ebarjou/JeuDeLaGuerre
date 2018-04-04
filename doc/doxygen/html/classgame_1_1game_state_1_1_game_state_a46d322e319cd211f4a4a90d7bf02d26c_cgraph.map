@@ -1,0 +1,14 @@
+<map id="game.gameState.GameState.toString" name="game.gameState.GameState.toString">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#aef2fb3bb74281bbc59a9f2f7c1603141" title="game.board.Board.toString" alt="" coords="260,194,437,221"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a5725709db18e36c737861fd396faa517" title="game.board.Board.cellToString" alt="" coords="485,194,685,221"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#a86eddc47b7951c2e74f9acfb5d8ad2e1" title="game.board.Board.getUnitType" alt="" coords="745,46,946,73"/>
+<area shape="rect" id="node8" href="$classgame_1_1board_1_1_board.html#a4290038dfff8b88ab1e95a96f5d083b9" title="game.board.Board.getUnit\lPlayer" alt="" coords="759,111,932,152"/>
+<area shape="rect" id="node10" href="$classgame_1_1board_1_1_board.html#a26945d3e21a7033fa9d6b26d61425fe2" title="game.board.Board.getBuilding\lPlayer" alt="" coords="747,187,943,228"/>
+<area shape="rect" id="node12" href="$classgame_1_1board_1_1_board.html#ab5376949c9c2ee4fa825e3df27f798ed" title="game.board.Board.getBuildingType" alt="" coords="733,253,957,280"/>
+<area shape="rect" id="node13" href="$classgame_1_1board_1_1_board.html#aed2c46e80ddb40b36cbd09bb42b43974" title="game.board.Board.isInCommunication" alt="" coords="1005,350,1248,377"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_board.html#aed65bda6e81b3ddbc14fa80bd52ac992" title="game.board.Board.isUnit" alt="" coords="1044,46,1209,73"/>
+<area shape="rect" id="node7" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="1296,194,1480,221"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="1303,246,1473,287"/>
+<area shape="rect" id="node9" href="$classgame_1_1board_1_1_board.html#ae5b7778e3e77c51eb44064d3a4521d71" title="game.board.Board.getPlayer" alt="" coords="1033,148,1220,174"/>
+<area shape="rect" id="node11" href="$classgame_1_1board_1_1_board.html#a6b6e3fb41b451a50ef9d5135067c2582" title="game.board.Board.isBuilding" alt="" coords="1033,249,1221,276"/>
+</map>

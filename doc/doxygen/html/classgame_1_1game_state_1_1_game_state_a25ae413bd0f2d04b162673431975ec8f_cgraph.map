@@ -1,0 +1,7 @@
+<map id="game.gameState.GameState.getBuildingPlayer" name="game.gameState.GameState.getBuildingPlayer">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a26945d3e21a7033fa9d6b26d61425fe2" title="game.board.Board.getBuilding\lPlayer" alt="" coords="267,64,463,105"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a6b6e3fb41b451a50ef9d5135067c2582" title="game.board.Board.isBuilding" alt="" coords="511,21,699,47"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="747,71,931,98"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_board.html#ae5b7778e3e77c51eb44064d3a4521d71" title="game.board.Board.getPlayer" alt="" coords="511,122,698,149"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="753,5,924,47"/>
+</map>

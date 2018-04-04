@@ -1,0 +1,5 @@
+<map id="game.board.Board.clearCommunication" name="game.board.Board.clearCommunication">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#a41a6717791a72572de33f8e4fe2b956a" title="game.gameState.GameState.clear\lCommunication" alt="" coords="304,5,527,47"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules.html#af8de9ef94d7ef2e2878534c7716490fc" title="ruleEngine.rules.masterRules.\lCommRules.computeCommunication" alt="" coords="575,5,812,47"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules.html#a57094df71e5c0d9d6e8dd10cf33d23c5" title="ruleEngine.rules.masterRules.\lCommRules.applyResult" alt="" coords="860,5,1056,47"/>
+</map>

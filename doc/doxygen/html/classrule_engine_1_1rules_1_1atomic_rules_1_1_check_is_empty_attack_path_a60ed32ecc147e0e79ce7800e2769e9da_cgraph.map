@@ -1,0 +1,16 @@
+<map id="ruleEngine.rules.atomicRules.CheckIsEmptyAttackPath.checkAction" name="ruleEngine.rules.atomicRules.CheckIsEmptyAttackPath.checkAction">
+<area shape="rect" id="node2" href="$classrule_engine_1_1_game_action.html#a27182b152911857a0f87e4977e2246f1" title="ruleEngine.GameAction.get\lSourceCoordinates" alt="" coords="317,5,499,47"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1_game_action.html#ade50aef53ec161c2f0976f38d1ed006c" title="ruleEngine.GameAction.get\lTargetCoordinates" alt="" coords="317,71,499,112"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1_coordinates.html#a2b3c0539db7bec01491eef738487b147" title="ruleEngine.Coordinates.getX" alt="" coords="315,137,501,163"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_coordinates.html#ad14bb7f6ecd9607d8f0110a38c6b3e87" title="ruleEngine.Coordinates.getY" alt="" coords="315,187,501,214"/>
+<area shape="rect" id="node6" href="$classgame_1_1game_state_1_1_game_state.html#af6886fabf0eb529d7bda218d46d45ae7" title="game.gameState.GameState.is\lBuilding" alt="" coords="572,231,777,272"/>
+<area shape="rect" id="node10" href="$classgame_1_1game_state_1_1_game_state.html#a2d95887f3ee78109ddcb0b27b6a8ec93" title="game.gameState.GameState.get\lBuildingType" alt="" coords="301,289,515,331"/>
+<area shape="rect" id="node12" href="$enumrule_engine_1_1entity_1_1_e_building_property.html#a4897fdf509002eb7cd5c1b1b5c8f10fe" title="ruleEngine.entity.EBuilding\lProperty.isAccessible" alt="" coords="319,355,497,396"/>
+<area shape="rect" id="node13" href="$classrule_engine_1_1_rule_result.html#a530d8dd9cb3461dba440b37e12347f5a" title="ruleEngine.RuleResult.add\lMessage" alt="" coords="321,420,495,461"/>
+<area shape="rect" id="node14" href="$classrule_engine_1_1_rule_result.html#a3257a949d317dfb83ecc2b9cb17ab5fd" title="ruleEngine.RuleResult.invalidate" alt="" coords="305,486,511,513"/>
+<area shape="rect" id="node7" href="$classgame_1_1board_1_1_board.html#a6b6e3fb41b451a50ef9d5135067c2582" title="game.board.Board.isBuilding" alt="" coords="835,242,1023,269"/>
+<area shape="rect" id="node8" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="1077,231,1248,272"/>
+<area shape="rect" id="node9" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="1071,297,1255,323"/>
+<area shape="rect" id="node11" href="$classgame_1_1board_1_1_board.html#ab5376949c9c2ee4fa825e3df27f798ed" title="game.board.Board.getBuildingType" alt="" coords="563,297,787,323"/>
+<area shape="rect" id="node15" href="$classrule_engine_1_1_rule_result.html#a2cbcc84268db20bd941e6ff3ee648e6e" title="ruleEngine.RuleResult.is\lValid" alt="" coords="593,479,757,520"/>
+</map>

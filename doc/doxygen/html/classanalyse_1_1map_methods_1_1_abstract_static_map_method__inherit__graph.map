@@ -1,0 +1,5 @@
+<map id="analyse.mapMethods.AbstractStaticMapMethod" name="analyse.mapMethods.AbstractStaticMapMethod">
+<area shape="rect" id="node3" href="$classanalyse_1_1map_methods_1_1_static_attack_map_method.html" title="analyse.mapMethods.Static\lAttackMapMethod" alt="" coords="496,5,680,47"/>
+<area shape="rect" id="node4" href="$classanalyse_1_1map_methods_1_1_static_defense_map_method.html" title="analyse.mapMethods.Static\lDefenseMapMethod" alt="" coords="496,71,680,112"/>
+<area shape="rect" id="node2" href="$interfaceanalyse_1_1map_methods_1_1_i_metrics_map_method.html" title="analyse.mapMethods.IMetrics\lMapMethod" alt="" coords="5,39,201,80"/>
+</map>

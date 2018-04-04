@@ -1,0 +1,15 @@
+<map id="analyse.mapMethods.IMetricsMapMethod" name="analyse.mapMethods.IMetricsMapMethod">
+<area shape="rect" id="node2" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html" title="analyse.mapMethods.Abstract\lDeepMapMethod" alt="" coords="270,39,469,80"/>
+<area shape="rect" id="node5" href="$classanalyse_1_1map_methods_1_1_abstract_imprecise_map_method.html" title="analyse.mapMethods.Abstract\lImpreciseMapMethod" alt="" coords="270,136,469,177"/>
+<area shape="rect" id="node9" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html" title="analyse.mapMethods.Abstract\lStaticMapMethod" alt="" coords="270,201,469,243"/>
+<area shape="rect" id="node12" href="$classanalyse_1_1map_methods_1_1_communication_map_method.html" title="analyse.mapMethods.Communication\lMapMethod" alt="" coords="249,267,489,308"/>
+<area shape="rect" id="node13" href="$classanalyse_1_1map_methods_1_1_f_s_outcome_prediction_map_method.html" title="analyse.mapMethods.FSOutcome\lPredictionMapMethod" alt="" coords="259,332,479,373"/>
+<area shape="rect" id="node14" href="$classanalyse_1_1map_methods_1_1_imprecise_outcome_prediction_map_method.html" title="analyse.mapMethods.Imprecise\lOutcomePredictionMapMethod" alt="" coords="266,397,473,439"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1map_methods_1_1_deep_attack_map_method.html" title="analyse.mapMethods.DeepAttack\lMapMethod" alt="" coords="537,5,756,47"/>
+<area shape="rect" id="node4" href="$classanalyse_1_1map_methods_1_1_deep_range_map_method.html" title="analyse.mapMethods.DeepRange\lMapMethod" alt="" coords="804,5,1021,47"/>
+<area shape="rect" id="node6" href="$classanalyse_1_1map_methods_1_1_imprecise_attack_map_method.html" title="analyse.mapMethods.Imprecise\lAttackMapMethod" alt="" coords="543,71,750,112"/>
+<area shape="rect" id="node8" href="$classanalyse_1_1map_methods_1_1_imprecise_defense_map_method.html" title="analyse.mapMethods.Imprecise\lDefenseMapMethod" alt="" coords="543,136,750,177"/>
+<area shape="rect" id="node7" href="$classanalyse_1_1map_methods_1_1_imprecise_range_map_method.html" title="analyse.mapMethods.Imprecise\lRangeMapMethod" alt="" coords="809,71,1016,112"/>
+<area shape="rect" id="node10" href="$classanalyse_1_1map_methods_1_1_static_attack_map_method.html" title="analyse.mapMethods.Static\lAttackMapMethod" alt="" coords="555,201,739,243"/>
+<area shape="rect" id="node11" href="$classanalyse_1_1map_methods_1_1_static_defense_map_method.html" title="analyse.mapMethods.Static\lDefenseMapMethod" alt="" coords="555,267,739,308"/>
+</map>

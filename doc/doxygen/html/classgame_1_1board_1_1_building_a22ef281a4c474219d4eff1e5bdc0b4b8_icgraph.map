@@ -1,0 +1,9 @@
+<map id="game.board.Building.getY" name="game.board.Building.getY">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#a1062a7a5164975ed330180b3ba47c7b2" title="game.gameState.GameState.add\lBuilding" alt="" coords="234,5,450,47"/>
+<area shape="rect" id="node7" href="$classgame_1_1game_state_1_1_game_state.html#ac1a1d226c2aee2ff606c94ec1f2d2243" title="game.gameState.GameState.remove\lBuilding" alt="" coords="224,71,460,112"/>
+<area shape="rect" id="node3" href="$classsystem_1_1_load_file.html#adf1c31e03c1dd422118d122ef17dc96e" title="system.LoadFile.loadFile" alt="" coords="523,13,689,39"/>
+<area shape="rect" id="node4" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="752,13,955,39"/>
+<area shape="rect" id="node5" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="1003,13,1125,39"/>
+<area shape="rect" id="node6" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="1173,13,1256,39"/>
+<area shape="rect" id="node8" href="$classrule_engine_1_1rules_1_1master_rules_1_1_move_rules.html#a15001f0b477c2f22e75d9d4055019c8b" title="ruleEngine.rules.masterRules.\lMoveRules.applyResult" alt="" coords="508,71,704,112"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="game.gameState.GameState.addBuilding" name="game.gameState.GameState.addBuilding">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a663601f177534c45ffd3ded9838b54cc" title="game.board.Board.setBuilding" alt="" coords="289,64,485,91"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_building.html#a270e3f351d616701d68b776b054a1b63" title="game.board.Building.getBuildingData" alt="" coords="269,115,504,141"/>
+<area shape="rect" id="node7" href="$classgame_1_1board_1_1_building.html#a68a617688a9b58a7534c5e32afeb478f" title="game.board.Building.getPlayer" alt="" coords="287,165,486,192"/>
+<area shape="rect" id="node8" href="$classgame_1_1board_1_1_building.html#a4b3b28df2d7385677d3f2d08d06797bd" title="game.board.Building.getX" alt="" coords="302,216,471,243"/>
+<area shape="rect" id="node9" href="$classgame_1_1board_1_1_building.html#a22ef281a4c474219d4eff1e5bdc0b4b8" title="game.board.Building.getY" alt="" coords="301,267,472,293"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="561,5,745,32"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#abd6f8157a8e5f4e16a5e831c34a2e6d1" title="game.board.Board.setItem\lPlayer" alt="" coords="566,57,741,98"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_board.html#a18c8b769344e85c3890e26c9b3f23e04" title="game.board.Board.setItemType" alt="" coords="552,123,755,149"/>
+</map>

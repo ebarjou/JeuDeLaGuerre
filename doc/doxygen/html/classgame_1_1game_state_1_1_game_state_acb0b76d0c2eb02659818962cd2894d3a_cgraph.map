@@ -1,0 +1,8 @@
+<map id="game.gameState.GameState.clone" name="game.gameState.GameState.clone">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#a2af3edd7bad5467700803bcad2e17c43" title="game.gameState.GameState.\lGameState" alt="" coords="296,5,491,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1game_state_1_1_game_state.html#ae1661eac863f6e53722801714ad31103" title="game.gameState.GameState.clone\lUnits" alt="" coords="280,71,507,112"/>
+<area shape="rect" id="node4" href="$classgame_1_1game_state_1_1_game_state.html#a9acfa671516164070b06cb8f94be79fa" title="game.gameState.GameState.clone\lBuilding" alt="" coords="280,136,507,177"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_unit.html#ad4f3140a22fc3d4dfb3ecaede3e15d8b" title="game.board.Unit.clone" alt="" coords="317,226,469,253"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_board.html#a9c451f4c61b310a98999f4d6968bc6e1" title="game.board.Board.clone" alt="" coords="312,277,475,303"/>
+<area shape="rect" id="node7" href="$classgame_1_1board_1_1_board.html#a4a4512e961aaf295bb4227f6f3fc7981" title="game.board.Board.Board" alt="" coords="555,277,721,303"/>
+</map>

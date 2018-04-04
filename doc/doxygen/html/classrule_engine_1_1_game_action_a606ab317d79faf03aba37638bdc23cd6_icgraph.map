@@ -1,0 +1,10 @@
+<map id="ruleEngine.GameAction.setSourceCoordinates" name="ruleEngine.GameAction.setSourceCoordinates">
+<area shape="rect" id="node2" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="246,5,445,47"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1move_methods_1_1_all_available_moves_method.html#a1b46ec313b796fcea3764e71e5d427c9" title="analyse.moveMethods.AllAvailable\lMovesMethod.generateActionList" alt="" coords="235,71,456,112"/>
+<area shape="rect" id="node5" href="$classplayer_1_1_bot_player.html#abb2afb9c7bd26eb9c4f6a586a8164230" title="player.BotPlayer.createCommand" alt="" coords="237,137,454,163"/>
+<area shape="rect" id="node8" href="$classui_1_1_command_parser.html#a93c89e96a15062847ba74d20d21075e1" title="ui.CommandParser.move" alt="" coords="262,187,429,214"/>
+<area shape="rect" id="node9" href="$classui_1_1_command_parser.html#a84493d28cdfdab457eec5bfeebaf7350" title="ui.CommandParser.attack" alt="" coords="259,238,432,265"/>
+<area shape="rect" id="node4" href="$classanalyse_1_1move_methods_1_1_all_available_moves_method.html#a24bb9dfcd70a39b15984b928ab46cee5" title="analyse.moveMethods.AllAvailable\lMovesMethod.compute" alt="" coords="504,71,725,112"/>
+<area shape="rect" id="node6" href="$classplayer_1_1_bot_player.html#a811ae631a057c586488b32badd752f3c" title="player.BotPlayer.getCommand" alt="" coords="515,137,714,163"/>
+<area shape="rect" id="node7" href="$classplayer_1_1_bot_player.html#a716f0bd1509ca717defac662e8a3bb27" title="player.BotPlayer.setCommand" alt="" coords="515,187,714,214"/>
+</map>

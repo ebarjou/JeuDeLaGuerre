@@ -1,0 +1,9 @@
+<map id="analyse.mapMethods.AbstractStaticMapMethod.isInCommunication" name="analyse.mapMethods.AbstractStaticMapMethod.isInCommunication">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#a8e23f889d162d3d43d9d8d24d3525bbd" title="game.gameState.GameState.is\lInCommunication" alt="" coords="292,35,497,76"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_unit.html#a4af824248a4efde17c956b608b338591" title="game.board.Unit.getPlayer" alt="" coords="307,101,483,127"/>
+<area shape="rect" id="node7" href="$classgame_1_1board_1_1_unit.html#a83e3e2551f8750d2107e366e279adb4d" title="game.board.Unit.getX" alt="" coords="321,151,468,178"/>
+<area shape="rect" id="node8" href="$classgame_1_1board_1_1_unit.html#a99a707f9342b07b4342ffec748696d27" title="game.board.Unit.getY" alt="" coords="321,202,469,229"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#aed2c46e80ddb40b36cbd09bb42b43974" title="game.board.Board.isInCommunication" alt="" coords="545,42,788,69"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="843,5,1013,47"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="836,71,1020,98"/>
+</map>

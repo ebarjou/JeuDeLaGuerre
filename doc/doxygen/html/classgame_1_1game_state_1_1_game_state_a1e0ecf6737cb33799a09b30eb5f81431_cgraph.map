@@ -1,0 +1,11 @@
+<map id="game.gameState.GameState.addUnit" name="game.gameState.GameState.addUnit">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a9432da1a143c35864052234c09acec09" title="game.board.Board.setUnit" alt="" coords="300,101,473,127"/>
+<area shape="rect" id="node7" href="$classgame_1_1board_1_1_unit.html#a165d186d9ffb91527d90807134dbe212" title="game.board.Unit.getUnitData" alt="" coords="292,151,481,178"/>
+<area shape="rect" id="node8" href="$classgame_1_1board_1_1_unit.html#a4af824248a4efde17c956b608b338591" title="game.board.Unit.getPlayer" alt="" coords="299,202,475,229"/>
+<area shape="rect" id="node9" href="$classgame_1_1board_1_1_unit.html#a83e3e2551f8750d2107e366e279adb4d" title="game.board.Unit.getX" alt="" coords="313,253,460,279"/>
+<area shape="rect" id="node10" href="$classgame_1_1board_1_1_unit.html#a99a707f9342b07b4342ffec748696d27" title="game.board.Unit.getY" alt="" coords="313,303,461,330"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="545,5,716,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="539,71,723,98"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_board.html#abd6f8157a8e5f4e16a5e831c34a2e6d1" title="game.board.Board.setItem\lPlayer" alt="" coords="543,123,718,164"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_board.html#a18c8b769344e85c3890e26c9b3f23e04" title="game.board.Board.setItemType" alt="" coords="529,189,732,215"/>
+</map>

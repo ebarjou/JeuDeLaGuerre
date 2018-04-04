@@ -1,0 +1,7 @@
+<map id="analyse.EMetricsMoveType.getMethod" name="analyse.EMetricsMoveType.getMethod">
+<area shape="rect" id="node2" href="$classanalyse_1_1_info_module.html#a6dfaaeb16de4ae73d9d0a72acc8817a0" title="analyse.InfoModule.getAvailable\lMoves" alt="" coords="256,35,463,76"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="520,5,719,47"/>
+<area shape="rect" id="node4" href="$classplayer_1_1_bot_player.html#abb2afb9c7bd26eb9c4f6a586a8164230" title="player.BotPlayer.createCommand" alt="" coords="511,71,728,98"/>
+<area shape="rect" id="node5" href="$classplayer_1_1_bot_player.html#a811ae631a057c586488b32badd752f3c" title="player.BotPlayer.getCommand" alt="" coords="776,46,975,73"/>
+<area shape="rect" id="node6" href="$classplayer_1_1_bot_player.html#a716f0bd1509ca717defac662e8a3bb27" title="player.BotPlayer.setCommand" alt="" coords="776,97,975,123"/>
+</map>

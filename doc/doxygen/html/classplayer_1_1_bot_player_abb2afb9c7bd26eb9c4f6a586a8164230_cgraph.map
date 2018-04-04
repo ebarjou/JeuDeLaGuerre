@@ -1,0 +1,9 @@
+<map id="player.BotPlayer.createCommand" name="player.BotPlayer.createCommand">
+<area shape="rect" id="node2" href="$classgame_1_1_game.html#a748613e7961431f1ab626475cf9c191b" title="game.Game.getInstance" alt="" coords="292,5,456,32"/>
+<area shape="rect" id="node3" href="$classgame_1_1_game.html#a21ddf7c79b79b1fd7e433082107fdeaa" title="game.Game.getGameState" alt="" coords="283,56,465,83"/>
+<area shape="rect" id="node4" href="$classanalyse_1_1_info_module.html#a6dfaaeb16de4ae73d9d0a72acc8817a0" title="analyse.InfoModule.getAvailable\lMoves" alt="" coords="271,107,477,149"/>
+<area shape="rect" id="node7" href="$classrule_engine_1_1_game_action.html#a606ab317d79faf03aba37638bdc23cd6" title="ruleEngine.GameAction.set\lSourceCoordinates" alt="" coords="283,173,465,214"/>
+<area shape="rect" id="node8" href="$classrule_engine_1_1_game_action.html#ace03895cc8a7061ecd2af09156cead26" title="ruleEngine.GameAction.set\lTargetCoordinates" alt="" coords="283,238,465,279"/>
+<area shape="rect" id="node5" href="$enumanalyse_1_1_e_metrics_move_type.html#aa8970fab2a06f13d314f9fc790c24048" title="analyse.EMetricsMoveType.get\lMethod" alt="" coords="525,75,728,117"/>
+<area shape="rect" id="node6" href="$interfaceanalyse_1_1move_methods_1_1_i_metrics_move_method.html#a140fc54c9b5b634c25ea2064b4642f6f" title="analyse.moveMethods.IMetrics\lMoveMethod.compute" alt="" coords="526,141,727,182"/>
+</map>

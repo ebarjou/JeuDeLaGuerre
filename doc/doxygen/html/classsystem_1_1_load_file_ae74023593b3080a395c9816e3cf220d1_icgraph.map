@@ -1,0 +1,5 @@
+<map id="system.LoadFile.save" name="system.LoadFile.save">
+<area shape="rect" id="node2" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="201,5,404,32"/>
+<area shape="rect" id="node3" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="452,5,575,32"/>
+<area shape="rect" id="node4" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="623,5,705,32"/>
+</map>

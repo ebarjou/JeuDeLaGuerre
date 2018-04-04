@@ -1,0 +1,8 @@
+<map id="game.gameState.GameState.getActionLeft" name="game.gameState.GameState.getActionLeft">
+<area shape="rect" id="node2" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_player_moves_left.html#a3a8f57bf10ee10f87444523e98dda4d0" title="ruleEngine.rules.atomicRules.\lCheckPlayerMovesLeft.checkAction" alt="" coords="267,5,497,47"/>
+<area shape="rect" id="node3" href="$classui_1_1_u_i_elements_1_1_main_layout.html#a7714bf456435ac3ab559b3bf6182c022" title="ui.UIElements.MainLayout.refresh" alt="" coords="273,71,491,98"/>
+<area shape="rect" id="node4" href="$classui_1_1_term_g_u_i.html#aa1c37916b26b5ecb5e98a88621cb03c1" title="ui.TermGUI.processResponse" alt="" coords="545,71,740,98"/>
+<area shape="rect" id="node5" href="$classui_1_1_term_g_u_i.html#a46859d29835a7053b48e49f27b377f76" title="ui.TermGUI.start" alt="" coords="827,46,945,73"/>
+<area shape="rect" id="node6" href="$classui_1_1_term_g_u_i.html#a8ef774ab2fe02b2469e7b675ba9c5a4d" title="ui.TermGUI.processCommand" alt="" coords="788,97,984,123"/>
+<area shape="rect" id="node7" href="$classui_1_1_term_g_u_i_1_1_command_event.html#a318fdfbc0c417b4a990a34b275e3896e" title="ui.TermGUI.CommandEvent.handle" alt="" coords="1032,97,1256,123"/>
+</map>

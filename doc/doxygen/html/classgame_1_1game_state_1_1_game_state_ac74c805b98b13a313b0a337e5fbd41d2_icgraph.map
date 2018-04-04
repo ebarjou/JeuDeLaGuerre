@@ -1,0 +1,9 @@
+<map id="game.gameState.GameState.getLastUnitMoved" name="game.gameState.GameState.getLastUnitMoved">
+<area shape="rect" id="node2" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_last_move.html#a1af50d2d1a89a15746df969f1925f66c" title="ruleEngine.rules.atomicRules.\lCheckLastMove.checkAction" alt="" coords="267,5,461,47"/>
+<area shape="rect" id="node3" href="$classsystem_1_1_load_file.html#a5d3c0a0b1a0c4fda2ebb8f992db8eeae" title="system.LoadFile.isLastMove" alt="" coords="271,71,457,98"/>
+<area shape="rect" id="node4" href="$classsystem_1_1_load_file.html#ae74023593b3080a395c9816e3cf220d1" title="system.LoadFile.save" alt="" coords="519,46,667,73"/>
+<area shape="rect" id="node8" href="$classsystem_1_1_load_file.html#adf1c31e03c1dd422118d122ef17dc96e" title="system.LoadFile.loadFile" alt="" coords="509,97,676,123"/>
+<area shape="rect" id="node5" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="724,71,927,98"/>
+<area shape="rect" id="node6" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="975,71,1097,98"/>
+<area shape="rect" id="node7" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="1145,71,1228,98"/>
+</map>

@@ -1,0 +1,18 @@
+<map id="game.gameState.GameState.getActualPlayer" name="game.gameState.GameState.getActualPlayer">
+<area shape="rect" id="node2" href="$classgame_1_1_game.html#aef9aa5894fc276e5699e323156463e24" title="game.Game.getPlayer" alt="" coords="581,111,733,138"/>
+<area shape="rect" id="node8" href="$classgame_1_1_game.html#a1847ff6b22bd747cc2983a261a79aed2" title="game.Game.handleGameAction" alt="" coords="282,61,489,87"/>
+<area shape="rect" id="node9" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="555,10,758,37"/>
+<area shape="rect" id="node10" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_ally_unit.html#a961880efbdfdf45e3ad9ecf31dc17cb8" title="ruleEngine.rules.atomicRules.\lCheckIsAllyUnit.checkAction" alt="" coords="288,213,483,255"/>
+<area shape="rect" id="node11" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_enemy_unit.html#a0f5a8e1e1d38431310489f7c6bdb9776" title="ruleEngine.rules.atomicRules.\lCheckIsEnemyUnit.checkAction" alt="" coords="281,279,490,320"/>
+<area shape="rect" id="node12" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit.html#ab4053d812e96d43c5c89e6919e6796e2" title="ruleEngine.rules.atomicRules.\lCheckIsPriorityUnit.isUnitHasPriority" alt="" coords="268,344,503,385"/>
+<area shape="rect" id="node14" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_no_priority_unit_ally.html#a03dc1a2792b2e7bcbfa789d328566565" title="ruleEngine.rules.atomicRules.\lCheckNoPriorityUnitAlly.checkAction" alt="" coords="267,409,504,451"/>
+<area shape="rect" id="node15" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_player_turn.html#a451c627cc11c06a071c96c7d784836ec" title="ruleEngine.rules.atomicRules.\lCheckPlayerTurn.checkAction" alt="" coords="287,475,484,516"/>
+<area shape="rect" id="node16" href="$classui_1_1_u_i_elements_1_1_main_layout.html#a7714bf456435ac3ab559b3bf6182c022" title="ui.UIElements.MainLayout.refresh" alt="" coords="277,162,494,189"/>
+<area shape="rect" id="node3" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="846,61,969,87"/>
+<area shape="rect" id="node5" href="$classui_1_1_term_g_u_i.html#a46859d29835a7053b48e49f27b377f76" title="ui.TermGUI.start" alt="" coords="849,162,966,189"/>
+<area shape="rect" id="node6" href="$classui_1_1_term_g_u_i.html#a8ef774ab2fe02b2469e7b675ba9c5a4d" title="ui.TermGUI.processCommand" alt="" coords="809,111,1005,138"/>
+<area shape="rect" id="node4" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="1124,61,1207,87"/>
+<area shape="rect" id="node7" href="$classui_1_1_term_g_u_i_1_1_command_event.html#a318fdfbc0c417b4a990a34b275e3896e" title="ui.TermGUI.CommandEvent.handle" alt="" coords="1053,111,1277,138"/>
+<area shape="rect" id="node13" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit.html#aab6e78a775704e1e740c3f52e664d04c" title="ruleEngine.rules.atomicRules.\lCheckIsPriorityUnit.checkAction" alt="" coords="552,344,761,385"/>
+<area shape="rect" id="node17" href="$classui_1_1_term_g_u_i.html#aa1c37916b26b5ecb5e98a88621cb03c1" title="ui.TermGUI.processResponse" alt="" coords="559,162,754,189"/>
+</map>

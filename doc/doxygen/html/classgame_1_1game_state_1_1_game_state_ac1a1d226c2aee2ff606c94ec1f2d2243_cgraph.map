@@ -1,0 +1,7 @@
+<map id="game.gameState.GameState.removeBuilding" name="game.gameState.GameState.removeBuilding">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a2887ad41696ae6aeafc9494ca80f465b" title="game.board.Board.delBuilding" alt="" coords="289,42,484,69"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_building.html#a4b3b28df2d7385677d3f2d08d06797bd" title="game.board.Building.getX" alt="" coords="302,93,471,119"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_building.html#a22ef281a4c474219d4eff1e5bdc0b4b8" title="game.board.Building.getY" alt="" coords="301,143,472,170"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="539,5,709,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="532,71,716,98"/>
+</map>

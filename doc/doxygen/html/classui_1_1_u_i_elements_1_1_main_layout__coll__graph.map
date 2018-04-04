@@ -1,0 +1,10 @@
+<map id="ui.UIElements.MainLayout" name="ui.UIElements.MainLayout">
+<area shape="rect" id="node14" href="$enumanalyse_1_1_e_metrics_map_type.html" title="analyse.EMetricsMapType" alt="" coords="827,288,1003,315"/>
+<area shape="rect" id="node15" href="$interfaceanalyse_1_1map_methods_1_1_i_metrics_map_method.html" title="analyse.mapMethods.IMetrics\lMapMethod" alt="" coords="479,142,675,183"/>
+<area shape="rect" id="node16" href="$classgame_1_1game_state_1_1_game_state.html" title="game.gameState.GameState" alt="" coords="820,341,1011,368"/>
+<area shape="rect" id="node18" href="$classgame_1_1board_1_1_unit.html" title="game.board.Unit" alt="" coords="518,208,635,235"/>
+<area shape="rect" id="node19" href="$enumgame_1_1_e_player.html" title="game.EPlayer" alt="" coords="237,329,341,356"/>
+<area shape="rect" id="node21" href="$enumrule_engine_1_1entity_1_1_e_unit_property.html" title="ruleEngine.entity.EUnitProperty" alt="" coords="187,173,391,200"/>
+<area shape="rect" id="node22" href="$classgame_1_1board_1_1_board.html" title="game.board.Board" alt="" coords="513,385,641,412"/>
+<area shape="rect" id="node23" href="$interfacegame_1_1board_1_1_i_board.html" title="game.board.IBoard" alt="" coords="223,385,354,412"/>
+</map>

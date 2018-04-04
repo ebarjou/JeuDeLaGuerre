@@ -1,0 +1,5 @@
+<map id="ui.UIAction.setText" name="ui.UIAction.setText">
+<area shape="rect" id="node2" href="$classui_1_1_command_parser.html#a2d11a803c2f103352b347cbc00cf49a9" title="ui.CommandParser.load" alt="" coords="186,5,347,32"/>
+<area shape="rect" id="node3" href="$classui_1_1_command_parser.html#a72ac4304e38b2ac30f642388d6fe6bff" title="ui.CommandParser.save" alt="" coords="185,56,348,83"/>
+<area shape="rect" id="node4" href="$classui_1_1_term_g_u_i.html#a46859d29835a7053b48e49f27b377f76" title="ui.TermGUI.start" alt="" coords="208,107,325,133"/>
+</map>

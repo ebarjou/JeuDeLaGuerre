@@ -1,0 +1,11 @@
+<map id="analyse.mapMethods.AbstractStaticMapMethod.applySingleAxis" name="analyse.mapMethods.AbstractStaticMapMethod.applySingleAxis">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#aa60313a4c02762b0b05c5474cb3a987f" title="game.gameState.GameState.is\lValidCoordinate" alt="" coords="545,5,751,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1game_state_1_1_game_state.html#af6886fabf0eb529d7bda218d46d45ae7" title="game.gameState.GameState.is\lBuilding" alt="" coords="545,71,751,112"/>
+<area shape="rect" id="node7" href="$classgame_1_1game_state_1_1_game_state.html#a2d95887f3ee78109ddcb0b27b6a8ec93" title="game.gameState.GameState.get\lBuildingType" alt="" coords="275,129,488,171"/>
+<area shape="rect" id="node9" href="$enumrule_engine_1_1entity_1_1_e_building_property.html#a4897fdf509002eb7cd5c1b1b5c8f10fe" title="ruleEngine.entity.EBuilding\lProperty.isAccessible" alt="" coords="292,195,471,236"/>
+<area shape="rect" id="node10" href="$enumrule_engine_1_1entity_1_1_e_building_property.html#a65d0295002f2e355b4599132104d3314" title="ruleEngine.entity.EBuilding\lProperty.getBonusDef" alt="" coords="292,260,471,301"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="1051,28,1221,69"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_board.html#a6b6e3fb41b451a50ef9d5135067c2582" title="game.board.Board.isBuilding" alt="" coords="808,81,996,107"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="1044,107,1228,134"/>
+<area shape="rect" id="node8" href="$classgame_1_1board_1_1_board.html#ab5376949c9c2ee4fa825e3df27f798ed" title="game.board.Board.getBuildingType" alt="" coords="536,137,760,163"/>
+</map>

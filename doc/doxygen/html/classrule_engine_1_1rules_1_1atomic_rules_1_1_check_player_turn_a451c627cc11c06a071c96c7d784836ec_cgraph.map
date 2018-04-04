@@ -1,0 +1,8 @@
+<map id="ruleEngine.rules.atomicRules.CheckPlayerTurn.checkAction" name="ruleEngine.rules.atomicRules.CheckPlayerTurn.checkAction">
+<area shape="rect" id="node2" href="$classrule_engine_1_1_game_action.html#acd7a1a123d274d486d2696ef56df0f01" title="ruleEngine.GameAction.get\lPlayer" alt="" coords="267,5,448,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1game_state_1_1_game_state.html#a418ba65b15c926ef486b0a04090910d0" title="game.gameState.GameState.get\lActualPlayer" alt="" coords="251,71,464,112"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1_rule_result.html#a3257a949d317dfb83ecc2b9cb17ab5fd" title="ruleEngine.RuleResult.invalidate" alt="" coords="254,137,461,163"/>
+<area shape="rect" id="node6" href="$classrule_engine_1_1_rule_result.html#a530d8dd9cb3461dba440b37e12347f5a" title="ruleEngine.RuleResult.add\lMessage" alt="" coords="270,188,445,229"/>
+<area shape="rect" id="node7" href="$enumgame_1_1_e_player.html#a74855692721e2ddd60963b62571d7e3e" title="game.EPlayer.toString" alt="" coords="281,254,434,281"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_rule_result.html#a2cbcc84268db20bd941e6ff3ee648e6e" title="ruleEngine.RuleResult.is\lValid" alt="" coords="512,129,676,171"/>
+</map>

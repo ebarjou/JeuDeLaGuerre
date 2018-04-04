@@ -1,0 +1,132 @@
+\hypertarget{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules}{}\section{rule\+Engine.\+rules.\+master\+Rules.\+Comm\+Rules Class Reference}
+\label{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules}\index{rule\+Engine.\+rules.\+master\+Rules.\+Comm\+Rules@{rule\+Engine.\+rules.\+master\+Rules.\+Comm\+Rules}}
+
+
+Inheritance diagram for rule\+Engine.\+rules.\+master\+Rules.\+Comm\+Rules\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for rule\+Engine.\+rules.\+master\+Rules.\+Comm\+Rules\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a57094df71e5c0d9d6e8dd10cf33d23c5}{apply\+Result}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} state, \mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}} action, \mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}} result)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_af8de9ef94d7ef2e2878534c7716490fc}{compute\+Communication}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} game\+State)
+\item 
+void \mbox{\hyperlink{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a53d83ec67dede91baf381c333465c96f}{create\+Com}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} game\+State, int x, int y, \mbox{\hyperlink{enumgame_1_1board_1_1_e_direction}{E\+Direction}} dir, \mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} player, int range\+Max)
+\item 
+boolean \mbox{\hyperlink{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a8ce09b7e1c34043c5a768294cbc6adcd}{is\+Obstacle}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} game\+State, int x, int y, \mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}} player)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class not testing any rule but compute the communications on the map according to the terrain and unit types. Called by the \mbox{\hyperlink{classrule_engine_1_1_rule_checker}{Rule\+Checker}} by the
+\begin{DoxyCode}
+computeCommunications() 
+\end{DoxyCode}
+ private method on the demand of the Game object. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a57094df71e5c0d9d6e8dd10cf33d23c5}\label{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a57094df71e5c0d9d6e8dd10cf33d23c5}} 
+\index{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules@{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules}!apply\+Result@{apply\+Result}}
+\index{apply\+Result@{apply\+Result}!rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules@{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules}}
+\subsubsection{\texorpdfstring{apply\+Result()}{applyResult()}}
+{\footnotesize\ttfamily void rule\+Engine.\+rules.\+master\+Rules.\+Comm\+Rules.\+apply\+Result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{state,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}}}]{action,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}}}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a57094df71e5c0d9d6e8dd10cf33d23c5_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_af8de9ef94d7ef2e2878534c7716490fc}\label{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_af8de9ef94d7ef2e2878534c7716490fc}} 
+\index{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules@{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules}!compute\+Communication@{compute\+Communication}}
+\index{compute\+Communication@{compute\+Communication}!rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules@{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules}}
+\subsubsection{\texorpdfstring{compute\+Communication()}{computeCommunication()}}
+{\footnotesize\ttfamily void rule\+Engine.\+rules.\+master\+Rules.\+Comm\+Rules.\+compute\+Communication (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{game\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_af8de9ef94d7ef2e2878534c7716490fc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_af8de9ef94d7ef2e2878534c7716490fc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a53d83ec67dede91baf381c333465c96f}\label{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a53d83ec67dede91baf381c333465c96f}} 
+\index{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules@{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules}!create\+Com@{create\+Com}}
+\index{create\+Com@{create\+Com}!rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules@{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules}}
+\subsubsection{\texorpdfstring{create\+Com()}{createCom()}}
+{\footnotesize\ttfamily void rule\+Engine.\+rules.\+master\+Rules.\+Comm\+Rules.\+create\+Com (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{game\+State,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{\mbox{\hyperlink{enumgame_1_1board_1_1_e_direction}{E\+Direction}}}]{dir,  }\item[{\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}}}]{player,  }\item[{int}]{range\+Max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a53d83ec67dede91baf381c333465c96f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a53d83ec67dede91baf381c333465c96f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a8ce09b7e1c34043c5a768294cbc6adcd}\label{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a8ce09b7e1c34043c5a768294cbc6adcd}} 
+\index{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules@{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules}!is\+Obstacle@{is\+Obstacle}}
+\index{is\+Obstacle@{is\+Obstacle}!rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules@{rule\+Engine\+::rules\+::master\+Rules\+::\+Comm\+Rules}}
+\subsubsection{\texorpdfstring{is\+Obstacle()}{isObstacle()}}
+{\footnotesize\ttfamily boolean rule\+Engine.\+rules.\+master\+Rules.\+Comm\+Rules.\+is\+Obstacle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{game\+State,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{\mbox{\hyperlink{enumgame_1_1_e_player}{E\+Player}}}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a8ce09b7e1c34043c5a768294cbc6adcd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1rules_1_1master_rules_1_1_comm_rules_a8ce09b7e1c34043c5a768294cbc6adcd_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+rule\+Engine/rules/master\+Rules/\mbox{\hyperlink{_comm_rules_8java}{Comm\+Rules.\+java}}\end{DoxyCompactItemize}

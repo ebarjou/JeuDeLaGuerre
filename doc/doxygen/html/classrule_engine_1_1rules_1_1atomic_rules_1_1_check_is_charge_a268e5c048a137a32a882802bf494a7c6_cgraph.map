@@ -1,0 +1,5 @@
+<map id="ruleEngine.rules.atomicRules.CheckIsCharge.isCantAttackUnit" name="ruleEngine.rules.atomicRules.CheckIsCharge.isCantAttackUnit">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#a79fab4d746df83e6391ecb9db1c3ff09" title="game.gameState.GameState.get\lCantAttackUnits" alt="" coords="265,5,479,47"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1_coordinates.html#a2b3c0539db7bec01491eef738487b147" title="ruleEngine.Coordinates.getX" alt="" coords="279,71,465,98"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1_coordinates.html#ad14bb7f6ecd9607d8f0110a38c6b3e87" title="ruleEngine.Coordinates.getY" alt="" coords="279,122,465,149"/>
+</map>

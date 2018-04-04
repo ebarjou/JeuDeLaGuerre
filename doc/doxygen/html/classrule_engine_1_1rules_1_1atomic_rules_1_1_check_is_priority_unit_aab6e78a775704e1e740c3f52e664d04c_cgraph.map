@@ -1,0 +1,12 @@
+<map id="ruleEngine.rules.atomicRules.CheckIsPriorityUnit.checkAction" name="ruleEngine.rules.atomicRules.CheckIsPriorityUnit.checkAction">
+<area shape="rect" id="node2" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit.html#ab4053d812e96d43c5c89e6919e6796e2" title="ruleEngine.rules.atomicRules.\lCheckIsPriorityUnit.isUnitHasPriority" alt="" coords="263,89,497,131"/>
+<area shape="rect" id="node7" href="$classrule_engine_1_1_game_action.html#acd7a1a123d274d486d2696ef56df0f01" title="ruleEngine.GameAction.get\lPlayer" alt="" coords="289,155,471,196"/>
+<area shape="rect" id="node8" href="$classrule_engine_1_1_game_action.html#a27182b152911857a0f87e4977e2246f1" title="ruleEngine.GameAction.get\lSourceCoordinates" alt="" coords="289,220,471,261"/>
+<area shape="rect" id="node9" href="$classrule_engine_1_1_rule_result.html#a530d8dd9cb3461dba440b37e12347f5a" title="ruleEngine.RuleResult.add\lMessage" alt="" coords="293,285,467,327"/>
+<area shape="rect" id="node10" href="$classrule_engine_1_1_rule_result.html#a3257a949d317dfb83ecc2b9cb17ab5fd" title="ruleEngine.RuleResult.invalidate" alt="" coords="277,351,483,378"/>
+<area shape="rect" id="node3" href="$classgame_1_1game_state_1_1_game_state.html#a825ff360e839e7d4976539b460846b25" title="game.gameState.GameState.get\lPriorityUnits" alt="" coords="545,5,759,47"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1_coordinates.html#a2b3c0539db7bec01491eef738487b147" title="ruleEngine.Coordinates.getX" alt="" coords="559,71,745,98"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_coordinates.html#ad14bb7f6ecd9607d8f0110a38c6b3e87" title="ruleEngine.Coordinates.getY" alt="" coords="559,122,745,149"/>
+<area shape="rect" id="node6" href="$classgame_1_1game_state_1_1_game_state.html#a418ba65b15c926ef486b0a04090910d0" title="game.gameState.GameState.get\lActualPlayer" alt="" coords="545,173,759,215"/>
+<area shape="rect" id="node11" href="$classrule_engine_1_1_rule_result.html#a2cbcc84268db20bd941e6ff3ee648e6e" title="ruleEngine.RuleResult.is\lValid" alt="" coords="570,344,734,385"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="game.board.Board.setUnit" name="game.board.Board.setUnit">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="243,5,413,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="236,71,420,98"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#abd6f8157a8e5f4e16a5e831c34a2e6d1" title="game.board.Board.setItem\lPlayer" alt="" coords="241,123,415,164"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_board.html#a18c8b769344e85c3890e26c9b3f23e04" title="game.board.Board.setItemType" alt="" coords="227,189,429,215"/>
+</map>

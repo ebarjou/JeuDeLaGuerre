@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$interfaceplayer_1_1_player.html" title="player.Player" alt="" coords="5,31,104,57"/>
+<area shape="rect" id="node2" href="$classplayer_1_1_bot_player.html" title="player.BotPlayer" alt="" coords="153,5,271,32"/>
+<area shape="rect" id="node3" href="$classplayer_1_1_g_u_i_player.html" title="player.GUIPlayer" alt="" coords="152,56,272,83"/>
+</map>

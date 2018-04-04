@@ -1,0 +1,10 @@
+<map id="ruleEngine.GameAction.getPlayer" name="ruleEngine.GameAction.getPlayer">
+<area shape="rect" id="node2" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_charge.html#a6458591e4a67fc19c5ea490b5da954d3" title="ruleEngine.rules.atomicRules.\lCheckIsCharge.checkAction" alt="" coords="261,5,455,47"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_in_communication.html#a333d209cb3eb29f7af7a09685c95afeb" title="ruleEngine.rules.atomicRules.\lCheckIsInCommunication.checkAction" alt="" coords="235,71,481,112"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_no_arsenal_enemy.html#af7f0d5a6d8ca7be75585b03342fcd3a9" title="ruleEngine.rules.atomicRules.\lCheckIsNoArsenalEnemy.checkAction" alt="" coords="235,136,481,177"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_no_enemy.html#a2a3e22e04dd8057b3a0c115957003964" title="ruleEngine.rules.atomicRules.\lCheckIsNoEnemy.checkAction" alt="" coords="257,201,459,243"/>
+<area shape="rect" id="node6" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_priority_unit.html#aab6e78a775704e1e740c3f52e664d04c" title="ruleEngine.rules.atomicRules.\lCheckIsPriorityUnit.checkAction" alt="" coords="253,267,463,308"/>
+<area shape="rect" id="node7" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_player_turn.html#a451c627cc11c06a071c96c7d784836ec" title="ruleEngine.rules.atomicRules.\lCheckPlayerTurn.checkAction" alt="" coords="259,332,457,373"/>
+<area shape="rect" id="node8" href="$classrule_engine_1_1rules_1_1master_rules_1_1_move_rules.html#a15001f0b477c2f22e75d9d4055019c8b" title="ruleEngine.rules.masterRules.\lMoveRules.applyResult" alt="" coords="260,397,456,439"/>
+<area shape="rect" id="node9" href="$classrule_engine_1_1rules_1_1master_rules_1_1_victory_rules.html#a9f52825deabf9b02fe2b879be5064ae7" title="ruleEngine.rules.masterRules.\lVictoryRules.checkAction" alt="" coords="260,463,456,504"/>
+</map>

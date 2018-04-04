@@ -1,0 +1,5 @@
+<map id="game.board.Board.setBuilding" name="game.board.Board.setBuilding">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="259,5,443,32"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#abd6f8157a8e5f4e16a5e831c34a2e6d1" title="game.board.Board.setItem\lPlayer" alt="" coords="263,57,438,98"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#a18c8b769344e85c3890e26c9b3f23e04" title="game.board.Board.setItemType" alt="" coords="249,123,452,149"/>
+</map>

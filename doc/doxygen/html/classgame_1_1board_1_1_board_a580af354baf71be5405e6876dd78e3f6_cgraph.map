@@ -1,0 +1,4 @@
+<map id="game.board.Board.delUnit" name="game.board.Board.delUnit">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="232,5,403,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="225,71,409,98"/>
+</map>

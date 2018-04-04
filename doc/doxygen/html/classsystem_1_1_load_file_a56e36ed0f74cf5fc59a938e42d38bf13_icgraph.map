@@ -1,0 +1,6 @@
+<map id="system.LoadFile.convertBuilding" name="system.LoadFile.convertBuilding">
+<area shape="rect" id="node2" href="$classsystem_1_1_load_file.html#adf1c31e03c1dd422118d122ef17dc96e" title="system.LoadFile.loadFile" alt="" coords="263,5,429,32"/>
+<area shape="rect" id="node3" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="477,5,680,32"/>
+<area shape="rect" id="node4" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="728,5,851,32"/>
+<area shape="rect" id="node5" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="899,5,981,32"/>
+</map>

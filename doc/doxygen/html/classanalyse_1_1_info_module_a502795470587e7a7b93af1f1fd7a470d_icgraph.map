@@ -1,0 +1,6 @@
+<map id="analyse.InfoModule.getAllUnitsFromPlayer" name="analyse.InfoModule.getAllUnitsFromPlayer">
+<area shape="rect" id="node2" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="235,5,434,47"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1map_methods_1_1_abstract_imprecise_map_method.html#a05c258bdd82babbaad63b4a9a5bbb063" title="analyse.mapMethods.Abstract\lImpreciseMapMethod.compute" alt="" coords="235,71,435,112"/>
+<area shape="rect" id="node4" href="$classanalyse_1_1map_methods_1_1_abstract_static_map_method.html#a314b86189e095a68a77027e051f0ea9c" title="analyse.mapMethods.Abstract\lStaticMapMethod.compute" alt="" coords="235,136,434,177"/>
+<area shape="rect" id="node5" href="$classanalyse_1_1move_methods_1_1_all_available_moves_method.html#a24bb9dfcd70a39b15984b928ab46cee5" title="analyse.moveMethods.AllAvailable\lMovesMethod.compute" alt="" coords="224,201,445,243"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="analyse.moveMethods.AllAvailableMovesMethod.generateActionList" name="analyse.moveMethods.AllAvailableMovesMethod.generateActionList">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#a92394b3a782113ba3e2a19397099dcd4" title="game.gameState.GameState.set\lActualPlayer" alt="" coords="275,5,488,47"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1_game_action.html#a606ab317d79faf03aba37638bdc23cd6" title="ruleEngine.GameAction.set\lSourceCoordinates" alt="" coords="291,71,472,112"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1_coordinates.html#a2b3c0539db7bec01491eef738487b147" title="ruleEngine.Coordinates.getX" alt="" coords="289,137,474,163"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_coordinates.html#ad14bb7f6ecd9607d8f0110a38c6b3e87" title="ruleEngine.Coordinates.getY" alt="" coords="288,187,475,214"/>
+<area shape="rect" id="node6" href="$classrule_engine_1_1_game_action.html#ace03895cc8a7061ecd2af09156cead26" title="ruleEngine.GameAction.set\lTargetCoordinates" alt="" coords="291,239,472,280"/>
+<area shape="rect" id="node7" href="$classanalyse_1_1_info_module.html#a03bb959f532b214a07058127e528712b" title="analyse.InfoModule.getRule\lChecker" alt="" coords="291,304,472,345"/>
+<area shape="rect" id="node8" href="$classrule_engine_1_1_rule_checker.html#a8d948e5ff32b545244d251c57a59c117" title="ruleEngine.RuleChecker.check\lAction" alt="" coords="281,369,481,411"/>
+<area shape="rect" id="node9" href="$interfacerule_engine_1_1rules_1_1new_rules_1_1_i_rule.html#a72ce29a47d7a5fba75a09444a50a481e" title="ruleEngine.rules.newRules.\lIRule.checkAction" alt="" coords="536,369,715,411"/>
+</map>

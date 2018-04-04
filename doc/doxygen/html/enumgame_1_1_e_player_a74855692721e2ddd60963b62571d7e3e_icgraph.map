@@ -1,0 +1,9 @@
+<map id="game.EPlayer.toString" name="game.EPlayer.toString">
+<area shape="rect" id="node2" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_is_ally_unit.html#a961880efbdfdf45e3ad9ecf31dc17cb8" title="ruleEngine.rules.atomicRules.\lCheckIsAllyUnit.checkAction" alt="" coords="218,5,413,47"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1rules_1_1atomic_rules_1_1_check_player_turn.html#a451c627cc11c06a071c96c7d784836ec" title="ruleEngine.rules.atomicRules.\lCheckPlayerTurn.checkAction" alt="" coords="217,71,414,112"/>
+<area shape="rect" id="node4" href="$classui_1_1_u_i_elements_1_1_main_layout.html#a7714bf456435ac3ab559b3bf6182c022" title="ui.UIElements.MainLayout.refresh" alt="" coords="207,137,424,163"/>
+<area shape="rect" id="node5" href="$classui_1_1_term_g_u_i.html#aa1c37916b26b5ecb5e98a88621cb03c1" title="ui.TermGUI.processResponse" alt="" coords="472,137,667,163"/>
+<area shape="rect" id="node6" href="$classui_1_1_term_g_u_i.html#a46859d29835a7053b48e49f27b377f76" title="ui.TermGUI.start" alt="" coords="754,111,871,138"/>
+<area shape="rect" id="node7" href="$classui_1_1_term_g_u_i.html#a8ef774ab2fe02b2469e7b675ba9c5a4d" title="ui.TermGUI.processCommand" alt="" coords="715,162,911,189"/>
+<area shape="rect" id="node8" href="$classui_1_1_term_g_u_i_1_1_command_event.html#a318fdfbc0c417b4a990a34b275e3896e" title="ui.TermGUI.CommandEvent.handle" alt="" coords="959,162,1183,189"/>
+</map>

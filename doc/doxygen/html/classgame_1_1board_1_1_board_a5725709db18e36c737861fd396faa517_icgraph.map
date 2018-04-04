@@ -1,0 +1,4 @@
+<map id="game.board.Board.cellToString" name="game.board.Board.cellToString">
+<area shape="rect" id="node2" href="$classgame_1_1board_1_1_board.html#aef2fb3bb74281bbc59a9f2f7c1603141" title="game.board.Board.toString" alt="" coords="253,13,431,39"/>
+<area shape="rect" id="node3" href="$classgame_1_1game_state_1_1_game_state.html#a46d322e319cd211f4a4a90d7bf02d26c" title="game.gameState.GameState.to\lString" alt="" coords="479,5,685,47"/>
+</map>

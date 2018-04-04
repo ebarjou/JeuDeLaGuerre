@@ -1,0 +1,16 @@
+<map id="ui.TermGUI.processCommand" name="ui.TermGUI.processCommand">
+<area shape="rect" id="node2" href="$classgame_1_1_game.html#a748613e7961431f1ab626475cf9c191b" title="game.Game.getInstance" alt="" coords="265,18,429,45"/>
+<area shape="rect" id="node3" href="$classgame_1_1_game.html#aef9aa5894fc276e5699e323156463e24" title="game.Game.getPlayer" alt="" coords="271,69,423,95"/>
+<area shape="rect" id="node5" href="$classui_1_1_term_g_u_i.html#aa1c37916b26b5ecb5e98a88621cb03c1" title="ui.TermGUI.processResponse" alt="" coords="249,199,444,226"/>
+<area shape="rect" id="node4" href="$classgame_1_1game_state_1_1_game_state.html#a418ba65b15c926ef486b0a04090910d0" title="game.gameState.GameState.get\lActualPlayer" alt="" coords="757,5,971,47"/>
+<area shape="rect" id="node6" href="$classui_1_1_game_response.html#a07e8690d7e6c9b49792c099896bdd617" title="ui.GameResponse.getResponse" alt="" coords="496,119,705,146"/>
+<area shape="rect" id="node7" href="$classui_1_1_game_response.html#aeb684a43f6de864778d44a8efea1ac99" title="ui.GameResponse.getMessage" alt="" coords="499,170,703,197"/>
+<area shape="rect" id="node8" href="$classui_1_1_u_i_elements_1_1_result_alert.html#ae42b2e0b388584d71db12f4a5798a684" title="ui.UIElements.ResultAlert.get\lInstance" alt="" coords="504,221,697,263"/>
+<area shape="rect" id="node10" href="$classui_1_1_u_i_elements_1_1_result_alert.html#a540b3c6bfce9a590488f1b32c23cf1f5" title="ui.UIElements.ResultAlert.set\lMessage" alt="" coords="504,287,697,328"/>
+<area shape="rect" id="node11" href="$classui_1_1_u_i_elements_1_1_result_alert.html#ac15ce87d85f7eb1b88aa3ae6f8d6b8e9" title="ui.UIElements.ResultAlert.reset\lDisplayText" alt="" coords="499,352,703,393"/>
+<area shape="rect" id="node12" href="$classui_1_1_u_i_elements_1_1_main_layout.html#a7714bf456435ac3ab559b3bf6182c022" title="ui.UIElements.MainLayout.refresh" alt="" coords="492,69,709,95"/>
+<area shape="rect" id="node15" href="$classui_1_1_game_response.html#a2d410f9ba57b395ba0ef9e31df75044b" title="ui.GameResponse.getBoard" alt="" coords="508,418,693,445"/>
+<area shape="rect" id="node9" href="$classui_1_1_u_i_elements_1_1_result_alert.html#a9e69ed8cdc106169078f4950b97d35a1" title="ui.UIElements.ResultAlert.\lResultAlert" alt="" coords="777,221,951,263"/>
+<area shape="rect" id="node13" href="$enumgame_1_1_e_player.html#a74855692721e2ddd60963b62571d7e3e" title="game.EPlayer.toString" alt="" coords="787,71,941,98"/>
+<area shape="rect" id="node14" href="$classgame_1_1game_state_1_1_game_state.html#ab098a3f062ba9ad6eddc030911d85506" title="game.gameState.GameState.get\lActionLeft" alt="" coords="757,123,971,164"/>
+</map>

@@ -1,0 +1,182 @@
+\hypertarget{classrule_engine_1_1_rule_checker}{}\section{rule\+Engine.\+Rule\+Checker Class Reference}
+\label{classrule_engine_1_1_rule_checker}\index{rule\+Engine.\+Rule\+Checker@{rule\+Engine.\+Rule\+Checker}}
+
+
+Collaboration diagram for rule\+Engine.\+Rule\+Checker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1_rule_checker__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrule_engine_1_1_rule_checker_a64ab60106f2bae480f613479bbdd0b1e}{Rule\+Checker}} ()
+\item 
+boolean \mbox{\hyperlink{classrule_engine_1_1_rule_checker_a8d948e5ff32b545244d251c57a59c117}{check\+Action}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} state, \mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}} action)  throws Incorrect\+Game\+Action\+Exception 
+\item 
+\mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}} \mbox{\hyperlink{classrule_engine_1_1_rule_checker_a864194ca6149949900274c5b369abfc2}{check\+And\+Apply\+Action}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} game\+State, \mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}} action)  throws Incorrect\+Game\+Action\+Exception 
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrule_engine_1_1_rule_checker_a271924d22d328a894f36885c6d7f3833}{compute\+Communications}} (\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}} game\+State)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} \mbox{\hyperlink{classrule_engine_1_1_rule_checker_aec159dfb32f2f9bbe81f94337c5d5aea}{move\+Rule\+Master}}
+\item 
+final \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} \mbox{\hyperlink{classrule_engine_1_1_rule_checker_ac6422d6a1adb7c31883648d38467bbee}{attack\+Rule\+Master}}
+\item 
+final \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} \mbox{\hyperlink{classrule_engine_1_1_rule_checker_a7ef777f526414716ec201b9c75b07908}{comm\+Rule\+Master}}
+\item 
+final \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} \mbox{\hyperlink{classrule_engine_1_1_rule_checker_a22c69affa781268b6476666725131ecf}{end\+Rule\+Master}}
+\item 
+final \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} \mbox{\hyperlink{classrule_engine_1_1_rule_checker_a14ae1ce557eac389bba1db7a1e698507}{victory\+Rule\+Master}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Object acting as a hub for \mbox{\hyperlink{classgame_1_1_game}{game.\+Game}} to check actions on the board. Should be instantiated once.
+
+\begin{DoxySeeAlso}{See also}
+I\+Rule 
+
+\mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrule_engine_1_1_rule_checker_a64ab60106f2bae480f613479bbdd0b1e}\label{classrule_engine_1_1_rule_checker_a64ab60106f2bae480f613479bbdd0b1e}} 
+\index{rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}!Rule\+Checker@{Rule\+Checker}}
+\index{Rule\+Checker@{Rule\+Checker}!rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}}
+\subsubsection{\texorpdfstring{Rule\+Checker()}{RuleChecker()}}
+{\footnotesize\ttfamily rule\+Engine.\+Rule\+Checker.\+Rule\+Checker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrule_engine_1_1_rule_checker_a8d948e5ff32b545244d251c57a59c117}\label{classrule_engine_1_1_rule_checker_a8d948e5ff32b545244d251c57a59c117}} 
+\index{rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}!check\+Action@{check\+Action}}
+\index{check\+Action@{check\+Action}!rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}}
+\subsubsection{\texorpdfstring{check\+Action()}{checkAction()}}
+{\footnotesize\ttfamily boolean rule\+Engine.\+Rule\+Checker.\+check\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{state,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}}}]{action }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classrule_engine_1_1exceptions_1_1_incorrect_game_action_exception}{Incorrect\+Game\+Action\+Exception}}\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1_rule_checker_a8d948e5ff32b545244d251c57a59c117_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1_rule_checker_a8d948e5ff32b545244d251c57a59c117_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classrule_engine_1_1_rule_checker_a864194ca6149949900274c5b369abfc2}\label{classrule_engine_1_1_rule_checker_a864194ca6149949900274c5b369abfc2}} 
+\index{rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}!check\+And\+Apply\+Action@{check\+And\+Apply\+Action}}
+\index{check\+And\+Apply\+Action@{check\+And\+Apply\+Action}!rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}}
+\subsubsection{\texorpdfstring{check\+And\+Apply\+Action()}{checkAndApplyAction()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}} rule\+Engine.\+Rule\+Checker.\+check\+And\+Apply\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{game\+State,  }\item[{\mbox{\hyperlink{classrule_engine_1_1_game_action}{Game\+Action}}}]{action }\end{DoxyParamCaption}) throws \mbox{\hyperlink{classrule_engine_1_1exceptions_1_1_incorrect_game_action_exception}{Incorrect\+Game\+Action\+Exception}}\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if a given action on a given stage of the game is allowed or not.
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+State} & The stage of the game when the action is performed. \\
+\hline
+{\em action} & The action to check if allowed or not. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classrule_engine_1_1_rule_result}{Rule\+Result}} object containing information about the validity of the performed action. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Incorrect\+Game\+Action\+Exception} & The action is not recognized by the \mbox{\hyperlink{classrule_engine_1_1_rule_checker}{Rule\+Checker}}. \\
+\hline
+\end{DoxyExceptions}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1_rule_checker_a864194ca6149949900274c5b369abfc2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1_rule_checker_a864194ca6149949900274c5b369abfc2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classrule_engine_1_1_rule_checker_a271924d22d328a894f36885c6d7f3833}\label{classrule_engine_1_1_rule_checker_a271924d22d328a894f36885c6d7f3833}} 
+\index{rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}!compute\+Communications@{compute\+Communications}}
+\index{compute\+Communications@{compute\+Communications}!rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}}
+\subsubsection{\texorpdfstring{compute\+Communications()}{computeCommunications()}}
+{\footnotesize\ttfamily void rule\+Engine.\+Rule\+Checker.\+compute\+Communications (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame_1_1game_state_1_1_game_state}{Game\+State}}}]{game\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1_rule_checker_a271924d22d328a894f36885c6d7f3833_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrule_engine_1_1_rule_checker_a271924d22d328a894f36885c6d7f3833_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrule_engine_1_1_rule_checker_ac6422d6a1adb7c31883648d38467bbee}\label{classrule_engine_1_1_rule_checker_ac6422d6a1adb7c31883648d38467bbee}} 
+\index{rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}!attack\+Rule\+Master@{attack\+Rule\+Master}}
+\index{attack\+Rule\+Master@{attack\+Rule\+Master}!rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}}
+\subsubsection{\texorpdfstring{attack\+Rule\+Master}{attackRuleMaster}}
+{\footnotesize\ttfamily final \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} rule\+Engine.\+Rule\+Checker.\+attack\+Rule\+Master\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classrule_engine_1_1_rule_checker_a7ef777f526414716ec201b9c75b07908}\label{classrule_engine_1_1_rule_checker_a7ef777f526414716ec201b9c75b07908}} 
+\index{rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}!comm\+Rule\+Master@{comm\+Rule\+Master}}
+\index{comm\+Rule\+Master@{comm\+Rule\+Master}!rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}}
+\subsubsection{\texorpdfstring{comm\+Rule\+Master}{commRuleMaster}}
+{\footnotesize\ttfamily final \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} rule\+Engine.\+Rule\+Checker.\+comm\+Rule\+Master\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classrule_engine_1_1_rule_checker_a22c69affa781268b6476666725131ecf}\label{classrule_engine_1_1_rule_checker_a22c69affa781268b6476666725131ecf}} 
+\index{rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}!end\+Rule\+Master@{end\+Rule\+Master}}
+\index{end\+Rule\+Master@{end\+Rule\+Master}!rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}}
+\subsubsection{\texorpdfstring{end\+Rule\+Master}{endRuleMaster}}
+{\footnotesize\ttfamily final \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} rule\+Engine.\+Rule\+Checker.\+end\+Rule\+Master\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classrule_engine_1_1_rule_checker_aec159dfb32f2f9bbe81f94337c5d5aea}\label{classrule_engine_1_1_rule_checker_aec159dfb32f2f9bbe81f94337c5d5aea}} 
+\index{rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}!move\+Rule\+Master@{move\+Rule\+Master}}
+\index{move\+Rule\+Master@{move\+Rule\+Master}!rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}}
+\subsubsection{\texorpdfstring{move\+Rule\+Master}{moveRuleMaster}}
+{\footnotesize\ttfamily final \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} rule\+Engine.\+Rule\+Checker.\+move\+Rule\+Master\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classrule_engine_1_1_rule_checker_a14ae1ce557eac389bba1db7a1e698507}\label{classrule_engine_1_1_rule_checker_a14ae1ce557eac389bba1db7a1e698507}} 
+\index{rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}!victory\+Rule\+Master@{victory\+Rule\+Master}}
+\index{victory\+Rule\+Master@{victory\+Rule\+Master}!rule\+Engine\+::\+Rule\+Checker@{rule\+Engine\+::\+Rule\+Checker}}
+\subsubsection{\texorpdfstring{victory\+Rule\+Master}{victoryRuleMaster}}
+{\footnotesize\ttfamily final \mbox{\hyperlink{classrule_engine_1_1rules_1_1new_rules_1_1_rule_composite}{Rule\+Composite}} rule\+Engine.\+Rule\+Checker.\+victory\+Rule\+Master\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+rule\+Engine/\mbox{\hyperlink{_rule_checker_8java}{Rule\+Checker.\+java}}\end{DoxyCompactItemize}

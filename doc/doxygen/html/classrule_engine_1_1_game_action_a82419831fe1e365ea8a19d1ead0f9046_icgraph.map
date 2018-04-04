@@ -1,0 +1,8 @@
+<map id="ruleEngine.GameAction.setPlayer" name="ruleEngine.GameAction.setPlayer">
+<area shape="rect" id="node2" href="$classui_1_1_u_i_action.html#a3185db453138fe37b085f1427f7aca62" title="ui.UIAction.getGameAction" alt="" coords="235,56,413,83"/>
+<area shape="rect" id="node3" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="461,5,664,32"/>
+<area shape="rect" id="node6" href="$classui_1_1_command_parser.html#a93c89e96a15062847ba74d20d21075e1" title="ui.CommandParser.move" alt="" coords="479,56,646,83"/>
+<area shape="rect" id="node7" href="$classui_1_1_command_parser.html#a84493d28cdfdab457eec5bfeebaf7350" title="ui.CommandParser.attack" alt="" coords="476,107,649,133"/>
+<area shape="rect" id="node4" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="712,5,835,32"/>
+<area shape="rect" id="node5" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="883,5,965,32"/>
+</map>

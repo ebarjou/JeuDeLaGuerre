@@ -1,0 +1,9 @@
+<map id="game.board.Board.clone" name="game.board.Board.clone">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#acb0b76d0c2eb02659818962cd2894d3a" title="game.gameState.GameState.clone" alt="" coords="216,78,443,105"/>
+<area shape="rect" id="node3" href="$classanalyse_1_1map_methods_1_1_abstract_deep_map_method.html#a02252e0eb987838131c5586ab775b849" title="analyse.mapMethods.Abstract\lDeepMapMethod.compute" alt="" coords="502,5,701,47"/>
+<area shape="rect" id="node4" href="$classanalyse_1_1move_methods_1_1_all_available_moves_method.html#a24bb9dfcd70a39b15984b928ab46cee5" title="analyse.moveMethods.AllAvailable\lMovesMethod.compute" alt="" coords="491,71,712,112"/>
+<area shape="rect" id="node5" href="$classgame_1_1_game.html#a1847ff6b22bd747cc2983a261a79aed2" title="game.Game.handleGameAction" alt="" coords="498,137,705,163"/>
+<area shape="rect" id="node6" href="$classgame_1_1_game.html#aaf75940b0f76230037ff41f72b73909d" title="game.Game.start" alt="" coords="1011,137,1133,163"/>
+<area shape="rect" id="node8" href="$classgame_1_1_game.html#a8016a543126f802488e94125daccce45" title="game.Game.processCommand" alt="" coords="760,162,963,189"/>
+<area shape="rect" id="node7" href="$class_start.html#a800d84a8bb736ccfea7f5595625390e8" title="Start.main" alt="" coords="1181,137,1264,163"/>
+</map>

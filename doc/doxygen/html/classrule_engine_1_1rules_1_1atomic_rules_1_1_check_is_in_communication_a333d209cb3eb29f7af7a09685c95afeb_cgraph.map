@@ -1,0 +1,13 @@
+<map id="ruleEngine.rules.atomicRules.CheckIsInCommunication.checkAction" name="ruleEngine.rules.atomicRules.CheckIsInCommunication.checkAction">
+<area shape="rect" id="node2" href="$classrule_engine_1_1_game_action.html#a27182b152911857a0f87e4977e2246f1" title="ruleEngine.GameAction.get\lSourceCoordinates" alt="" coords="311,5,493,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1game_state_1_1_game_state.html#a8e23f889d162d3d43d9d8d24d3525bbd" title="game.gameState.GameState.is\lInCommunication" alt="" coords="299,71,505,112"/>
+<area shape="rect" id="node7" href="$classrule_engine_1_1_game_action.html#acd7a1a123d274d486d2696ef56df0f01" title="ruleEngine.GameAction.get\lPlayer" alt="" coords="311,136,493,177"/>
+<area shape="rect" id="node8" href="$classrule_engine_1_1_coordinates.html#a2b3c0539db7bec01491eef738487b147" title="ruleEngine.Coordinates.getX" alt="" coords="309,202,495,229"/>
+<area shape="rect" id="node9" href="$classrule_engine_1_1_coordinates.html#ad14bb7f6ecd9607d8f0110a38c6b3e87" title="ruleEngine.Coordinates.getY" alt="" coords="309,253,495,279"/>
+<area shape="rect" id="node10" href="$classrule_engine_1_1_rule_result.html#a530d8dd9cb3461dba440b37e12347f5a" title="ruleEngine.RuleResult.add\lMessage" alt="" coords="315,304,489,345"/>
+<area shape="rect" id="node11" href="$classrule_engine_1_1_rule_result.html#a3257a949d317dfb83ecc2b9cb17ab5fd" title="ruleEngine.RuleResult.invalidate" alt="" coords="299,370,505,397"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_board.html#aed2c46e80ddb40b36cbd09bb42b43974" title="game.board.Board.isInCommunication" alt="" coords="553,78,796,105"/>
+<area shape="rect" id="node5" href="$classgame_1_1board_1_1_board.html#a02574586e2f8c3d6c4dd1672efdf0d68" title="game.board.Board.isValid\lCoordinate" alt="" coords="851,41,1021,83"/>
+<area shape="rect" id="node6" href="$classgame_1_1board_1_1_board.html#a786604a4b98251823436860ea00aec16" title="game.board.Board.getOffset" alt="" coords="844,107,1028,134"/>
+<area shape="rect" id="node12" href="$classrule_engine_1_1_rule_result.html#a2cbcc84268db20bd941e6ff3ee648e6e" title="ruleEngine.RuleResult.is\lValid" alt="" coords="593,363,757,404"/>
+</map>

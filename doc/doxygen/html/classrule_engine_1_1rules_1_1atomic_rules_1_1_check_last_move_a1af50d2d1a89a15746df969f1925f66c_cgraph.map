@@ -1,0 +1,11 @@
+<map id="ruleEngine.rules.atomicRules.CheckLastMove.checkAction" name="ruleEngine.rules.atomicRules.CheckLastMove.checkAction">
+<area shape="rect" id="node2" href="$classrule_engine_1_1_game_action.html#a27182b152911857a0f87e4977e2246f1" title="ruleEngine.GameAction.get\lSourceCoordinates" alt="" coords="264,5,445,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1game_state_1_1_game_state.html#ac74c805b98b13a313b0a337e5fbd41d2" title="game.gameState.GameState.get\lLastUnitMoved" alt="" coords="248,71,461,112"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1_rule_result.html#a3257a949d317dfb83ecc2b9cb17ab5fd" title="ruleEngine.RuleResult.invalidate" alt="" coords="251,137,458,163"/>
+<area shape="rect" id="node6" href="$classrule_engine_1_1_rule_result.html#a530d8dd9cb3461dba440b37e12347f5a" title="ruleEngine.RuleResult.add\lMessage" alt="" coords="267,188,442,229"/>
+<area shape="rect" id="node7" href="$classgame_1_1board_1_1_unit.html#a83e3e2551f8750d2107e366e279adb4d" title="game.board.Unit.getX" alt="" coords="281,254,428,281"/>
+<area shape="rect" id="node8" href="$classrule_engine_1_1_coordinates.html#a2b3c0539db7bec01491eef738487b147" title="ruleEngine.Coordinates.getX" alt="" coords="262,305,447,331"/>
+<area shape="rect" id="node9" href="$classgame_1_1board_1_1_unit.html#a99a707f9342b07b4342ffec748696d27" title="game.board.Unit.getY" alt="" coords="281,355,429,382"/>
+<area shape="rect" id="node10" href="$classrule_engine_1_1_coordinates.html#ad14bb7f6ecd9607d8f0110a38c6b3e87" title="ruleEngine.Coordinates.getY" alt="" coords="261,406,448,433"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_rule_result.html#a2cbcc84268db20bd941e6ff3ee648e6e" title="ruleEngine.RuleResult.is\lValid" alt="" coords="509,129,673,171"/>
+</map>

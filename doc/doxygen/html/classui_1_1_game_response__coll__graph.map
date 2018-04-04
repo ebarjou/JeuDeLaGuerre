@@ -1,0 +1,9 @@
+<map id="ui.GameResponse" name="ui.GameResponse">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html" title="game.gameState.GameState" alt="" coords="815,204,1006,231"/>
+<area shape="rect" id="node4" href="$classgame_1_1board_1_1_unit.html" title="game.board.Unit" alt="" coords="513,133,630,160"/>
+<area shape="rect" id="node5" href="$enumgame_1_1_e_player.html" title="game.EPlayer" alt="" coords="237,213,341,240"/>
+<area shape="rect" id="node7" href="$enumrule_engine_1_1entity_1_1_e_unit_property.html" title="ruleEngine.entity.EUnitProperty" alt="" coords="187,124,391,151"/>
+<area shape="rect" id="node8" href="$classgame_1_1board_1_1_board.html" title="game.board.Board" alt="" coords="507,367,635,393"/>
+<area shape="rect" id="node9" href="$interfacegame_1_1board_1_1_i_board.html" title="game.board.IBoard" alt="" coords="223,367,354,393"/>
+<area shape="rect" id="node12" href="$enumui_1_1commands_1_1_game_to_user_call.html" title="ui.commands.GameToUserCall" alt="" coords="809,367,1012,393"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="ruleEngine.rules.atomicRules.CheckIsNoEnemy.checkAction" name="ruleEngine.rules.atomicRules.CheckIsNoEnemy.checkAction">
+<area shape="rect" id="node2" href="$classgame_1_1game_state_1_1_game_state.html#a07fb5a48de7241b6cb683989bf0a3f9b" title="game.gameState.GameState.get\lAllUnits" alt="" coords="256,5,469,47"/>
+<area shape="rect" id="node3" href="$classrule_engine_1_1_game_action.html#acd7a1a123d274d486d2696ef56df0f01" title="ruleEngine.GameAction.get\lPlayer" alt="" coords="272,71,453,112"/>
+<area shape="rect" id="node4" href="$classrule_engine_1_1_rule_result.html#a3257a949d317dfb83ecc2b9cb17ab5fd" title="ruleEngine.RuleResult.invalidate" alt="" coords="259,137,466,163"/>
+<area shape="rect" id="node5" href="$classrule_engine_1_1_rule_result.html#a2cbcc84268db20bd941e6ff3ee648e6e" title="ruleEngine.RuleResult.is\lValid" alt="" coords="517,129,681,171"/>
+</map>
