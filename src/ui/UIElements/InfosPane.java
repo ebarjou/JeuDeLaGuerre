@@ -14,7 +14,7 @@ import ruleEngine.entity.EBuildingProperty;
 import ruleEngine.entity.EUnitProperty;
 
 class InfosPane extends VBox {
-    public InfosPane(ChoiceBox metricsDisplay, CheckBox metricsChannel_1, CheckBox metricsChannel_2) {
+    public InfosPane(ChoiceBox metricsDisplay, CheckBox metricsChannel_1, CheckBox metricsChannel_2, CheckBox metricsDisplayValues) {
         this.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, null, null)));
         this.setMinWidth(MainLayout.INFOS_WIDTH);
         this.setAlignment(Pos.TOP_CENTER);
@@ -27,6 +27,12 @@ class InfosPane extends VBox {
         this.getChildren().add(checks);
         checks.getChildren().add(metricsChannel_1);
         checks.getChildren().add(metricsChannel_2);
+        HBox displayValues = new HBox();
+        displayValues.setAlignment(Pos.CENTER);
+        displayValues.setSpacing(5);
+        displayValues.setPadding(new Insets(5, 5, 5, 5));
+        this.getChildren().add(displayValues);
+        displayValues.getChildren().add(metricsDisplayValues);
 
         this.getChildren().add(new Label("\nLegend : "));
         for (EUnitProperty unit : EUnitProperty.values()) {

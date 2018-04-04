@@ -34,6 +34,7 @@ class BoardCanvas extends Canvas {
     private EMetricsMapType currentMetricsMapType;
     private double[][][] metrics;
     private boolean displayMetrics[];
+    private boolean displayMetricsNumbers;
 
     BoardCanvas(int w, int h, int coords_width, TextField textField) {
         super(w + coords_width, h + coords_width);
@@ -47,6 +48,7 @@ class BoardCanvas extends Canvas {
         this.displayMetrics = new boolean[2];
         displayMetrics[0] = true;
         displayMetrics[1] = true;
+        displayMetricsNumbers = false;
 
         g = this.getGraphicsContext2D();
         g.setLineWidth(2);
@@ -135,7 +137,7 @@ class BoardCanvas extends Canvas {
             }
 
             g.setStroke(Color.ORANGERED);
-            g.strokeLine(dx, dy + (gameState.getHeight() / 2) * caseSize, dx + gameState.getWidth() * caseSize, dy + (gameState.getHeight() / 2) * caseSize);
+            //g.strokeLine(dx, dy + (gameState.getHeight() / 2) * caseSize, dx + gameState.getWidth() * caseSize, dy + (gameState.getHeight() / 2) * caseSize);
         }
     }
 
@@ -181,6 +183,16 @@ class BoardCanvas extends Canvas {
                         Paint p = targetMetricsMapType.getPaint(metrics[1][x][y]);
                         g.setFill(p);
                         g.fillRect(pos_x, pos_y, size, size);
+                    }
+
+                    if (displayMetricsNumbers && displayMetrics[0]){
+                        g.setFill(Color.DARKBLUE);
+                        g.fillText("" + (int)metrics[0][x][y], pos_x + size/2, pos_y + size * 0.25);
+                    }
+
+                    if (displayMetricsNumbers && displayMetrics[1]){
+                        g.setFill(Color.DARKRED);
+                        g.fillText("" + (int)metrics[1][x][y], pos_x + size/2, pos_y + size * 0.75);
                     }
                     break;
             }
@@ -228,6 +240,10 @@ class BoardCanvas extends Canvas {
 
     public void setDisplayMetrics(int i, boolean display) {
         this.displayMetrics[i] = display;
+    }
+
+    public void setDisplayMetricsNumbers(boolean display) {
+        this.displayMetricsNumbers = display;
     }
 
     public void setMetricsMapType(EMetricsMapType type) {

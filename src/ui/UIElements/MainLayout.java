@@ -71,8 +71,12 @@ public class MainLayout extends BorderPane {
         metricsCB_South.setSelected(true);
         metricsCB_South.selectedProperty().addListener(new MetricsChannelEvent(EPlayer.PLAYER_SOUTH.ordinal()));
 
+        CheckBox metricsNumbers = new CheckBox("Display values");
+        metricsNumbers.setSelected(false);
+        metricsNumbers.selectedProperty().addListener(new MetricsNumbersEvent());
+
         commandPane = new CommandPane(textField);
-        infosPane = new InfosPane(metricsDisplay, metricsCB_North, metricsCB_South);
+        infosPane = new InfosPane(metricsDisplay, metricsCB_North, metricsCB_South, metricsNumbers);
         gamePane = new CanvasPane(CANVAS_WIDTH, CANVAS_HEIGHT, canvas);
 
         this.setBottom(commandPane);
@@ -116,6 +120,19 @@ public class MainLayout extends BorderPane {
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
             canvas.setDisplayMetrics(id, newValue);
+            canvas.draw(null);
+        }
+    }
+
+    private class MetricsNumbersEvent implements ChangeListener<Boolean> {
+        private int id;
+
+        public MetricsNumbersEvent() {
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            canvas.setDisplayMetricsNumbers(newValue);
             canvas.draw(null);
         }
     }
