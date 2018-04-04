@@ -135,7 +135,7 @@ class BoardCanvas extends Canvas {
             }
 
             g.setStroke(Color.ORANGERED);
-            g.strokeLine(dx, dy + (gameState.getHeight() / 2) * caseSize, dx + gameState.getWidth() * caseSize, dy + (gameState.getHeight() * caseSize) / 2);
+            g.strokeLine(dx, dy + (gameState.getHeight() / 2) * caseSize, dx + gameState.getWidth() * caseSize, dy + (gameState.getHeight() / 2) * caseSize);
         }
     }
 
