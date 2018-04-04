@@ -89,7 +89,7 @@ public class DebordGameTest {
 
         gameState = game.getGameState();
         if (gameAction.getActionType() == EGameActionType.END_TURN) {
-            saveGame("debordGameTurns/Turn" + ((turn + 1) / 2) + ((turn % 2 != 0 ) ? "" : "bis" ) + ".txt");
+            saveGame("presets/test/Turn" + ((turn + 1) / 2) + ((turn % 2 != 0 ) ? "" : "bis" ) + ".txt");
             actionNb = 0;
             ++turn;
             actualPlayer = gameState.getActualPlayer();

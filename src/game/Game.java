@@ -34,6 +34,7 @@ public class Game {
     }
 
     public static Game getInstance() {
+        if(instance == null) throw new ExceptionInInitializerError();
         return instance;
     }
 
